@@ -18,7 +18,7 @@ class ScheduleVC : UIViewController {
         }
     }
     override func viewDidLoad() {
-        self.view.accessibilityScroll(.down)
+        
         self.setup()
         
     }
@@ -67,7 +67,7 @@ class ScheduleVC : UIViewController {
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         self.collectionView.collectionViewLayout = layout
-        self.collectionView.layer.borderWidth = 2
+        self.collectionView.layer.borderWidth = Constant.timetableBorderWidth
         self.collectionView.layer.borderColor = UIColor.themeColor.cgColor
         self.collectionView.layer.cornerRadius = Constant.cornerRadius
         self.collectionView.delegate = self

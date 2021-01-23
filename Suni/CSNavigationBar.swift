@@ -18,11 +18,11 @@ class CSNavigationBar: UINavigationBar {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        //Remove bottom border line
+//        Remove bottom border line
         self.shadowImage = UIImage()
         self.barTintColor = .white
         self.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        
+
         //Customized height
         
 //        self.frame = CGRect(x: frame.origin.x, y: (UIApplication.shared.windows[0].windowScene?.statusBarManager?.statusBarFrame.height)!, width: frame.size.width, height: csHeight)

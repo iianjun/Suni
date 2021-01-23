@@ -19,7 +19,8 @@
 		763BAF4725B9AF47005F7EF8 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 763BAF4625B9AF47005F7EF8 /* add.png */; };
 		763BAF4B25BA8F93005F7EF8 /* CSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */; };
 		763BAF4E25BB0B0B005F7EF8 /* AddCourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF4D25BB0B0B005F7EF8 /* AddCourseVC.swift */; };
-		763BAF5425BBF98D005F7EF8 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 763BAF5325BBF98D005F7EF8 /* back.png */; };
+		763BAF5B25BC06C5005F7EF8 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 763BAF5A25BC06C5005F7EF8 /* back.png */; };
+		763BAF6225BC108A005F7EF8 /* AddCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */; };
 		768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A025B86FC80053DE0C /* AppDelegate.swift */; };
 		768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A225B86FC80053DE0C /* SceneDelegate.swift */; };
 		768D67A825B86FC80053DE0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768D67A625B86FC80053DE0C /* Main.storyboard */; };
@@ -44,7 +45,8 @@
 		763BAF4625B9AF47005F7EF8 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSNavigationBar.swift; sourceTree = "<group>"; };
 		763BAF4D25BB0B0B005F7EF8 /* AddCourseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseVC.swift; sourceTree = "<group>"; };
-		763BAF5325BBF98D005F7EF8 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		763BAF5A25BC06C5005F7EF8 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseCell.swift; sourceTree = "<group>"; };
 		768D679D25B86FC80053DE0C /* Suni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Suni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768D67A025B86FC80053DE0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768D67A225B86FC80053DE0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,8 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				763BAF4625B9AF47005F7EF8 /* add.png */,
+				763BAF5A25BC06C5005F7EF8 /* back.png */,
 				763BAF3225B95D8F005F7EF8 /* account.jpg */,
-				763BAF5325BBF98D005F7EF8 /* back.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -111,6 +113,7 @@
 				763BAF2325B87509005F7EF8 /* CalendarVC.swift */,
 				763BAF3B25B97E03005F7EF8 /* Timetable.swift */,
 				763BAF3E25B98318005F7EF8 /* TimetableCell.swift */,
+				763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */,
 				768D67A025B86FC80053DE0C /* AppDelegate.swift */,
 				768D67A225B86FC80053DE0C /* SceneDelegate.swift */,
 				768D67A625B86FC80053DE0C /* Main.storyboard */,
@@ -187,7 +190,7 @@
 				763BAF3325B95D8F005F7EF8 /* account.jpg in Resources */,
 				763BAF2725B9499E005F7EF8 /* Righteous-Regular.ttf in Resources */,
 				768D67B025B86FC80053DE0C /* LaunchScreen.storyboard in Resources */,
-				763BAF5425BBF98D005F7EF8 /* back.png in Resources */,
+				763BAF5B25BC06C5005F7EF8 /* back.png in Resources */,
 				763BAF1325B8714E005F7EF8 /* InfoPlist.strings in Resources */,
 				768D67AD25B86FC80053DE0C /* Assets.xcassets in Resources */,
 				768D67A825B86FC80053DE0C /* Main.storyboard in Resources */,
@@ -205,6 +208,7 @@
 				763BAF3F25B98318005F7EF8 /* TimetableCell.swift in Sources */,
 				763BAF3C25B97E03005F7EF8 /* Timetable.swift in Sources */,
 				768D67AB25B86FC80053DE0C /* Suni.xcdatamodeld in Sources */,
+				763BAF6225BC108A005F7EF8 /* AddCourseCell.swift in Sources */,
 				763BAF2025B874E0005F7EF8 /* ScheduleVC.swift in Sources */,
 				768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */,
 				768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */,

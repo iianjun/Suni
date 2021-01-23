@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bUj-tU-Kj5">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -14,7 +14,7 @@
             <objects>
                 <viewController id="0It-RY-68L" customClass="CalendarVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yeX-sm-Us3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="4ri-ur-geg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -30,7 +30,7 @@
             <objects>
                 <viewController title="More" id="u15-gx-2qV" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kAI-Gv-WTE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Yy2-Q3-GeS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -46,11 +46,11 @@
             <objects>
                 <viewController id="Or0-uE-gMC" customClass="ScheduleVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rLr-V3-iaL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sNP-Zb-iY3">
-                                <rect key="frame" x="16" y="74" width="343" height="529"/>
+                                <rect key="frame" x="16" y="118" width="358" height="628"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hLH-kB-Pid">
                                     <size key="itemSize" width="43" height="38"/>
@@ -83,6 +83,7 @@
                     <navigationItem key="navigationItem" id="1ud-v0-HEQ"/>
                     <connections>
                         <outlet property="collectionView" destination="sNP-Zb-iY3" id="5AQ-UX-z6z"/>
+                        <segue destination="Wi1-1D-rc9" kind="show" id="bI2-J4-i4x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ze-0F-XVm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -94,16 +95,144 @@
             <objects>
                 <viewController storyboardIdentifier="AddCourseVC" id="Wi1-1D-rc9" customClass="AddCourseVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ih6-qB-eBN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="59l-Sm-Jce">
+                                <rect key="frame" x="67" y="113" width="307" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Eap-lj-V06"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lat-cA-k5C">
+                                    <size key="itemSize" width="64" height="40"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addCourseCell" id="G3R-qe-ukI" customClass="AddCourseCell" customModule="Suni" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mZF-cq-ot1">
+                                            <rect key="frame" x="0.0" y="0.0" width="64" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="64" height="40"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="major" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8U-hm-GbI">
+                                <rect key="frame" x="16" y="113" width="43" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whs-h8-AIY">
+                                <rect key="frame" x="16" y="186" width="43" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Xdc-hn-HZg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q2p-oJ-YXi">
+                                <rect key="frame" x="16" y="168" width="358" height="3"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="5Ya-BU-Rtd"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZHw-Tg-1Ya">
+                                <rect key="frame" x="67" y="186" width="307" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ph3-hS-vmA">
+                                    <size key="itemSize" width="65" height="40"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addCourseCell" id="yTV-Zc-Oxh" customClass="AddCourseCell" customModule="Suni" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0Eb-E9-TNW">
+                                            <rect key="frame" x="0.0" y="0.0" width="65" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="65" height="40"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQu-iY-6rG">
+                                <rect key="frame" x="16" y="241" width="358" height="3"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="85d-gd-9fv"/>
+                                </constraints>
+                            </view>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Xnt-sM-iN2">
+                                <rect key="frame" x="16" y="259" width="358" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Nk5-9P-avI"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Th4-nv-60x">
+                                <rect key="frame" x="16" y="315" width="358" height="3"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="Lwq-Ha-hp7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="opE-xs-YEI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZHw-Tg-1Ya" firstAttribute="height" secondItem="Whs-h8-AIY" secondAttribute="height" id="1EA-m8-ip7"/>
+                            <constraint firstItem="59l-Sm-Jce" firstAttribute="leading" secondItem="E8U-hm-GbI" secondAttribute="trailing" constant="8" symbolic="YES" id="2H9-xF-S4T"/>
+                            <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="Xnt-sM-iN2" secondAttribute="trailing" constant="16" id="2bC-Ao-Ihn"/>
+                            <constraint firstItem="Q2p-oJ-YXi" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="75d-tM-vRt"/>
+                            <constraint firstItem="E8U-hm-GbI" firstAttribute="height" secondItem="59l-Sm-Jce" secondAttribute="height" id="8th-3k-aG7"/>
+                            <constraint firstItem="E8U-hm-GbI" firstAttribute="top" secondItem="opE-xs-YEI" secondAttribute="top" constant="25" id="I0e-RB-yKQ"/>
+                            <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="Q2p-oJ-YXi" secondAttribute="trailing" constant="16" id="Igt-gC-ZlC"/>
+                            <constraint firstItem="Th4-nv-60x" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="N68-0h-mi8"/>
+                            <constraint firstItem="ZHw-Tg-1Ya" firstAttribute="width" secondItem="59l-Sm-Jce" secondAttribute="width" id="NQ0-q5-soz"/>
+                            <constraint firstItem="Whs-h8-AIY" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="NjM-nK-ncX"/>
+                            <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="59l-Sm-Jce" secondAttribute="trailing" constant="16" id="OMf-4F-oRw"/>
+                            <constraint firstItem="Whs-h8-AIY" firstAttribute="width" secondItem="E8U-hm-GbI" secondAttribute="width" id="Sl2-DZ-iTs"/>
+                            <constraint firstItem="ZHw-Tg-1Ya" firstAttribute="top" secondItem="Q2p-oJ-YXi" secondAttribute="bottom" constant="15" id="UCD-mL-l4B"/>
+                            <constraint firstItem="Q2p-oJ-YXi" firstAttribute="top" secondItem="59l-Sm-Jce" secondAttribute="bottom" constant="15" id="Yns-hT-zx8"/>
+                            <constraint firstItem="ZHw-Tg-1Ya" firstAttribute="leading" secondItem="Whs-h8-AIY" secondAttribute="trailing" constant="8" symbolic="YES" id="Z4e-0h-Xrw"/>
+                            <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="Th4-nv-60x" secondAttribute="trailing" constant="16" id="buI-qK-QZl"/>
+                            <constraint firstItem="Xnt-sM-iN2" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="dI4-Mg-CI1"/>
+                            <constraint firstItem="Th4-nv-60x" firstAttribute="top" secondItem="Xnt-sM-iN2" secondAttribute="bottom" constant="16" id="f8G-rf-paU"/>
+                            <constraint firstItem="Xnt-sM-iN2" firstAttribute="top" secondItem="fQu-iY-6rG" secondAttribute="bottom" constant="15" id="k1y-kq-G56"/>
+                            <constraint firstItem="E8U-hm-GbI" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="khn-Eu-sbh"/>
+                            <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="ZHw-Tg-1Ya" secondAttribute="trailing" constant="16" id="q9S-kD-Nwc"/>
+                            <constraint firstItem="fQu-iY-6rG" firstAttribute="top" secondItem="Whs-h8-AIY" secondAttribute="bottom" constant="15" id="sJp-z4-lmA"/>
+                            <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="fQu-iY-6rG" secondAttribute="trailing" constant="16" id="uc4-jV-QFo"/>
+                            <constraint firstItem="Whs-h8-AIY" firstAttribute="top" secondItem="Q2p-oJ-YXi" secondAttribute="bottom" constant="15" id="vQW-C2-ksY"/>
+                            <constraint firstItem="fQu-iY-6rG" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="yzq-Zp-BK8"/>
+                            <constraint firstItem="59l-Sm-Jce" firstAttribute="top" secondItem="opE-xs-YEI" secondAttribute="top" constant="25" id="zYY-J8-zyW"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LYS-HL-hvb"/>
+                    <connections>
+                        <outlet property="dayCollectionView" destination="ZHw-Tg-1Ya" id="rCW-8L-CUO"/>
+                        <outlet property="dayLabel" destination="Whs-h8-AIY" id="PmM-i0-GBX"/>
+                        <outlet property="majorCollectionView" destination="59l-Sm-Jce" id="Cqf-69-cec"/>
+                        <outlet property="majorLabel" destination="E8U-hm-GbI" id="b2a-In-XdH"/>
+                        <outlet property="searchBar" destination="Xnt-sM-iN2" id="NH4-kI-Hg8"/>
+                        <outletCollection property="horizontalLines" destination="fQu-iY-6rG" collectionClass="NSMutableArray" id="K6V-cl-KQM"/>
+                        <outletCollection property="horizontalLines" destination="Q2p-oJ-YXi" collectionClass="NSMutableArray" id="cJb-he-fQp"/>
+                        <outletCollection property="horizontalLines" destination="Th4-nv-60x" collectionClass="NSMutableArray" id="jJs-Gg-5aG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kB-7b-Ujm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2166" y="-379"/>
+            <point key="canvasLocation" x="2164.6153846153848" y="-379.62085308056868"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Rg7-n2-IlG">
@@ -131,7 +260,7 @@
                     <tabBarItem key="tabBarItem" title="" image="square.grid.3x3" catalog="system" id="9Hz-Qu-enL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tZ1-jZ-o54" customClass="CSNavigationBar" customModule="Suni" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -150,7 +279,7 @@
                     <tabBarItem key="tabBarItem" title="" image="calendar" catalog="system" id="kme-Vo-JMA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r62-Tr-3wk" customClass="CSNavigationBar" customModule="Suni" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
