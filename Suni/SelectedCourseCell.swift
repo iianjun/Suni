@@ -33,6 +33,7 @@ class SelectedCourseCell: UICollectionViewCell {
         combinedView.addSubview(self.label)
         combinedView.addSubview(self.removeBtn)
         self.addSubview(combinedView)
+        print("test")
     
     }
 }
