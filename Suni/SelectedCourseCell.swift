@@ -8,9 +8,9 @@
 import UIKit
 
 class SelectedCourseCell: UICollectionViewCell {
-    let label = UILabel()
+//    let label = UILabel()
     let removeBtn = UIButton()
-    var indexPath : IndexPath?
+    @IBOutlet var label: UILabel!
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -21,8 +21,8 @@ class SelectedCourseCell: UICollectionViewCell {
         self.removeBtn.setImage(UIImage(named: "close.png"), for: .normal)
 
         self.label.sizeToFit()
-        self.label.font = getRigteous(size: self.label.font.pointSize)
-        self.label.adjustsFontSizeToFitWidth = true
+//        self.label.font = getRigteous(size: self.label.font.pointSize)
+//        self.label.adjustsFontSizeToFitWidth = true
         self.label.textColor = .themeTextColor
 
         let space = (self.frame.width - (self.label.frame.width + closeBtnWidth)) / 2
@@ -33,7 +33,7 @@ class SelectedCourseCell: UICollectionViewCell {
         combinedView.addSubview(self.label)
         combinedView.addSubview(self.removeBtn)
         self.addSubview(combinedView)
-        print("test")
+        
     
     }
 }

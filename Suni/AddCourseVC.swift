@@ -20,6 +20,10 @@ class AddCourseVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var cartLabel: UILabel!
     @IBOutlet weak var cartCollectionView: UICollectionView!
+    @IBOutlet weak var listTableView: UITableView!
+    @IBOutlet var listTableContainerView: UIView!
+    @IBOutlet var doneBtn: CSButton!
+    
     
     
     var tempNumber = 123
@@ -31,14 +35,20 @@ class AddCourseVC: UIViewController {
             self.cartCollectionView.reloadData()
             self.cartCollectionView.isScrollEnabled = newValue.count > 3 ? true : false
             
+            
         }
-
     }
+    
+    var dummyData : [NSDictionary] = [
+        ["name" : "CSE220", "instructor": "Omondi"],
+        ["name" : "CSE316", "instructor": "YoungMin Kwon"]
+    ]
     
     override func viewDidLoad() {
         self.setup()
         cartWidth = self.cartCollectionView.frame.width
         // Do any additional setup after loading the view.
+        
     }
     
     
@@ -97,6 +107,7 @@ class AddCourseVC: UIViewController {
         self.setupDay()
         self.setupSearchBar()
         self.setupCart()
+        self.setupCourseList()
        
 
         
@@ -188,7 +199,22 @@ class AddCourseVC: UIViewController {
         
     }
     
-    
+    func setupCourseList() {
+        self.listTableContainerView.layer.borderWidth = self.horizontalLines[0].frame.height
+        self.listTableContainerView.layer.borderColor = UIColor.themeColor.cgColor
+
+        self.listTableView.delegate = self
+        self.listTableView.dataSource = self
+       
+        //Done Button
+        self.doneBtn.makeBasicBtn()
+        self.doneBtn.setTitle("Done", for: .normal)
+        self.doneBtn.titleLabel?.font = getRigteous(size: 20)
+        
+    }
+    @IBAction func doenBtnClick(_ sender: Any) {
+        
+    }
     
 }
 
@@ -209,18 +235,18 @@ extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
         switch collectionView.tag {
         case 101 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
-            cell.label.text = self.course[indexPath.row]
+            cell.label?.text = self.course[indexPath.row]
             return cell
         case 102 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
-            cell.label.text = self.days[indexPath.row]
+            cell.label?.text = self.days[indexPath.row]
             return cell
         case 103 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.selectCellId, for: indexPath) as! SelectedCourseCell
             cell.label.text = self.selectedCourse[indexPath.row]
             cell.removeBtn.addTarget(self, action: #selector(self.removeCourse(_ :)), for: .touchUpInside)
-
-            cell.indexPath = indexPath
+            
+            
             return cell
         default :
             return UICollectionViewCell()
@@ -241,6 +267,9 @@ extension AddCourseVC : UICollectionViewDelegateFlowLayout {
 
         return Constant.freeSpaceBtwCollectionView
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return Constant.freeSpaceBtwCollectionView
+    }
 
 }
 
@@ -248,4 +277,34 @@ extension AddCourseVC : UISearchBarDelegate {
 //    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 //
 //    }
+}
+
+extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.dummyData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as? CourseListCell else { return UITableViewCell() }
+        cell.textLabel?.text = self.dummyData[indexPath.section]["name"] as? String
+        cell.detailTextLabel?.text = "By \(self.dummyData[indexPath.section]["instructor"] as? String ?? "")"
+        
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+        
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .clear
+        return headerView
+    }
+    
+    
+    
+    
 }

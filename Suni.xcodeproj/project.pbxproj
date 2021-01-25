@@ -29,6 +29,7 @@
 		768D67B025B86FC80053DE0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768D67AE25B86FC80053DE0C /* LaunchScreen.storyboard */; };
 		76A90DC525BD7E51002E0A69 /* SelectedCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */; };
 		76A90DD125BD8F6C002E0A69 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A90DCF25BD8F6C002E0A69 /* close.png */; };
+		76A90DD925BE7883002E0A69 /* CourseListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A90DD825BE7883002E0A69 /* CourseListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		768D67B125B86FC80053DE0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCourseCell.swift; sourceTree = "<group>"; };
 		76A90DCF25BD8F6C002E0A69 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		76A90DD825BE7883002E0A69 /* CourseListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				763BAF2D25B94F20005F7EF8 /* CSButton.swift */,
 				763BAF4D25BB0B0B005F7EF8 /* AddCourseVC.swift */,
 				76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */,
+				76A90DD825BE7883002E0A69 /* CourseListCell.swift */,
 				763BAF1F25B874E0005F7EF8 /* ScheduleVC.swift */,
 				763BAF2325B87509005F7EF8 /* CalendarVC.swift */,
 				763BAF3B25B97E03005F7EF8 /* Timetable.swift */,
@@ -215,6 +218,7 @@
 				763BAF3F25B98318005F7EF8 /* TimetableCell.swift in Sources */,
 				763BAF3C25B97E03005F7EF8 /* Timetable.swift in Sources */,
 				768D67AB25B86FC80053DE0C /* Suni.xcdatamodeld in Sources */,
+				76A90DD925BE7883002E0A69 /* CourseListCell.swift in Sources */,
 				76A90DC525BD7E51002E0A69 /* SelectedCourseCell.swift in Sources */,
 				763BAF6225BC108A005F7EF8 /* AddCourseCell.swift in Sources */,
 				763BAF2025B874E0005F7EF8 /* ScheduleVC.swift in Sources */,

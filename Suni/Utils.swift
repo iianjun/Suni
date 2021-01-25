@@ -41,6 +41,7 @@ struct Constant {
     static let timeTableCellId : String = "tcell"
     static let addCourseCellId : String = "addCourseCell"
     static let selectCellId : String = "selectCell"
+    static let courseListCellId : String = "CourseListCell"
     static let addVCId : String = "AddCourseVC"
     static let titleFontSize : CGFloat = 30.0
     static let freeSpaceBtwBackAndTitle : CGFloat = 30.0

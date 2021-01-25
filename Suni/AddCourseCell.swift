@@ -8,7 +8,9 @@
 import UIKit
 
 class AddCourseCell: UICollectionViewCell {
-    let label = UILabel()
+    
+   
+    @IBOutlet var label: UILabel!
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -17,12 +19,10 @@ class AddCourseCell: UICollectionViewCell {
         self.layer.borderColor = UIColor.themeColor.cgColor
         self.layer.borderWidth = Constant.addCourseCellBorderWidth
         
-        self.label.sizeToFit()
-        self.label.font = getRigteous(size: self.label.font.pointSize)
-        self.label.adjustsFontSizeToFitWidth = true
-        self.label.textColor = .themeTextColor
-        self.label.frame = CGRect(x: (self.frame.width - self.label.frame.width) / 2, y: 0, width: self.label.frame.width, height: self.frame.height)
-        self.addSubview(self.label)
+        self.label?.sizeToFit()
+
+        self.label?.textColor = .themeTextColor
+        
     
         
     }

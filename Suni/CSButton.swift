@@ -31,7 +31,7 @@ class CSButton: UIButton {
             self.makeAddBtn()
             
         case .basic :
-            print("basic")
+            self.makeBasicBtn()
         
         }
     }
@@ -40,6 +40,15 @@ class CSButton: UIButton {
         self.setImage(UIImage(named: "add.png"), for: .normal)
         self.layer.cornerRadius = Constant.cornerRadius
         self.backgroundColor = .themeColor
+    }
+    func makeBasicBtn () {
+
+        self.backgroundColor = .themeColor
+        self.setTitleColor(.themeTextColor, for: .normal)
+        self.layer.cornerRadius = Constant.cornerRadius
+//        self.titleLabel?.font = getRigteous(size: (self.titleLabel?.font.pointSize)!)
+        
+    
     }
 
 }
