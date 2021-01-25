@@ -20,7 +20,7 @@ class ScheduleVC : UIViewController {
     override func viewDidLoad() {
         
         self.setup()
-        
+        self.tabBarItem.image = UIImage(named: "scheduleIcon.png")
     }
     override func viewWillAppear(_ animated: Bool) {
         //Code bring saved data from UserDefaults

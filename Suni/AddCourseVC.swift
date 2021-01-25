@@ -40,8 +40,25 @@ class AddCourseVC: UIViewController {
     }
     
     var dummyData : [NSDictionary] = [
-        ["name" : "CSE220", "instructor": "Omondi"],
-        ["name" : "CSE316", "instructor": "YoungMin Kwon"]
+        ["name" : "CSE101", "instructor": "Alex Kuhn", "credit" : "3", "time" : "TUE/THU 17:00-18:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE101", "hasLab" : false],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE214", "instructor": "YoungMin Kwon", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE214", "hasLab" : true],
+        ["name" : "CSE215", "instructor": "Dennis Wang", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE215", "hasLab" : false],
+        ["name" : "CSE220", "instructor": "Amos Omondi", "credit": "4", "time": "TUE/THU 10:30-11:50", "room" : "B 203", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE220", "hasLab" : true],
+        ["name" : "CSE316", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE316", "hasLab" : false],
+        ["name" : "CSE416", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE416", "hasLab" : false],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
+        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true]
     ]
     
     override func viewDidLoad() {
@@ -205,6 +222,7 @@ class AddCourseVC: UIViewController {
 
         self.listTableView.delegate = self
         self.listTableView.dataSource = self
+        self.listTableView.bounces = false
        
         //Done Button
         self.doneBtn.makeBasicBtn()
@@ -217,7 +235,7 @@ class AddCourseVC: UIViewController {
     }
     
 }
-
+//MARK: Collection View Delegate & Data Source
 extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 101 {
@@ -252,7 +270,22 @@ extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
             return UICollectionViewCell()
         }
     }
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        guard let moreInfoVC = self.storyboard?.instantiateViewController(identifier: Constant.moreInfoVCId) as? MoreInfoVC else { return }
+        moreInfoVC.params = dummyData[indexPath.section]
+
+////        moreInfoVC.modalPresentationStyle = .custom
+////        moreInfoVC.transitioningDelegate = self
+//        self.present(moreInfoVC, animated: true, completion: nil)
+        let alert = UIAlertController(title: "", message: "CSE", preferredStyle: .alert)
+        
+        alert.setValue(moreInfoVC, forKey: "contentViewController")
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
+
+//MARK: Collection View Delegate Flow Layout
 extension AddCourseVC : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView.tag == 101 || collectionView.tag == 102 {
@@ -273,12 +306,14 @@ extension AddCourseVC : UICollectionViewDelegateFlowLayout {
 
 }
 
+//MARK: UISearchBar Delegate
 extension AddCourseVC : UISearchBarDelegate {
 //    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 //
 //    }
 }
 
+//MARK: TableView Delegate & Data Source
 extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -298,13 +333,17 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         return 10
         
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = .clear
         return headerView
     }
-    
-    
-    
-    
 }
+
+//MARK: Custom Modal Presentation Style
+//extension AddCourseVC : UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+//
+//
+//
+//}

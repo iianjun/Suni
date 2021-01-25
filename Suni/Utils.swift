@@ -36,6 +36,7 @@ extension UIColor {
 struct Constant {
     static let addBtnWidth : CGFloat = 30.0
     static let cornerRadius : CGFloat = 10.0
+    static let moreVCCornerRadius : CGFloat = 25.0
     static let timetableBorderWidth : CGFloat = 2.0
     static let addCourseCellBorderWidth : CGFloat = 4.0
     static let timeTableCellId : String = "tcell"
@@ -43,6 +44,8 @@ struct Constant {
     static let selectCellId : String = "selectCell"
     static let courseListCellId : String = "CourseListCell"
     static let addVCId : String = "AddCourseVC"
+    static let moreInfoVCId : String = "MoreInfoVC"
+    static let webVCId : String = "WebVC"
     static let titleFontSize : CGFloat = 30.0
     static let freeSpaceBtwBackAndTitle : CGFloat = 30.0
     static let freeSpaceBtwCollectionView : CGFloat = 5.0
