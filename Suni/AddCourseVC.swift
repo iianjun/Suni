@@ -9,23 +9,39 @@ import UIKit
 
 class AddCourseVC: UIViewController {
     
-    //MARK: Major CollectionView's Tag = 101
+    //MARK: MajorCollectionView's Tag = 101
     //MARK: DayCollectionView's Tag = 102
+    //MARK: CartCollectionView's Tag = 103
     @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var majorCollectionView: UICollectionView!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var dayCollectionView: UICollectionView!
     @IBOutlet var horizontalLines: [UIView]!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var cartLabel: UILabel!
+    @IBOutlet weak var cartCollectionView: UICollectionView!
     
+    
+    var tempNumber = 123
     var course : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC"]
     var days : [String] = ["MON", "TUE", "WED", "THU", "FRI"]
+    var cartWidth : CGFloat?
+    var selectedCourse : [String] = ["CSE220", "CSE316"] {
+        willSet (newValue) {
+            self.cartCollectionView.reloadData()
+            self.cartCollectionView.isScrollEnabled = newValue.count > 3 ? true : false
+            
+        }
+
+    }
     
     override func viewDidLoad() {
         self.setup()
-
+        cartWidth = self.cartCollectionView.frame.width
         // Do any additional setup after loading the view.
     }
+    
+    
     func setup() {
 
         self.tabBarController?.tabBar.isHidden = true
@@ -52,6 +68,24 @@ class AddCourseVC: UIViewController {
         comBinedView.addSubview(backBtn)
         comBinedView.addSubview(viewTitle)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: comBinedView)
+        
+        
+        //MARK: TEST!@!!!!!!!
+        let temp = UIButton(type: .system)
+        temp.setTitle("temp", for: .normal)
+        temp.sizeToFit()
+        temp.addTarget(self, action: #selector(temp(_ :)), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: temp)
+    }
+    
+    @objc func temp(_ sender: UIButton) {
+        selectedCourse.append("TEM\(tempNumber)")
+        tempNumber += 1
+    }
+    
+    @objc func back (_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func initBody () {
@@ -61,10 +95,8 @@ class AddCourseVC: UIViewController {
         }
         self.setupMajor()
         self.setupDay()
-    
-        
         self.setupSearchBar()
-        
+        self.setupCart()
        
 
         
@@ -87,7 +119,7 @@ class AddCourseVC: UIViewController {
         
         //If new major is regiestered
         self.majorCollectionView.isScrollEnabled = self.course.count == 5 ? false : true
-        
+        self.majorCollectionView.showsHorizontalScrollIndicator = false
         
     }
     
@@ -110,6 +142,23 @@ class AddCourseVC: UIViewController {
         searchBar.layer.borderColor = UIColor.themeColor.cgColor
         if let tf = searchBar.value(forKey: "searchField") as? UITextField {
             tf.borderStyle = .none
+            tf.font = getRigteous(size: 18)
+            tf.textColor = .themeColor
+            tf.autocapitalizationType = .none
+            tf.autocorrectionType = .no
+            tf.returnKeyType = .search
+            tf.spellCheckingType = .no
+            
+            let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+            toolbar.barTintColor = .lightGray
+            
+            let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(closeKeyboard(_:)))
+            
+            let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            toolbar.setItems([flexSpace, doneBtn], animated: true)
+            
+            tf.inputAccessoryView = toolbar
+            
             if let leftView = tf.leftView as? UIImageView {
                 leftView.image = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
                 leftView.tintColor = .themeColor
@@ -117,10 +166,29 @@ class AddCourseVC: UIViewController {
         }
     }
     
-    @objc func back (_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-        self.tabBarController?.tabBar.isHidden = false
+    @objc func closeKeyboard(_ sender: UIButton) {
+        self.view.endEditing(true)
     }
+    
+    func setupCart() {
+        self.cartLabel.text = "Cart"
+        self.cartLabel.textColor = .themeColor
+        self.cartLabel.font = getRigteous(size: self.cartLabel.font.pointSize)
+        self.cartLabel.adjustsFontSizeToFitWidth = true
+        
+        self.cartCollectionView.delegate = self
+        self.cartCollectionView.dataSource = self
+        self.cartCollectionView.bounces = false
+        self.cartCollectionView.showsHorizontalScrollIndicator = false
+        
+    }
+    
+    @objc func removeCourse (_ sender : UIButton) {
+        
+        
+    }
+    
+    
     
 }
 
@@ -129,38 +197,55 @@ extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
         if collectionView.tag == 101 {
             return self.course.count
         }
-        else {
+        else if collectionView.tag == 102 {
             return self.days.count
+        }
+        else {
+            return self.selectedCourse.count
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
-        if collectionView.tag == 101 {
+        switch collectionView.tag {
+        case 101 :
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
             cell.label.text = self.course[indexPath.row]
-        }
-        else {
+            return cell
+        case 102 :
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
             cell.label.text = self.days[indexPath.row]
+            return cell
+        case 103 :
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.selectCellId, for: indexPath) as! SelectedCourseCell
+            cell.label.text = self.selectedCourse[indexPath.row]
+            cell.removeBtn.addTarget(self, action: #selector(self.removeCourse(_ :)), for: .touchUpInside)
+
+            cell.indexPath = indexPath
+            return cell
+        default :
+            return UICollectionViewCell()
         }
-        
-        return cell
     }
 }
 extension AddCourseVC : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if indexPath.row != self.course.count {
+        if collectionView.tag == 101 || collectionView.tag == 102 {
             return CGSize(width: collectionView.frame.width / (CGFloat(self.course.count)) - Constant.freeSpaceBtwCollectionView, height: collectionView.frame.height)
-//        }
-//        else {
-//            return CGSize(width: collectionView.frame.width / (CGFloat(self.course.count)) - Constant.freeSpaceBtwCollectionView, height: collectionView.frame.height)
-//        }
+        }
+        else {
+            return CGSize(width: collectionView.frame.width / 3 - Constant.freeSpaceBtwCollectionView, height: collectionView.frame.height)
+        }
         
-        
-
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 
         return Constant.freeSpaceBtwCollectionView
     }
 
+}
+
+extension AddCourseVC : UISearchBarDelegate {
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//
+//    }
 }
