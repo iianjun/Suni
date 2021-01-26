@@ -25,18 +25,33 @@ class MoreInfoVC: UIViewController {
             cv.layer.borderColor = UIColor.themeColor.cgColor
             
         }
-        self.courseTitle.text = params["name"] as? String ?? ""
+        self.courseTitle.text = self.params["name"] as? String ?? ""
         self.courseTitle.textColor = .themeTextColor
-        self.paramTime.text = params["time"] as? String ?? ""
+        self.paramTime.text = self.params["time"] as? String ?? ""
         self.paramTime.textColor = .themeTextColor
-        self.paramRoom.text = params["room"] as? String ?? ""
+        self.paramRoom.text = self.params["room"] as? String ?? ""
         self.paramRoom.textColor = .themeTextColor
-        self.paramCredit.text = "\(params["credit"] as? String ?? "") credit"
+        self.paramCredit.text = "\(self.params["credit"] as? String ?? "") credit"
         self.paramCredit.textColor = .themeTextColor
-        self.paramInstructor.text = params["instructor"] as? String ?? ""
+        self.paramInstructor.text = self.params["instructor"] as? String ?? ""
         self.paramInstructor.textColor = .themeTextColor
-        self.paramLink.setTitle(params["link"] as? String ?? "", for: .normal)
-        self.paramLink.titleLabel?.numberOfLines = 0
+       
+        if let link = self.params["link"] as? String {
+            
+            if link == "" {
+                self.paramLink.setTitle("No Website", for: .normal)
+                self.paramLink.isEnabled = false
+            }
+            else {
+                self.paramLink.setTitle(link, for: .normal)
+                self.paramLink.titleLabel?.numberOfLines = 0
+            }
+        }
+        
+        
+        
+        
+        
 
         // Do any additional setup after loading the view.
     }

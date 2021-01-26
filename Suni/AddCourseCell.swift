@@ -11,7 +11,7 @@ class AddCourseCell: UICollectionViewCell {
     
    
     @IBOutlet var label: UILabel!
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         

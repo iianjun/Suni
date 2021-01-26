@@ -27,20 +27,29 @@ class AddCourseVC: UIViewController {
     
     
     var tempNumber = 123
-    var course : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC"]
+    var majors : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC", "ETC"]
     var days : [String] = ["MON", "TUE", "WED", "THU", "FRI"]
     var cartWidth : CGFloat?
     var selectedCourse : [String] = ["CSE220", "CSE316"] {
         willSet (newValue) {
             self.cartCollectionView.reloadData()
             self.cartCollectionView.isScrollEnabled = newValue.count > 3 ? true : false
-            
-            
+        }
+    }
+    var selectedMajor : [String] = [] {
+        willSet (newVal) {
+            print(newVal)
+        }
+    }
+    var selectedDays : [String] = [] {
+        willSet (newVal) {
+            print(newVal)
         }
     }
     
+    
     var dummyData : [NSDictionary] = [
-        ["name" : "CSE101", "instructor": "Alex Kuhn", "credit" : "3", "time" : "TUE/THU 17:00-18:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE101", "hasLab" : false],
+        ["name" : "CSE101", "instructor": "Alex Kuhn", "credit" : "3", "time" : "TUE/THU 17:00-18:20", "room" : "B 106", "link" : "", "hasLab" : false],
         ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
         ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
         ["name" : "CSE214", "instructor": "YoungMin Kwon", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE214", "hasLab" : true],
@@ -146,8 +155,9 @@ class AddCourseVC: UIViewController {
         self.majorCollectionView.bounces = false
         
         //If new major is regiestered
-        self.majorCollectionView.isScrollEnabled = self.course.count == 5 ? false : true
+        self.majorCollectionView.isScrollEnabled = self.majors.count > 5 ? true : false
         self.majorCollectionView.showsHorizontalScrollIndicator = false
+        self.majorCollectionView.allowsMultipleSelection = true
         
     }
     
@@ -163,6 +173,7 @@ class AddCourseVC: UIViewController {
         self.dayCollectionView.dataSource = self
         self.dayCollectionView.bounces = false
         self.dayCollectionView.isScrollEnabled = false
+        self.dayCollectionView.allowsMultipleSelection = true
     }
     
     func setupSearchBar() {
@@ -208,7 +219,7 @@ class AddCourseVC: UIViewController {
         self.cartCollectionView.dataSource = self
         self.cartCollectionView.bounces = false
         self.cartCollectionView.showsHorizontalScrollIndicator = false
-        
+
     }
     
     @objc func removeCourse (_ sender : UIButton) {
@@ -238,22 +249,21 @@ class AddCourseVC: UIViewController {
 //MARK: Collection View Delegate & Data Source
 extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView.tag == 101 {
-            return self.course.count
+        switch collectionView.tag {
+        case 101: return self.majors.count
+        case 102: return self.days.count
+        case 103: return self.selectedCourse.count
+        default : return 0
+            
         }
-        else if collectionView.tag == 102 {
-            return self.days.count
-        }
-        else {
-            return self.selectedCourse.count
-        }
+      
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView.tag {
         case 101 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
-            cell.label?.text = self.course[indexPath.row]
+            cell.label?.text = self.majors[indexPath.row]
             return cell
         case 102 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
@@ -270,26 +280,58 @@ extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
             return UICollectionViewCell()
         }
     }
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        guard let moreInfoVC = self.storyboard?.instantiateViewController(identifier: Constant.moreInfoVCId) as? MoreInfoVC else { return }
-        moreInfoVC.params = dummyData[indexPath.section]
-        
-//        moreInfoVC.modalPresentationStyle = .custom
-//        moreInfoVC.transitioningDelegate = self
-//        self.navigationController?.pushViewController(moreInfoVC, animated: true)
-        self.present(moreInfoVC, animated: true, completion: nil)
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView.tag {
+        case 101:
+            if let cell = collectionView.cellForItem(at: indexPath) as? AddCourseCell {
+                cell.backgroundColor = .themeColor
+                selectedMajor.append(self.majors[indexPath.row])
+            }
+        case 102:
+            if let cell = collectionView.cellForItem(at: indexPath) as? AddCourseCell {
+                cell.backgroundColor = .themeColor
+                selectedDays.append(days[indexPath.row])
+            }
+        case 103: ()
+        default: ()
+        }
+            
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        switch collectionView.tag {
+        case 101:
+            if let cell = collectionView.cellForItem(at: indexPath) as? AddCourseCell {
+                cell.backgroundColor = .white
+                if let index = selectedMajor.firstIndex(of: majors[indexPath.row]) {
+                    selectedMajor.remove(at: index)
+                } else { return }
+            }
+        case 102:
+            if let cell = collectionView.cellForItem(at: indexPath) as? AddCourseCell {
+                cell.backgroundColor = .white
+         
+                if let index = selectedDays.firstIndex(of: days[indexPath.row]) {
+                    selectedDays.remove(at: index)
+                } else { return }
+            }
+        case 103: ()
+        default: ()
+            
+        }
     }
 }
 
 //MARK: Collection View Delegate Flow Layout
 extension AddCourseVC : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView.tag == 101 || collectionView.tag == 102 {
-            return CGSize(width: collectionView.frame.width / (CGFloat(self.course.count)) - Constant.freeSpaceBtwCollectionView, height: collectionView.frame.height)
+        switch collectionView.tag {
+        case 101 : return CGSize(width: collectionView.frame.width / (CGFloat(self.majors.count)) - Constant.freeSpaceBtwCollectionView, height: collectionView.frame.height)
+        case 102 : return CGSize(width: collectionView.frame.width / (CGFloat(self.days.count)) - Constant.freeSpaceBtwCollectionView, height: collectionView.frame.height)
+        case 103 : return CGSize(width: collectionView.frame.width / 3 - Constant.freeSpaceBtwCollectionView, height: collectionView.frame.height)
+        default: return CGSize.zero
         }
-        else {
-            return CGSize(width: collectionView.frame.width / 3 - Constant.freeSpaceBtwCollectionView, height: collectionView.frame.height)
-        }
+        
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -334,6 +376,15 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         let headerView = UIView()
         headerView.backgroundColor = .clear
         return headerView
+    }
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        guard let moreInfoVC = self.storyboard?.instantiateViewController(identifier: Constant.moreInfoVCId) as? MoreInfoVC else { return }
+        moreInfoVC.params = dummyData[indexPath.section]
+        
+//        moreInfoVC.modalPresentationStyle = .custom
+//        moreInfoVC.transitioningDelegate = self
+//        self.navigationController?.pushViewController(moreInfoVC, animated: true)
+        self.present(moreInfoVC, animated: true, completion: nil)
     }
 }
 

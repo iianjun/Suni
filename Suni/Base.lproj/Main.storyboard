@@ -515,7 +515,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0P-h4-eAQ">
                                         <rect key="frame" x="10" y="58" width="338" height="31"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
-                                        <state key="normal" title="www...."/>
                                         <connections>
                                             <segue destination="y6T-zQ-cJ2" kind="show" identifier="segue_detail" id="AkD-4M-S3C"/>
                                         </connections>
