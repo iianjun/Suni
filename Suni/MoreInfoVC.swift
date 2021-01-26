@@ -40,14 +40,7 @@ class MoreInfoVC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    @IBAction func clickedLink(_ sender: Any) {
-        guard let wvc = self.storyboard?.instantiateViewController(identifier: Constant.webVCId) as? WebCourseInfoVC else { return }
-        wvc.paramURL = self.params["link"] as? String ?? ""
-        wvc.paramTitle = self.params["name"] as? String ?? ""
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-//        wvc.present(wvc, animated: true, completion: nil)
-    }
-    
+
 
     /*
     // MARK: - Navigation
@@ -59,4 +52,14 @@ class MoreInfoVC: UIViewController {
     }
     */
 
+}
+extension MoreInfoVC {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segue_detail" {
+            let webVC = segue.destination as? WebCourseInfoVC
+            webVC?.paramURL = self.params["link"] as? String ?? ""
+            webVC?.paramTitle = self.params["name"] as? String ?? ""
+            
+        }
+    }
 }

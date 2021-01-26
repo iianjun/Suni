@@ -273,15 +273,11 @@ extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         guard let moreInfoVC = self.storyboard?.instantiateViewController(identifier: Constant.moreInfoVCId) as? MoreInfoVC else { return }
         moreInfoVC.params = dummyData[indexPath.section]
-
-////        moreInfoVC.modalPresentationStyle = .custom
-////        moreInfoVC.transitioningDelegate = self
-//        self.present(moreInfoVC, animated: true, completion: nil)
-        let alert = UIAlertController(title: "", message: "CSE", preferredStyle: .alert)
         
-        alert.setValue(moreInfoVC, forKey: "contentViewController")
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+//        moreInfoVC.modalPresentationStyle = .custom
+//        moreInfoVC.transitioningDelegate = self
+//        self.navigationController?.pushViewController(moreInfoVC, animated: true)
+        self.present(moreInfoVC, animated: true, completion: nil)
     }
 }
 

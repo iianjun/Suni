@@ -517,7 +517,7 @@
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <state key="normal" title="www...."/>
                                         <connections>
-                                            <action selector="clickedLink:" destination="bVx-nH-FiT" eventType="touchUpInside" id="vi4-bQ-JJM"/>
+                                            <segue destination="y6T-zQ-cJ2" kind="show" identifier="segue_detail" id="AkD-4M-S3C"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -603,35 +603,78 @@
             <objects>
                 <viewController storyboardIdentifier="WebVC" id="y6T-zQ-cJ2" customClass="WebCourseInfoVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9ZN-cI-SoE">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REe-Sz-9ER">
-                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                                <rect key="frame" x="0.0" y="50" width="390" height="706"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jbd-mL-ddT">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Jd-RA-JoB">
+                                        <rect key="frame" x="10" y="8" width="50" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Iq4-Bg-F6A"/>
+                                        </constraints>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" systemColor="linkColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="close:" destination="y6T-zQ-cJ2" eventType="touchUpInside" id="1P1-8Y-Wfk"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kk-xP-gQJ">
+                                        <rect key="frame" x="174" y="14.666666666666664" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="5kk-xP-gQJ" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1Jd-RA-JoB" secondAttribute="trailing" constant="114" id="70T-ch-LIi"/>
+                                    <constraint firstAttribute="height" constant="50" id="8El-xa-46x"/>
+                                    <constraint firstItem="1Jd-RA-JoB" firstAttribute="leading" secondItem="Jbd-mL-ddT" secondAttribute="leading" constant="10" id="8g5-jc-4L2"/>
+                                    <constraint firstItem="5kk-xP-gQJ" firstAttribute="centerX" secondItem="Jbd-mL-ddT" secondAttribute="centerX" id="Lfq-9w-J5R"/>
+                                    <constraint firstItem="5kk-xP-gQJ" firstAttribute="centerY" secondItem="Jbd-mL-ddT" secondAttribute="centerY" id="hmP-xQ-rpu"/>
+                                    <constraint firstItem="1Jd-RA-JoB" firstAttribute="centerY" secondItem="Jbd-mL-ddT" secondAttribute="centerY" id="uYJ-Yc-cfb"/>
+                                </constraints>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aDU-WL-pbF">
+                                <rect key="frame" x="176.66666666666666" y="376.66666666666669" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rDj-iv-z7D"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="REe-Sz-9ER" firstAttribute="top" secondItem="rDj-iv-z7D" secondAttribute="top" id="Rld-aM-Xgy"/>
+                            <constraint firstItem="Jbd-mL-ddT" firstAttribute="leading" secondItem="rDj-iv-z7D" secondAttribute="leading" id="1RZ-4K-cP8"/>
+                            <constraint firstItem="Jbd-mL-ddT" firstAttribute="trailing" secondItem="rDj-iv-z7D" secondAttribute="trailing" id="2Lo-lr-bKK"/>
+                            <constraint firstItem="aDU-WL-pbF" firstAttribute="centerY" secondItem="9ZN-cI-SoE" secondAttribute="centerY" id="Kpa-pf-f8T"/>
+                            <constraint firstItem="Jbd-mL-ddT" firstAttribute="top" secondItem="rDj-iv-z7D" secondAttribute="top" id="OhL-Bs-1ni"/>
                             <constraint firstItem="rDj-iv-z7D" firstAttribute="trailing" secondItem="REe-Sz-9ER" secondAttribute="trailing" id="ULa-yo-YjJ"/>
                             <constraint firstItem="rDj-iv-z7D" firstAttribute="bottom" secondItem="REe-Sz-9ER" secondAttribute="bottom" id="YYT-ws-Ez0"/>
                             <constraint firstItem="REe-Sz-9ER" firstAttribute="leading" secondItem="rDj-iv-z7D" secondAttribute="leading" id="aaH-uk-OmX"/>
+                            <constraint firstItem="REe-Sz-9ER" firstAttribute="top" secondItem="Jbd-mL-ddT" secondAttribute="bottom" id="mAD-Ok-hOV"/>
+                            <constraint firstItem="aDU-WL-pbF" firstAttribute="centerX" secondItem="9ZN-cI-SoE" secondAttribute="centerX" id="xT7-uL-T92"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1B5-Zq-h3S"/>
                     <connections>
+                        <outlet property="spinner" destination="aDU-WL-pbF" id="y1U-dQ-kjB"/>
+                        <outlet property="titleText" destination="5kk-xP-gQJ" id="JqI-bu-Bng"/>
                         <outlet property="wv" destination="REe-Sz-9ER" id="P7D-BB-8cb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JrQ-lT-78F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3925" y="-367"/>
+            <point key="canvasLocation" x="3924.6153846153843" y="-367.53554502369667"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Rg7-n2-IlG">
@@ -692,6 +735,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
