@@ -25,15 +25,22 @@ class AddCourseVC: UIViewController {
     @IBOutlet var doneBtn: CSButton!
     
     
-    
-    var tempNumber = 123
     var majors : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC", "ETC"]
     var days : [String] = ["MON", "TUE", "WED", "THU", "FRI"]
     var cartWidth : CGFloat?
-    var selectedCourse : [String] = ["CSE220", "CSE316"] {
+    
+    //This is collection of lab and recitation courses
+    
+//    var selectedCell : [CourseListCell] = []
+    
+    var additionalCourses : [CourseVO] = []
+    
+    var selectedCourse : [CourseVO] = [] {
         willSet (newValue) {
             self.cartCollectionView.reloadData()
             self.cartCollectionView.isScrollEnabled = newValue.count > 3 ? true : false
+            
+            print(newValue)
         }
     }
     var selectedMajor : [String] = [] {
@@ -46,29 +53,13 @@ class AddCourseVC: UIViewController {
             print(newVal)
         }
     }
+    var courselist = [CourseVO]()
+    lazy var filteredList : [CourseVO] = {
+        var datalist = [CourseVO]()
+        return datalist
+    }()
     
     
-    var dummyData : [NSDictionary] = [
-        ["name" : "CSE101", "instructor": "Alex Kuhn", "credit" : "3", "time" : "TUE/THU 17:00-18:20", "room" : "B 106", "link" : "", "hasLab" : false],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE214", "instructor": "YoungMin Kwon", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE214", "hasLab" : true],
-        ["name" : "CSE215", "instructor": "Dennis Wang", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE215", "hasLab" : false],
-        ["name" : "CSE220", "instructor": "Amos Omondi", "credit": "4", "time": "TUE/THU 10:30-11:50", "room" : "B 203", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE220", "hasLab" : true],
-        ["name" : "CSE316", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE316", "hasLab" : false],
-        ["name" : "CSE416", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE416", "hasLab" : false],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true],
-        ["name" : "CSE114", "instructor": "Alex Kuhn", "credit" : "3", "time" : "MON/WED 13:00-14:20", "room" : "B 106", "link" : "https://sunyk.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE114", "hasLab" : true]
-    ]
     
     override func viewDidLoad() {
         self.setup()
@@ -77,12 +68,64 @@ class AddCourseVC: UIViewController {
         
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     func setup() {
 
         self.tabBarController?.tabBar.isHidden = true
+        self.getCourseData()
         self.initHeader()
         self.initBody()
+        
+    }
+    
+    func getCourseData() {
+        
+        if let path = Bundle.main.path(forResource: "all_courses", ofType: "json") {
+            do {
+                
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
+                for course in jsonResult {
+                    let cvo = CourseVO()
+                    cvo.major = course["major"] as? String
+                    cvo.name = course["name"] as? String
+                    cvo.title = course["title"] as? String
+                    if let stringType = course["type"] as? String {
+                        if let type = CourseType(rawValue: stringType.lowercased()) {
+                            cvo.type = type
+                        }
+                    }
+                    cvo.credit = course["credit"] as? Int
+                    cvo.days = course["days"] as? NSArray
+                    cvo.startTime = course["startTime"] as? String
+                    cvo.endTime = course["endTime"] as? String
+                    cvo.room = course["room"] as? String
+                    cvo.instructor = course["instructor"] as? String
+                    cvo.hasLab = course["hasLab"] as? Bool
+                    cvo.link = course["link"] as? String
+                    cvo.number = course["number"] as? Int
+                    
+                    if (cvo.type == .lab || cvo.type == .rec) && (cvo.name != "PHY133") {
+                        self.additionalCourses.append(cvo)
+                    }
+                    else {
+                        self.courselist.append(cvo)
+                    }
+                    
+                    
+                }
+            } catch {
+                NSLog("Error for Parsing JSON format file!")
+                
+            }
+        }
+       
+        
+        
+
+            
         
     }
     
@@ -107,17 +150,13 @@ class AddCourseVC: UIViewController {
         
         
         //MARK: TEST!@!!!!!!!
-        let temp = UIButton(type: .system)
-        temp.setTitle("temp", for: .normal)
-        temp.sizeToFit()
-        temp.addTarget(self, action: #selector(temp(_ :)), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: temp)
+//        let temp = UIButton(type: .system)
+//        temp.setTitle("temp", for: .normal)
+//        temp.sizeToFit()
+//        temp.addTarget(self, action: #selector(temp(_ :)), for: .touchUpInside)
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: temp)
     }
-    
-    @objc func temp(_ sender: UIButton) {
-        selectedCourse.append("TEM\(tempNumber)")
-        tempNumber += 1
-    }
+
     
     @objc func back (_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -225,6 +264,28 @@ class AddCourseVC: UIViewController {
     @objc func removeCourse (_ sender : UIButton) {
         
         
+//        for c in selectedCourse {
+//
+//            if let courseHash = c.hash {
+//                if sender.tag == courseHash {
+//                    if let index = selectedCourse.firstIndex(of: c) {
+//                        selectedCourse.remove(at: index)
+//                        c.hash = nil
+//
+//                    }
+//                }
+//            }
+//
+//        }
+//        for cell in selectedCell {
+//            if cell.isSelected && cell.hash == sender.tag  {
+//                cell.isSelected = false
+//                cell.selectedColor = .white
+//                if let index = selectedCell.firstIndex(of: cell) {
+//                    selectedCell.remove(at: index)
+//                }
+//            }
+//        }
     }
     
     func setupCourseList() {
@@ -234,7 +295,8 @@ class AddCourseVC: UIViewController {
         self.listTableView.delegate = self
         self.listTableView.dataSource = self
         self.listTableView.bounces = false
-       
+        self.listTableView.allowsMultipleSelection = true
+        
         //Done Button
         self.doneBtn.makeBasicBtn()
         self.doneBtn.setTitle("Done", for: .normal)
@@ -271,9 +333,10 @@ extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
             return cell
         case 103 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.selectCellId, for: indexPath) as! SelectedCourseCell
-            cell.label.text = self.selectedCourse[indexPath.row]
+            cell.label.text = self.selectedCourse[indexPath.row].name
             cell.removeBtn.addTarget(self, action: #selector(self.removeCourse(_ :)), for: .touchUpInside)
-            
+//            cell.removeBtn.tag = self.selectedCourse[indexPath.row].hash!
+        
             
             return cell
         default :
@@ -357,15 +420,19 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.dummyData.count
+        return self.courselist.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as? CourseListCell else { return UITableViewCell() }
-        cell.textLabel?.text = self.dummyData[indexPath.section]["name"] as? String
-        cell.detailTextLabel?.text = "By \(self.dummyData[indexPath.section]["instructor"] as? String ?? "")"
-        
+        let course = self.courselist[indexPath.section]
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as! CourseListCell
+        cell.textLabel?.text = course.name
+        cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
+        if selectedCourse.contains(course) {
+            cell.selectedColor = .themeColor
+        }
         return cell
+
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
@@ -379,12 +446,30 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         guard let moreInfoVC = self.storyboard?.instantiateViewController(identifier: Constant.moreInfoVCId) as? MoreInfoVC else { return }
-        moreInfoVC.params = dummyData[indexPath.section]
+        moreInfoVC.params = courselist[indexPath.section]
         
 //        moreInfoVC.modalPresentationStyle = .custom
 //        moreInfoVC.transitioningDelegate = self
 //        self.navigationController?.pushViewController(moreInfoVC, animated: true)
         self.present(moreInfoVC, animated: true, completion: nil)
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell  {
+            let course = self.courselist[indexPath.section]
+            cell.selectedColor = .themeColor
+            selectedCourse.append(self.courselist[indexPath.section])
+//            course.hash = cell.hash
+//            selectedCell.append(cell)
+            
+        }
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell {
+            let course = self.courselist[indexPath.section]
+            if let index = selectedCourse.firstIndex(of: course) {
+                selectedCourse.remove(at: index)
+            } else { return }
+        }
     }
 }
 

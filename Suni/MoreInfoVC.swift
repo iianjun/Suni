@@ -10,7 +10,7 @@ import UIKit
 class MoreInfoVC: UIViewController {
     
     @IBOutlet var courseTitle: UILabel!
-    var params : NSDictionary!
+    var params : CourseVO!
     @IBOutlet var paramTime: UILabel!
     @IBOutlet var paramRoom: UILabel!
     @IBOutlet var paramCredit: UILabel!
@@ -25,35 +25,39 @@ class MoreInfoVC: UIViewController {
             cv.layer.borderColor = UIColor.themeColor.cgColor
             
         }
-        self.courseTitle.text = self.params["name"] as? String ?? ""
+        self.courseTitle.text = self.params.name
         self.courseTitle.textColor = .themeTextColor
-        self.paramTime.text = self.params["time"] as? String ?? ""
-        self.paramTime.textColor = .themeTextColor
-        self.paramRoom.text = self.params["room"] as? String ?? ""
-        self.paramRoom.textColor = .themeTextColor
-        self.paramCredit.text = "\(self.params["credit"] as? String ?? "") credit"
-        self.paramCredit.textColor = .themeTextColor
-        self.paramInstructor.text = self.params["instructor"] as? String ?? ""
-        self.paramInstructor.textColor = .themeTextColor
-       
-        if let link = self.params["link"] as? String {
-            
-            if link == "" {
-                self.paramLink.setTitle("No Website", for: .normal)
-                self.paramLink.isEnabled = false
-            }
-            else {
-                self.paramLink.setTitle(link, for: .normal)
-                self.paramLink.titleLabel?.numberOfLines = 0
+        
+        var courseTime = ""
+        if let days = params.days {
+            for i in 0..<days.count {
+                courseTime += days[i] as! String
+                if i + 1 != days.count {
+                    courseTime += "/"
+                }
             }
         }
+        self.paramTime.text = "\(courseTime) \(params.startTime!)-\(params.endTime!)"
+        self.paramTime.textColor = .themeTextColor
         
+        self.paramRoom.text = self.params.room
+        self.paramRoom.textColor = .themeTextColor
+        self.paramCredit.text = "\(params.credit!) credit"
+        self.paramCredit.textColor = .themeTextColor
         
-        
-        
-        
+        self.paramInstructor.text = self.params.instructor
+        self.paramInstructor.textColor = .themeTextColor
+       
+        let link = self.params.link
+        if link == "" {
+            self.paramLink.setTitle("No Website", for: .normal)
+            self.paramLink.isEnabled = false
+        }
+        else {
+            self.paramLink.setTitle(link, for: .normal)
+            self.paramLink.titleLabel?.numberOfLines = 0
+        }
 
-        // Do any additional setup after loading the view.
     }
 
 
@@ -72,9 +76,9 @@ extension MoreInfoVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segue_detail" {
             let webVC = segue.destination as? WebCourseInfoVC
-            webVC?.paramURL = self.params["link"] as? String ?? ""
-            webVC?.paramTitle = self.params["name"] as? String ?? ""
-            
+            webVC?.paramURL = self.params.link
+            webVC?.paramTitle = self.params.name
+
         }
     }
 }

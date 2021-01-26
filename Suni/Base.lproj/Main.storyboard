@@ -88,7 +88,7 @@
                     <navigationItem key="navigationItem" id="1ud-v0-HEQ"/>
                     <connections>
                         <outlet property="collectionView" destination="sNP-Zb-iY3" id="5AQ-UX-z6z"/>
-                        <segue destination="Wi1-1D-rc9" kind="show" id="bI2-J4-i4x"/>
+                        <segue destination="Wi1-1D-rc9" kind="show" identifier="segue_addCourse" id="bI2-J4-i4x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ze-0F-XVm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -41,7 +41,11 @@ class WebCourseInfoVC : UIViewController, WKUIDelegate {
     }
 
     @IBAction func close(_ sender: Any) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: {
+            self.wv.stopLoading()
+            
+            
+        })
     }
 }
 
