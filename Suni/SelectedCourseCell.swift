@@ -9,7 +9,9 @@ import UIKit
 
 class SelectedCourseCell: UICollectionViewCell {
 //    let label = UILabel()
+    
     let removeBtn = UIButton()
+    
     @IBOutlet var label: UILabel!
     
     override func layoutSubviews() {

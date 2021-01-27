@@ -23,8 +23,10 @@
 		763BAF6225BC108A005F7EF8 /* AddCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */; };
 		764AF3AE25BEE8A1003E1F15 /* MoreInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AF3AD25BEE8A1003E1F15 /* MoreInfoVC.swift */; };
 		764AF3B125BF0C27003E1F15 /* WebCourseInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */; };
-		764BAB7B25C00D95005054F9 /* CourseVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764BAB7A25C00D95005054F9 /* CourseVO.swift */; };
-		764BAB8B25C02EED005054F9 /* all_courses.json in Resources */ = {isa = PBXBuildFile; fileRef = 764BAB8A25C02EED005054F9 /* all_courses.json */; };
+		7663891A25C06EAF00B930AC /* CourseVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663891925C06EAF00B930AC /* CourseVO.swift */; };
+		7663891D25C06FFA00B930AC /* all_courses.json in Resources */ = {isa = PBXBuildFile; fileRef = 7663891C25C06FFA00B930AC /* all_courses.json */; };
+		7663892025C07AFA00B930AC /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7663891F25C07AFA00B930AC /* test.json */; };
+		7663892325C0A5C500B930AC /* CSEButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663892225C0A5C400B930AC /* CSEButton.swift */; };
 		768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A025B86FC80053DE0C /* AppDelegate.swift */; };
 		768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A225B86FC80053DE0C /* SceneDelegate.swift */; };
 		768D67A825B86FC80053DE0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768D67A625B86FC80053DE0C /* Main.storyboard */; };
@@ -56,8 +58,10 @@
 		763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseCell.swift; sourceTree = "<group>"; };
 		764AF3AD25BEE8A1003E1F15 /* MoreInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoVC.swift; sourceTree = "<group>"; };
 		764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCourseInfoVC.swift; sourceTree = "<group>"; };
-		764BAB7A25C00D95005054F9 /* CourseVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseVO.swift; sourceTree = "<group>"; };
-		764BAB8A25C02EED005054F9 /* all_courses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = all_courses.json; sourceTree = "<group>"; };
+		7663891925C06EAF00B930AC /* CourseVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseVO.swift; sourceTree = "<group>"; };
+		7663891C25C06FFA00B930AC /* all_courses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = all_courses.json; sourceTree = "<group>"; };
+		7663891F25C07AFA00B930AC /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
+		7663892225C0A5C400B930AC /* CSEButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSEButton.swift; sourceTree = "<group>"; };
 		768D679D25B86FC80053DE0C /* Suni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Suni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768D67A025B86FC80053DE0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768D67A225B86FC80053DE0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +93,8 @@
 				763BAF5A25BC06C5005F7EF8 /* back.png */,
 				763BAF3225B95D8F005F7EF8 /* account.jpg */,
 				76A90DCF25BD8F6C002E0A69 /* close.png */,
-				764BAB8A25C02EED005054F9 /* all_courses.json */,
+				7663891F25C07AFA00B930AC /* test.json */,
+				7663891C25C06FFA00B930AC /* all_courses.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -125,16 +130,16 @@
 			children = (
 				763BAF2D25B94F20005F7EF8 /* CSButton.swift */,
 				763BAF4D25BB0B0B005F7EF8 /* AddCourseVC.swift */,
-				764BAB7A25C00D95005054F9 /* CourseVO.swift */,
-				763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */,
 				76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */,
 				76A90DD825BE7883002E0A69 /* CourseListCell.swift */,
 				763BAF1F25B874E0005F7EF8 /* ScheduleVC.swift */,
 				763BAF2325B87509005F7EF8 /* CalendarVC.swift */,
 				763BAF3B25B97E03005F7EF8 /* Timetable.swift */,
 				763BAF3E25B98318005F7EF8 /* TimetableCell.swift */,
+				763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */,
 				768D67A025B86FC80053DE0C /* AppDelegate.swift */,
 				768D67A225B86FC80053DE0C /* SceneDelegate.swift */,
+				7663891925C06EAF00B930AC /* CourseVO.swift */,
 				768D67A625B86FC80053DE0C /* Main.storyboard */,
 				764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */,
 				764AF3AD25BEE8A1003E1F15 /* MoreInfoVC.swift */,
@@ -145,6 +150,7 @@
 				768D67A925B86FC80053DE0C /* Suni.xcdatamodeld */,
 				763BAF2925B94A14005F7EF8 /* Utils.swift */,
 				763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */,
+				7663892225C0A5C400B930AC /* CSEButton.swift */,
 			);
 			path = Suni;
 			sourceTree = "<group>";
@@ -209,13 +215,14 @@
 			files = (
 				763BAF4725B9AF47005F7EF8 /* add.png in Resources */,
 				763BAF3325B95D8F005F7EF8 /* account.jpg in Resources */,
+				7663891D25C06FFA00B930AC /* all_courses.json in Resources */,
 				763BAF2725B9499E005F7EF8 /* Righteous-Regular.ttf in Resources */,
-				764BAB8B25C02EED005054F9 /* all_courses.json in Resources */,
 				768D67B025B86FC80053DE0C /* LaunchScreen.storyboard in Resources */,
 				763BAF5B25BC06C5005F7EF8 /* back.png in Resources */,
 				763BAF1325B8714E005F7EF8 /* InfoPlist.strings in Resources */,
 				768D67AD25B86FC80053DE0C /* Assets.xcassets in Resources */,
 				76A90DD125BD8F6C002E0A69 /* close.png in Resources */,
+				7663892025C07AFA00B930AC /* test.json in Resources */,
 				768D67A825B86FC80053DE0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,7 +244,8 @@
 				763BAF6225BC108A005F7EF8 /* AddCourseCell.swift in Sources */,
 				763BAF2025B874E0005F7EF8 /* ScheduleVC.swift in Sources */,
 				768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */,
-				764BAB7B25C00D95005054F9 /* CourseVO.swift in Sources */,
+				7663891A25C06EAF00B930AC /* CourseVO.swift in Sources */,
+				7663892325C0A5C500B930AC /* CSEButton.swift in Sources */,
 				768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */,
 				763BAF4B25BA8F93005F7EF8 /* CSNavigationBar.swift in Sources */,
 				764AF3AE25BEE8A1003E1F15 /* MoreInfoVC.swift in Sources */,

@@ -23,24 +23,24 @@ class AddCourseVC: UIViewController {
     @IBOutlet weak var listTableView: UITableView!
     @IBOutlet var listTableContainerView: UIView!
     @IBOutlet var doneBtn: CSButton!
-    
-    
+
     var majors : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC", "ETC"]
     var days : [String] = ["MON", "TUE", "WED", "THU", "FRI"]
     var cartWidth : CGFloat?
     
     //This is collection of lab and recitation courses
     
-//    var selectedCell : [CourseListCell] = []
+    
     
     var additionalCourses : [CourseVO] = []
     
+    var filteredCourse : [CourseVO] = []
     var selectedCourse : [CourseVO] = [] {
         willSet (newValue) {
             self.cartCollectionView.reloadData()
             self.cartCollectionView.isScrollEnabled = newValue.count > 3 ? true : false
             
-            print(newValue)
+            
         }
     }
     var selectedMajor : [String] = [] {
@@ -59,6 +59,27 @@ class AddCourseVC: UIViewController {
         return datalist
     }()
     
+    @objc func removeCourse (_ sender : UIButton) {
+        
+//        self.listTableView.deselectRow(at: self.listTableView.indexPathForSelectedRow!, animated: false)
+//        let ips = self.listTableView.indexPathsForSelectedRows
+//        print(ips)
+        if let index = selectedCourse.firstIndex(where: { $0.hash! == sender.tag }) {
+            print(index)
+            selectedCourse.remove(at: index)
+        }
+        //sender.tag == course.hash == cell.tag
+//        if let index = selectedCell.firstIndex(where: { $0.0.tag == sender.tag }) {
+//            selectedCell[index].0.isSelected.toggle()
+//        }
+//        if let ind = selectedCell.firstIndex(where: { $0.0 == self.listTableView.cellForRow(at: ))
+      
+        
+        
+
+      
+    
+    }
     
     
     override func viewDidLoad() {
@@ -69,6 +90,7 @@ class AddCourseVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
     func setup() {
@@ -106,6 +128,14 @@ class AddCourseVC: UIViewController {
                     cvo.hasLab = course["hasLab"] as? Bool
                     cvo.link = course["link"] as? String
                     cvo.number = course["number"] as? Int
+                    var hasher = Hasher()
+                    hasher.combine(cvo.name)
+                    hasher.combine(cvo.startTime)
+                    cvo.hash = hasher.finalize()
+                    cvo.selected = false
+                    
+                    
+                    
                     
                     if (cvo.type == .lab || cvo.type == .rec) && (cvo.name != "PHY133") {
                         self.additionalCourses.append(cvo)
@@ -122,11 +152,6 @@ class AddCourseVC: UIViewController {
             }
         }
        
-        
-        
-
-            
-        
     }
     
     func initHeader() {
@@ -150,13 +175,54 @@ class AddCourseVC: UIViewController {
         
         
         //MARK: TEST!@!!!!!!!
-//        let temp = UIButton(type: .system)
-//        temp.setTitle("temp", for: .normal)
-//        temp.sizeToFit()
-//        temp.addTarget(self, action: #selector(temp(_ :)), for: .touchUpInside)
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: temp)
+        let temp = UIButton(type: .system)
+        temp.setTitle("temp", for: .normal)
+        temp.sizeToFit()
+        temp.addTarget(self, action: #selector(temp(_ :)), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: temp)
     }
-
+    @objc func temp(_ sender : UIButton) {
+//        if let path = Bundle.main.path(forResource: "test", ofType: "json") {
+//            do {
+//
+//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+//                let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
+//                for course in jsonResult {
+//                    let cvo = CourseVO()
+//                    cvo.major = course["major"] as? String
+//                    cvo.name = course["name"] as? String
+//                    cvo.title = course["title"] as? String
+//                    if let stringType = course["type"] as? String {
+//                        if let type = CourseType(rawValue: stringType.lowercased()) {
+//                            cvo.type = type
+//                        }
+//                    }
+//                    cvo.credit = course["credit"] as? Int
+//                    cvo.days = course["days"] as? NSArray
+//                    cvo.startTime = course["startTime"] as? String
+//                    cvo.endTime = course["endTime"] as? String
+//                    cvo.room = course["room"] as? String
+//                    cvo.instructor = course["instructor"] as? String
+//                    cvo.hasLab = course["hasLab"] as? Bool
+//                    cvo.link = course["link"] as? String
+//                    cvo.number = course["number"] as? Int
+//
+//                    if (cvo.type == .lab || cvo.type == .rec) && (cvo.name != "PHY133") {
+//                        self.additionalCourses.append(cvo)
+//                    }
+//                    else {
+//                        self.filteredCourse.append(cvo)
+//                    }
+//
+//
+//                }
+//            } catch {
+//                NSLog("Error for Parsing JSON format file!")
+//
+//            }
+//        }
+        self.listTableView.reloadData()
+    }
     
     @objc func back (_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -259,34 +325,9 @@ class AddCourseVC: UIViewController {
         self.cartCollectionView.bounces = false
         self.cartCollectionView.showsHorizontalScrollIndicator = false
 
+
     }
     
-    @objc func removeCourse (_ sender : UIButton) {
-        
-        
-//        for c in selectedCourse {
-//
-//            if let courseHash = c.hash {
-//                if sender.tag == courseHash {
-//                    if let index = selectedCourse.firstIndex(of: c) {
-//                        selectedCourse.remove(at: index)
-//                        c.hash = nil
-//
-//                    }
-//                }
-//            }
-//
-//        }
-//        for cell in selectedCell {
-//            if cell.isSelected && cell.hash == sender.tag  {
-//                cell.isSelected = false
-//                cell.selectedColor = .white
-//                if let index = selectedCell.firstIndex(of: cell) {
-//                    selectedCell.remove(at: index)
-//                }
-//            }
-//        }
-    }
     
     func setupCourseList() {
         self.listTableContainerView.layer.borderWidth = self.horizontalLines[0].frame.height
@@ -335,8 +376,9 @@ extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.selectCellId, for: indexPath) as! SelectedCourseCell
             cell.label.text = self.selectedCourse[indexPath.row].name
             cell.removeBtn.addTarget(self, action: #selector(self.removeCourse(_ :)), for: .touchUpInside)
-//            cell.removeBtn.tag = self.selectedCourse[indexPath.row].hash!
-        
+            cell.removeBtn.tag = self.selectedCourse[indexPath.row].hash!
+            
+            
             
             return cell
         default :
@@ -379,6 +421,7 @@ extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
                 } else { return }
             }
         case 103: ()
+            
         default: ()
             
         }
@@ -420,16 +463,40 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.courselist.count
+        return self.filteredCourse.count > 0 ? self.filteredCourse.count : self.courselist.count
     }
-    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as! CourseListCell
+//        cell.setSelected(cell.isSelected, animated: true)
+//    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let course = self.courselist[indexPath.section]
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as! CourseListCell
-        cell.textLabel?.text = course.name
-        cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
-        if selectedCourse.contains(course) {
-            cell.selectedColor = .themeColor
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as? CourseListCell else {
+            return UITableViewCell()
+        }
+        if filteredCourse.isEmpty == false {
+            let course = self.filteredCourse[indexPath.section]
+            cell.textLabel?.text = course.name
+            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
+//            if selectedCourse.contains(course) {
+//                cell.selectedColor = .themeColor
+//            }
+//            if course.selected! {
+//                cell.backgroundColor = .themeColor
+//            }
+            
+        }
+        else {
+            
+            let course = self.courselist[indexPath.section]
+//            if course.selected! {
+//                cell.backgroundColor = .themeColor
+//            }
+            
+            cell.textLabel?.text = course.name
+            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
+//            cell.backgroundColor = .themeColor
+            cell.tag = course.hash!
+            
         }
         return cell
 
@@ -453,22 +520,29 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
 //        self.navigationController?.pushViewController(moreInfoVC, animated: true)
         self.present(moreInfoVC, animated: true, completion: nil)
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell  {
             let course = self.courselist[indexPath.section]
-            cell.selectedColor = .themeColor
-            selectedCourse.append(self.courselist[indexPath.section])
-//            course.hash = cell.hash
-//            selectedCell.append(cell)
+            cell.tag = course.hash!
+            course.selected = true
+            self.selectedCourse.append(course)
             
+            
+
         }
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell {
+            
             let course = self.courselist[indexPath.section]
+            course.selected = false
             if let index = selectedCourse.firstIndex(of: course) {
                 selectedCourse.remove(at: index)
+                
             } else { return }
+            
         }
     }
 }

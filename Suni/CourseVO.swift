@@ -21,6 +21,7 @@ class CourseVO {
     var link : String?
     var number : Int?
     var hash : Int?
+    var selected : Bool?
 
 }
 

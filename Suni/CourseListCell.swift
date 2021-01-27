@@ -18,6 +18,19 @@ class CourseListCell: UITableViewCell {
             return self.selectedBackgroundView?.backgroundColor ?? .clear
         }
     }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        if selected {
+            print("true")
+            self.selectedColor = .themeColor
+        }
+        else {
+            print("false")
+            self.selectedColor = .white
+        }
+    }
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.borderWidth = Constant.addCourseCellBorderWidth
@@ -28,6 +41,7 @@ class CourseListCell: UITableViewCell {
         self.textLabel?.sizeToFit()
         self.detailTextLabel?.sizeToFit()
         self.detailTextLabel?.textAlignment = .right
+        
     }
     
 
