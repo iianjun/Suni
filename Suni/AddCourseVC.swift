@@ -27,11 +27,8 @@ class AddCourseVC: UIViewController {
     var majors : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC", "ETC"]
     var days : [String] = ["MON", "TUE", "WED", "THU", "FRI"]
     var cartWidth : CGFloat?
-    
+    var isNoResult : Bool = false
     //This is collection of lab and recitation courses
-    
-    
-    
     var additionalCourses : [CourseVO] = []
     
     var filteredCourse : [CourseVO] = []
@@ -39,43 +36,77 @@ class AddCourseVC: UIViewController {
         willSet (newValue) {
             self.cartCollectionView.reloadData()
             self.cartCollectionView.isScrollEnabled = newValue.count > 3 ? true : false
-            
-            
         }
     }
-    var selectedMajor : [String] = [] {
+    var selectedFilter : (selectedMajor : [String], selectedDays: [String]) = ([], []) {
         willSet (newVal) {
+            isNoResult = false
+            filteredCourse = []
+            if newVal.selectedMajor.isEmpty && newVal.selectedDays.isEmpty {
+                self.listTableView.reloadData()
+                return
+            }
+            if newVal.selectedMajor.isEmpty == false && newVal.selectedDays.isEmpty {
+                for major in newVal.0 {
+                    filteredCourse.append(contentsOf: courselist.filter { $0.major == major })
+                }
+            }
+            if newVal.selectedMajor.isEmpty && newVal.selectedDays.isEmpty == false {
+                for selectedDay in newVal.1 {
+                    if newVal.selectedDays.count == 1 {
+                        filteredCourse.append(contentsOf: courselist.filter { ($0.days == newVal.1 || ($0.days?.contains(selectedDay) == true))  })
+                    }
+                    else {
+                        filteredCourse.append(contentsOf: courselist.filter { ($0.days == newVal.1 && ($0.days?.contains(selectedDay) == true)) && filteredCourse.contains($0) == false })
+                    }
+                }
+            }
+            if newVal.selectedMajor.isEmpty == false && newVal.selectedDays.isEmpty == false {
+                for major in newVal.0 {
+                    filteredCourse.append(contentsOf: courselist.filter { $0.major == major })
+                }
+                for selectedDay in newVal.1 {
+                    filteredCourse = filteredCourse.filter { $0.days == newVal.1 || ($0.days?.contains(selectedDay) == true) }
+                }
+            }
+            if filteredCourse.count == 0 {
+                isNoResult = true
+            }
+            self.listTableView.reloadData()
             print(newVal)
         }
     }
-    var selectedDays : [String] = [] {
-        willSet (newVal) {
-            print(newVal)
-        }
-    }
+//    var selectedMajor : [String] = [] {
+//        willSet (newVal) {
+//            filteredCourse = []
+//            for major in newVal {
+//
+//                if newVal.isEmpty && selectedDays.isEmpty {
+//                    return
+//                }
+//                filteredCourse.append(contentsOf: courselist.filter { $0.major == major })
+//
+//            }
+//            self.listTableView.reloadData()
+//
+//        }
+//    }
+//    var selectedDays : [String] = [] {
+//        willSet (newVal) {
+//            print(newVal)
+//        }
+//    }
     var courselist = [CourseVO]()
-    lazy var filteredList : [CourseVO] = {
-        var datalist = [CourseVO]()
-        return datalist
-    }()
-    
+
     @objc func removeCourse (_ sender : UIButton) {
-        
-        if let index = selectedCourse.firstIndex(where: { $0.hash! == sender.tag }) {
-            print(index)
-            selectedCourse.remove(at: index)
-        }
         //sender.tag == course.hash == cell.tag
-
-      
+        if let index = selectedCourse.firstIndex(where: { $0.hash! == sender.tag }) {
+            selectedCourse[index].selected = false
+            selectedCourse.remove(at: index)
+            
+        }
         
-        
-
-      
-    
     }
-    
-    
     override func viewDidLoad() {
         self.setup()
         cartWidth = self.cartCollectionView.frame.width
@@ -114,7 +145,7 @@ class AddCourseVC: UIViewController {
                         }
                     }
                     cvo.credit = course["credit"] as? Int
-                    cvo.days = course["days"] as? NSArray
+                    cvo.days = course["days"] as? Array<String>
                     cvo.startTime = course["startTime"] as? String
                     cvo.endTime = course["endTime"] as? String
                     cvo.room = course["room"] as? String
@@ -145,7 +176,7 @@ class AddCourseVC: UIViewController {
                 
             }
         }
-       
+        
     }
     
     func initHeader() {
@@ -176,6 +207,9 @@ class AddCourseVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: temp)
     }
     @objc func temp(_ sender : UIButton) {
+        print(selectedFilter)
+        print(filteredCourse)
+        print(filteredCourse.count)
     }
     
     @objc func back (_ sender: UIButton) {
@@ -193,12 +227,6 @@ class AddCourseVC: UIViewController {
         self.setupSearchBar()
         self.setupCart()
         self.setupCourseList()
-       
-
-        
-        
-        
-
     }
     
     func setupMajor() {
@@ -291,6 +319,10 @@ class AddCourseVC: UIViewController {
         self.listTableView.dataSource = self
         self.listTableView.bounces = false
         self.listTableView.allowsMultipleSelection = false
+        self.listTableView.separatorStyle = .none
+
+        
+        
         
         //Done Button
         self.doneBtn.makeBasicBtn()
@@ -345,12 +377,12 @@ extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
         case 101:
             if let cell = collectionView.cellForItem(at: indexPath) as? AddCourseCell {
                 cell.backgroundColor = .themeColor
-                selectedMajor.append(self.majors[indexPath.row])
+                selectedFilter.selectedMajor.append(self.majors[indexPath.row])
             }
         case 102:
             if let cell = collectionView.cellForItem(at: indexPath) as? AddCourseCell {
                 cell.backgroundColor = .themeColor
-                selectedDays.append(days[indexPath.row])
+                selectedFilter.selectedDays.append(days[indexPath.row])
             }
         case 103: ()
         default: ()
@@ -362,16 +394,16 @@ extension AddCourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
         case 101:
             if let cell = collectionView.cellForItem(at: indexPath) as? AddCourseCell {
                 cell.backgroundColor = .white
-                if let index = selectedMajor.firstIndex(of: majors[indexPath.row]) {
-                    selectedMajor.remove(at: index)
+                if let index = selectedFilter.selectedMajor.firstIndex(of: majors[indexPath.row]) {
+                    selectedFilter.selectedMajor.remove(at: index)
                 } else { return }
             }
         case 102:
             if let cell = collectionView.cellForItem(at: indexPath) as? AddCourseCell {
                 cell.backgroundColor = .white
          
-                if let index = selectedDays.firstIndex(of: days[indexPath.row]) {
-                    selectedDays.remove(at: index)
+                if let index = selectedFilter.selectedDays.firstIndex(of: days[indexPath.row]) {
+                    selectedFilter.selectedDays.remove(at: index)
                 } else { return }
             }
         case 103: ()
@@ -416,8 +448,12 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.filteredCourse.count > 0 ? self.filteredCourse.count : self.courselist.count
+        if isNoResult {
+            return 1
+        }
+        return self.filteredCourse.count > 0 && isNoResult == false ? self.filteredCourse.count : self.courselist.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -428,24 +464,32 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
             let course = self.filteredCourse[indexPath.section]
             cell.textLabel?.text = course.name
             cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
+        }
+        else if isNoResult {
+            let tempCell = UITableViewCell()
+            tempCell.layer.borderWidth = Constant.addCourseCellBorderWidth
+            tempCell.layer.borderColor = UIColor.themeColor.cgColor
+            tempCell.layer.cornerRadius = Constant.cornerRadius
+            tempCell.textLabel?.textColor = .themeTextColor
+            tempCell.textLabel?.text = "NO RESULT"
+            tempCell.textLabel?.font = getRigteous(size: 17)
+            tempCell.textLabel?.textAlignment = .center
             
+//            self.listTableView.allowsSelection = false
+            return tempCell
             
         }
         else {
-            
             let course = self.courselist[indexPath.section]
-
-            
             cell.textLabel?.text = course.name
             cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
-
             cell.tag = course.hash!
             cell.selectionStyle = .none
-            
         }
         return cell
 
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
         
@@ -456,9 +500,11 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         headerView.backgroundColor = .clear
         return headerView
     }
+    
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         guard let moreInfoVC = self.storyboard?.instantiateViewController(identifier: Constant.moreInfoVCId) as? MoreInfoVC else { return }
-        moreInfoVC.params = courselist[indexPath.section]
+        
+        moreInfoVC.params = (filteredCourse.count == 0) ? courselist[indexPath.section] : filteredCourse[indexPath.section]
         
 //        moreInfoVC.modalPresentationStyle = .custom
 //        moreInfoVC.transitioningDelegate = self
@@ -467,20 +513,41 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if isNoResult {
+            //If no result, only one cell is at top
+            guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) else { return }
+            cell.selectionStyle = .none
+            
+            return
+        }
         if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell  {
-            let course = self.courselist[indexPath.section]
-            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseIn, .curveEaseOut], animations: {
-                cell.backgroundColor = .themeColor
-                cell.backgroundColor = .white
-            }, completion: { finisied in
+            
+            let course = (self.filteredCourse.count > 0 && isNoResult == false) ? self.filteredCourse[indexPath.section] : self.courselist[indexPath.section]
+            if selectedCourse.contains(course) || selectedCourse.first(where: { $0.name == course.name }) != nil {
+                let alert = UIAlertController(title: "", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 
-            })
-            course.selected = true
-            self.selectedCourse.append(course)
-            
-            
+                let titleAttributed = NSMutableAttributedString(string: "\(course.name!) is already in the cart",
+                    attributes: [
+                        NSAttributedString.Key.font: getRigteous(size: 15),
+                        NSAttributedString.Key.foregroundColor: UIColor.themeTextColor
+                ])
+                alert.setValue(titleAttributed, forKey: "attributedTitle")
+                self.present(alert, animated: true, completion: nil)
+                return
+                
+            }
+            UIView.transition(with: cell, duration: 0.7, options: .transitionFlipFromBottom, animations: {
 
+                UIView.animate(withDuration: 0.3, delay: 0.4, options: .curveEaseIn, animations: {
+                    cell.backgroundColor = .themeColor
+                    cell.backgroundColor = .white
+                }, completion: { _ in })
+            }, completion: { finished in
+                course.selected = true
+                self.selectedCourse.append(course)
+            })
+          
         }
     }
 //    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

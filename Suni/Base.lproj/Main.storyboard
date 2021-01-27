@@ -287,8 +287,8 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9w9-bG-r36">
                                         <rect key="frame" x="15" y="5" width="328" height="280"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <view key="tableFooterView" contentMode="scaleToFill" id="df7-Is-Wk6">
-                                            <rect key="frame" x="0.0" y="99.666667938232422" width="328" height="44"/>
+                                        <view key="tableFooterView" contentMode="scaleToFill" id="oks-TP-xY4">
+                                            <rect key="frame" x="0.0" y="99.666667938232422" width="328" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         </view>

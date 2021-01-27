@@ -23,7 +23,7 @@ class MoreInfoVC: UIViewController {
             cv.layer.borderWidth = Constant.addCourseCellBorderWidth
             cv.layer.cornerRadius = Constant.moreVCCornerRadius
             cv.layer.borderColor = UIColor.themeColor.cgColor
-            
+
         }
         self.courseTitle.text = self.params.name
         self.courseTitle.textColor = .themeTextColor
@@ -31,7 +31,7 @@ class MoreInfoVC: UIViewController {
         var courseTime = ""
         if let days = params.days {
             for i in 0..<days.count {
-                courseTime += days[i] as! String
+                courseTime += days[i]
                 if i + 1 != days.count {
                     courseTime += "/"
                 }
@@ -39,7 +39,7 @@ class MoreInfoVC: UIViewController {
         }
         self.paramTime.text = "\(courseTime) \(params.startTime!)-\(params.endTime!)"
         self.paramTime.textColor = .themeTextColor
-        
+        self.paramTime.numberOfLines = 0
         self.paramRoom.text = self.params.room
         self.paramRoom.textColor = .themeTextColor
         self.paramCredit.text = "\(params.credit!) credit"
