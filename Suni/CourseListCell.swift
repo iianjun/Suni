@@ -8,29 +8,8 @@
 import UIKit
 
 class CourseListCell: UITableViewCell {
-    var selectedColor : UIColor {
-        set {
-            let view = UIView()
-            view.backgroundColor = newValue
-            self.selectedBackgroundView = view
-        }
-        get {
-            return self.selectedBackgroundView?.backgroundColor ?? .clear
-        }
-    }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        if selected {
-            print("true")
-            self.selectedColor = .themeColor
-        }
-        else {
-            print("false")
-            self.selectedColor = .white
-        }
-    }
+  
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.borderWidth = Constant.addCourseCellBorderWidth

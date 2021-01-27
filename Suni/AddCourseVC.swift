@@ -61,18 +61,12 @@ class AddCourseVC: UIViewController {
     
     @objc func removeCourse (_ sender : UIButton) {
         
-//        self.listTableView.deselectRow(at: self.listTableView.indexPathForSelectedRow!, animated: false)
-//        let ips = self.listTableView.indexPathsForSelectedRows
-//        print(ips)
         if let index = selectedCourse.firstIndex(where: { $0.hash! == sender.tag }) {
             print(index)
             selectedCourse.remove(at: index)
         }
         //sender.tag == course.hash == cell.tag
-//        if let index = selectedCell.firstIndex(where: { $0.0.tag == sender.tag }) {
-//            selectedCell[index].0.isSelected.toggle()
-//        }
-//        if let ind = selectedCell.firstIndex(where: { $0.0 == self.listTableView.cellForRow(at: ))
+
       
         
         
@@ -182,46 +176,6 @@ class AddCourseVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: temp)
     }
     @objc func temp(_ sender : UIButton) {
-//        if let path = Bundle.main.path(forResource: "test", ofType: "json") {
-//            do {
-//
-//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-//                let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
-//                for course in jsonResult {
-//                    let cvo = CourseVO()
-//                    cvo.major = course["major"] as? String
-//                    cvo.name = course["name"] as? String
-//                    cvo.title = course["title"] as? String
-//                    if let stringType = course["type"] as? String {
-//                        if let type = CourseType(rawValue: stringType.lowercased()) {
-//                            cvo.type = type
-//                        }
-//                    }
-//                    cvo.credit = course["credit"] as? Int
-//                    cvo.days = course["days"] as? NSArray
-//                    cvo.startTime = course["startTime"] as? String
-//                    cvo.endTime = course["endTime"] as? String
-//                    cvo.room = course["room"] as? String
-//                    cvo.instructor = course["instructor"] as? String
-//                    cvo.hasLab = course["hasLab"] as? Bool
-//                    cvo.link = course["link"] as? String
-//                    cvo.number = course["number"] as? Int
-//
-//                    if (cvo.type == .lab || cvo.type == .rec) && (cvo.name != "PHY133") {
-//                        self.additionalCourses.append(cvo)
-//                    }
-//                    else {
-//                        self.filteredCourse.append(cvo)
-//                    }
-//
-//
-//                }
-//            } catch {
-//                NSLog("Error for Parsing JSON format file!")
-//
-//            }
-//        }
-        self.listTableView.reloadData()
     }
     
     @objc func back (_ sender: UIButton) {
@@ -336,7 +290,7 @@ class AddCourseVC: UIViewController {
         self.listTableView.delegate = self
         self.listTableView.dataSource = self
         self.listTableView.bounces = false
-        self.listTableView.allowsMultipleSelection = true
+        self.listTableView.allowsMultipleSelection = false
         
         //Done Button
         self.doneBtn.makeBasicBtn()
@@ -465,10 +419,7 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.filteredCourse.count > 0 ? self.filteredCourse.count : self.courselist.count
     }
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as! CourseListCell
-//        cell.setSelected(cell.isSelected, animated: true)
-//    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as? CourseListCell else {
             return UITableViewCell()
@@ -477,25 +428,19 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
             let course = self.filteredCourse[indexPath.section]
             cell.textLabel?.text = course.name
             cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
-//            if selectedCourse.contains(course) {
-//                cell.selectedColor = .themeColor
-//            }
-//            if course.selected! {
-//                cell.backgroundColor = .themeColor
-//            }
+            
             
         }
         else {
             
             let course = self.courselist[indexPath.section]
-//            if course.selected! {
-//                cell.backgroundColor = .themeColor
-//            }
+
             
             cell.textLabel?.text = course.name
             cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
-//            cell.backgroundColor = .themeColor
+
             cell.tag = course.hash!
+            cell.selectionStyle = .none
             
         }
         return cell
@@ -525,7 +470,12 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         
         if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell  {
             let course = self.courselist[indexPath.section]
-            cell.tag = course.hash!
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseIn, .curveEaseOut], animations: {
+                cell.backgroundColor = .themeColor
+                cell.backgroundColor = .white
+            }, completion: { finisied in
+                
+            })
             course.selected = true
             self.selectedCourse.append(course)
             
@@ -533,18 +483,18 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
 
         }
     }
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell {
-            
-            let course = self.courselist[indexPath.section]
-            course.selected = false
-            if let index = selectedCourse.firstIndex(of: course) {
-                selectedCourse.remove(at: index)
-                
-            } else { return }
-            
-        }
-    }
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell {
+//            
+//            let course = self.courselist[indexPath.section]
+//            course.selected = false
+//            if let index = selectedCourse.firstIndex(of: course) {
+//                selectedCourse.remove(at: index)
+//                
+//            } else { return }
+//            
+//        }
+//    }
 }
 
 //MARK: Custom Modal Presentation Style

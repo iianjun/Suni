@@ -26,7 +26,6 @@
 		7663891A25C06EAF00B930AC /* CourseVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663891925C06EAF00B930AC /* CourseVO.swift */; };
 		7663891D25C06FFA00B930AC /* all_courses.json in Resources */ = {isa = PBXBuildFile; fileRef = 7663891C25C06FFA00B930AC /* all_courses.json */; };
 		7663892025C07AFA00B930AC /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7663891F25C07AFA00B930AC /* test.json */; };
-		7663892325C0A5C500B930AC /* CSEButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663892225C0A5C400B930AC /* CSEButton.swift */; };
 		768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A025B86FC80053DE0C /* AppDelegate.swift */; };
 		768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A225B86FC80053DE0C /* SceneDelegate.swift */; };
 		768D67A825B86FC80053DE0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768D67A625B86FC80053DE0C /* Main.storyboard */; };
@@ -61,7 +60,6 @@
 		7663891925C06EAF00B930AC /* CourseVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseVO.swift; sourceTree = "<group>"; };
 		7663891C25C06FFA00B930AC /* all_courses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = all_courses.json; sourceTree = "<group>"; };
 		7663891F25C07AFA00B930AC /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
-		7663892225C0A5C400B930AC /* CSEButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSEButton.swift; sourceTree = "<group>"; };
 		768D679D25B86FC80053DE0C /* Suni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Suni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768D67A025B86FC80053DE0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768D67A225B86FC80053DE0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				768D67A925B86FC80053DE0C /* Suni.xcdatamodeld */,
 				763BAF2925B94A14005F7EF8 /* Utils.swift */,
 				763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */,
-				7663892225C0A5C400B930AC /* CSEButton.swift */,
 			);
 			path = Suni;
 			sourceTree = "<group>";
@@ -245,7 +242,6 @@
 				763BAF2025B874E0005F7EF8 /* ScheduleVC.swift in Sources */,
 				768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */,
 				7663891A25C06EAF00B930AC /* CourseVO.swift in Sources */,
-				7663892325C0A5C500B930AC /* CSEButton.swift in Sources */,
 				768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */,
 				763BAF4B25BA8F93005F7EF8 /* CSNavigationBar.swift in Sources */,
 				764AF3AE25BEE8A1003E1F15 /* MoreInfoVC.swift in Sources */,

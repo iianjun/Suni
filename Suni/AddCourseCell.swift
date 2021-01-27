@@ -14,13 +14,10 @@ class AddCourseCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         self.layer.cornerRadius = Constant.cornerRadius
         self.layer.borderColor = UIColor.themeColor.cgColor
         self.layer.borderWidth = Constant.addCourseCellBorderWidth
-        
         self.label?.sizeToFit()
-
         self.label?.textColor = .themeTextColor
         
     
