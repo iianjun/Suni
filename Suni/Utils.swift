@@ -32,6 +32,25 @@ extension UIColor {
     }
 }
 
+extension UIViewController {
+    func alert(_ title: String, completion: (() -> Void)? = nil) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+                completion?()
+            })
+            let titleAttributed = NSMutableAttributedString(string: title,
+                attributes: [
+                    NSAttributedString.Key.font: self.getRigteous(size: 15)
+//                        NSAttributedString.Key.foregroundColor: UIColor.themeTextColor
+            ])
+            alert.setValue(titleAttributed, forKey: "attributedTitle")
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
 
 struct Constant {
     static let addBtnWidth : CGFloat = 30.0

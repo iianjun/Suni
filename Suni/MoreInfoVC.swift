@@ -37,7 +37,19 @@ class MoreInfoVC: UIViewController {
                 }
             }
         }
-        self.paramTime.text = "\(courseTime) \(params.startTime!)-\(params.endTime!)"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        if let startDate = params.time?.start, let endDate = params.time?.end {
+            let startTime = dateFormatter.string(from: startDate)
+            let endTime = dateFormatter.string(from: endDate)
+            self.paramTime.text = "\(courseTime) \(startTime)-\(endTime)"
+        }
+        else {
+            self.paramTime.text = ""
+        }
+ 
         self.paramTime.textColor = .themeTextColor
         self.paramTime.numberOfLines = 0
         self.paramRoom.text = self.params.room

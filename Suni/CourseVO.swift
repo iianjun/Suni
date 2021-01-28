@@ -13,8 +13,7 @@ class CourseVO {
     var type : CourseType?
     var credit : Int?
     var days : Array<String>?
-    var startTime : String?
-    var endTime : String?
+    var time : DateInterval?
     var room : String?
     var instructor : String?
     var hasLab : Bool?
@@ -22,6 +21,11 @@ class CourseVO {
     var number : Int?
     var hash : Int?
     var selected : Bool?
+    
+    func overlaps(with rhs : CourseVO) -> Bool {
+        
+        return true
+    }
 
 }
 
@@ -30,14 +34,16 @@ enum CourseType : String {
 }
 extension CourseVO : Equatable, CustomStringConvertible {
     var description: String {
-        return "[Major: \(self.major!) \nName: \(self.name!) \nTitle:\(self.title!) \nDays: \(self.days!) \nTime: \(self.startTime!)-\(self.endTime!) \nInstructor: \(self.instructor!)] \n"
+        return "[Major: \(self.major!) \nName: \(self.name!) \nTitle:\(self.title!) \nDays: \(self.days!) \nTime: \(self.time!) \nInstructor: \(self.instructor!)] \n"
 
         
     }
     
     static func ==(lhs: CourseVO, rhs: CourseVO) -> Bool {
-        return lhs.major == rhs.major && lhs.name == rhs.name && lhs.startTime == rhs.startTime && lhs.endTime == rhs.endTime && lhs.number == rhs.number
+        return lhs.major == rhs.major && lhs.name == rhs.name && lhs.time == rhs.time && lhs.number == rhs.number
     }
+    
+    
     
     
 }

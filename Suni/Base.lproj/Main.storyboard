@@ -278,7 +278,7 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="doenBtnClick:" destination="Wi1-1D-rc9" eventType="touchUpInside" id="Y6o-td-6f3"/>
+                                    <action selector="doneBtnClick:" destination="Wi1-1D-rc9" eventType="touchUpInside" id="Y6o-td-6f3"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="31q-Ay-LJ0">

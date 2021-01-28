@@ -23,15 +23,15 @@ class AddCourseVC: UIViewController {
     @IBOutlet weak var listTableView: UITableView!
     @IBOutlet var listTableContainerView: UIView!
     @IBOutlet var doneBtn: CSButton!
+    
     var isSearching = false
     var majors : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC", "ETC"]
     var days : [String] = ["MON", "TUE", "WED", "THU", "FRI"]
-    var cartWidth : CGFloat?
     var isNoResult : Bool = false
     //This is collection of lab and recitation courses
     var additionalCourses : [CourseVO] = []
+    var courselist = [CourseVO]()
     
-
     var filteredCourses : [CourseVO] = []
     var selectedCourses : [CourseVO] = [] {
         willSet (newValue) {
@@ -79,73 +79,33 @@ class AddCourseVC: UIViewController {
                 isNoResult = true
             }
             self.listTableView.reloadData()
-            print(newVal)
-        }
-    }
-    var searchText : String = ""
-//    {
-//        willSet(newVal) {
-//            filteredCourses = []
-//            filteredCourses = courselist.filter { $0.name?.contains((newVal).uppercased() ) == true}
-//            isNoResult = (filteredCourses.count == 0) ? true : false
-//            self.listTableView.reloadData()
-//            self.searchBar.endEditing(true)
-//        }
-//        didSet {
-//            searchText = ""
-//        }
-//    }
-//    var selectedMajor : [String] = [] {
-//        willSet (newVal) {
-//            filteredCourse = []
-//            for major in newVal {
-//
-//                if newVal.isEmpty && selectedDays.isEmpty {
-//                    return
-//                }
-//                filteredCourse.append(contentsOf: courselist.filter { $0.major == major })
-//
-//            }
-//            self.listTableView.reloadData()
-//
-//        }
-//    }
-//    var selectedDays : [String] = [] {
-//        willSet (newVal) {
-//            print(newVal)
-//        }
-//    }
-    var courselist = [CourseVO]()
     
-    @objc func removeCourse (_ sender : UIButton) {
-        //sender.tag == course.hash == cell.tag
-        if let index = selectedCourses.firstIndex(where: { $0.hash! == sender.tag }) {
-            selectedCourses[index].selected = false
-            selectedCourses.remove(at: index)
-            
         }
-        
     }
+
+    
+    
+    
     override func viewDidLoad() {
         self.setup()
-        cartWidth = self.cartCollectionView.frame.width
-        // Do any additional setup after loading the view.
-        
+
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    func setup() {
 
+    func setup() {
+        self.addGesture()
         self.tabBarController?.tabBar.isHidden = true
         self.getCourseData()
         self.initHeader()
         self.initBody()
         
     }
-    
+    func addGesture() {
+        let dragLeft = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(back(_ :)))
+        dragLeft.edges = UIRectEdge.left
+        self.view.addGestureRecognizer(dragLeft)
+    }
+
     func getCourseData() {
         
         if let path = Bundle.main.path(forResource: "all_courses", ofType: "json") {
@@ -165,8 +125,14 @@ class AddCourseVC: UIViewController {
                     }
                     cvo.credit = course["credit"] as? Int
                     cvo.days = course["days"] as? Array<String>
-                    cvo.startTime = course["startTime"] as? String
-                    cvo.endTime = course["endTime"] as? String
+                    
+                    
+                    
+                    
+                    let startTime = course["startTime"] as? String
+                    let endTime = course["endTime"] as? String
+                    cvo.time = convertToDateInterval(startTime: startTime!, endTime: endTime!)
+                    
                     cvo.room = course["room"] as? String
                     cvo.instructor = course["instructor"] as? String
                     cvo.hasLab = course["hasLab"] as? Bool
@@ -174,7 +140,7 @@ class AddCourseVC: UIViewController {
                     cvo.number = course["number"] as? Int
                     var hasher = Hasher()
                     hasher.combine(cvo.name)
-                    hasher.combine(cvo.startTime)
+                    hasher.combine(cvo.time)
                     cvo.hash = hasher.finalize()
                     cvo.selected = false
                     
@@ -197,7 +163,17 @@ class AddCourseVC: UIViewController {
         }
         
     }
-    
+    func convertToDateInterval(startTime st: String, endTime et: String) -> DateInterval {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        if let startDate = dateFormatter.date(from: st), let endDate = dateFormatter.date(from: et) {
+            let dateInterval = DateInterval(start: startDate, end: endDate)
+            return dateInterval
+        }
+        return DateInterval()
+        
+        
+    }
     func initHeader() {
         let viewTitle = UILabel()
         viewTitle.text = "Add Course"
@@ -225,13 +201,14 @@ class AddCourseVC: UIViewController {
         temp.addTarget(self, action: #selector(temp(_ :)), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: temp)
     }
+    
     @objc func temp(_ sender : UIButton) {
         print(selectedFilter)
-        print(filteredCourses)
+//        print(filteredCourses)
         print(filteredCourses.count)
     }
     
-    @objc func back (_ sender: UIButton) {
+    @objc func back (_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
         self.tabBarController?.tabBar.isHidden = false
     }
@@ -319,25 +296,21 @@ class AddCourseVC: UIViewController {
 
     }
     @objc func clear (_ sender: UIButton) {
-        
         reset()
     }
     func reset() {
         filteredCourses = []
         isNoResult = false
         if selectedFilter.selectedMajor.isEmpty && selectedFilter.selectedDays.isEmpty {
-            print("1")
             self.listTableView.reloadData()
             return
         }
         if selectedFilter.selectedMajor.isEmpty == false && selectedFilter.selectedDays.isEmpty {
-            print("2")
             for major in selectedFilter.0 {
                 filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
             }
         }
         if selectedFilter.selectedMajor.isEmpty && selectedFilter.selectedDays.isEmpty == false {
-            print("3")
             for selectedDay in selectedFilter.1 {
                 if selectedFilter.selectedDays.count == 1 {
                     filteredCourses.append(contentsOf: courselist.filter { ($0.days == selectedFilter.1 || ($0.days?.contains(selectedDay) == true))  })
@@ -348,7 +321,6 @@ class AddCourseVC: UIViewController {
             }
         }
         if selectedFilter.selectedMajor.isEmpty == false && selectedFilter.selectedDays.isEmpty == false {
-            print("4")
             for major in selectedFilter.0 {
                 filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
             }
@@ -373,10 +345,18 @@ class AddCourseVC: UIViewController {
         self.cartCollectionView.dataSource = self
         self.cartCollectionView.bounces = false
         self.cartCollectionView.showsHorizontalScrollIndicator = false
-
+        
 
     }
-    
+    @objc func removeCourse (_ sender : UIButton) {
+        //sender.tag == course.hash == cell.tag
+        if let index = selectedCourses.firstIndex(where: { $0.hash! == sender.tag }) {
+            selectedCourses[index].selected = false
+            selectedCourses.remove(at: index)
+            
+        }
+        
+    }
     
     func setupCourseList() {
         self.listTableContainerView.layer.borderWidth = self.horizontalLines[0].frame.height
@@ -397,8 +377,29 @@ class AddCourseVC: UIViewController {
         self.doneBtn.titleLabel?.font = getRigteous(size: 20)
         
     }
-    @IBAction func doenBtnClick(_ sender: Any) {
-        
+    @IBAction func doneBtnClick(_ sender: Any) {
+        if selectedCourses.isEmpty {
+            alert("Cart is Empty!")
+            return
+        }
+        else {
+            for i in 0..<selectedCourses.count {
+                for j in i + 1..<selectedCourses.count {
+                    let firstCourse = selectedCourses[i]
+                    let secondCourse = selectedCourses[j]
+                    if let firstTime = firstCourse.time, let secondTime = secondCourse.time, let firstDays = firstCourse.days, let secondDays = secondCourse.days {
+                        let hasOverlapDays = firstDays.filter { secondDays.contains($0) == true }.count == 0 ? false : true
+                        if firstTime.intersects(secondTime) && hasOverlapDays {
+                            alert("\(firstCourse.name!)'s time overlaps with \(secondCourse.name!)! Please schedule again!")
+                            return
+                        }
+                    }
+                }
+                
+            }
+        }
+        self.navigationController?.popViewController(animated: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
 }
@@ -509,7 +510,7 @@ extension AddCourseVC : UISearchBarDelegate {
         if let text = searchBar.text {
             if text == "" {
                 if selectedFilter.selectedDays.isEmpty == false || selectedFilter.selectedMajor.isEmpty == false {
-                    print("hello")
+    
                     reset()
                     searchBar.resignFirstResponder()
                     return
@@ -523,7 +524,6 @@ extension AddCourseVC : UISearchBarDelegate {
             else {
                 if filteredCourses.isEmpty == false && (selectedFilter.selectedDays.isEmpty == false || selectedFilter.selectedMajor.isEmpty == false) {
                     filteredCourses = filteredCourses.filter { $0.name?.contains((text).uppercased() ) == true }
-                    print("5")
                 }
                 else {
                     if isNoResult {
@@ -532,7 +532,6 @@ extension AddCourseVC : UISearchBarDelegate {
                     }
                     filteredCourses = []
                     filteredCourses = courselist.filter { $0.name?.contains((text).uppercased() ) == true}
-                    print("6")
                 }
             }
             isNoResult = (filteredCourses.count == 0) ? true : false
@@ -629,16 +628,7 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
             
             let course = (self.filteredCourses.count > 0 && isNoResult == false) ? self.filteredCourses[indexPath.section] : self.courselist[indexPath.section]
             if selectedCourses.contains(course) || selectedCourses.first(where: { $0.name == course.name }) != nil {
-                let alert = UIAlertController(title: "", message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                
-                let titleAttributed = NSMutableAttributedString(string: "\(course.name!) is already in the cart",
-                    attributes: [
-                        NSAttributedString.Key.font: getRigteous(size: 15),
-                        NSAttributedString.Key.foregroundColor: UIColor.themeTextColor
-                ])
-                alert.setValue(titleAttributed, forKey: "attributedTitle")
-                self.present(alert, animated: true, completion: nil)
+                alert("\(course.name!) is already in the cart")
                 return
                 
             }
@@ -675,4 +665,3 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
 //
 //
 //}
-
