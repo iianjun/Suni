@@ -13,7 +13,6 @@
 		763BAF2725B9499E005F7EF8 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 763BAF2625B9493C005F7EF8 /* Righteous-Regular.ttf */; };
 		763BAF2A25B94A14005F7EF8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF2925B94A14005F7EF8 /* Utils.swift */; };
 		763BAF2E25B94F20005F7EF8 /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF2D25B94F20005F7EF8 /* CSButton.swift */; };
-		763BAF3325B95D8F005F7EF8 /* account.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 763BAF3225B95D8F005F7EF8 /* account.jpg */; };
 		763BAF3C25B97E03005F7EF8 /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF3B25B97E03005F7EF8 /* Timetable.swift */; };
 		763BAF3F25B98318005F7EF8 /* TimetableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF3E25B98318005F7EF8 /* TimetableCell.swift */; };
 		763BAF4725B9AF47005F7EF8 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 763BAF4625B9AF47005F7EF8 /* add.png */; };
@@ -47,7 +46,6 @@
 		763BAF2625B9493C005F7EF8 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
 		763BAF2925B94A14005F7EF8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		763BAF2D25B94F20005F7EF8 /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButton.swift; sourceTree = "<group>"; };
-		763BAF3225B95D8F005F7EF8 /* account.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = account.jpg; sourceTree = "<group>"; };
 		763BAF3B25B97E03005F7EF8 /* Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
 		763BAF3E25B98318005F7EF8 /* TimetableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCell.swift; sourceTree = "<group>"; };
 		763BAF4625B9AF47005F7EF8 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 			children = (
 				763BAF4625B9AF47005F7EF8 /* add.png */,
 				763BAF5A25BC06C5005F7EF8 /* back.png */,
-				763BAF3225B95D8F005F7EF8 /* account.jpg */,
 				76A90DCF25BD8F6C002E0A69 /* close.png */,
 				7663891F25C07AFA00B930AC /* test.json */,
 				7663891C25C06FFA00B930AC /* all_courses.json */,
@@ -211,7 +208,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				763BAF4725B9AF47005F7EF8 /* add.png in Resources */,
-				763BAF3325B95D8F005F7EF8 /* account.jpg in Resources */,
 				7663891D25C06FFA00B930AC /* all_courses.json in Resources */,
 				763BAF2725B9499E005F7EF8 /* Righteous-Regular.ttf in Resources */,
 				768D67B025B86FC80053DE0C /* LaunchScreen.storyboard in Resources */,
