@@ -204,7 +204,7 @@ class AddCourseVC: UIViewController {
     
     @objc func temp(_ sender : UIButton) {
         print(selectedFilter)
-//        print(filteredCourses)
+        print(filteredCourses)
         print(filteredCourses.count)
     }
     
@@ -274,6 +274,7 @@ class AddCourseVC: UIViewController {
             tf.autocorrectionType = .no
             tf.returnKeyType = .search
             tf.spellCheckingType = .no
+            tf.delegate = self
 
 
             let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
@@ -504,7 +505,7 @@ extension AddCourseVC : UICollectionViewDelegateFlowLayout {
 }
 
 //MARK: UISearchBar Delegate
-extension AddCourseVC : UISearchBarDelegate {
+extension AddCourseVC : UISearchBarDelegate, UITextFieldDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.listTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         if let text = searchBar.text {
@@ -515,13 +516,14 @@ extension AddCourseVC : UISearchBarDelegate {
                     searchBar.resignFirstResponder()
                     return
                 }
-                isNoResult = false
+                
                 filteredCourses = []
                 self.listTableView.reloadData()
                 searchBar.endEditing(true)
                 return
             }
             else {
+                reset()
                 if filteredCourses.isEmpty == false && (selectedFilter.selectedDays.isEmpty == false || selectedFilter.selectedMajor.isEmpty == false) {
                     filteredCourses = filteredCourses.filter { $0.name?.contains((text).uppercased() ) == true }
                 }
@@ -585,6 +587,10 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         }
         else {
             let course = self.courselist[indexPath.section]
+//            if course.selected? == true {
+//                cell.backgroundColor =
+//            }
+            // if course.selected
             cell.textLabel?.text = course.name
             cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
             cell.tag = course.hash!
@@ -639,6 +645,7 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
                     cell.backgroundColor = .white
                 }, completion: { _ in })
             }, completion: { finished in
+                // consider moving to happen immediately
                 course.selected = true
                 self.selectedCourses.append(course)
             })
