@@ -27,29 +27,7 @@ class MoreInfoVC: UIViewController {
         }
         self.courseTitle.text = self.params.name
         self.courseTitle.textColor = .themeTextColor
-        
-        var courseTime = ""
-        if let days = params.days {
-            for i in 0..<days.count {
-                courseTime += days[i]
-                if i + 1 != days.count {
-                    courseTime += "/"
-                }
-            }
-        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        
-        if let startDate = params.time?.start, let endDate = params.time?.end {
-            let startTime = dateFormatter.string(from: startDate)
-            let endTime = dateFormatter.string(from: endDate)
-            self.paramTime.text = "\(courseTime) \(startTime)-\(endTime)"
-        }
-        else {
-            self.paramTime.text = ""
-        }
- 
+        self.paramTime.text = params.convertTimeToString()
         self.paramTime.textColor = .themeTextColor
         self.paramTime.numberOfLines = 0
         self.paramRoom.text = self.params.room

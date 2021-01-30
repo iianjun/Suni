@@ -15,11 +15,18 @@ class CourseListCell: UITableViewCell {
         self.layer.borderWidth = Constant.addCourseCellBorderWidth
         self.layer.borderColor = UIColor.themeColor.cgColor
         self.layer.cornerRadius = Constant.cornerRadius
-        self.textLabel?.textColor = .themeTextColor
+        if let label = self.textLabel {
+            label.textColor = .themeTextColor
+            label.sizeToFit()
+            label.frame = CGRect(x: label.frame.origin.x, y: (self.frame.height - label.frame.height) / 2, width: label.frame.width, height: label.frame.height)
+            
+        }
+        
         self.detailTextLabel?.textColor = .themeTextColor
-        self.textLabel?.sizeToFit()
+        
         self.detailTextLabel?.sizeToFit()
         self.detailTextLabel?.textAlignment = .right
+        
         
     }
     

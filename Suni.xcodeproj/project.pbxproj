@@ -90,6 +90,57 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		76684BEB25C57FC600B8C65D /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				763BAF1F25B874E0005F7EF8 /* ScheduleVC.swift */,
+				763BAF3B25B97E03005F7EF8 /* Timetable.swift */,
+				763BAF3E25B98318005F7EF8 /* TimetableCell.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		76684BEC25C57FC900B8C65D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7663891925C06EAF00B930AC /* CourseVO.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		76684BED25C57FCB00B8C65D /* Auxiliary */ = {
+			isa = PBXGroup;
+			children = (
+				763BAF2925B94A14005F7EF8 /* Utils.swift */,
+				763BAF2D25B94F20005F7EF8 /* CSButton.swift */,
+				763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */,
+				768D67A025B86FC80053DE0C /* AppDelegate.swift */,
+				768D67A225B86FC80053DE0C /* SceneDelegate.swift */,
+			);
+			path = Auxiliary;
+			sourceTree = "<group>";
+		};
+		76684BEE25C57FCF00B8C65D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				763BAF2325B87509005F7EF8 /* CalendarVC.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		76684BEF25C57FD100B8C65D /* Add Course */ = {
+			isa = PBXGroup;
+			children = (
+				763BAF4D25BB0B0B005F7EF8 /* AddCourseVC.swift */,
+				764AF3AD25BEE8A1003E1F15 /* MoreInfoVC.swift */,
+				764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */,
+				763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */,
+				76A90DD825BE7883002E0A69 /* CourseListCell.swift */,
+				76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */,
+			);
+			path = "Add Course";
+			sourceTree = "<group>";
+		};
 		768D679425B86FC80053DE0C = {
 			isa = PBXGroup;
 			children = (
@@ -111,28 +162,17 @@
 		768D679F25B86FC80053DE0C /* Suni */ = {
 			isa = PBXGroup;
 			children = (
-				763BAF2D25B94F20005F7EF8 /* CSButton.swift */,
-				763BAF4D25BB0B0B005F7EF8 /* AddCourseVC.swift */,
-				76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */,
-				76A90DD825BE7883002E0A69 /* CourseListCell.swift */,
-				763BAF1F25B874E0005F7EF8 /* ScheduleVC.swift */,
-				763BAF2325B87509005F7EF8 /* CalendarVC.swift */,
-				763BAF3B25B97E03005F7EF8 /* Timetable.swift */,
-				763BAF3E25B98318005F7EF8 /* TimetableCell.swift */,
-				763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */,
-				768D67A025B86FC80053DE0C /* AppDelegate.swift */,
-				768D67A225B86FC80053DE0C /* SceneDelegate.swift */,
-				7663891925C06EAF00B930AC /* CourseVO.swift */,
-				768D67A625B86FC80053DE0C /* Main.storyboard */,
-				764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */,
-				764AF3AD25BEE8A1003E1F15 /* MoreInfoVC.swift */,
+				76684BEF25C57FD100B8C65D /* Add Course */,
+				76684BEE25C57FCF00B8C65D /* Calendar */,
 				768D67AC25B86FC80053DE0C /* Assets.xcassets */,
-				768D67AE25B86FC80053DE0C /* LaunchScreen.storyboard */,
-				763BAF1525B8714E005F7EF8 /* InfoPlist.strings */,
 				768D67B125B86FC80053DE0C /* Info.plist */,
+				763BAF1525B8714E005F7EF8 /* InfoPlist.strings */,
+				768D67AE25B86FC80053DE0C /* LaunchScreen.storyboard */,
+				768D67A625B86FC80053DE0C /* Main.storyboard */,
+				76684BEB25C57FC600B8C65D /* Schedule */,
+				76684BEC25C57FC900B8C65D /* Model */,
+				76684BED25C57FCB00B8C65D /* Auxiliary */,
 				768D67A925B86FC80053DE0C /* Suni.xcdatamodeld */,
-				763BAF2925B94A14005F7EF8 /* Utils.swift */,
-				763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */,
 			);
 			path = Suni;
 			sourceTree = "<group>";

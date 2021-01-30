@@ -270,22 +270,11 @@
                                     <constraint firstAttribute="height" constant="3" id="3He-kP-x0K"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3N-py-ejL" customClass="CSButton" customModule="Suni" customModuleProvider="target">
-                                <rect key="frame" x="145" y="710" width="100" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="VSX-uW-x3W"/>
-                                    <constraint firstAttribute="height" constant="35" id="hrB-ey-Cvg"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="doneBtnClick:" destination="Wi1-1D-rc9" eventType="touchUpInside" id="Y6o-td-6f3"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="31q-Ay-LJ0">
-                                <rect key="frame" x="16" y="405" width="358" height="290"/>
+                                <rect key="frame" x="16" y="405" width="358" height="341"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9w9-bG-r36">
-                                        <rect key="frame" x="15" y="5" width="328" height="280"/>
+                                        <rect key="frame" x="15" y="5" width="328" height="331"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="oks-TP-xY4">
                                             <rect key="frame" x="0.0" y="99.666667938232422" width="328" height="5"/>
@@ -307,7 +296,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="1T6-Jd-yYB">
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="1T6-Jd-yYB">
                                                             <rect key="frame" x="238" y="15.000000000000002" width="38" height="17.666666666666668"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="14"/>
@@ -337,6 +326,7 @@
                             <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="Xnt-sM-iN2" secondAttribute="trailing" constant="16" id="2bC-Ao-Ihn"/>
                             <constraint firstItem="Q2p-oJ-YXi" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="75d-tM-vRt"/>
                             <constraint firstItem="E8U-hm-GbI" firstAttribute="height" secondItem="59l-Sm-Jce" secondAttribute="height" id="8th-3k-aG7"/>
+                            <constraint firstItem="opE-xs-YEI" firstAttribute="bottom" secondItem="31q-Ay-LJ0" secondAttribute="bottom" constant="15" id="Dm4-EY-iqu"/>
                             <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="iP3-ac-Sxd" secondAttribute="trailing" constant="16" id="EiQ-pi-P3w"/>
                             <constraint firstItem="31q-Ay-LJ0" firstAttribute="top" secondItem="5iF-Sz-JT1" secondAttribute="bottom" constant="15" id="GVN-26-HNh"/>
                             <constraint firstItem="iP3-ac-Sxd" firstAttribute="leading" secondItem="sgf-lC-lnA" secondAttribute="trailing" constant="8" symbolic="YES" id="Hfb-38-6aj"/>
@@ -357,41 +347,45 @@
                             <constraint firstItem="ZHw-Tg-1Ya" firstAttribute="leading" secondItem="Whs-h8-AIY" secondAttribute="trailing" constant="8" symbolic="YES" id="Z4e-0h-Xrw"/>
                             <constraint firstItem="sgf-lC-lnA" firstAttribute="height" secondItem="iP3-ac-Sxd" secondAttribute="height" id="Zo8-vA-Agb"/>
                             <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="Th4-nv-60x" secondAttribute="trailing" constant="16" id="buI-qK-QZl"/>
-                            <constraint firstItem="h3N-py-ejL" firstAttribute="top" secondItem="31q-Ay-LJ0" secondAttribute="bottom" constant="15" id="cRX-Xd-7ko"/>
                             <constraint firstItem="31q-Ay-LJ0" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="d51-0i-YKv"/>
                             <constraint firstItem="Xnt-sM-iN2" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="dI4-Mg-CI1"/>
                             <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="5iF-Sz-JT1" secondAttribute="trailing" constant="16" id="dZA-EW-ofj"/>
                             <constraint firstItem="Th4-nv-60x" firstAttribute="top" secondItem="Xnt-sM-iN2" secondAttribute="bottom" constant="15" id="f8G-rf-paU"/>
                             <constraint firstItem="Xnt-sM-iN2" firstAttribute="top" secondItem="fQu-iY-6rG" secondAttribute="bottom" constant="15" id="k1y-kq-G56"/>
                             <constraint firstItem="E8U-hm-GbI" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="khn-Eu-sbh"/>
-                            <constraint firstItem="h3N-py-ejL" firstAttribute="centerX" secondItem="ih6-qB-eBN" secondAttribute="centerX" id="lyG-Jh-7TR"/>
                             <constraint firstItem="sgf-lC-lnA" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="nEH-YQ-ZtL"/>
                             <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="ZHw-Tg-1Ya" secondAttribute="trailing" constant="16" id="q9S-kD-Nwc"/>
                             <constraint firstItem="fQu-iY-6rG" firstAttribute="top" secondItem="Whs-h8-AIY" secondAttribute="bottom" constant="15" id="sJp-z4-lmA"/>
                             <constraint firstItem="opE-xs-YEI" firstAttribute="trailing" secondItem="fQu-iY-6rG" secondAttribute="trailing" constant="16" id="uc4-jV-QFo"/>
                             <constraint firstItem="Whs-h8-AIY" firstAttribute="top" secondItem="Q2p-oJ-YXi" secondAttribute="bottom" constant="15" id="vQW-C2-ksY"/>
                             <constraint firstItem="iP3-ac-Sxd" firstAttribute="top" secondItem="Th4-nv-60x" secondAttribute="bottom" constant="15" id="y9h-4o-nfA"/>
-                            <constraint firstItem="opE-xs-YEI" firstAttribute="bottom" secondItem="h3N-py-ejL" secondAttribute="bottom" constant="16" id="ydm-HV-1FI"/>
                             <constraint firstItem="fQu-iY-6rG" firstAttribute="leading" secondItem="opE-xs-YEI" secondAttribute="leading" constant="16" id="yzq-Zp-BK8"/>
                             <constraint firstItem="59l-Sm-Jce" firstAttribute="top" secondItem="opE-xs-YEI" secondAttribute="top" constant="25" id="zYY-J8-zyW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="LYS-HL-hvb"/>
+                    <navigationItem key="navigationItem" id="LYS-HL-hvb">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="VXx-YB-R86">
+                            <connections>
+                                <action selector="saveClicked:" destination="Wi1-1D-rc9" id="f5q-Uo-tKA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cartCollectionView" destination="iP3-ac-Sxd" id="OTZ-ZS-Ufb"/>
                         <outlet property="cartLabel" destination="sgf-lC-lnA" id="xRg-G6-Thl"/>
                         <outlet property="dayCollectionView" destination="ZHw-Tg-1Ya" id="rCW-8L-CUO"/>
                         <outlet property="dayLabel" destination="Whs-h8-AIY" id="PmM-i0-GBX"/>
-                        <outlet property="doneBtn" destination="h3N-py-ejL" id="ruA-i2-g9P"/>
-                        <outlet property="listTableContainerView" destination="31q-Ay-LJ0" id="DCh-JL-y7B"/>
+                        <outlet property="firstHorizontalLine" destination="Q2p-oJ-YXi" id="V7H-2i-6QW"/>
+                        <outlet property="fourthHorizontalLine" destination="5iF-Sz-JT1" id="emR-nQ-QEm"/>
+                        <outlet property="listTableContainerView" destination="31q-Ay-LJ0" id="Bm3-TU-MhH"/>
                         <outlet property="listTableView" destination="9w9-bG-r36" id="QZP-HG-Qlq"/>
+                        <outlet property="listTableViewConstraint" destination="GVN-26-HNh" id="V63-zc-h7O"/>
                         <outlet property="majorCollectionView" destination="59l-Sm-Jce" id="Cqf-69-cec"/>
                         <outlet property="majorLabel" destination="E8U-hm-GbI" id="b2a-In-XdH"/>
+                        <outlet property="saveBtn" destination="VXx-YB-R86" id="jNz-cl-dtv"/>
                         <outlet property="searchBar" destination="Xnt-sM-iN2" id="NH4-kI-Hg8"/>
-                        <outletCollection property="horizontalLines" destination="fQu-iY-6rG" collectionClass="NSMutableArray" id="K6V-cl-KQM"/>
-                        <outletCollection property="horizontalLines" destination="Q2p-oJ-YXi" collectionClass="NSMutableArray" id="cJb-he-fQp"/>
-                        <outletCollection property="horizontalLines" destination="Th4-nv-60x" collectionClass="NSMutableArray" id="jJs-Gg-5aG"/>
-                        <outletCollection property="horizontalLines" destination="5iF-Sz-JT1" collectionClass="NSMutableArray" id="fte-tk-7Pk"/>
+                        <outlet property="secondHorizontalLine" destination="fQu-iY-6rG" id="JrT-ow-LwC"/>
+                        <outlet property="thirdHorizontalLine" destination="Th4-nv-60x" id="B7k-TQ-jfa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kB-7b-Ujm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

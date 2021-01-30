@@ -22,9 +22,26 @@ class CourseVO {
     var hash : Int?
     var selected : Bool?
     
-    func overlaps(with rhs : CourseVO) -> Bool {
+    func convertTimeToString () -> String {
+        var courseTime = ""
+        if let days = self.days {
+            for i in 0..<days.count {
+                courseTime += days[i]
+                if i + 1 != days.count {
+                    courseTime += "/"
+                }
+            }
+        }
         
-        return true
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        if let startDate = self.time?.start, let endDate = self.time?.end {
+            let startTime = dateFormatter.string(from: startDate)
+            let endTime = dateFormatter.string(from: endDate)
+            return "\(courseTime) \(startTime)-\(endTime)"
+        }
+        return ""
     }
 
 }
@@ -35,16 +52,11 @@ enum CourseType : String {
 extension CourseVO : Equatable, CustomStringConvertible {
     var description: String {
         return "[Major: \(self.major!) \nName: \(self.name!) \nTitle:\(self.title!) \nDays: \(self.days!) \nTime: \(self.time!) \nInstructor: \(self.instructor!)] \n"
-
-        
     }
     
     static func ==(lhs: CourseVO, rhs: CourseVO) -> Bool {
         return lhs.major == rhs.major && lhs.name == rhs.name && lhs.time == rhs.time && lhs.number == rhs.number
     }
-    
-    
-    
     
 }
 

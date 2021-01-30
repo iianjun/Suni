@@ -16,15 +16,68 @@ class AddCourseVC: UIViewController {
     @IBOutlet weak var majorCollectionView: UICollectionView!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var dayCollectionView: UICollectionView!
-    @IBOutlet var horizontalLines: [UIView]!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var cartLabel: UILabel!
     @IBOutlet weak var cartCollectionView: UICollectionView!
     @IBOutlet weak var listTableView: UITableView!
-    @IBOutlet var listTableContainerView: UIView!
-    @IBOutlet var doneBtn: CSButton!
+
+    @IBOutlet weak var listTableContainerView: UIView!
+
     
-    var isSearching = false
+    @IBOutlet weak var firstHorizontalLine: UIView!
+    @IBOutlet weak var secondHorizontalLine: UIView!
+    @IBOutlet weak var thirdHorizontalLine: UIView!
+    @IBOutlet weak var fourthHorizontalLine: UIView!
+    
+    
+    @IBOutlet var saveBtn: UIBarButtonItem!
+    @IBOutlet var listTableViewConstraint: NSLayoutConstraint!
+    
+    private var choosenCredits : Int = 0 {
+        didSet {
+            print(self.choosenCredits)
+        }
+    }
+    private var constantToExpand : CGFloat = 0
+    private var constantToShrink : CGFloat = 0
+    private var horizontalLines : [UIView] = []
+    private var lastContentOffset : CGFloat = 0
+    private var isMovingDown = false {
+        willSet (newVal) {
+            if newVal == self.isMovingDown {
+                return
+            }
+            else if newVal == true {
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                    self.searchBar.alpha = 0.0
+                    self.thirdHorizontalLine.alpha = 0.0
+                    self.cartLabel.alpha = 0.0
+                    self.cartCollectionView.alpha = self.selectedCourses.isEmpty ? 1.0 : 0.0
+                    self.fourthHorizontalLine.alpha = 0.0
+                    self.constantToExpand = self.listTableContainerView.frame.origin.y - self.secondHorizontalLine.frame.maxY - 15
+                    self.listTableContainerView.frame.origin.y -= self.constantToExpand
+                    self.listTableViewConstraint.constant -= self.constantToExpand
+                }, completion: nil)
+            }
+            else {
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                    self.searchBar.alpha = 1.0
+                    self.thirdHorizontalLine.alpha = 1.0
+                    self.cartLabel.alpha = 1.0
+                    self.cartCollectionView.alpha = 1.0
+                    self.fourthHorizontalLine.alpha = 1.0
+                    self.constantToShrink = self.fourthHorizontalLine.frame.maxY - self.listTableContainerView.frame.origin.y + 15
+                    self.listTableContainerView.frame.origin.y += self.constantToShrink
+                    
+                    
+                }, completion: { finished in
+                    self.listTableViewConstraint.constant += self.constantToShrink
+                })
+            }
+        }
+    }
+    
+    
     var majors : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC", "ETC"]
     var days : [String] = ["MON", "TUE", "WED", "THU", "FRI"]
     var isNoResult : Bool = false
@@ -42,9 +95,10 @@ class AddCourseVC: UIViewController {
     }
     var selectedFilter : (selectedMajor : [String], selectedDays: [String]) = ([], []) {
         willSet (newVal) {
+            self.listTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             
             self.searchBar.resignFirstResponder()
-            self.listTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            
             isNoResult = false
             self.searchBar.text = ""
             filteredCourses = []
@@ -78,6 +132,7 @@ class AddCourseVC: UIViewController {
             if filteredCourses.count == 0 {
                 isNoResult = true
             }
+            
             self.listTableView.reloadData()
     
         }
@@ -125,14 +180,9 @@ class AddCourseVC: UIViewController {
                     }
                     cvo.credit = course["credit"] as? Int
                     cvo.days = course["days"] as? Array<String>
-                    
-                    
-                    
-                    
                     let startTime = course["startTime"] as? String
                     let endTime = course["endTime"] as? String
                     cvo.time = convertToDateInterval(startTime: startTime!, endTime: endTime!)
-                    
                     cvo.room = course["room"] as? String
                     cvo.instructor = course["instructor"] as? String
                     cvo.hasLab = course["hasLab"] as? Bool
@@ -193,15 +243,45 @@ class AddCourseVC: UIViewController {
         comBinedView.addSubview(viewTitle)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: comBinedView)
         
+        self.horizontalLines = [self.firstHorizontalLine, self.secondHorizontalLine, self.thirdHorizontalLine, self.fourthHorizontalLine]
         
-        //MARK: TEST!@!!!!!!!
-        let temp = UIButton(type: .system)
-        temp.setTitle("temp", for: .normal)
-        temp.sizeToFit()
-        temp.addTarget(self, action: #selector(temp(_ :)), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: temp)
+        saveBtn.title = "Save"
+        saveBtn.setTitleTextAttributes([
+            NSAttributedString.Key.font : self.getRigteous(size: 17),
+            NSAttributedString.Key.foregroundColor : UIColor.themeTextColor
+        ], for: .normal)
+        saveBtn.setTitleTextAttributes([
+            NSAttributedString.Key.font : self.getRigteous(size: 17),
+            NSAttributedString.Key.foregroundColor : UIColor.themeTextColor
+        ], for: .selected)
+        
     }
     
+    @IBAction func saveClicked(_ sender: Any) {
+        if selectedCourses.isEmpty {
+            alert("Cart is Empty!")
+            return
+        }
+        else {
+            //Need to Refactor
+            for i in 0..<selectedCourses.count {
+                for j in i + 1..<selectedCourses.count {
+                    let firstCourse = selectedCourses[i]
+                    let secondCourse = selectedCourses[j]
+                    if let firstTime = firstCourse.time, let secondTime = secondCourse.time, let firstDays = firstCourse.days, let secondDays = secondCourse.days {
+                        let hasOverlapDays = firstDays.filter { secondDays.contains($0) == true }.count == 0 ? false : true
+                        if firstTime.intersects(secondTime) && hasOverlapDays {
+                            alert("\(firstCourse.name!)'s time overlaps with \(secondCourse.name!)! Please schedule again!")
+                            return
+                        }
+                    }
+                }
+                
+            }
+        }
+        self.navigationController?.popViewController(animated: true)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     @objc func temp(_ sender : UIButton) {
         print(selectedFilter)
         print(filteredCourses)
@@ -351,9 +431,12 @@ class AddCourseVC: UIViewController {
     }
     @objc func removeCourse (_ sender : UIButton) {
         //sender.tag == course.hash == cell.tag
-        if let index = selectedCourses.firstIndex(where: { $0.hash! == sender.tag }) {
-            selectedCourses[index].selected = false
-            selectedCourses.remove(at: index)
+        if let index = self.selectedCourses.firstIndex(where: { $0.hash! == sender.tag }) {
+            self.selectedCourses[index].selected = false
+            let removedCourse = self.selectedCourses.remove(at: index)
+            if let credit = removedCourse.credit {
+                self.choosenCredits -= credit
+            }
             
         }
         
@@ -370,38 +453,8 @@ class AddCourseVC: UIViewController {
         self.listTableView.separatorStyle = .none
 
         
-        
-        
-        //Done Button
-        self.doneBtn.makeBasicBtn()
-        self.doneBtn.setTitle("Done", for: .normal)
-        self.doneBtn.titleLabel?.font = getRigteous(size: 20)
-        
     }
-    @IBAction func doneBtnClick(_ sender: Any) {
-        if selectedCourses.isEmpty {
-            alert("Cart is Empty!")
-            return
-        }
-        else {
-            for i in 0..<selectedCourses.count {
-                for j in i + 1..<selectedCourses.count {
-                    let firstCourse = selectedCourses[i]
-                    let secondCourse = selectedCourses[j]
-                    if let firstTime = firstCourse.time, let secondTime = secondCourse.time, let firstDays = firstCourse.days, let secondDays = secondCourse.days {
-                        let hasOverlapDays = firstDays.filter { secondDays.contains($0) == true }.count == 0 ? false : true
-                        if firstTime.intersects(secondTime) && hasOverlapDays {
-                            alert("\(firstCourse.name!)'s time overlaps with \(secondCourse.name!)! Please schedule again!")
-                            return
-                        }
-                    }
-                }
-                
-            }
-        }
-        self.navigationController?.popViewController(animated: true)
-        self.tabBarController?.tabBar.isHidden = false
-    }
+
     
 }
 //MARK: Collection View Delegate & Data Source
@@ -565,10 +618,11 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as? CourseListCell else {
             return UITableViewCell()
         }
+        cell.detailTextLabel?.numberOfLines = 0
         if filteredCourses.isEmpty == false {
             let course = self.filteredCourses[indexPath.section]
             cell.textLabel?.text = course.name
-            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
+            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD\n\(course.convertTimeToString())" : "By \(course.instructor!)\n\(course.convertTimeToString())"
         }
         else if isNoResult {
             let tempCell = UITableViewCell()
@@ -580,19 +634,15 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
             tempCell.textLabel?.font = getRigteous(size: 17)
             tempCell.textLabel?.textAlignment = .center
             
-            
-//            self.listTableView.allowsSelection = false
+
             return tempCell
             
         }
         else {
             let course = self.courselist[indexPath.section]
-//            if course.selected? == true {
-//                cell.backgroundColor =
-//            }
-            // if course.selected
+
             cell.textLabel?.text = course.name
-            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD" : "By \(course.instructor!)"
+            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD\n\(course.convertTimeToString())" : "By \(course.instructor!)\n\(course.convertTimeToString())"
             cell.tag = course.hash!
             cell.selectionStyle = .none
         }
@@ -633,37 +683,36 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell  {
             
             let course = (self.filteredCourses.count > 0 && isNoResult == false) ? self.filteredCourses[indexPath.section] : self.courselist[indexPath.section]
+            if let credit = course.credit {
+                if credit + choosenCredits > 23 {
+                    alert("You cannot take more than 23 credits")
+                    return
+                }
+            }
             if selectedCourses.contains(course) || selectedCourses.first(where: { $0.name == course.name }) != nil {
                 alert("\(course.name!) is already in the cart")
                 return
                 
             }
             UIView.transition(with: cell, duration: 0.7, options: .transitionFlipFromBottom, animations: {
-
+                self.selectedCourses.append(course)
                 UIView.animate(withDuration: 0.3, delay: 0.4, options: .curveEaseIn, animations: {
                     cell.backgroundColor = .themeColor
                     cell.backgroundColor = .white
                 }, completion: { _ in })
             }, completion: { finished in
-                // consider moving to happen immediately
-                course.selected = true
-                self.selectedCourses.append(course)
+                
+                if let credit = course.credit {
+                    self.choosenCredits += credit
+                }
             })
+            
           
         }
     }
-//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell {
-//            
-//            let course = self.courselist[indexPath.section]
-//            course.selected = false
-//            if let index = selectedCourse.firstIndex(of: course) {
-//                selectedCourse.remove(at: index)
-//                
-//            } else { return }
-//            
-//        }
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 }
 
 //MARK: Custom Modal Presentation Style
@@ -672,3 +721,23 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
 //
 //
 //}
+
+extension AddCourseVC  {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        if (self.lastContentOffset < scrollView.contentOffset.y) {
+            self.isMovingDown = true
+        }
+
+        self.lastContentOffset = scrollView.contentOffset.y
+
+    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if targetContentOffset.pointee.y == 0.0 {
+            self.isMovingDown = false
+        }
+    }
+}
+
+
