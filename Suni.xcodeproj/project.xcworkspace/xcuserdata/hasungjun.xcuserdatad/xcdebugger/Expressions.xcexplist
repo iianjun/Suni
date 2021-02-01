@@ -3,6 +3,31 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ScheduleVC.takeScreenshot(_:):ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "collectionView.subviews.count">
+            </PersistentString>
+            <PersistentString
+               value = "UIColor.pastel[i]">
+            </PersistentString>
+            <PersistentString
+               value = "view.backgroundColor">
+            </PersistentString>
+            <PersistentString
+               value = "view.label.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleVC.viewWillAppear(_:):ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "course.bgColor.color">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AddCourseVC.searchBarSearchButtonClicked(_:):AddCourseVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -10,6 +35,22 @@
             </PersistentString>
             <PersistentString
                value = "filteredCourses">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleVC.drawSchedule():ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.collectionView.cellForItem(at: IndexPath(row: row, section: section))">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleVC.temp(_:):ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "appDelegate.existedCourses">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

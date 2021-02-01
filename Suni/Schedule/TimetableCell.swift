@@ -22,16 +22,7 @@ class TimetableCell: UICollectionViewCell {
         
         self.label.textColor = .themeColor
         self.addSubview(self.label)
-//        switch self.label.text {
-//        case "MON" : print("MON Size: \(self.label.frame.width)");print(self.label.frame.origin.x)
-//        case "TUE" : print("Tue Size: \(self.label.frame.width)");print(self.label.frame.origin.x)
-//        case "WED" : print("Wed Size: \(self.label.frame.width)");print(self.label.frame.origin.x)
-//        case "THU" : print("Thu Size: \(self.label.frame.width)");print(self.label.frame.origin.x)
-//        case "FRI" : print("Fri Size: \(self.label.frame.width)");print(self.label.frame.origin.x)
-//        default : ()
-//        }
-        
-        
+
     }
     
     

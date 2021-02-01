@@ -7,8 +7,9 @@
 
 import UIKit
 public enum CSButtonType : Int {
-    case add
+    case add = 0
     case basic //Simple done or OK button
+    case camera
     
 }
 class CSButton: UIButton {
@@ -29,7 +30,8 @@ class CSButton: UIButton {
         switch self.type {
         case .add :
             self.makeAddBtn()
-            
+        case .camera :
+            self.makeCameraBtn()
         case .basic :
             self.makeBasicBtn()
         
@@ -37,7 +39,7 @@ class CSButton: UIButton {
     }
     
     func makeAddBtn () {
-        self.setImage(UIImage(named: "add.png"), for: .normal)
+        self.setImage(UIImage(named: "add"), for: .normal)
         self.layer.cornerRadius = Constant.cornerRadius
         self.backgroundColor = .themeColor
     }
@@ -49,6 +51,11 @@ class CSButton: UIButton {
 //        self.titleLabel?.font = getRigteous(size: (self.titleLabel?.font.pointSize)!)
         
     
+    }
+    func makeCameraBtn () {
+        self.setImage(UIImage(named: "camera"), for: .normal)
+        self.layer.cornerRadius = Constant.cornerRadius
+        self.backgroundColor = .themeColor
     }
 
 }

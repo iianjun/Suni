@@ -173,16 +173,13 @@ class AddCourseVC: UIViewController {
                     cvo.major = course["major"] as? String
                     cvo.name = course["name"] as? String
                     cvo.title = course["title"] as? String
-                    if let stringType = course["type"] as? String {
-                        if let type = CourseType(rawValue: stringType.lowercased()) {
-                            cvo.type = type
-                        }
-                    }
+                    cvo.type = course["type"] as? String
                     cvo.credit = course["credit"] as? Int
                     cvo.days = course["days"] as? Array<String>
                     let startTime = course["startTime"] as? String
                     let endTime = course["endTime"] as? String
-                    cvo.time = convertToDateInterval(startTime: startTime!, endTime: endTime!)
+
+                    cvo.time = convertStringToDateInterval(startTime: startTime!, endTime: endTime!)
                     cvo.room = course["room"] as? String
                     cvo.instructor = course["instructor"] as? String
                     cvo.hasLab = course["hasLab"] as? Bool
@@ -192,12 +189,13 @@ class AddCourseVC: UIViewController {
                     hasher.combine(cvo.name)
                     hasher.combine(cvo.time)
                     cvo.hash = hasher.finalize()
-                    cvo.selected = false
+                    
+//                    print("\(cvo.name!) to \(cvo.time!)")
+//
                     
                     
                     
-                    
-                    if (cvo.type == .lab || cvo.type == .rec) && (cvo.name != "PHY133") {
+                    if (cvo.type == "LAB" || cvo.type == "REC") && (cvo.name != "PHY133") {
                         self.additionalCourses.append(cvo)
                     }
                     else {
@@ -213,17 +211,7 @@ class AddCourseVC: UIViewController {
         }
         
     }
-    func convertToDateInterval(startTime st: String, endTime et: String) -> DateInterval {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        if let startDate = dateFormatter.date(from: st), let endDate = dateFormatter.date(from: et) {
-            let dateInterval = DateInterval(start: startDate, end: endDate)
-            return dateInterval
-        }
-        return DateInterval()
-        
-        
-    }
+    
     func initHeader() {
         let viewTitle = UILabel()
         viewTitle.text = "Add Course"
@@ -253,7 +241,7 @@ class AddCourseVC: UIViewController {
         saveBtn.setTitleTextAttributes([
             NSAttributedString.Key.font : self.getRigteous(size: 17),
             NSAttributedString.Key.foregroundColor : UIColor.themeTextColor
-        ], for: .selected)
+        ], for: .highlighted)
         
     }
     
@@ -279,6 +267,74 @@ class AddCourseVC: UIViewController {
                 
             }
         }
+        //If each course has lab, append to selected Courses
+        for course in selectedCourses {
+            if course.hasLab! {
+                if let number = course.number {
+                    let additionalCourse = additionalCourses.filter { $0.name == course.name && $0.number == course.number }
+                    if additionalCourse.count > 1 {
+                        print("Error: additionalCourse > 1")
+                    }
+                    selectedCourses.append(additionalCourse[0])
+                }
+                else {
+                    let additionalCourse = additionalCourses.filter { $0.name == course.name }
+                    if additionalCourse.count > 1 {
+                        print("Error: additionalCourse > 1")
+                    }
+                    selectedCourses.append(additionalCourse[0])
+                    
+                }
+            }
+        }
+        
+        //original
+        let  sd = UserDefaults.standard
+        //If original courses exist
+        do {
+            
+            let originalCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
+            //Check anything overlaps
+            for i in 0..<originalCourses.count {
+                for j in 0..<selectedCourses.count {
+                    let firstCourse = originalCourses[i]
+                    let secondCourse = selectedCourses[j]
+                    if let firstTime = firstCourse.time, let secondTime = secondCourse.time, let firstDays = firstCourse.days, let secondDays = secondCourse.days {
+                        let hasOverlapDays = firstDays.filter { secondDays.contains($0) == true }.count == 0 ? false : true
+                        if firstTime.intersects(secondTime) && hasOverlapDays {
+                            alert("\(firstCourse.name!)'s time overlaps with \(secondCourse.name!)! Please schedule again!")
+                            if secondCourse.type! == "LEC" || secondCourse.type! == "REC" {
+                                selectedCourses.remove(at: j)
+                            }
+                            return
+                        }
+                    }
+                }
+            }
+            //If not append to orignal courses
+            selectedCourses.append(contentsOf: originalCourses)
+            do {
+                try sd.setObject(selectedCourses, forKey: "course")
+                self.navigationController?.popViewController(animated: true)
+                self.tabBarController?.tabBar.isHidden = false
+                return
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        //If it doesn't exist
+        do {
+            try sd.setObject(selectedCourses, forKey: "course")
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        
         self.navigationController?.popViewController(animated: true)
         self.tabBarController?.tabBar.isHidden = false
     }
@@ -432,7 +488,7 @@ class AddCourseVC: UIViewController {
     @objc func removeCourse (_ sender : UIButton) {
         //sender.tag == course.hash == cell.tag
         if let index = self.selectedCourses.firstIndex(where: { $0.hash! == sender.tag }) {
-            self.selectedCourses[index].selected = false
+
             let removedCourse = self.selectedCourses.remove(at: index)
             if let credit = removedCourse.credit {
                 self.choosenCredits -= credit
@@ -622,7 +678,7 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         if filteredCourses.isEmpty == false {
             let course = self.filteredCourses[indexPath.section]
             cell.textLabel?.text = course.name
-            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD\n\(course.convertTimeToString())" : "By \(course.instructor!)\n\(course.convertTimeToString())"
+            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD\n\(course.convertTimeAndDayToString())" : "By \(course.instructor!)\n\(course.convertTimeAndDayToString())"
         }
         else if isNoResult {
             let tempCell = UITableViewCell()
@@ -642,7 +698,7 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
             let course = self.courselist[indexPath.section]
 
             cell.textLabel?.text = course.name
-            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD\n\(course.convertTimeToString())" : "By \(course.instructor!)\n\(course.convertTimeToString())"
+            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD\n\(course.convertTimeAndDayToString())" : "By \(course.instructor!)\n\(course.convertTimeAndDayToString())"
             cell.tag = course.hash!
             cell.selectionStyle = .none
         }

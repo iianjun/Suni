@@ -27,7 +27,7 @@ class MoreInfoVC: UIViewController {
         }
         self.courseTitle.text = self.params.name
         self.courseTitle.textColor = .themeTextColor
-        self.paramTime.text = params.convertTimeToString()
+        self.paramTime.text = params.convertTimeAndDayToString()
         self.paramTime.textColor = .themeTextColor
         self.paramTime.numberOfLines = 0
         self.paramRoom.text = self.params.room

@@ -13,7 +13,6 @@
 		763BAF2725B9499E005F7EF8 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 763BAF2625B9493C005F7EF8 /* Righteous-Regular.ttf */; };
 		763BAF2A25B94A14005F7EF8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF2925B94A14005F7EF8 /* Utils.swift */; };
 		763BAF2E25B94F20005F7EF8 /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF2D25B94F20005F7EF8 /* CSButton.swift */; };
-		763BAF3C25B97E03005F7EF8 /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF3B25B97E03005F7EF8 /* Timetable.swift */; };
 		763BAF3F25B98318005F7EF8 /* TimetableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF3E25B98318005F7EF8 /* TimetableCell.swift */; };
 		763BAF4B25BA8F93005F7EF8 /* CSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */; };
 		763BAF4E25BB0B0B005F7EF8 /* AddCourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF4D25BB0B0B005F7EF8 /* AddCourseVC.swift */; };
@@ -22,6 +21,9 @@
 		764AF3B125BF0C27003E1F15 /* WebCourseInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */; };
 		7663891A25C06EAF00B930AC /* CourseVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663891925C06EAF00B930AC /* CourseVO.swift */; };
 		7663891D25C06FFA00B930AC /* all_courses.json in Resources */ = {isa = PBXBuildFile; fileRef = 7663891C25C06FFA00B930AC /* all_courses.json */; };
+		76684BFF25C5A57500B8C65D /* DayTimeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76684BFE25C5A57500B8C65D /* DayTimeOption.swift */; };
+		76684C0225C7C30E00B8C65D /* CourseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76684C0125C7C30E00B8C65D /* CourseDAO.swift */; };
+		76684C0F25C7F88900B8C65D /* CourseTimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76684C0E25C7F88900B8C65D /* CourseTimetableView.swift */; };
 		768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A025B86FC80053DE0C /* AppDelegate.swift */; };
 		768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A225B86FC80053DE0C /* SceneDelegate.swift */; };
 		768D67A825B86FC80053DE0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768D67A625B86FC80053DE0C /* Main.storyboard */; };
@@ -42,7 +44,6 @@
 		763BAF2625B9493C005F7EF8 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
 		763BAF2925B94A14005F7EF8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		763BAF2D25B94F20005F7EF8 /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButton.swift; sourceTree = "<group>"; };
-		763BAF3B25B97E03005F7EF8 /* Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
 		763BAF3E25B98318005F7EF8 /* TimetableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCell.swift; sourceTree = "<group>"; };
 		763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSNavigationBar.swift; sourceTree = "<group>"; };
 		763BAF4D25BB0B0B005F7EF8 /* AddCourseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseVC.swift; sourceTree = "<group>"; };
@@ -51,6 +52,9 @@
 		764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCourseInfoVC.swift; sourceTree = "<group>"; };
 		7663891925C06EAF00B930AC /* CourseVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseVO.swift; sourceTree = "<group>"; };
 		7663891C25C06FFA00B930AC /* all_courses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = all_courses.json; sourceTree = "<group>"; };
+		76684BFE25C5A57500B8C65D /* DayTimeOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimeOption.swift; sourceTree = "<group>"; };
+		76684C0125C7C30E00B8C65D /* CourseDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDAO.swift; sourceTree = "<group>"; };
+		76684C0E25C7F88900B8C65D /* CourseTimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTimetableView.swift; sourceTree = "<group>"; };
 		768D679D25B86FC80053DE0C /* Suni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Suni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768D67A025B86FC80053DE0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768D67A225B86FC80053DE0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,8 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				763BAF1F25B874E0005F7EF8 /* ScheduleVC.swift */,
-				763BAF3B25B97E03005F7EF8 /* Timetable.swift */,
 				763BAF3E25B98318005F7EF8 /* TimetableCell.swift */,
+				76684BFE25C5A57500B8C65D /* DayTimeOption.swift */,
+				76684C0E25C7F88900B8C65D /* CourseTimetableView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -104,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				7663891925C06EAF00B930AC /* CourseVO.swift */,
+				76684C0125C7C30E00B8C65D /* CourseDAO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,14 +170,14 @@
 			children = (
 				76684BEF25C57FD100B8C65D /* Add Course */,
 				76684BEE25C57FCF00B8C65D /* Calendar */,
+				76684BEB25C57FC600B8C65D /* Schedule */,
+				76684BEC25C57FC900B8C65D /* Model */,
+				76684BED25C57FCB00B8C65D /* Auxiliary */,
 				768D67AC25B86FC80053DE0C /* Assets.xcassets */,
 				768D67B125B86FC80053DE0C /* Info.plist */,
 				763BAF1525B8714E005F7EF8 /* InfoPlist.strings */,
 				768D67AE25B86FC80053DE0C /* LaunchScreen.storyboard */,
 				768D67A625B86FC80053DE0C /* Main.storyboard */,
-				76684BEB25C57FC600B8C65D /* Schedule */,
-				76684BEC25C57FC900B8C65D /* Model */,
-				76684BED25C57FCB00B8C65D /* Auxiliary */,
 				768D67A925B86FC80053DE0C /* Suni.xcdatamodeld */,
 			);
 			path = Suni;
@@ -253,21 +259,23 @@
 			files = (
 				763BAF2425B87509005F7EF8 /* CalendarVC.swift in Sources */,
 				763BAF3F25B98318005F7EF8 /* TimetableCell.swift in Sources */,
-				763BAF3C25B97E03005F7EF8 /* Timetable.swift in Sources */,
 				768D67AB25B86FC80053DE0C /* Suni.xcdatamodeld in Sources */,
 				764AF3B125BF0C27003E1F15 /* WebCourseInfoVC.swift in Sources */,
 				76A90DD925BE7883002E0A69 /* CourseListCell.swift in Sources */,
 				76A90DC525BD7E51002E0A69 /* SelectedCourseCell.swift in Sources */,
 				763BAF6225BC108A005F7EF8 /* AddCourseCell.swift in Sources */,
 				763BAF2025B874E0005F7EF8 /* ScheduleVC.swift in Sources */,
+				76684BFF25C5A57500B8C65D /* DayTimeOption.swift in Sources */,
 				768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */,
 				7663891A25C06EAF00B930AC /* CourseVO.swift in Sources */,
+				76684C0F25C7F88900B8C65D /* CourseTimetableView.swift in Sources */,
 				768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */,
 				763BAF4B25BA8F93005F7EF8 /* CSNavigationBar.swift in Sources */,
 				764AF3AE25BEE8A1003E1F15 /* MoreInfoVC.swift in Sources */,
 				763BAF4E25BB0B0B005F7EF8 /* AddCourseVC.swift in Sources */,
 				763BAF2E25B94F20005F7EF8 /* CSButton.swift in Sources */,
 				763BAF2A25B94A14005F7EF8 /* Utils.swift in Sources */,
+				76684C0225C7C30E00B8C65D /* CourseDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

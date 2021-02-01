@@ -11,28 +11,84 @@ import UIKit
 class ScheduleVC : UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    var remainingBackgroundColor = UIColor.pastel
+    
+    var existedView : [CourseTimetableView] = []
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     
     var cellWidth : CGFloat {
         get {
             return self.collectionView.frame.width / 6
         }
     }
+    var cellHeight : CGFloat {
+        get {
+            return self.collectionView.frame.height / 13 - (cellWidth / 26)
+        }
+    }
     override func viewDidLoad() {
         
         self.setup()
-        self.tabBarItem.image = UIImage(named: "scheduleIcon.png")
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        //Code bring saved data from UserDefaults
         
     }
     
     func setup() {
         self.initHeader()
         self.initTimetable()
-        
-        
-        
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        let sd = UserDefaults.standard
+        do {
+
+            let selectedCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
+            
+            for course in selectedCourses {
+                if !appDelegate.existedCourses.contains(course) {
+                    for day in course.days! {
+                        
+                        let row = convertStringToRow(day: day)
+                        let startTime = convertDateToString(time: course.time!.start)
+                        let section = convertStringToSection(time: String(startTime.split(separator: ":")[0]))
+                        
+                        let x = CGFloat((course.time?.duration)!) / CGFloat(3600)
+                        let lectureHeight = ((x * 10).rounded() / 10) * cellHeight
+                        
+                        var min = Double(startTime.split(separator: ":")[1])!
+                        min /= 60.0
+                        
+                        guard let cell = self.collectionView.cellForItem(at: IndexPath(row: row, section: section)) else { return }
+                        let v = CourseTimetableView(frame: CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y + (cellHeight * CGFloat(min)), width: self.cellWidth - Constant.timetableBorderWidth, height: lectureHeight))
+                        v.label.text = course.name!
+                        v.label.textColor = .themeTextColor
+                        v.containedCourse = course
+                        if course.bgColor.color != UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
+                            v.backgroundColor = course.bgColor.color
+                        }
+                        else {
+                            let ranColor = remainingBackgroundColor.removeFirst()
+                            v.backgroundColor = ranColor
+                            course.bgColor.color = ranColor
+                        }
+                        self.collectionView.addSubview(v)
+                        self.collectionView.bringSubviewToFront(v)
+                        
+                        
+
+                    }
+                    
+                    appDelegate.existedCourses.append(course)
+                }
+
+            }
+            sd.synchronize()
+
+        } catch {
+            print(error.localizedDescription)
+        }
+
     }
     
     //MARK: Header init
@@ -48,16 +104,56 @@ class ScheduleVC : UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: viewTitle)
         
         //Button Right alignment
-        let addBtn = CSButton(frame: CGRect(x: 0, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .add)
+        let combinedView = UIView(frame: CGRect(x: 0, y: 0, width: Constant.addBtnWidth * 3 + Constant.freeSpaceBtwCollectionView * 2, height: Constant.addBtnWidth))
+        
+        
+        let screenshotBtn = CSButton(frame: CGRect(x: 0, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .camera)
+        let addBtn = CSButton(frame: CGRect(x: Constant.addBtnWidth + Constant.freeSpaceBtwCollectionView, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .add)
+        let addBtn2 = CSButton(frame: CGRect(x: addBtn.frame.origin.x + Constant.addBtnWidth + Constant.freeSpaceBtwCollectionView, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .add)
+        addBtn2.backgroundColor = .black
+        
+        screenshotBtn.addTarget(self, action: #selector(takeScreenshot(_ :)), for: .touchUpInside)
         addBtn.addTarget(self, action: #selector(addCourse(_ :)), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addBtn)
+        addBtn2.addTarget(self, action: #selector(temp(_ :)), for: .touchUpInside)
+        
+        
+        combinedView.addSubview(addBtn)
+        combinedView.addSubview(screenshotBtn)
+        combinedView.addSubview(addBtn2)
+        combinedView.sizeToFit()
+
+        
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: combinedView)
         
         
     }
+    @objc func temp (_ sender: UIButton) {
+        let sd = UserDefaults.standard
     
+        
+        let ran = appDelegate.existedCourses.removeFirst()
+        do {
+            try sd.setObject(appDelegate.existedCourses, forKey: "course")
+            print("Removed Completed!")
+        }
+        catch { print(error.localizedDescription)}
+        for v in collectionView.subviews {
+            if let courseView = v as? CourseTimetableView {
+                if courseView.containedCourse == ran {
+                    courseView.removeFromSuperview()
+                }
+            }
+        }
+//        print(appDelegate.existedCourses)
+//        viewDidAppear(true)
+    }
     @objc func addCourse (_ sender: UIButton) {
         guard let addvc = self.storyboard?.instantiateViewController(identifier: Constant.addVCId) else { return }
         self.navigationController?.pushViewController(addvc, animated: true)
+    }
+    @objc func takeScreenshot(_ sender: UIButton) {
+
     }
     
     //MARK: Timetable init
@@ -72,8 +168,13 @@ class ScheduleVC : UIViewController {
         self.collectionView.layer.cornerRadius = Constant.cornerRadius
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.collectionView.bounces = false
+        self.collectionView.isScrollEnabled = false
+        
+        
+        
     }
+    
+
     
 }
 
@@ -94,6 +195,8 @@ extension ScheduleVC : UICollectionViewDelegate, UICollectionViewDataSource {
             return UICollectionViewCell()
             
         }
+        
+
         let layerOfCell = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height))
         let thickness = self.collectionView.layer.borderWidth
         let fontSize = cell.frame.width / 4
@@ -164,7 +267,7 @@ extension ScheduleVC : UICollectionViewDelegateFlowLayout {
             return CGSize(width: cellWidth, height: cellWidth / 2)
         }
         else {
-            return CGSize(width: self.cellWidth, height: self.cellWidth)
+            return CGSize(width: self.cellWidth, height: self.cellHeight)
         }
     }
 }
