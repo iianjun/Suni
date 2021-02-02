@@ -131,20 +131,22 @@ class ScheduleVC : UIViewController {
     @objc func temp (_ sender: UIButton) {
         let sd = UserDefaults.standard
     
-        
-        let ran = appDelegate.existedCourses.removeFirst()
-        do {
-            try sd.setObject(appDelegate.existedCourses, forKey: "course")
-            print("Removed Completed!")
-        }
-        catch { print(error.localizedDescription)}
-        for v in collectionView.subviews {
-            if let courseView = v as? CourseTimetableView {
-                if courseView.containedCourse == ran {
-                    courseView.removeFromSuperview()
+        if appDelegate.existedCourses.count != 0 {
+            let ran = appDelegate.existedCourses.removeFirst()
+            do {
+                try sd.setObject(appDelegate.existedCourses, forKey: "course")
+                print("Removed Completed!")
+            }
+            catch { print(error.localizedDescription)}
+            for v in collectionView.subviews {
+                if let courseView = v as? CourseTimetableView {
+                    if courseView.containedCourse == ran {
+                        courseView.removeFromSuperview()
+                    }
                 }
             }
         }
+        
 //        print(appDelegate.existedCourses)
 //        viewDidAppear(true)
     }
@@ -153,7 +155,37 @@ class ScheduleVC : UIViewController {
         self.navigationController?.pushViewController(addvc, animated: true)
     }
     @objc func takeScreenshot(_ sender: UIButton) {
-
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height), false, UIScreen.main.scale)
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+    showScreenshotEffect()
+        UIImageWriteToSavedPhotosAlbum(screenshot, self, nil, nil)
+        
+    }
+   
+    func showScreenshotEffect() {
+        let snapshotView = UIView()
+        snapshotView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(snapshotView)
+        // Activate full screen constraints
+        let constraints:[NSLayoutConstraint] = [
+            snapshotView.topAnchor.constraint(equalTo: view.topAnchor),
+            snapshotView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            snapshotView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            snapshotView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+        // White because it's the brightest color
+        snapshotView.backgroundColor = UIColor.white
+        // Animate the alpha to 0 to simulate flash
+        UIView.animate(withDuration: 0.2, animations: {
+            snapshotView.alpha = 0
+        }) { _ in
+            // Once animation completed, remove it from view.
+            snapshotView.removeFromSuperview()
+        }
     }
     
     //MARK: Timetable init
