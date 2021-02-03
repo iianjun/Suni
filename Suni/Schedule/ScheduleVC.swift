@@ -67,11 +67,17 @@ class ScheduleVC : UIViewController {
                         if course.bgColor.color != UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
                             v.backgroundColor = course.bgColor.color
                         }
+                        
                         else {
                             let ranColor = remainingBackgroundColor.removeFirst()
                             v.backgroundColor = ranColor
                             course.bgColor.color = ranColor
                         }
+                        
+                        v.isUserInteractionEnabled = true
+                        let gesture = UITapGestureRecognizer(target: self, action: #selector(presentDetailViewOfSelectedCourse(_ :)))
+                        v.addGestureRecognizer(gesture)
+                        
                         self.collectionView.addSubview(v)
                         self.collectionView.bringSubviewToFront(v)
                         
@@ -90,7 +96,18 @@ class ScheduleVC : UIViewController {
         }
 
     }
-    
+    @objc func presentDetailViewOfSelectedCourse(_ sender : UIGestureRecognizer) {
+        if let v = sender.view as? CourseTimetableView {
+            let customModalVC = SelectedCourseModalVC()
+            customModalVC.modalPresentationStyle = .custom
+            customModalVC.transitioningDelegate = self
+            self.present(customModalVC, animated: true, completion: nil)
+//    
+//            moreInfoVC.modalPresentationStyle = .custom
+//            moreInfoVC.transitioningDelegate = self
+//            self.navigationController?.pushViewController(moreInfoVC, animated: true)
+        }
+    }
     //MARK: Header init
     func initHeader() {
         
@@ -330,11 +347,9 @@ extension CALayer {
     
         
 }
-
-//extension ScheduleVC {
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//        
-//    }
-//}
-
+//MARK: UIViewController TransitioningDelegate
+extension ScheduleVC : UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        CustomPC(presentedViewController: presented, presenting: presenting)
+    }
+}

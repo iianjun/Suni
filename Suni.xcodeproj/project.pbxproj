@@ -52,6 +52,9 @@
 		76A90DC525BD7E51002E0A69 /* SelectedCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */; };
 		76A90DD925BE7883002E0A69 /* CourseListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A90DD825BE7883002E0A69 /* CourseListCell.swift */; };
 		76B87A1225CAD0B2001402EE /* CalendarEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B87A1125CAD0B2001402EE /* CalendarEventCell.swift */; };
+		76B87A1925CAECD4001402EE /* SelectedCourseModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B87A1825CAECD4001402EE /* SelectedCourseModalVC.swift */; };
+		76B87A1D25CAF34F001402EE /* CustomPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B87A1C25CAF34F001402EE /* CustomPC.swift */; };
+		76B87A2C25CAFF13001402EE /* SelectedCourseModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B87A2B25CAFF13001402EE /* SelectedCourseModalVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +125,9 @@
 		76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCourseCell.swift; sourceTree = "<group>"; };
 		76A90DD825BE7883002E0A69 /* CourseListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListCell.swift; sourceTree = "<group>"; };
 		76B87A1125CAD0B2001402EE /* CalendarEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventCell.swift; sourceTree = "<group>"; };
+		76B87A1825CAECD4001402EE /* SelectedCourseModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCourseModalVC.swift; sourceTree = "<group>"; };
+		76B87A1C25CAF34F001402EE /* CustomPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPC.swift; sourceTree = "<group>"; };
+		76B87A2B25CAFF13001402EE /* SelectedCourseModalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedCourseModalVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +188,9 @@
 				763BAF2925B94A14005F7EF8 /* Utils.swift */,
 				763BAF2D25B94F20005F7EF8 /* CSButton.swift */,
 				763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */,
+				76B87A1825CAECD4001402EE /* SelectedCourseModalVC.swift */,
+				76B87A2B25CAFF13001402EE /* SelectedCourseModalVC.xib */,
+				76B87A1C25CAF34F001402EE /* CustomPC.swift */,
 				768D67A025B86FC80053DE0C /* AppDelegate.swift */,
 				768D67A225B86FC80053DE0C /* SceneDelegate.swift */,
 			);
@@ -351,6 +360,7 @@
 				768D67B025B86FC80053DE0C /* LaunchScreen.storyboard in Resources */,
 				763BAF1325B8714E005F7EF8 /* InfoPlist.strings in Resources */,
 				768D67AD25B86FC80053DE0C /* Assets.xcassets in Resources */,
+				76B87A2C25CAFF13001402EE /* SelectedCourseModalVC.xib in Resources */,
 				768D67A825B86FC80053DE0C /* Main.storyboard in Resources */,
 				76684C6725CA6F8900B8C65D /* Wemakeprice-Regular.ttf in Resources */,
 				76684C7025CA8BC200B8C65D /* calendar.json in Resources */,
@@ -385,9 +395,11 @@
 				76684C3F25CA585E00B8C65D /* FSCalendarDelegationProxy.m in Sources */,
 				76684C3925CA585E00B8C65D /* FSCalendarDelegationFactory.m in Sources */,
 				76684C3C25CA585E00B8C65D /* FSCalendar.m in Sources */,
+				76B87A1D25CAF34F001402EE /* CustomPC.swift in Sources */,
 				76684C0F25C7F88900B8C65D /* CourseTimetableView.swift in Sources */,
 				76684C4525CA585E00B8C65D /* FSCalendarWeekdayView.m in Sources */,
 				768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */,
+				76B87A1925CAECD4001402EE /* SelectedCourseModalVC.swift in Sources */,
 				763BAF4B25BA8F93005F7EF8 /* CSNavigationBar.swift in Sources */,
 				764AF3AE25BEE8A1003E1F15 /* MoreInfoVC.swift in Sources */,
 				76684C3A25CA585E00B8C65D /* FSCalendarConstants.m in Sources */,

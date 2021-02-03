@@ -28,8 +28,9 @@ class CalendarVC : UIViewController {
         
     }
     override func viewDidAppear(_ animated: Bool) {
+        
         if didDrawBorder == false {
-            let layerOfWeekdayView = UIView(frame: CGRect(x: 0, y: 0, width: self.calendar.frame.width, height: 3))
+            let layerOfWeekdayView = UIView(frame: CGRect(x: 0, y: 0, width: self.calendar.calendarWeekdayView.frame.width, height: self.calendar.calendarWeekdayView.frame.height))
             layerOfWeekdayView.layer.chooseBorder(edge: .bottom, thickness: Constant.timetableBorderWidth)
             self.calendar.calendarWeekdayView.addSubview(layerOfWeekdayView)
             self.calendar.calendarWeekdayView.bringSubviewToFront(layerOfWeekdayView)
