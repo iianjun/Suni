@@ -3,6 +3,46 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ScheduleVC.drawSchedule():ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.collectionView.cellForItem(at: IndexPath(row: row, section: section))">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CalendarVC.detailContainer.getter:CalendarVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "detailContainer.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleVC.viewWillAppear(_:):ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "course.bgColor.color">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CalendarVC.tableView(_:cellForRowAt:):CalendarVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CalendarVC.setupCalendar():CalendarVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.calendar.calendarWeekdayView.layer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ScheduleVC.takeScreenshot(_:):ScheduleVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -20,14 +60,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ScheduleVC.viewWillAppear(_:):ScheduleVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "course.bgColor.color">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "AddCourseVC.searchBarSearchButtonClicked(_:):AddCourseVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -39,10 +71,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ScheduleVC.drawSchedule():ScheduleVC.swift">
+         contextName = "CalendarVC.tableView(_:numberOfRowsInSection:):CalendarVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.collectionView.cellForItem(at: IndexPath(row: row, section: section))">
+               value = "self.detailContainer[&quot;title&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "ret.count">
+            </PersistentString>
+            <PersistentString
+               value = "detailContainer.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CalendarVC.calendar(_:didSelect:at:):CalendarVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "detailContainer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
