@@ -18,6 +18,33 @@ extension UIResponder {
             return UIFont.systemFont(ofSize: size)
         }
     }
+    func getWMPRegular (size: CGFloat) -> UIFont {
+        if let wmp = UIFont(name: "wamakeprice-regular", size: size) {
+            return wmp
+        }
+        else {
+            print("Failed to get wemakeprice-regular Font")
+            return UIFont.systemFont(ofSize: size)
+        }
+    }
+    func getWMPSemiBold (size: CGFloat) -> UIFont {
+        if let wmp = UIFont(name: "wemakeprice-semibold", size: size) {
+            return wmp
+        }
+        else {
+            print("Failed to get wemakeprice-semibod Font")
+            return UIFont.systemFont(ofSize: size)
+        }
+    }
+    func getWMPBold (size: CGFloat) -> UIFont {
+        if let wmp = UIFont(name: "wemakeprice-bold", size: size) {
+            return wmp
+        }
+        else {
+            print("Failed to get wemakeprice-bold Font")
+            return UIFont.systemFont(ofSize: size)
+        }
+    }
 }
 extension UIColor {
     static var themeColor : UIColor {
@@ -116,6 +143,7 @@ struct Constant {
     static let timeTableCellId : String = "tcell"
     static let addCourseCellId : String = "addCourseCell"
     static let selectCellId : String = "selectCell"
+    static let infoCellId : String = "InfoCell"
     static let courseListCellId : String = "CourseListCell"
     static let addVCId : String = "AddCourseVC"
     static let moreInfoVCId : String = "MoreInfoVC"

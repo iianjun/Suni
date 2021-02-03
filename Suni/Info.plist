@@ -25,6 +25,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Righteous-Regular.ttf</string>
+		<string>Wemakeprice-SemiBold.ttf</string>
+		<string>Wemakeprice-Bold.ttf</string>
+		<string>Wemakeprice-Regular.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
@@ -46,7 +49,7 @@
 		</dict>
 	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
+	<false/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
