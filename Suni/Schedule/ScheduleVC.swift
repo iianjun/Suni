@@ -124,22 +124,15 @@ class ScheduleVC : UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: viewTitle)
         
         //Button Right alignment
-        let combinedView = UIView(frame: CGRect(x: 0, y: 0, width: Constant.addBtnWidth * 3 + Constant.freeSpaceBtwCollectionView * 2, height: Constant.addBtnWidth))
-        
-        
+        let combinedView = UIView(frame: CGRect(x: 0, y: 0, width: Constant.addBtnWidth * 2 + Constant.freeSpaceBtwCollectionView, height: Constant.addBtnWidth))
         let screenshotBtn = CSButton(frame: CGRect(x: 0, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .camera)
         let addBtn = CSButton(frame: CGRect(x: Constant.addBtnWidth + Constant.freeSpaceBtwCollectionView, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .add)
-        let addBtn2 = CSButton(frame: CGRect(x: addBtn.frame.origin.x + Constant.addBtnWidth + Constant.freeSpaceBtwCollectionView, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .add)
-        addBtn2.backgroundColor = .black
         
         screenshotBtn.addTarget(self, action: #selector(takeScreenshot(_ :)), for: .touchUpInside)
         addBtn.addTarget(self, action: #selector(addCourse(_ :)), for: .touchUpInside)
-        addBtn2.addTarget(self, action: #selector(temp(_ :)), for: .touchUpInside)
-        
-        
+ 
         combinedView.addSubview(addBtn)
         combinedView.addSubview(screenshotBtn)
-        combinedView.addSubview(addBtn2)
         combinedView.sizeToFit()
 
         
@@ -166,46 +159,36 @@ class ScheduleVC : UIViewController {
                 }
             }
         }
-        
-//        print(appDelegate.existedCourses)
-//        viewDidAppear(true)
     }
     @objc func addCourse (_ sender: UIButton) {
         guard let addvc = self.storyboard?.instantiateViewController(identifier: Constant.addVCId) else { return }
         self.navigationController?.pushViewController(addvc, animated: true)
     }
     @objc func takeScreenshot(_ sender: UIButton) {
-        
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height), false, UIScreen.main.scale)
+
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, scale)
         self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let screenshot = UIGraphicsGetImageFromCurrentImageContext()!
+        guard let screenshot = UIGraphicsGetImageFromCurrentImageContext() else { return }
         UIGraphicsEndImageContext()
-    showScreenshotEffect()
-        UIImageWriteToSavedPhotosAlbum(screenshot, self, nil, nil)
-        
+        guard let croppedcgImage = screenshot.cgImage?.cropping(to: CGRect(x: 0, y: (self.collectionView.frame.origin.y - 15) * scale, width: self.view.frame.width * scale, height: (self.collectionView.frame.height + 30) * scale)) else { return }
+        self.showScreenshotEffect()
+        let croppedImage = UIImage(cgImage: croppedcgImage)
+        UIImageWriteToSavedPhotosAlbum(croppedImage, self, nil, nil)
+
     }
+
    
     func showScreenshotEffect() {
-        let snapshotView = UIView()
-        snapshotView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(snapshotView)
-        // Activate full screen constraints
-        let constraints:[NSLayoutConstraint] = [
-            snapshotView.topAnchor.constraint(equalTo: view.topAnchor),
-            snapshotView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            snapshotView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            snapshotView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
-        // White because it's the brightest color
-        snapshotView.backgroundColor = UIColor.white
-        // Animate the alpha to 0 to simulate flash
-        UIView.animate(withDuration: 0.2, animations: {
-            snapshotView.alpha = 0
-        }) { _ in
-            // Once animation completed, remove it from view.
-            snapshotView.removeFromSuperview()
-        }
+        let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.addSubview(blurEffectView)
+        UIView.animate(withDuration: 0.7, delay: 0.1, options: [], animations: {
+            blurEffectView.alpha = 0.0
+        }, completion: { _ in
+            blurEffectView.removeFromSuperview()
+        })
     }
     
     //MARK: Timetable init
