@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if let tbItems =  tbC.tabBar.items {
                 tbItems[0].image = UIImage(named: "schedule")
                 tbItems[1].image = UIImage(named: "calendar")
-                tbItems[2].image = UIImage(named: "more")
+                tbItems[2].image = UIImage(named: "phone")
                 tbC.tabBar.barTintColor = .white
                 tbC.tabBar.tintColor = .themeColor
                 tbC.tabBar.unselectedItemTintColor = .gray

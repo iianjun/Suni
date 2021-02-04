@@ -38,7 +38,6 @@ class ScheduleVC : UIViewController {
         self.initTimetable()
 
     }
-
     override func viewDidAppear(_ animated: Bool) {
         let sd = UserDefaults.standard
         do {
@@ -46,6 +45,7 @@ class ScheduleVC : UIViewController {
             let selectedCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
             
             for course in selectedCourses {
+                //여기서
                 if !appDelegate.existedCourses.contains(course) {
                     for day in course.days! {
                         
@@ -99,6 +99,9 @@ class ScheduleVC : UIViewController {
     @objc func presentDetailViewOfSelectedCourse(_ sender : UIGestureRecognizer) {
         if let v = sender.view as? CourseTimetableView {
             let customModalVC = SelectedCourseModalVC()
+            customModalVC.paramView = v
+            customModalVC.paramSubviews = self.collectionView.subviews
+            customModalVC.currentCourse = v.containedCourse
             customModalVC.modalPresentationStyle = .custom
             customModalVC.transitioningDelegate = self
             self.present(customModalVC, animated: true, completion: nil)

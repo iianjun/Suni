@@ -98,7 +98,7 @@ class CalendarVC : UIViewController {
         self.calendar.layer.borderColor = UIColor.themeColor.cgColor
         self.calendar.layer.borderWidth = Constant.timetableBorderWidth
         self.calendar.layer.cornerRadius = Constant.cornerRadius
-        self.calendarHeightConstraint.constant = self.view.frame.height / 2
+        self.calendarHeightConstraint.constant = self.view.frame.height / 2.5
         
 
         

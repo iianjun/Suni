@@ -3,12 +3,23 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ScheduleVC.drawSchedule():ScheduleVC.swift">
+         contextName = "ScheduleVC.temp(_:):ScheduleVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.collectionView.cellForItem(at: IndexPath(row: row, section: section))">
+               value = "appDelegate.existedCourses">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddCourseVC.getCourseData():AddCourseVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "additionalCourses">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SelectedCourseModalVC.deleteCourse(_:):SelectedCourseModalVC.swift">
       </ContextState>
       <ContextState
          contextName = "CalendarVC.detailContainer.getter:CalendarVC.swift">
@@ -19,10 +30,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ScheduleVC.viewWillAppear(_:):ScheduleVC.swift">
+         contextName = "AddCourseVC.setup():AddCourseVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "course.bgColor.color">
+               value = "additionalCourses">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddCourseVC.saveClicked(_:):AddCourseVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sd.getObject(forKey: &quot;course&quot;, castTo: [CourseVO].self)">
+            </PersistentString>
+            <PersistentString
+               value = "selectedCourses">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -35,10 +57,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CalendarVC.setupCalendar():CalendarVC.swift">
+         contextName = "ScheduleVC.drawSchedule():ScheduleVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.calendar.calendarWeekdayView.layer">
+               value = "self.collectionView.cellForItem(at: IndexPath(row: row, section: section))">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleVC.viewWillAppear(_:):ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "course.bgColor.color">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -60,17 +90,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AddCourseVC.searchBarSearchButtonClicked(_:):AddCourseVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "isNoResult">
-            </PersistentString>
-            <PersistentString
-               value = "filteredCourses">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "CalendarVC.tableView(_:numberOfRowsInSection:):CalendarVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -85,18 +104,37 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CalendarVC.calendar(_:didSelect:at:):CalendarVC.swift">
+         contextName = "ScheduleVC.viewDidAppear(_:):ScheduleVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "detailContainer">
+               value = "appDelegate.existedCourses">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ScheduleVC.temp(_:):ScheduleVC.swift">
+         contextName = "CalendarVC.setupCalendar():CalendarVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "appDelegate.existedCourses">
+               value = "self.calendar.calendarWeekdayView.layer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddCourseVC.searchBarSearchButtonClicked(_:):AddCourseVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "isNoResult">
+            </PersistentString>
+            <PersistentString
+               value = "filteredCourses">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CalendarVC.calendar(_:didSelect:at:):CalendarVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "detailContainer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

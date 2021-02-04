@@ -270,7 +270,7 @@ class AddCourseVC: UIViewController {
         //If each course has lab, append to selected Courses
         for course in selectedCourses {
             if course.hasLab! {
-                if let number = course.number {
+                if course.number != nil {
                     let additionalCourse = additionalCourses.filter { $0.name == course.name && $0.number == course.number }
                     if additionalCourse.count > 1 {
                         print("Error: additionalCourse > 1")

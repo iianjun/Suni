@@ -153,6 +153,7 @@ struct Constant {
     static let selectCellId : String = "selectCell"
     static let infoCellId : String = "InfoCell"
     static let courseListCellId : String = "CourseListCell"
+    static let phoneNumberCellId : String = "PhoneNumberCell"
     static let addVCId : String = "AddCourseVC"
     static let moreInfoVCId : String = "MoreInfoVC"
     static let webVCId : String = "WebVC"

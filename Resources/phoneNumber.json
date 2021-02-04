@@ -1,0 +1,85 @@
+[
+    {
+        "category" : 0,
+        "number" : "032-626-1353",
+        "name" : "AMS, Youn Ju Baek"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-1357",
+        "name" : "BUS, Heejae Heo"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-1354",
+        "name" : "CS, Minha Kim"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-1801",
+        "name" : "MEC, Youjin Kim"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-1356",
+        "name" : "FBM, Linda Kim"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-1355",
+        "name" : "TSM, Minji Kang"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-1358",
+        "name" : "FD, Ka-yeon Lee"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-1403",
+        "name" : "IEC, Claire (Hyejung) Kim"
+    },
+    {
+        "category" : 1,
+        "number" : "032-626-1122",
+        "name" : "Sungsu Hwang"
+    },
+    {
+        "category" : 1,
+        "number" : "032-626-1357",
+        "name" : "Heejae Heo"
+    },
+    {
+        "category" : 1,
+        "number" : "032-626-1801",
+        "name" : "Youjin Kim"
+    },
+    {
+        "category" : 2,
+        "number" : "032-626-1113",
+        "name" : "Soojin Min"
+    },
+    {
+        "category" : 3,
+        "number" : "032-626-1134",
+        "name" : "SBU Juyoung Ha"
+    },
+    {
+        "category" : 3,
+        "number" : "032-626-1133",
+        "name" : "FIT Yeri Seok"
+    },
+    {
+        "category" : 4,
+        "number" : "032-626-1192",
+        "name" : "Soo Jin Lee"
+    },
+    {
+        "category" : 4,
+        "number" : "032-626-1193",
+        "name" : "Eun Young Shin"
+    }
+    
+
+    
+]
