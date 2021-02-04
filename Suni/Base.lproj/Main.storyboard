@@ -92,7 +92,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="BNx-W4-VbZ"/>
                     <connections>
-                        <outlet property="calendar" destination="mWL-I0-cxM" id="MU0-jg-0hS"/>
+                        <outlet property="calendar" destination="mWL-I0-cxM" id="WLV-dj-vns"/>
                         <outlet property="calendarHeightConstraint" destination="PXJ-Xn-MEo" id="ZFv-5w-DTU"/>
                         <outlet property="infoTableView" destination="JN5-dW-jqO" id="3aM-SA-k60"/>
                         <outlet property="infoView" destination="HUJ-rv-X4L" id="bBd-tM-7q5"/>
@@ -801,10 +801,10 @@
             </objects>
             <point key="canvasLocation" x="369.23076923076923" y="958.29383886255914"/>
         </scene>
-        <!--PhoneVC-->
+        <!--Phone BoothVC-->
         <scene sceneID="jSW-OW-8WW">
             <objects>
-                <viewController id="ONz-aP-oYj" customClass="PhoneVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ONz-aP-oYj" customClass="PhoneBoothVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zoS-8T-tTC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

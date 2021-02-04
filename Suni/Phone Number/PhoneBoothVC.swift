@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class PhoneVC : UIViewController {
+class PhoneBoothVC : UIViewController {
     let application = UIApplication.shared
     var phoneNumbers : [PhoneNumberVO] = []
     var coordinators : [PhoneNumberVO] = []
@@ -25,7 +25,7 @@ class PhoneVC : UIViewController {
     }
     
     func getPhoneNumbers () {
-        if let path = Bundle.main.path(forResource: "phoneNumber", ofType: "json") {
+        if let path = Bundle.main.path(forResource: "phone_number", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path))
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
@@ -69,7 +69,7 @@ class PhoneVC : UIViewController {
     }
 }
 
-extension PhoneVC : UITableViewDelegate, UITableViewDataSource {
+extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5

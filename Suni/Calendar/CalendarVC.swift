@@ -28,7 +28,6 @@ class CalendarVC : UIViewController {
         
     }
     override func viewDidAppear(_ animated: Bool) {
-        
         if didDrawBorder == false {
             let layerOfWeekdayView = UIView(frame: CGRect(x: 0, y: 0, width: self.calendar.calendarWeekdayView.frame.width, height: self.calendar.calendarWeekdayView.frame.height))
             layerOfWeekdayView.layer.chooseBorder(edge: .bottom, thickness: Constant.timetableBorderWidth)
@@ -46,6 +45,7 @@ class CalendarVC : UIViewController {
         self.getCalendarInfo()
         self.setupCalendar()
         self.setUpEvents()
+        
     }
     
     func initHeader() {
@@ -63,10 +63,10 @@ class CalendarVC : UIViewController {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.locale = Locale(identifier: "ko_KR")
                 for event in jsonResult {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd"
-                    dateFormatter.locale = Locale(identifier: "ko_KR")
                     if let minimumStr = event["minimum"] as? String {
                         if let minimumDate = dateFormatter.date(from: minimumStr) {
                             self.minimumDate = minimumDate
@@ -88,6 +88,14 @@ class CalendarVC : UIViewController {
                     
                     self.events.append(cvo)
                 }
+                
+                if let today = dateFormatter.date(from: dateFormatter.string(from: Date())) {
+                    if calendar(self.calendar, numberOfEventsFor: today) > 0 {
+                        calendar(self.calendar, didSelect: today, at: .current)
+                    }
+                }
+                
+
             } catch {
                 NSLog("Error for parsing JSON format file for Calendar!\n\(error.localizedDescription)" )
             }
@@ -125,6 +133,7 @@ class CalendarVC : UIViewController {
         self.calendar.appearance.titleWeekendColor = .red
         
         self.calendar.select(Date())
+        
         self.calendar.placeholderType = .none
         
         
@@ -139,18 +148,17 @@ class CalendarVC : UIViewController {
         self.infoTableView.dataSource = self
         self.infoTableView.separatorStyle = .none
         self.infoTableView.bounces = false
-        
     }
 }
 
 extension CalendarVC : FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        var event2 = [Date]()
+        var eventsFromJson = [Date]()
         for event in events {
-            event2.append(event.date!)
+            eventsFromJson.append(event.date!)
         }
         
-        if event2.contains(date) {
+        if eventsFromJson.contains(date) {
             return 1
         }
         else {
@@ -163,8 +171,7 @@ extension CalendarVC : FSCalendarDelegate, FSCalendarDataSource {
         let event = self.events.filter { $0.date == date }
         if !event.isEmpty {
             detailContainer = [ "titles" : event[0].title!, "contents" : event[0].contents!]
-            
-            
+
         }
         else {
             detailContainer.removeAll()
