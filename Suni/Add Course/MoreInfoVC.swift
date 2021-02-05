@@ -9,7 +9,7 @@ import UIKit
 
 class MoreInfoVC: UIViewController {
     
-    @IBOutlet var courseTitle: UILabel!
+    @IBOutlet var courseNameLabel: UILabel!
     var params : CourseVO!
     var labCourse : CourseVO?
     @IBOutlet var paramTime: UILabel!
@@ -17,6 +17,7 @@ class MoreInfoVC: UIViewController {
     @IBOutlet var paramCredit: UILabel!
     @IBOutlet var paramInstructor: UILabel!
     @IBOutlet var labelContainerView: [UIView]!
+    @IBOutlet var courseTitleLabel: UILabel!
     @IBOutlet var paramLink: UIButton!
     @IBOutlet var hasLabView: UIView!
     @IBOutlet var labTitleLabel: UILabel!
@@ -46,8 +47,13 @@ class MoreInfoVC: UIViewController {
         else {
             self.hasLabView.isHidden = true
         }
-        self.courseTitle.text = self.params.name
-        self.courseTitle.textColor = .themeTextColor
+        self.courseNameLabel.text = self.params.name
+        self.courseTitleLabel.text = self.params.title
+        self.courseTitleLabel.numberOfLines = 0
+        self.courseTitleLabel.textColor = .themeTextColor
+        self.courseTitleLabel.textAlignment = .center
+        self.courseNameLabel.sizeToFit()
+        
         self.paramTime.text = params.convertTimeAndDayToString()
         self.paramTime.textColor = .themeTextColor
         self.paramTime.numberOfLines = 0

@@ -583,17 +583,27 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAW-ut-V2H">
                                 <rect key="frame" x="16" y="59" width="358" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyj-Y7-0Y7">
-                                        <rect key="frame" x="123.66666666666666" y="22" width="111" height="56"/>
-                                        <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="45"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Object Oriented Programming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abv-Ec-tTE">
+                                        <rect key="frame" x="60.666666666666671" y="48" width="236.66666666666663" height="22"/>
+                                        <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="17"/>
                                         <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbC-0A-9gF">
+                                        <rect key="frame" x="140" y="5" width="78" height="38"/>
+                                        <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="30"/>
+                                        <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="Xyj-Y7-0Y7" firstAttribute="centerX" secondItem="eAW-ut-V2H" secondAttribute="centerX" id="FJS-e3-Kmi"/>
-                                    <constraint firstItem="Xyj-Y7-0Y7" firstAttribute="centerY" secondItem="eAW-ut-V2H" secondAttribute="centerY" id="Oif-dc-EXF"/>
+                                    <constraint firstItem="JbC-0A-9gF" firstAttribute="top" secondItem="eAW-ut-V2H" secondAttribute="top" constant="5" id="0dR-RW-bi1"/>
+                                    <constraint firstItem="abv-Ec-tTE" firstAttribute="top" secondItem="JbC-0A-9gF" secondAttribute="bottom" constant="5" id="2ry-Jb-8dy"/>
+                                    <constraint firstItem="abv-Ec-tTE" firstAttribute="centerX" secondItem="eAW-ut-V2H" secondAttribute="centerX" id="4Zv-ag-jAD"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="abv-Ec-tTE" secondAttribute="trailing" constant="10" id="5tn-3j-ZSG"/>
+                                    <constraint firstItem="JbC-0A-9gF" firstAttribute="centerX" secondItem="eAW-ut-V2H" secondAttribute="centerX" id="PN2-e0-t1f"/>
+                                    <constraint firstItem="abv-Ec-tTE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eAW-ut-V2H" secondAttribute="leading" constant="10" id="Qzy-E4-Gw7"/>
                                     <constraint firstAttribute="height" constant="100" id="u4t-gR-DhQ"/>
                                 </constraints>
                             </view>
@@ -657,7 +667,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="courseTitle" destination="Xyj-Y7-0Y7" id="Q7A-Ak-5It"/>
+                        <outlet property="courseNameLabel" destination="JbC-0A-9gF" id="Qxm-QM-JMS"/>
+                        <outlet property="courseTitleLabel" destination="abv-Ec-tTE" id="oM4-Br-E0j"/>
                         <outlet property="hasLabView" destination="vEi-gO-2Fj" id="Ypk-df-VKH"/>
                         <outlet property="labTimeLabel" destination="MdC-wk-FTt" id="Mhd-zu-uhN"/>
                         <outlet property="labTitleLabel" destination="RvE-S4-tI1" id="0MS-qJ-rKl"/>

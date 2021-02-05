@@ -26,7 +26,6 @@ class PhoneBoothVC : UIViewController {
         self.phoneNumberTableView.delegate = self
         self.phoneNumberTableView.dataSource = self
     }
-    
     func getPhoneNumbers () {
         if let path = Bundle.main.path(forResource: "phone_number", ofType: "json") {
             do {
@@ -91,12 +90,14 @@ extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
         cell.detailTextLabel?.text = pvo.number!
         cell.textLabel?.font = getWMPRegular(size: (cell.textLabel?.font.pointSize)!)
         cell.detailTextLabel?.font = getWMPRegular(size: (cell.detailTextLabel?.font.pointSize)!)
+        cell.selectionStyle = .default
         guard pvo.email != nil else {
             let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: Constant.phoneNumberCellId)
             cell.textLabel?.text = pvo.name!
             cell.detailTextLabel?.text = pvo.number!
             cell.textLabel?.font = getWMPRegular(size: (cell.textLabel?.font.pointSize)!)
             cell.detailTextLabel?.font = getWMPRegular(size: (cell.detailTextLabel?.font.pointSize)!)
+            cell.selectionStyle = .default
             return cell
         }
         let accessory = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 15))
@@ -140,7 +141,11 @@ extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return phoneNumbers[section].first?.categoryToString()
+        return self.phoneNumbers[section].first?.categoryToString()
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -155,10 +160,10 @@ extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
                 }
             }
             else {
-                alert("Couldn't not bring URL")
+                alert("Couldn't bring the URL")
             }
         }
-
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
