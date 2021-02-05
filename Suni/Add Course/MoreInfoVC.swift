@@ -11,12 +11,16 @@ class MoreInfoVC: UIViewController {
     
     @IBOutlet var courseTitle: UILabel!
     var params : CourseVO!
+    var labCourse : CourseVO?
     @IBOutlet var paramTime: UILabel!
     @IBOutlet var paramRoom: UILabel!
     @IBOutlet var paramCredit: UILabel!
     @IBOutlet var paramInstructor: UILabel!
     @IBOutlet var labelContainerView: [UIView]!
     @IBOutlet var paramLink: UIButton!
+    @IBOutlet var hasLabView: UIView!
+    @IBOutlet var labTitleLabel: UILabel!
+    @IBOutlet var labTimeLabel: UILabel!
     
     override func viewDidLoad() {
         for cv in labelContainerView {
@@ -24,6 +28,23 @@ class MoreInfoVC: UIViewController {
             cv.layer.cornerRadius = Constant.moreVCCornerRadius
             cv.layer.borderColor = UIColor.themeColor.cgColor
 
+        }
+        if labCourse != nil {
+            if let type = self.labCourse?.type {
+                switch type {
+                case "LAB" : self.labTitleLabel.text = type
+                case "REC" : self.labTitleLabel.text = "Recitation"
+                default : break
+                }
+            }
+            self.labTimeLabel.text = labCourse?.convertTimeAndDayToString()
+            self.labTimeLabel.textColor = .themeTextColor
+            self.hasLabView.layer.borderColor = UIColor.themeColor.cgColor
+            self.hasLabView.layer.cornerRadius = Constant.moreVCCornerRadius
+            self.hasLabView.layer.borderWidth = Constant.addCourseCellBorderWidth
+        }
+        else {
+            self.hasLabView.isHidden = true
         }
         self.courseTitle.text = self.params.name
         self.courseTitle.textColor = .themeTextColor

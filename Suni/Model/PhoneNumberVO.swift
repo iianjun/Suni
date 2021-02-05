@@ -10,15 +10,18 @@ class PhoneNumberVO {
     var category : PhoneCategory?
     var number : String?
     var name : String?
+    var email : String?
 
     
     
     func categoryToString () -> String {
         switch self.category {
-        case .coordinator : return "Coordinator"
-        case .scholarship : return "Enrollment Check / Scholarship / Millitary Service"
-        case .finance : return "Finance (tuition information etc.)"
-        case .admissions : return "Admissions Team"
+        case .igc : return "IGC"
+        case .coordinators : return "Coordinator"
+        case .studentAffair : return "Student Affair"
+        case .rcAndWorkStudy : return "RC / Work-Study"
+        case .scholarship : return "Scholarship / Millitary Service"
+        case .others : return "Other Offices"
         case .international : return "International Student Services"
         default : return ""
         }
@@ -26,10 +29,12 @@ class PhoneNumberVO {
 }
 
 enum PhoneCategory : Int {
-    case coordinator = 0
-    case scholarship = 1
-    case finance = 2
-    case admissions = 3
-    case international = 4
+    case igc = 0
+    case coordinators = 1
+    case studentAffair = 2
+    case rcAndWorkStudy = 3
+    case scholarship = 4
+    case others = 5
+    case international = 6
     
 }

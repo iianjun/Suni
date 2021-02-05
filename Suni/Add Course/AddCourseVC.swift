@@ -721,10 +721,19 @@ extension AddCourseVC : UITableViewDelegate, UITableViewDataSource {
         guard let moreInfoVC = self.storyboard?.instantiateViewController(identifier: Constant.moreInfoVCId) as? MoreInfoVC else { return }
         
         moreInfoVC.params = (filteredCourses.count == 0) ? courselist[indexPath.section] : filteredCourses[indexPath.section]
-        
-//        moreInfoVC.modalPresentationStyle = .custom
-//        moreInfoVC.transitioningDelegate = self
-//        self.navigationController?.pushViewController(moreInfoVC, animated: true)
+        if let courseHasLab = moreInfoVC.params.hasLab {
+            if courseHasLab {
+                if moreInfoVC.params.number != nil {
+                    let labCourse = additionalCourses.filter { $0.name == moreInfoVC.params.name && $0.number == moreInfoVC.params.number }
+                    moreInfoVC.labCourse = labCourse.first
+                }
+                else {
+                    let labCourse = additionalCourses.filter { $0.name == moreInfoVC.params.name }
+                    moreInfoVC.labCourse = labCourse.first
+                }
+            }
+            
+        }
         self.present(moreInfoVC, animated: true, completion: nil)
     }
     

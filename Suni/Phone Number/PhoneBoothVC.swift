@@ -8,11 +8,13 @@
 import UIKit
 class PhoneBoothVC : UIViewController {
     let application = UIApplication.shared
-    var phoneNumbers : [PhoneNumberVO] = []
+    var phoneNumbers : [[PhoneNumberVO]] = []
+    var igc : [PhoneNumberVO] = []
     var coordinators : [PhoneNumberVO] = []
+    var studentAffair : [PhoneNumberVO] = []
+    var rcAndWorkStudy : [PhoneNumberVO] = []
     var scholarship  : [PhoneNumberVO] = []
-    var finance  : [PhoneNumberVO] = []
-    var admissions  : [PhoneNumberVO] = []
+    var others : [PhoneNumberVO] = []
     var international  : [PhoneNumberVO] = []
     
     @IBOutlet var phoneNumberTableView: UITableView!
@@ -20,8 +22,9 @@ class PhoneBoothVC : UIViewController {
     override func viewDidLoad() {
         
         self.getPhoneNumbers()
-        self.categorize()
         self.initHeader()
+        self.phoneNumberTableView.delegate = self
+        self.phoneNumberTableView.dataSource = self
     }
     
     func getPhoneNumbers () {
@@ -34,7 +37,21 @@ class PhoneBoothVC : UIViewController {
                     pvo.category = PhoneCategory(rawValue: (obj["category"] as? Int)!)
                     pvo.number = obj["number"] as? String
                     pvo.name = obj["name"] as? String
-                    phoneNumbers.append(pvo)
+                    if obj["email"] as? String != "" {
+                        pvo.email = obj["email"] as? String
+                    }
+                    
+                    
+                    guard let category = pvo.category else { return }
+                    switch category {
+                    case .igc: self.igc.append(pvo)
+                    case .coordinators : self.coordinators.append(pvo)
+                    case .studentAffair : self.studentAffair.append(pvo)
+                    case .rcAndWorkStudy : self.rcAndWorkStudy.append(pvo)
+                    case .scholarship: self.scholarship.append(pvo)
+                    case .others : self.others.append(pvo)
+                    case .international : self.international.append(pvo)
+                    }
                 }
             }
             catch {
@@ -42,17 +59,7 @@ class PhoneBoothVC : UIViewController {
             }
             
         }
-    }
-    
-    func categorize () {
-        coordinators = phoneNumbers.filter { $0.category?.rawValue == 0 }
-        scholarship = phoneNumbers.filter { $0.category?.rawValue == 1 }
-        finance = phoneNumbers.filter { $0.category?.rawValue == 2 }
-        admissions = phoneNumbers.filter { $0.category?.rawValue == 3 }
-        international = phoneNumbers.filter { $0.category?.rawValue == 4 }
-        self.phoneNumberTableView.delegate = self
-        self.phoneNumberTableView.dataSource = self
-        
+        self.phoneNumbers = [self.igc, self.coordinators, self.studentAffair, self.rcAndWorkStudy, self.scholarship, self.others, self.international]
     }
     
     
@@ -62,7 +69,6 @@ class PhoneBoothVC : UIViewController {
         viewTitle.font = getRigteous(size: Constant.titleFontSize)
         viewTitle.sizeToFit()
         viewTitle.textColor = .themeColor
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: viewTitle)
         self.navigationController?.navigationBar.backgroundColor = .white
         
@@ -72,100 +78,73 @@ class PhoneBoothVC : UIViewController {
 extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return self.phoneNumbers.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        let categoryForSection = self.phoneNumbers.filter { $0.category?.rawValue == section }
-        
-        switch section {
-        case 0:
-            return categoryForSection.count
-        case 1:
-            return categoryForSection.count
-        case 2:
-            return categoryForSection.count
-        case 3:
-            return categoryForSection.count
-        case 4:
-            return categoryForSection.count
-        default : return 0
-            
-        }
+        return self.phoneNumbers[section].count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constant.phoneNumberCellId) else { return UITableViewCell() }
-        switch indexPath.section {
-        case 0:
-            let pvo = coordinators[indexPath.row]
+        let pvo = self.phoneNumbers[indexPath.section][indexPath.row]
+        cell.textLabel?.text = pvo.name!
+        cell.detailTextLabel?.text = pvo.number!
+        cell.textLabel?.font = getWMPRegular(size: (cell.textLabel?.font.pointSize)!)
+        cell.detailTextLabel?.font = getWMPRegular(size: (cell.detailTextLabel?.font.pointSize)!)
+        guard pvo.email != nil else {
+            let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: Constant.phoneNumberCellId)
             cell.textLabel?.text = pvo.name!
             cell.detailTextLabel?.text = pvo.number!
-        
-        case 1:
-            let pvo = scholarship[indexPath.row]
-            cell.textLabel?.text = pvo.name!
-            cell.detailTextLabel?.text = pvo.number!
-        case 2:
-            let pvo = finance[indexPath.row]
-            cell.textLabel?.text = pvo.name!
-            cell.detailTextLabel?.text = pvo.number!
-        case 3:
-            let pvo = admissions[indexPath.row]
-            cell.textLabel?.text = pvo.name!
-            cell.detailTextLabel?.text = pvo.number!
-        case 4:
-            let pvo = international[indexPath.row]
-            cell.textLabel?.text = pvo.name!
-            cell.detailTextLabel?.text = pvo.number!
-        default : break
+            cell.textLabel?.font = getWMPRegular(size: (cell.textLabel?.font.pointSize)!)
+            cell.detailTextLabel?.font = getWMPRegular(size: (cell.detailTextLabel?.font.pointSize)!)
+            return cell
         }
-        
-        
+        let accessory = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 15))
+        accessory.setImage(UIImage(named: "envelope"), for: .normal)
+        accessory.addTarget(self, action: #selector(accessoryTapped), for: .touchUpInside)
+        cell.accessoryView = accessory
         return cell
         
     }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        switch section {
-        case 0:
-            let pvo = coordinators[0]
-            return pvo.categoryToString()
-        case 1:
-            let pvo = scholarship[0]
-            return pvo.categoryToString()
-        case 2:
-            let pvo = finance[0]
-            return pvo.categoryToString()
-        case 3:
-            let pvo = admissions[0]
-            return pvo.categoryToString()
-        case 4:
-            let pvo = international[0]
-            return pvo.categoryToString()
-        default : return ""
+    
+    @objc func accessoryTapped (_ sender: UIButton) {
+        let buttonPosition : CGPoint = sender.convert(.zero, to: self.phoneNumberTableView)
+        if let indexPath = self.phoneNumberTableView.indexPathForRow(at: buttonPosition) {
+            let pvo = self.phoneNumbers[indexPath.section][indexPath.row]
+            UIPasteboard.general.string = pvo.email
+            showCopySuccessMsg()
         }
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//
-//    }
-//
+    func showCopySuccessMsg() {
+        let copySucessView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width / 2, height: 40))
+        copySucessView.center.x = self.view.frame.width / 2
+        copySucessView.center.y = self.view.frame.height / 2
+        copySucessView.backgroundColor = .lightGray
+        copySucessView.layer.cornerRadius = copySucessView.frame.height / 2
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 14)
+        label.text = "Email has been copied!"
+        label.textColor = .white
+        label.sizeToFit()
+        
+        label.center.x = copySucessView.frame.width / 2
+        label.center.y = copySucessView.frame.height / 2
+        copySucessView.addSubview(label)
+        self.view.addSubview(copySucessView)
+        UIView.animate(withDuration: 1.7, delay: 0.3, options: [], animations: {
+            copySucessView.alpha = 0.0
+        }, completion: { _ in
+            copySucessView.removeFromSuperview()
+        })
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return phoneNumbers[section].first?.categoryToString()
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var pvo = PhoneNumberVO()
-        switch indexPath.section {
-        case 0:
-            pvo = coordinators[indexPath.row]
-        case 1:
-            pvo = scholarship[indexPath.row]
-        case 2:
-            pvo = finance[indexPath.row]
-        case 3:
-            pvo = admissions[indexPath.row]
-        case 4:
-            pvo = international[indexPath.row]
-        default : break
-        }
+        let pvo = phoneNumbers[indexPath.section][indexPath.row]
         if let number = pvo.number {
             if let url = URL(string: "tel://\(number)"), application.canOpenURL(url) {
                 if #available(iOS 10, *) {
@@ -179,6 +158,7 @@ extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
                 alert("Couldn't not bring URL")
             }
         }
+
     }
 }
 

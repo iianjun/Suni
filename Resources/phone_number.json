@@ -1,85 +1,171 @@
 [
     {
         "category" : 0,
+        "number" : "032-626-4856",
+        "name" : "IGC Housing Office",
+        "email" : "housing@igc.or.kr"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-0251",
+        "name" : "IGC Central Library",
+        "email" : "libmaster@igc.or.kr"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-0200",
+        "name" : "IGC IT Center",
+        "email" : "itcenter@igc.or.kr"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-0553",
+        "name" : "IGC Health Center",
+        "email" : "chayj@igc.or.kr"
+    },
+    {
+        "category" : 0,
+        "number" : "032-626-0600",
+        "name" : "IGC Cafeteria",
+        "email" : ""
+    },
+    {
+        "category" : 1,
         "number" : "032-626-1353",
-        "name" : "AMS, Youn Ju Baek"
+        "name" : "AMS, Youn Ju Baek",
+        "email" : "younju.baek@sunykorea.ac.kr"
     },
     {
-        "category" : 0,
+        "category" : 1,
         "number" : "032-626-1357",
-        "name" : "BUS, Heejae Heo"
+        "name" : "BUS, Heejae Heo",
+        "email" : "heejae.heo@sunykorea.ac.kr"
     },
     {
-        "category" : 0,
+        "category" : 1,
         "number" : "032-626-1354",
-        "name" : "CS, Minha Kim"
+        "name" : "CS, Minha Kim",
+        "email" : "minha.kim@sunykorea.ac.kr"
     },
     {
-        "category" : 0,
+        "category" : 1,
         "number" : "032-626-1801",
-        "name" : "MEC, Youjin Kim"
+        "name" : "MEC, Youjin Kim",
+        "email" : "youjin.kim@sunykorea.ac.kr"
     },
     {
-        "category" : 0,
-        "number" : "032-626-1356",
-        "name" : "FBM, Linda Kim"
-    },
-    {
-        "category" : 0,
+        "category" : 1,
         "number" : "032-626-1355",
-        "name" : "TSM, Minji Kang"
-    },
-    {
-        "category" : 0,
-        "number" : "032-626-1358",
-        "name" : "FD, Ka-yeon Lee"
-    },
-    {
-        "category" : 0,
-        "number" : "032-626-1403",
-        "name" : "IEC, Claire (Hyejung) Kim"
-    },
-    {
-        "category" : 1,
-        "number" : "032-626-1122",
-        "name" : "Sungsu Hwang"
-    },
-    {
-        "category" : 1,
-        "number" : "032-626-1357",
-        "name" : "Heejae Heo"
-    },
-    {
-        "category" : 1,
-        "number" : "032-626-1801",
-        "name" : "Youjin Kim"
+        "name" : "TSM, Minji Kang",
+        "email" : "minji.kang@sunykorea.ac.kr"
     },
     {
         "category" : 2,
-        "number" : "032-626-1113",
-        "name" : "Soojin Min"
+        "number" : "032-626-1198",
+        "name" : "Student Service Team",
+        "email" : "student@sunykorea.ac.kr"
+    },
+    {
+        "category" : 2,
+        "number" : "032-626-1195",
+        "name" : "Career Development Center",
+        "email" : "careercenter@sunykorea.ac.kr"
+    },
+    {
+        "category" : 2,
+        "number" : "032-626-1197",
+        "name" : "Career Development Center",
+        "email" : "careercenter@sunykorea.ac.kr"
     },
     {
         "category" : 3,
-        "number" : "032-626-1134",
-        "name" : "SBU Juyoung Ha"
+        "number" : "032-626-1194",
+        "name" : "RC/Male Residence",
+        "email" : "munhyuck.kim@sunykorea.ac.kr"
     },
     {
         "category" : 3,
-        "number" : "032-626-1133",
-        "name" : "FIT Yeri Seok"
-    },
-    {
-        "category" : 4,
         "number" : "032-626-1192",
-        "name" : "Soo Jin Lee"
+        "name" : "Female Residence",
+        "email" : "soojin.lee@sunykorea.ac.kr"
+    },
+    {
+        "category" : 3,
+        "number" : "032-626-1193",
+        "name" : "Work-Study",
+        "email" : "eunyoung.shin@sunykorea.ac.kr"
+    },
+    {
+        "category" : 3,
+        "number" : "010-4768-1196",
+        "name" : "RA Emergency Phone",
+        "email" : ""
     },
     {
         "category" : 4,
+        "number" : "032-626-1122",
+        "name" : "Sungsu Hwang",
+        "email" : "sungsu.hwang@sunykorea.ac.kr"
+    },
+    {
+        "category" : 4,
+        "number" : "032-626-1801",
+        "name" : "Youjin Kim",
+        "email" : "youjin.kim@sunykorea.ac.kr"
+    },
+    {
+        "category" : 5,
+        "number" : "032-626-1114",
+        "name" : "SBU Admissions Team",
+        "email" : "admission@sunykorea.ac.kr"
+    },
+    {
+        "category" : 5,
+        "number" : "032-626-1113",
+        "name" : "Finance & Accounting Team",
+        "email" : "finance@sunykorea.ac.kr"
+    },
+    {
+        "category" : 5,
+        "number" : "032-626-1401",
+        "name" : "The Writing Center",
+        "email" : "andrew.lasher@sunykorea.ac.kr"
+    },
+    {
+        "category" : 5,
+        "number" : "032-626-1400",
+        "name" : "IEC",
+        "email" : "iec@sunykorea.ac.kr"
+    },
+    {
+        "category" : 5,
+        "number" : "032-626-1123",
+        "name" : "SUNY Korea Library",
+        "email" : "library@sunykorea.ac.kr"
+    },
+    {
+        "category" : 5,
+        "number" : "032-626-1170",
+        "name" : "SUNY Korea Counseling Center",
+        "email" : "counseling@sunykorea.ac.kr"
+    },
+    {
+        "category" : 5,
+        "number" : "032-626-1153",
+        "name" : "Committee on Institutional Diversity and Equity",
+        "email" : "titleix@sunykorea.ac.kr"
+    },
+    {
+        "category" : 6,
+        "number" : "032-626-1192",
+        "name" : "Soo Jin Lee",
+        "email" : "soojin.lee@sunykorea.ac.kr"
+    },
+    {
+        "category" : 6,
         "number" : "032-626-1193",
-        "name" : "Eun Young Shin"
+        "name" : "Eun Young Shin",
+        "email" : "eunyoung.shin@sunykorea.ac.kr"
     }
-    
-
-    
 ]
+
