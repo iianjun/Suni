@@ -9,6 +9,8 @@ import UIKit
 
 class AddCourseVC: UIViewController {
     
+    @IBOutlet var segControl: UISegmentedControl!
+    let segIndicator = UIView()
     //MARK: MajorCollectionView's Tag = 101
     //MARK: DayCollectionView's Tag = 102
     //MARK: CartCollectionView's Tag = 103
@@ -142,11 +144,43 @@ class AddCourseVC: UIViewController {
     
     
     override func viewDidLoad() {
+        self.setupSegControl()
         self.setup()
 
     }
     
+    func setupSegControl () {
+        let clearImage = UIImage(color: .clear, size: CGSize(width: 1, height: self.segControl.frame.height))
+        self.segControl.setBackgroundImage(clearImage, for: .normal, barMetrics: .default)
+        self.segControl.setDividerImage(clearImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+        self.segControl.setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor : UIColor.lightGray,
+            NSAttributedString.Key.font : getRigteous(size: 20)
+        ], for: .normal)
+        self.segControl.setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor : UIColor.themeTextColor,
+            NSAttributedString.Key.font : getRigteous(size: 20)
+        ], for: .selected)
 
+        self.segIndicator.backgroundColor = .themeTextColor
+        self.segControl.addSubview(self.segIndicator)
+        self.segIndicator.frame = CGRect(x: 0, y: self.segControl.frame.height - 5, width: self.view.frame.width / 2, height: 5)
+
+    }
+    @IBAction func indexChange(_ sender: UISegmentedControl) {
+        UIView.animate(withDuration: 0.3, animations: {
+            switch sender.selectedSegmentIndex {
+            case 0:
+                self.segIndicator.frame.origin.x -= self.segIndicator.frame.width
+                
+            case 1:
+                self.segIndicator.frame.origin.x += self.segIndicator.frame.width
+            default : break;
+            }
+        })
+        
+    }
+    
     func setup() {
         self.addGesture()
         self.tabBarController?.tabBar.isHidden = true
@@ -806,3 +840,15 @@ extension AddCourseVC  {
 }
 
 
+extension UIImage {
+    convenience init(color: UIColor, size: CGSize) {
+        UIGraphicsBeginImageContextWithOptions(size, false, 1)
+        color.set()
+        let ctx = UIGraphicsGetCurrentContext()!
+        ctx.fill(CGRect(origin: .zero, size: size))
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        self.init(data: image.pngData()!)!
+    }
+}
