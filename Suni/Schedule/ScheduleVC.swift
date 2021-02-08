@@ -39,6 +39,7 @@ class ScheduleVC : UIViewController {
 
     }
     override func viewDidAppear(_ animated: Bool) {
+        
         let sd = UserDefaults.standard
         do {
 
@@ -105,12 +106,9 @@ class ScheduleVC : UIViewController {
             customModalVC.modalPresentationStyle = .custom
             customModalVC.transitioningDelegate = self
             self.present(customModalVC, animated: true, completion: nil)
-//    
-//            moreInfoVC.modalPresentationStyle = .custom
-//            moreInfoVC.transitioningDelegate = self
-//            self.navigationController?.pushViewController(moreInfoVC, animated: true)
         }
     }
+    
     //MARK: Header init
     func initHeader() {
         
@@ -239,6 +237,11 @@ extension ScheduleVC : UICollectionViewDelegate, UICollectionViewDataSource {
         
         //First column -> should be empty
         if indexPath.section == 0 {
+            let day = Calendar.current.component(.weekday, from: Date())
+            if day == indexPath.row {
+                cell.backgroundColor = .todayColor
+                
+            }
             cell.labelType = .day
             switch indexPath.row {
             case 0 : cell.label.text = ""
@@ -248,7 +251,6 @@ extension ScheduleVC : UICollectionViewDelegate, UICollectionViewDataSource {
             case 4 : cell.label.text = "THU"
             case 5 : cell.label.text = "FRI"
             default : ()
-
             }
             
             
@@ -296,6 +298,8 @@ extension ScheduleVC : UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
 }
+
+//MARK: Collection View Delegate Flow Layout
 extension ScheduleVC : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
@@ -307,32 +311,6 @@ extension ScheduleVC : UICollectionViewDelegateFlowLayout {
     }
 }
 
-
-extension CALayer {
-    func chooseBorder (edge: UIRectEdge, thickness: CGFloat) {
-        let border = CALayer()
-        switch edge {
-            case UIRectEdge.top:
-             border.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: thickness)
-
-            case UIRectEdge.bottom:
-             border.frame = CGRect(x: 0, y: self.bounds.height - thickness,  width: self.bounds.width, height: thickness)
-
-            case UIRectEdge.left:
-             border.frame = CGRect(x: 0, y: 0,  width: thickness, height: self.bounds.height)
-
-            case UIRectEdge.right:
-             border.frame = CGRect(x: self.bounds.width - thickness, y: 0,  width: thickness, height: self.bounds.height)
-
-            default:
-             break
-        }
-        border.backgroundColor = UIColor.themeColor.cgColor
-        self.addSublayer(border)
-    }
-    
-        
-}
 //MARK: UIViewController TransitioningDelegate
 extension ScheduleVC : UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
