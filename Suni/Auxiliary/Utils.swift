@@ -110,6 +110,18 @@ extension UIViewController {
 //        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         return dateFormatter.string(from: time)
     }
+    func convertMajorPriority (major : String) -> Int {
+        switch major {
+        case "AMS" : return 0
+        case "BUS" : return 1
+        case "CSE" : return 2
+        case "TSM" : return 3
+        case "MEC" : return 4
+        case "ETC" : return 5
+        default : return -1
+        }
+    }
+    
     func convertStringToRow (day : String) -> Int {
         switch day {
         case "MON" : return Day.mon.rawValue

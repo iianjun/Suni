@@ -8,7 +8,6 @@
 import UIKit
 
 class ManualVC: UIViewController {
-    var manualCourses : [CourseVO] = []
     
     @IBOutlet var dayLabel: UILabel!
     @IBOutlet var dayCollectionView: UICollectionView!
@@ -22,17 +21,10 @@ class ManualVC: UIViewController {
     var days = ["MON", "TUE", "WED" , "THU", "FRI"]
     var selectedDays : [String] = []
 
-    
     override func viewDidLoad() {
         self.setup()
-
-        // Do any additional setup after loading the view.
     }
     func setup() {
-        self.setupManualCourseView()
-    }
-    func setupManualCourseView() {
-        
         self.dayLabel.text = "Day"
         self.dayLabel.textColor = .themeColor
         self.dayLabel.font = getRigteous(size: self.dayLabel.font.pointSize)
@@ -48,13 +40,6 @@ class ManualVC: UIViewController {
         self.setupInfoTf()
         
     }
-    
-    func anotherCourseView() {
-//        let v = UIView(frame: CGRect(x: lastViewCoordinate.x, y: lastViewCoordinate.y, width: self.manualCourseView.frame.width, height: self.manualCourseView.frame.height))
-//
-    }
-    
- 
     
     func setupTimetf() {
         self.fromTime.borderStyle = .none

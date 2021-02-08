@@ -75,6 +75,11 @@ class CourseVC: UIViewController {
         }
     }
     
+    private var choosenCredits : Int = 0 {
+        didSet {
+            print(self.choosenCredits)
+        }
+    }
     var majors : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC", "ETC"]
     var days : [String] = ["MON", "TUE", "WED", "THU", "FRI"]
     var isNoResult : Bool = false
@@ -90,48 +95,68 @@ class CourseVC: UIViewController {
             
         }
     }
+    var i = 0
     var selectedFilter : (selectedMajor : [String], selectedDays: [String]) = ([], []) {
-        willSet (newVal) {
-            self.listTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+//        willSet (newVal) {
+//            self.listTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+//            self.searchBar.resignFirstResponder()
+//            isNoResult = false
+//            self.searchBar.text = ""
+//            filteredCourses = []
+//            if newVal.selectedMajor.isEmpty && newVal.selectedDays.isEmpty {
+//                self.listTableView.reloadData()
+//                return
+//            }
+//
+//            else if newVal.selectedMajor.isEmpty == false && newVal.selectedDays.isEmpty {
+//                for major in newVal.0 {
+//                    filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
+//                }
+//            }
+//
+//            else if newVal.selectedMajor.isEmpty && newVal.selectedDays.isEmpty == false {
+//                if newVal.selectedDays.count == 1 {
+//                    filteredCourses.append(contentsOf: courselist.filter { $0.days?.contains(newVal.selectedDays[0]) == true  })
+//                }
+//                else {
+//                    let days = newVal.1.sorted(by: {
+//                        convertStringToRow(day: $0) < convertStringToRow(day: $1)
+//                    })
+//                    filteredCourses.append(contentsOf: courselist.filter { $0.days == days })
+//                }
+//            }
+//
+//            else if newVal.selectedMajor.isEmpty == false && newVal.selectedDays.isEmpty == false {
+//                for major in newVal.0 {
+//                    filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
+//                }
+//                if newVal.selectedDays.count == 1 {
+//                    filteredCourses = filteredCourses.filter { $0.days?.contains(newVal.selectedDays[0]) == true }
+//                }
+//                else {
+//                    let days = newVal.1.sorted(by: {
+//                        convertStringToRow(day: $0) < convertStringToRow(day: $1)
+//                    })
+//                    filteredCourses = filteredCourses.filter { $0.days == days }
+//                }
+//            }
+//
+//            if filteredCourses.count == 0 {
+//                isNoResult = true
+//            }
+//
+//            self.listTableView.reloadData()
+//
+//        }
+        didSet {
+            selectedFilter.selectedMajor = selectedFilter.selectedMajor.sorted(by: {
+                convertMajorPriority(major: $0) < convertMajorPriority(major: $1)
+            })
+            selectedFilter.selectedDays = selectedFilter.selectedDays.sorted(by: {
+                convertStringToRow(day: $0) < convertStringToRow(day: $1)
+            })
+            self.reset()
             
-            self.searchBar.resignFirstResponder()
-            
-            isNoResult = false
-            self.searchBar.text = ""
-            filteredCourses = []
-            if newVal.selectedMajor.isEmpty && newVal.selectedDays.isEmpty {
-                self.listTableView.reloadData()
-                return
-            }
-            if newVal.selectedMajor.isEmpty == false && newVal.selectedDays.isEmpty {
-                for major in newVal.0 {
-                    filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
-                }
-            }
-            if newVal.selectedMajor.isEmpty && newVal.selectedDays.isEmpty == false {
-                for selectedDay in newVal.1 {
-                    if newVal.selectedDays.count == 1 {
-                        filteredCourses.append(contentsOf: courselist.filter { ($0.days == newVal.1 || ($0.days?.contains(selectedDay) == true))  })
-                    }
-                    else {
-                        filteredCourses.append(contentsOf: courselist.filter { ($0.days == newVal.1 && ($0.days?.contains(selectedDay) == true)) && filteredCourses.contains($0) == false })
-                    }
-                }
-            }
-            if newVal.selectedMajor.isEmpty == false && newVal.selectedDays.isEmpty == false {
-                for major in newVal.0 {
-                    filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
-                }
-                for selectedDay in newVal.1 {
-                    filteredCourses = filteredCourses.filter { $0.days == newVal.1 || ($0.days?.contains(selectedDay) == true) }
-                }
-            }
-            if filteredCourses.count == 0 {
-                isNoResult = true
-            }
-            
-            self.listTableView.reloadData()
-    
         }
     }
     
@@ -164,22 +189,16 @@ class CourseVC: UIViewController {
                     hasher.combine(cvo.name)
                     hasher.combine(cvo.time)
                     cvo.hash = hasher.finalize()
-                    
-//                    print("\(cvo.name!) to \(cvo.time!)")
-//
-                    
-                    
-                    
                     if (cvo.type == "LAB" || cvo.type == "REC") && (cvo.name != "PHY133") {
                         self.additionalCourses.append(cvo)
                     }
                     else {
                         self.courselist.append(cvo)
                     }
-                    
-                    
+                    if cvo.name!.count >= 7 {
+                        print(cvo.name!)
+                    }
                 }
-                
             } catch {
                 NSLog("Error for Parsing JSON format file!")
                 
@@ -188,13 +207,9 @@ class CourseVC: UIViewController {
         
     }
     override func viewDidLoad() {
-//        let dragRight = UIPanGestureRecognizer(target: self, action: #selector(pvc?.indexChange(_:)))
-//        self.view.addGestureRecognizer(dragRight)
         self.getCourseData()
         self.horizontalLines = [self.firstHorizontalLine, self.secondHorizontalLine, self.thirdHorizontalLine, self.fourthHorizontalLine]
         self.initBody()
-
-        // Do any additional setup after loading the view.
     }
     
     func initBody () {
@@ -210,7 +225,6 @@ class CourseVC: UIViewController {
     }
     
     func setupMajor() {
-        //"Major' label set up
         self.majorLabel.text = "Major"
         self.majorLabel.textColor = .themeColor
         self.majorLabel.font = getRigteous(size: self.majorLabel.font.pointSize)
@@ -281,37 +295,51 @@ class CourseVC: UIViewController {
 
     }
     @objc func clear (_ sender: UIButton) {
-        reset()
+        self.reset()
     }
+    
     func reset() {
-        filteredCourses = []
-        isNoResult = false
-        if selectedFilter.selectedMajor.isEmpty && selectedFilter.selectedDays.isEmpty {
+        self.filteredCourses = []
+        self.isNoResult = false
+        
+        //No selected filter
+        if self.selectedFilter.selectedMajor.isEmpty && self.selectedFilter.selectedDays.isEmpty {
             self.listTableView.reloadData()
             return
         }
-        if selectedFilter.selectedMajor.isEmpty == false && selectedFilter.selectedDays.isEmpty {
-            for major in selectedFilter.0 {
-                filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
+        //Only major filter
+        else if selectedFilter.selectedMajor.isEmpty == false && self.selectedFilter.selectedDays.isEmpty {
+            for major in self.selectedFilter.0 {
+                self.filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
             }
         }
-        if selectedFilter.selectedMajor.isEmpty && selectedFilter.selectedDays.isEmpty == false {
-            for selectedDay in selectedFilter.1 {
-                if selectedFilter.selectedDays.count == 1 {
-                    filteredCourses.append(contentsOf: courselist.filter { ($0.days == selectedFilter.1 || ($0.days?.contains(selectedDay) == true))  })
-                }
-                else {
-                    filteredCourses.append(contentsOf: courselist.filter { ($0.days == selectedFilter.1 && ($0.days?.contains(selectedDay) == true)) && filteredCourses.contains($0) == false })
-                }
+        //Only days filter
+        else if self.selectedFilter.selectedMajor.isEmpty && self.selectedFilter.selectedDays.isEmpty == false {
+            if self.selectedFilter.selectedDays.count == 1 {
+                self.filteredCourses.append(contentsOf: self.courselist.filter { $0.days?.contains(self.selectedFilter.selectedDays[0]) == true })
+            }
+            else {
+                self.filteredCourses.append(contentsOf: self.courselist.filter { $0.days ==  days })
             }
         }
-        if selectedFilter.selectedMajor.isEmpty == false && selectedFilter.selectedDays.isEmpty == false {
-            for major in selectedFilter.0 {
-                filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
+        //Both major and days filter
+        else if self.selectedFilter.selectedMajor.isEmpty == false && self.selectedFilter.selectedDays.isEmpty == false {
+            for major in self.selectedFilter.0 {
+                self.filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
             }
-            for selectedDay in selectedFilter.1 {
-                filteredCourses = filteredCourses.filter { $0.days == selectedFilter.1 || ($0.days?.contains(selectedDay) == true) }
+            if self.selectedFilter.selectedDays.count == 1 {
+                self.filteredCourses = self.filteredCourses.filter { $0.days?.contains(self.selectedFilter.selectedDays[0]) == true }
             }
+            else {
+                let days = self.selectedFilter.selectedDays.sorted(by: {
+                    convertStringToRow(day: $0) < convertStringToRow(day: $1)
+                })
+                self.filteredCourses = self.filteredCourses.filter { $0.days ==  days }
+            }
+        }
+        //No filtered Courses
+        if self.filteredCourses.count == 0 {
+            self.isNoResult = true
         }
         self.listTableView.reloadData()
     }
@@ -336,12 +364,10 @@ class CourseVC: UIViewController {
     @objc func removeCourse (_ sender : UIButton) {
         //sender.tag == course.hash == cell.tag
         if let index = self.selectedCourses.firstIndex(where: { $0.hash! == sender.tag }) {
-
             let removedCourse = self.selectedCourses.remove(at: index)
-//            if let credit = removedCourse.credit {
-//                self.choosenCredits -= credit
-//            }
-            
+            if let credit = removedCourse.credit {
+                self.choosenCredits -= credit
+            }
         }
         
     }
@@ -369,9 +395,7 @@ extension CourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
         case 102: return self.days.count
         case 103: return self.selectedCourses.count
         default : return 0
-            
         }
-      
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -389,8 +413,6 @@ extension CourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
             cell.label.text = self.selectedCourses[indexPath.row].name
             cell.removeBtn.addTarget(self, action: #selector(self.removeCourse(_ :)), for: .touchUpInside)
             cell.removeBtn.tag = self.selectedCourses[indexPath.row].hash!
-           
-            
             return cell
         default :
             return UICollectionViewCell()
@@ -432,9 +454,7 @@ extension CourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
                 } else { return }
             }
         case 103: ()
-            
         default: ()
-            
         }
     }
 }
@@ -448,8 +468,6 @@ extension CourseVC : UICollectionViewDelegateFlowLayout {
         case 103 : return CGSize(width: collectionView.frame.width / 3 - Constant.freeSpaceBtwCollectionView, height: collectionView.frame.height)
         default: return CGSize.zero
         }
-        
-        
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 
@@ -465,44 +483,64 @@ extension CourseVC : UICollectionViewDelegateFlowLayout {
 extension CourseVC : UISearchBarDelegate, UITextFieldDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.listTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        self.reset()
         if let text = searchBar.text {
             if text == "" {
-                if selectedFilter.selectedDays.isEmpty == false || selectedFilter.selectedMajor.isEmpty == false {
-    
-                    reset()
-                    searchBar.resignFirstResponder()
-                    return
-                }
-                
-                filteredCourses = []
-                self.listTableView.reloadData()
-                searchBar.endEditing(true)
+                searchBar.resignFirstResponder()
                 return
             }
             else {
-                reset()
-                if filteredCourses.isEmpty == false && (selectedFilter.selectedDays.isEmpty == false || selectedFilter.selectedMajor.isEmpty == false) {
-                    filteredCourses = filteredCourses.filter { $0.name?.contains((text).uppercased() ) == true }
-                }
-                else {
-                    if isNoResult {
-                        self.searchBar.resignFirstResponder()
+                if self.filteredCourses.count == 0 {
+                    if self.isNoResult {
+                        searchBar.resignFirstResponder()
                         return
                     }
-                    filteredCourses = []
-                    filteredCourses = courselist.filter { $0.name?.contains((text).uppercased() ) == true}
+                    self.filteredCourses = self.courselist.filter { $0.name?.contains((text).uppercased()) == true }
+                }
+                else {
+                    self.filteredCourses = self.filteredCourses.filter {
+                        $0.name?.contains((text).uppercased()) == true
+                    }
                 }
             }
-            isNoResult = (filteredCourses.count == 0) ? true : false
+            self.isNoResult = (self.filteredCourses.count == 0) ? true : false
             self.listTableView.reloadData()
-            self.searchBar.resignFirstResponder()
-            
+            searchBar.resignFirstResponder()
         }
-
-        
+//        if let text = searchBar.text {
+//            if text == "" {
+//                if selectedFilter.selectedDays.isEmpty == false || selectedFilter.selectedMajor.isEmpty == false {
+//
+//                    reset()
+//                    searchBar.resignFirstResponder()
+//                    return
+//                }
+//
+//                filteredCourses = []
+//                self.listTableView.reloadData()
+//                searchBar.endEditing(true)
+//                return
+//            }
+//            else {
+//                reset()
+//                if filteredCourses.isEmpty == false && (selectedFilter.selectedDays.isEmpty == false || selectedFilter.selectedMajor.isEmpty == false) {
+//                    filteredCourses = filteredCourses.filter { $0.name?.contains((text).uppercased() ) == true }
+//                }
+//                else {
+//                    if isNoResult {
+//                        self.searchBar.resignFirstResponder()
+//                        return
+//                    }
+//                    filteredCourses = []
+//                    filteredCourses = courselist.filter { $0.name?.contains((text).uppercased() ) == true}
+//                }
+//            }
+//            isNoResult = (filteredCourses.count == 0) ? true : false
+//            self.listTableView.reloadData()
+//            self.searchBar.resignFirstResponder()
+//
+//        }
     }
-  
-    
 }
 
 //MARK: TableView Delegate & Data Source
@@ -519,16 +557,7 @@ extension CourseVC : UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as? CourseListCell else {
-            return UITableViewCell()
-        }
-        cell.detailTextLabel?.numberOfLines = 0
-        if filteredCourses.isEmpty == false {
-            let course = self.filteredCourses[indexPath.section]
-            cell.textLabel?.text = course.name
-            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD\n\(course.convertTimeAndDayToString())" : "By \(course.instructor!)\n\(course.convertTimeAndDayToString())"
-        }
-        else if isNoResult {
+        if isNoResult {
             let tempCell = UITableViewCell()
             tempCell.layer.borderWidth = Constant.addCourseCellBorderWidth
             tempCell.layer.borderColor = UIColor.themeColor.cgColor
@@ -537,14 +566,21 @@ extension CourseVC : UITableViewDelegate, UITableViewDataSource {
             tempCell.textLabel?.text = "NO RESULT"
             tempCell.textLabel?.font = getRigteous(size: 17)
             tempCell.textLabel?.textAlignment = .center
-            
-
             return tempCell
-            
         }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constant.courseListCellId) as? CourseListCell else {
+            return UITableViewCell()
+        }
+        cell.detailTextLabel?.numberOfLines = 0
+        //If there is filteredCourses, only filtered Courses
+        if self.filteredCourses.isEmpty == false {
+            let course = self.filteredCourses[indexPath.section]
+            cell.textLabel?.text = course.name
+            cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD\n\(course.convertTimeAndDayToString())" : "By \(course.instructor!)\n\(course.convertTimeAndDayToString())"
+        }
+        //If no filteredCourses, there is no filter
         else {
             let course = self.courselist[indexPath.section]
-
             cell.textLabel?.text = course.name
             cell.detailTextLabel?.text = (course.instructor)! == "TBD" ? "TBD\n\(course.convertTimeAndDayToString())" : "By \(course.instructor!)\n\(course.convertTimeAndDayToString())"
             cell.tag = course.hash!
@@ -568,19 +604,16 @@ extension CourseVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         guard let moreInfoVC = self.storyboard?.instantiateViewController(identifier: Constant.moreInfoVCId) as? MoreInfoVC else { return }
         
-        moreInfoVC.params = (filteredCourses.count == 0) ? courselist[indexPath.section] : filteredCourses[indexPath.section]
+        moreInfoVC.params = (self.filteredCourses.count == 0) ? self.courselist[indexPath.section] : self.filteredCourses[indexPath.section]
         if let courseHasLab = moreInfoVC.params.hasLab {
             if courseHasLab {
+                var labCourse = additionalCourses.filter { $0.name == moreInfoVC.params.name }
                 if moreInfoVC.params.number != nil {
-                    let labCourse = additionalCourses.filter { $0.name == moreInfoVC.params.name && $0.number == moreInfoVC.params.number }
-                    moreInfoVC.labCourse = labCourse.first
+                    //Only one lab is guaranteed
+                    labCourse = labCourse.filter { $0.number == moreInfoVC.params.number }
                 }
-                else {
-                    let labCourse = additionalCourses.filter { $0.name == moreInfoVC.params.name }
-                    moreInfoVC.labCourse = labCourse.first
-                }
+                moreInfoVC.labCourse = labCourse.first
             }
-            
         }
         self.present(moreInfoVC, animated: true, completion: nil)
     }
@@ -590,22 +623,19 @@ extension CourseVC : UITableViewDelegate, UITableViewDataSource {
             //If no result, only one cell is at top
             guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) else { return }
             cell.selectionStyle = .none
-            
             return
         }
         if let cell = tableView.cellForRow(at: indexPath) as? CourseListCell  {
-            
             let course = (self.filteredCourses.count > 0 && isNoResult == false) ? self.filteredCourses[indexPath.section] : self.courselist[indexPath.section]
             if let credit = course.credit {
-//                if credit + choosenCredits > 23 {
-//                    alert("You cannot take more than 23 credits")
-//                    return
-//                }
+                if credit + choosenCredits > 23 {
+                    self.alert("You cannot take more than 23 credits")
+                    return
+                }
             }
-            if selectedCourses.contains(course) || selectedCourses.first(where: { $0.name == course.name }) != nil {
-                alert("\(course.name!) is already in the cart")
+            if self.selectedCourses.contains(course) || self.selectedCourses.first(where: { $0.name == course.name }) != nil {
+                self.alert("\(course.name!) is already in the cart")
                 return
-                
             }
             UIView.transition(with: cell, duration: 0.7, options: .transitionFlipFromBottom, animations: {
                 self.selectedCourses.append(course)
@@ -615,12 +645,10 @@ extension CourseVC : UITableViewDelegate, UITableViewDataSource {
                 }, completion: { _ in })
             }, completion: { finished in
                 
-//                if let credit = course.credit {
-//                    self.choosenCredits += credit
-//                }
+                if let credit = course.credit {
+                    self.choosenCredits += credit
+                }
             })
-            
-          
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

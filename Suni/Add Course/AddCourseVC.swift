@@ -16,19 +16,7 @@ class AddCourseVC: UIViewController {
     var courseVC : CourseVC?
     var manualVC : ManualVC?
 
-    
-    
-    
     @IBOutlet var saveBtn: UIBarButtonItem!
-    
-    
-//    private var choosenCredits : Int = 0 {
-//        didSet {
-//            print(self.choosenCredits)
-//        }
-//    }
-
-    
     override func viewDidLoad() {
         self.setup()
     }
