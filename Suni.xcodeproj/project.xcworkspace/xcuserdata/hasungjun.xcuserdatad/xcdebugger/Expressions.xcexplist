@@ -3,88 +3,16 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ScheduleVC.temp(_:):ScheduleVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "appDelegate.existedCourses">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "PhoneBoothVC.tableView(_:cellForRowAt:):PhoneBoothVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "pvo.name!">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AddCourseVC.getCourseData():AddCourseVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "additionalCourses">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in SelectedCourseModalVC.deleteCourse(_:):SelectedCourseModalVC.swift">
-      </ContextState>
-      <ContextState
-         contextName = "CalendarVC.detailContainer.getter:CalendarVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "detailContainer.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AddCourseVC.setup():AddCourseVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "additionalCourses">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "AddCourseVC.saveClicked(_:):AddCourseVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "sd.getObject(forKey: &quot;course&quot;, castTo: [CourseVO].self)">
-            </PersistentString>
-            <PersistentString
                value = "selectedCourses">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "CalendarVC.tableView(_:cellForRowAt:):CalendarVC.swift">
-         <PersistentStrings>
             <PersistentString
-               value = "indexPath.row">
+               value = "originalCourses">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ScheduleVC.drawSchedule():ScheduleVC.swift">
-         <PersistentStrings>
             <PersistentString
-               value = "self.collectionView.cellForItem(at: IndexPath(row: row, section: section))">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ScheduleVC.viewWillAppear(_:):ScheduleVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "course.bgColor.color">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ScheduleVC.viewDidAppear(_:):ScheduleVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "appDelegate.existedCourses">
+               value = "sd.getObject(forKey: &quot;course&quot;, castTo: [CourseVO].self)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -106,27 +34,69 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CalendarVC.tableView(_:numberOfRowsInSection:):CalendarVC.swift">
+         contextName = "CalendarVC.calendar(_:didSelect:at:):CalendarVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.detailContainer[&quot;title&quot;]">
+               value = "detailContainer">
             </PersistentString>
-            <PersistentString
-               value = "ret.count">
-            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CalendarVC.detailContainer.getter:CalendarVC.swift">
+         <PersistentStrings>
             <PersistentString
                value = "detailContainer.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "PhoneBoothVC.viewDidLoad():PhoneBoothVC.swift">
+         contextName = "AddCourseVC.prepare(for:sender:):AddCourseVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "others">
+               value = "segue.identifier!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddCourseVC.setup():AddCourseVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "additionalCourses">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CalendarVC.tableView(_:cellForRowAt:):CalendarVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddCourseVC.getCourseData():AddCourseVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "additionalCourses">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PhoneBoothVC.getPhoneNumbers():PhoneBoothVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "pvo.name!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SelectedCourseModalVC.setupInfo():SelectedCourseModalVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.currentCourse.name">
             </PersistentString>
             <PersistentString
-               value = "">
+               value = "self.currentCourse.type">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -142,10 +112,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "PhoneBoothVC.getPhoneNumbers():PhoneBoothVC.swift">
+         contextName = "ScheduleVC.viewWillAppear(_:):ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "course.bgColor.color">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PhoneBoothVC.tableView(_:cellForRowAt:):PhoneBoothVC.swift">
          <PersistentStrings>
             <PersistentString
                value = "pvo.name!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ManualVC.doneClicked(_:):ManualVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.fromTime">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -161,10 +147,33 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CalendarVC.calendar(_:didSelect:at:):CalendarVC.swift">
+         contextName = "PhoneBoothVC.viewDidLoad():PhoneBoothVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "detailContainer">
+               value = "others">
+            </PersistentString>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleVC.viewDidAppear(_:):ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "course.name">
+            </PersistentString>
+            <PersistentString
+               value = "v.course">
+            </PersistentString>
+            <PersistentString
+               value = "appDelegate.existedCourses">
+            </PersistentString>
+            <PersistentString
+               value = "v.bgColor">
+            </PersistentString>
+            <PersistentString
+               value = "v">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -178,6 +187,39 @@
                value = "filteredCourses">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleVC.temp(_:):ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "appDelegate.existedCourses">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CalendarVC.tableView(_:numberOfRowsInSection:):CalendarVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.detailContainer[&quot;title&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "ret.count">
+            </PersistentString>
+            <PersistentString
+               value = "detailContainer.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleVC.drawSchedule():ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.collectionView.cellForItem(at: IndexPath(row: row, section: section))">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SelectedCourseModalVC.deleteCourse(_:):SelectedCourseModalVC.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

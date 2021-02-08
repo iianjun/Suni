@@ -58,6 +58,12 @@ extension UIColor {
         }
     }
     
+    static var todayColor : UIColor {
+        get {
+            return UIColor(red: 0.49, green: 0.31, blue: 0.87, alpha: 1.0)
+        }
+    }
+    
     static var pastel : [UIColor] {
         get {
             return [UIColor(red: 0.95, green: 0.69, blue: 0.81, alpha: 1.00), UIColor(red: 0.73, green: 0.84, blue: 0.94, alpha: 1.00), UIColor(red: 0.84, green: 0.94, blue: 0.96, alpha: 1.00), UIColor(red: 0.65, green: 0.84, blue: 0.84, alpha: 1.00), UIColor(red: 0.95, green: 0.91, blue: 0.80, alpha: 1.00), UIColor(red: 0.76, green: 0.84, blue: 0.66, alpha: 1.00), UIColor(red: 0.69, green: 0.67, blue: 0.79, alpha: 1.00), UIColor(red: 0.94, green: 0.84, blue: 0.73, alpha: 1.00), UIColor(red: 0.67, green: 0.45, blue: 0.45, alpha: 1.00), UIColor(red: 0.82, green: 0.81, blue: 0.78, alpha: 1.00), UIColor(red: 0.34, green: 0.79, blue: 0.80, alpha: 1.00), UIColor(red: 0.99, green: 0.73, blue: 0.67, alpha: 1.00)]
@@ -160,6 +166,8 @@ protocol ObjectSavable {
     func setObject<Object>(_ object: Object, forKey: String) throws where Object: Encodable
     func getObject<Object>(forKey: String, castTo type: Object.Type) throws -> Object where Object: Decodable
 }
+
+//MARK: User Defaults To Save Object
 extension UserDefaults: ObjectSavable {
     func setObject<Object>(_ object: Object, forKey: String) throws where Object: Encodable {
         let encoder = JSONEncoder()
@@ -182,6 +190,82 @@ extension UserDefaults: ObjectSavable {
         }
     }
 }
+
+//MARK: Extension UITextField
+extension UITextField {
+
+    func addInputViewDatePicker(target: Any, selector: Selector) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 216))
+        datePicker.datePickerMode = .time
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.date = dateFormatter.date(from: "09:00")!
+        datePicker.minimumDate = dateFormatter.date(from: "09:00")
+        datePicker.maximumDate = dateFormatter.date(from: "21:00")
+        
+        self.inputView = datePicker
+
+        //Add Tool Bar as input AccessoryView
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 40))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelBarButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
+        let doneBarButton = UIBarButtonItem(title: "Done", style: .plain, target: target, action: selector)
+        toolBar.setItems([cancelBarButton, flexibleSpace, doneBarButton], animated: false)
+
+        self.inputAccessoryView = toolBar
+ }
+
+   @objc func cancelPressed() {
+         self.resignFirstResponder()
+   }
+}
+
+//MARK: Clear UIImage
+extension UIImage {
+    convenience init(color: UIColor, size: CGSize) {
+        UIGraphicsBeginImageContextWithOptions(size, false, 1)
+        color.set()
+        let ctx = UIGraphicsGetCurrentContext()!
+        ctx.fill(CGRect(origin: .zero, size: size))
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        self.init(data: image.pngData()!)!
+    }
+}
+
+//MARK: Extension CALayer
+extension CALayer {
+    func chooseBorder (edge: UIRectEdge, thickness: CGFloat) {
+        let border = CALayer()
+        switch edge {
+            case UIRectEdge.top:
+             border.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: thickness)
+
+            case UIRectEdge.bottom:
+             border.frame = CGRect(x: 0, y: self.bounds.height - thickness,  width: self.bounds.width, height: thickness)
+
+            case UIRectEdge.left:
+             border.frame = CGRect(x: 0, y: 0,  width: thickness, height: self.bounds.height)
+
+            case UIRectEdge.right:
+             border.frame = CGRect(x: self.bounds.width - thickness, y: 0,  width: thickness, height: self.bounds.height)
+
+            default:
+             break
+        }
+        border.backgroundColor = UIColor.themeColor.cgColor
+        self.addSublayer(border)
+    }
+    
+        
+}
+
 enum ObjectSavableError: String, LocalizedError {
     case unableToEncode = "Unable to encode object into data"
     case noValue = "No data object found for the given key"

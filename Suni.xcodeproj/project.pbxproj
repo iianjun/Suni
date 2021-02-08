@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76184EAB25CFFCBE002102E9 /* CourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76184EAA25CFFCBE002102E9 /* CourseVC.swift */; };
+		76184EAE25CFFCCA002102E9 /* ManualVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76184EAD25CFFCCA002102E9 /* ManualVC.swift */; };
 		763BAF1325B8714E005F7EF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 763BAF1525B8714E005F7EF8 /* InfoPlist.strings */; };
 		763BAF2025B874E0005F7EF8 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF1F25B874E0005F7EF8 /* ScheduleVC.swift */; };
 		763BAF2425B87509005F7EF8 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF2325B87509005F7EF8 /* CalendarVC.swift */; };
@@ -61,6 +63,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		76184EAA25CFFCBE002102E9 /* CourseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseVC.swift; sourceTree = "<group>"; };
+		76184EAD25CFFCCA002102E9 /* ManualVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualVC.swift; sourceTree = "<group>"; };
 		763BAEFC25B87012005F7EF8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		763BAEFD25B87012005F7EF8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		763BAF1425B8714E005F7EF8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 				763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */,
 				76A90DD825BE7883002E0A69 /* CourseListCell.swift */,
 				76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */,
+				76184EAA25CFFCBE002102E9 /* CourseVC.swift */,
+				76184EAD25CFFCCA002102E9 /* ManualVC.swift */,
 			);
 			path = "Add Course";
 			sourceTree = "<group>";
@@ -395,6 +401,7 @@
 				763BAF2425B87509005F7EF8 /* CalendarVC.swift in Sources */,
 				76684C4025CA585E00B8C65D /* FSCalendarHeaderView.m in Sources */,
 				76684C3825CA585E00B8C65D /* FSCalendarCollectionView.m in Sources */,
+				76184EAB25CFFCBE002102E9 /* CourseVC.swift in Sources */,
 				76684C4425CA585E00B8C65D /* FSCalendarCollectionViewLayout.m in Sources */,
 				763BAF3F25B98318005F7EF8 /* TimetableCell.swift in Sources */,
 				768D67AB25B86FC80053DE0C /* Suni.xcdatamodeld in Sources */,
@@ -411,6 +418,7 @@
 				768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */,
 				76684C3D25CA585E00B8C65D /* FSCalendarExtensions.m in Sources */,
 				76684C3E25CA585E00B8C65D /* FSCalendarTransitionCoordinator.m in Sources */,
+				76184EAE25CFFCCA002102E9 /* ManualVC.swift in Sources */,
 				7663891A25C06EAF00B930AC /* CourseVO.swift in Sources */,
 				76684C3F25CA585E00B8C65D /* FSCalendarDelegationProxy.m in Sources */,
 				76684C3925CA585E00B8C65D /* FSCalendarDelegationFactory.m in Sources */,
