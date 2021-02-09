@@ -33,12 +33,8 @@ class CalendarVC : UIViewController {
             layerOfWeekdayView.layer.chooseBorder(edge: .bottom, thickness: Constant.timetableBorderWidth)
             self.calendar.calendarWeekdayView.addSubview(layerOfWeekdayView)
             self.calendar.calendarWeekdayView.bringSubviewToFront(layerOfWeekdayView)
-            print(self.calendar.calendarWeekdayView.subviews.count)
-            print("didDrawBorder : \(didDrawBorder)")
             didDrawBorder = true
         }
-        
-        
     }
     func setup() {
         self.initHeader()

@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         sleep(1)
         let sd = UserDefaults.standard
-        let isFirstTime = sd.bool(forKey: "firstTime")
-        if isFirstTime {
-            sd.setValue(false, forKey: "firstTime")
+        let didLaunchBefore = sd.bool(forKey: "firstTime")
+        if !didLaunchBefore {
+            sd.setValue(true, forKey: "firstTime")
             do {
                 try sd.setObject([CourseVO](), forKey: "course")
             }

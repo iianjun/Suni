@@ -84,9 +84,6 @@ class ScheduleVC : UIViewController {
                     
                     self.collectionView.addSubview(v)
                     self.collectionView.bringSubviewToFront(v)
-                    print("Sucess2222")
-    
-            
                 }
 
             }
