@@ -19,16 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sd = UserDefaults.standard
         let isFirstTime = sd.bool(forKey: "firstTime")
         if isFirstTime {
-            sd.setValue(true, forKey: "firstTime")
+            sd.setValue(false, forKey: "firstTime")
             do {
-                sd.setValue([], forKey: "course")
-            } catch {
-                print("couldn't save empty CourseVO array for the first time")
+                try sd.setObject([CourseVO](), forKey: "course")
+            }
+            catch {
                 print(error.localizedDescription)
             }
             
         }
-        
+
         return true
     }
 
