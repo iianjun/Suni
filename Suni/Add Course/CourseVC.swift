@@ -274,7 +274,7 @@ class CourseVC: UIViewController {
         //Only major filter
         else if selectedFilter.selectedMajor.isEmpty == false && self.selectedFilter.selectedDays.isEmpty {
             for major in self.selectedFilter.0 {
-                self.filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
+                self.filteredCourses.append(contentsOf: self.courselist.filter { $0.major == major })
             }
         }
         //Only days filter
@@ -283,22 +283,19 @@ class CourseVC: UIViewController {
                 self.filteredCourses.append(contentsOf: self.courselist.filter { $0.days?.contains(self.selectedFilter.selectedDays[0]) == true })
             }
             else {
-                self.filteredCourses.append(contentsOf: self.courselist.filter { $0.days == days })
+                self.filteredCourses.append(contentsOf: self.courselist.filter { $0.days == self.selectedFilter.selectedDays })
             }
         }
         //Both major and days filter
         else if self.selectedFilter.selectedMajor.isEmpty == false && self.selectedFilter.selectedDays.isEmpty == false {
             for major in self.selectedFilter.0 {
-                self.filteredCourses.append(contentsOf: courselist.filter { $0.major == major })
+                self.filteredCourses.append(contentsOf: self.courselist.filter { $0.major == major })
             }
             if self.selectedFilter.selectedDays.count == 1 {
                 self.filteredCourses = self.filteredCourses.filter { $0.days?.contains(self.selectedFilter.selectedDays[0]) == true }
             }
             else {
-                let days = self.selectedFilter.selectedDays.sorted(by: {
-                    convertStringToRow(day: $0) < convertStringToRow(day: $1)
-                })
-                self.filteredCourses = self.filteredCourses.filter { $0.days ==  days }
+                self.filteredCourses = self.filteredCourses.filter { $0.days ==  self.selectedFilter.selectedDays }
             }
         }
         //No filtered Courses

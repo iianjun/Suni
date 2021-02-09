@@ -6,13 +6,13 @@
          contextName = "AddCourseVC.saveClicked(_:):AddCourseVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "originalCourses">
-            </PersistentString>
-            <PersistentString
                value = "sd.getObject(forKey: &quot;course&quot;, castTo: [CourseVO].self)">
             </PersistentString>
             <PersistentString
                value = "selectedCourses">
+            </PersistentString>
+            <PersistentString
+               value = "originalCourses">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -128,32 +128,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AddCourseVC.searchBarSearchButtonClicked(_:):AddCourseVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "isNoResult">
-            </PersistentString>
-            <PersistentString
-               value = "filteredCourses">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "ManualVC.doneClicked(_:):ManualVC.swift">
          <PersistentStrings>
             <PersistentString
                value = "self.fromTime">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "PhoneBoothVC.viewDidLoad():PhoneBoothVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "others">
-            </PersistentString>
-            <PersistentString
-               value = "">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -189,6 +167,28 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "PhoneBoothVC.viewDidLoad():PhoneBoothVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "others">
+            </PersistentString>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddCourseVC.searchBarSearchButtonClicked(_:):AddCourseVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "isNoResult">
+            </PersistentString>
+            <PersistentString
+               value = "filteredCourses">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ScheduleVC.temp(_:):ScheduleVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -201,6 +201,15 @@
          <PersistentStrings>
             <PersistentString
                value = "filteredCourses">
+            </PersistentString>
+            <PersistentString
+               value = "days">
+            </PersistentString>
+            <PersistentString
+               value = "self.selectedFilter.selectedDays">
+            </PersistentString>
+            <PersistentString
+               value = "$0.days">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
