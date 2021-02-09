@@ -6,15 +6,12 @@
          contextName = "AddCourseVC.saveClicked(_:):AddCourseVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "sd.getObject(forKey: &quot;course&quot;, castTo: [CourseVO].self)">
-            </PersistentString>
-            <PersistentString
-               value = "selectedCourses">
-            </PersistentString>
-            <PersistentString
-               value = "originalCourses">
+               value = "originalCourses.isEmpty">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in AddCourseVC.saveClicked(_:):AddCourseVC.swift">
       </ContextState>
       <ContextState
          contextName = "ScheduleVC.takeScreenshot(_:):ScheduleVC.swift">
@@ -66,6 +63,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "CourseVC.getCourseData():CourseVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "startTime">
+            </PersistentString>
+            <PersistentString
+               value = "cvo.time">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "CalendarVC.tableView(_:cellForRowAt:):CalendarVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -112,10 +120,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ScheduleVC.viewWillAppear(_:):ScheduleVC.swift">
+         contextName = "CalendarVC.viewDidAppear(_:):CalendarVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "course.bgColor.color">
+               value = "detailContainer">
+            </PersistentString>
+            <PersistentString
+               value = "events">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -128,6 +139,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ScheduleVC.viewWillAppear(_:):ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "course.bgColor.color">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ManualVC.doneClicked(_:):ManualVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -136,13 +155,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CalendarVC.viewDidAppear(_:):CalendarVC.swift">
+         contextName = "PhoneBoothVC.viewDidLoad():PhoneBoothVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "detailContainer">
+               value = "others">
             </PersistentString>
             <PersistentString
-               value = "events">
+               value = "">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -163,17 +182,6 @@
             </PersistentString>
             <PersistentString
                value = "v">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "PhoneBoothVC.viewDidLoad():PhoneBoothVC.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "others">
-            </PersistentString>
-            <PersistentString
-               value = "">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -237,6 +245,20 @@
       </ContextState>
       <ContextState
          contextName = "closure #1 in SelectedCourseModalVC.deleteCourse(_:):SelectedCourseModalVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CourseVC.initBody():CourseVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "courselist">
+            </PersistentString>
+            <PersistentString
+               value = "courselist[0].time!">
+            </PersistentString>
+            <PersistentString
+               value = "courselist[0].time!.start">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

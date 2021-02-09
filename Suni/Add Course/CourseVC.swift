@@ -20,12 +20,9 @@ class CourseVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var cartLabel: UILabel!
     @IBOutlet weak var cartCollectionView: UICollectionView!
+    
     @IBOutlet weak var listTableView: UITableView!
-
     @IBOutlet var listTableContainerView: CSViewWithButton!
-    
-    
-    
     
     @IBOutlet weak var firstHorizontalLine: UIView!
     @IBOutlet weak var secondHorizontalLine: UIView!
@@ -34,33 +31,28 @@ class CourseVC: UIViewController {
     
     @IBOutlet var listTableViewConstraint: NSLayoutConstraint!
     
-    
     private var constantToExpand : CGFloat = 0
     private var constantToShrink : CGFloat = 0
     private var horizontalLines : [UIView] = []
     
-    private var choosenCredits : Int = 0 {
-        didSet {
-            print(self.choosenCredits)
-        }
-    }
-    var majors : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC", "ETC"]
-    var days : [String] = ["MON", "TUE", "WED", "THU", "FRI"]
-    var isNoResult : Bool = false
+    private var choosenCredits : Int = 0
+    private var majors : [String] = ["AMS", "BUS", "CSE", "TSM", "MEC", "ETC"]
+    private var days : [String] = ["MON", "TUE", "WED", "THU", "FRI"]
+    private var isNoResult : Bool = false
     
-    var additionalCourses : [CourseVO] = []
-    var courselist = [CourseVO]()
+    public var additionalCourses : [CourseVO] = []
+    public var courselist = [CourseVO]()
     
-    var filteredCourses : [CourseVO] = []
-    var selectedCourses : [CourseVO] = [] {
+    public var filteredCourses : [CourseVO] = []
+    public var selectedCourses : [CourseVO] = [] {
         willSet (newValue) {
             self.cartCollectionView.reloadData()
             self.cartCollectionView.isScrollEnabled = newValue.count > 3 ? true : false
             
         }
     }
-    var i = 0
-    var selectedFilter : (selectedMajor : [String], selectedDays: [String]) = ([], []) {
+
+    public var selectedFilter : (selectedMajor : [String], selectedDays: [String]) = ([], []) {
 //        willSet (newVal) {
 //            self.listTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
 //            self.searchBar.resignFirstResponder()
@@ -124,12 +116,17 @@ class CourseVC: UIViewController {
         }
     }
     
+    //MARK: Functions
+    override func viewDidLoad() {
+        self.getCourseData()
+        self.horizontalLines = [self.firstHorizontalLine, self.secondHorizontalLine, self.thirdHorizontalLine, self.fourthHorizontalLine]
+        self.initBody()
+    }
     
-    func getCourseData() {
-        
+    
+    private func getCourseData() {
         if let path = Bundle.main.path(forResource: "all_courses", ofType: "json") {
             do {
-                
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
                 for course in jsonResult {
@@ -159,9 +156,6 @@ class CourseVC: UIViewController {
                     else {
                         self.courselist.append(cvo)
                     }
-                    if cvo.name!.count >= 7 {
-                        print(cvo.name!)
-                    }
                 }
             } catch {
                 NSLog("Error for Parsing JSON format file!")
@@ -170,13 +164,8 @@ class CourseVC: UIViewController {
         }
         
     }
-    override func viewDidLoad() {
-        self.getCourseData()
-        self.horizontalLines = [self.firstHorizontalLine, self.secondHorizontalLine, self.thirdHorizontalLine, self.fourthHorizontalLine]
-        self.initBody()
-    }
     
-    func initBody () {
+    private func initBody () {
         //HR line
         for line in self.horizontalLines {
             line.backgroundColor = .themeColor
@@ -188,7 +177,7 @@ class CourseVC: UIViewController {
         self.setupCourseList()
     }
     
-    func setupMajor() {
+    private func setupMajor() {
         self.majorLabel.text = "Major"
         self.majorLabel.textColor = .themeColor
         self.majorLabel.font = getRigteous(size: self.majorLabel.font.pointSize)
@@ -206,7 +195,7 @@ class CourseVC: UIViewController {
         
     }
     
-    func setupDay() {
+    private func setupDay() {
         //"Day" label set up
         self.dayLabel.text = "Day"
         self.dayLabel.textColor = .themeColor
@@ -221,7 +210,7 @@ class CourseVC: UIViewController {
         self.dayCollectionView.allowsMultipleSelection = true
     }
     
-    func setupSearchBar() {
+    private  func setupSearchBar() {
         self.searchBar.layer.borderWidth = 3.0
         self.searchBar.layer.borderColor = UIColor.themeColor.cgColor
         self.searchBar.delegate = self
@@ -258,11 +247,11 @@ class CourseVC: UIViewController {
         }
 
     }
-    @objc func clear (_ sender: UIButton) {
+    @objc private func clear (_ sender: UIButton) {
         self.reset()
     }
     
-    func reset() {
+    private func reset() {
         self.filteredCourses = []
         self.isNoResult = false
         
@@ -305,11 +294,11 @@ class CourseVC: UIViewController {
         self.listTableView.reloadData()
     }
     
-    @objc func closeKeyboard(_ sender: UIButton) {
+    @objc private func closeKeyboard(_ sender: UIButton) {
         self.searchBar.resignFirstResponder()
     }
     
-    func setupCart() {
+    private func setupCart() {
         self.cartLabel.text = "Cart"
         self.cartLabel.textColor = .themeColor
         self.cartLabel.font = getRigteous(size: self.cartLabel.font.pointSize)
@@ -333,7 +322,7 @@ class CourseVC: UIViewController {
         
     }
     
-    func setupCourseList() {
+    private func setupCourseList() {
         self.listTableView.delegate = self
         self.listTableView.dataSource = self
         self.listTableView.bounces = false
@@ -344,9 +333,8 @@ class CourseVC: UIViewController {
         self.listTableContainerView.button.addTarget(self, action: #selector(expandOrShrink(_ :)), for: .touchUpInside)
         self.listTableContainerView.addSubview(self.listTableView)
 
-        
     }
-    @objc func expandOrShrink(_ sender : Any) {
+    @objc private func expandOrShrink(_ sender : Any) {
         
         let isExpanded = self.listTableContainerView.isExpanded
         if isExpanded {
@@ -633,8 +621,9 @@ extension CourseVC : UITableViewDelegate, UITableViewDataSource {
                 self.alert("\(course.name!) is already in the cart")
                 return
             }
+            self.selectedCourses.append(course)
             UIView.transition(with: cell, duration: 0.7, options: .transitionFlipFromBottom, animations: {
-                self.selectedCourses.append(course)
+                
                 UIView.animate(withDuration: 0.3, delay: 0.4, options: .curveEaseIn, animations: {
                     cell.backgroundColor = .themeColor
                     cell.backgroundColor = .white
@@ -645,6 +634,7 @@ extension CourseVC : UITableViewDelegate, UITableViewDataSource {
                     self.choosenCredits += credit
                 }
             })
+            
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

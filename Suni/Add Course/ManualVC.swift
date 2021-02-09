@@ -18,13 +18,14 @@ class ManualVC: UIViewController {
     @IBOutlet var room_tf: UITextField!
     @IBOutlet var instructor_tf: UITextField!
     
-    var days = ["MON", "TUE", "WED" , "THU", "FRI"]
-    var selectedDays : [String] = []
+    private var days = ["MON", "TUE", "WED" , "THU", "FRI"]
+    public var selectedDays : [String] = []
 
     override func viewDidLoad() {
         self.setup()
     }
-    func setup() {
+    
+    private func setup() {
         self.dayLabel.text = "Day"
         self.dayLabel.textColor = .themeColor
         self.dayLabel.font = getRigteous(size: self.dayLabel.font.pointSize)
@@ -41,7 +42,7 @@ class ManualVC: UIViewController {
         
     }
     
-    func setupTimetf() {
+    private func setupTimetf() {
         self.fromTime.borderStyle = .none
         self.toTime.borderStyle = .none
         self.fromTime.layer.borderColor = UIColor.themeColor.cgColor
@@ -93,8 +94,6 @@ class ManualVC: UIViewController {
         
         for tf in arrTf {
             tf?.borderStyle = .roundedRect
-            
-//
             tf?.layer.borderWidth = Constant.addCourseCellBorderWidth
             tf?.layer.borderColor = UIColor.themeColor.cgColor
             tf?.layer.cornerRadius = Constant.cornerRadius
@@ -153,7 +152,7 @@ extension ManualVC : UICollectionViewDelegateFlowLayout {
 
 //MARK: UITextField Delegate
 extension ManualVC : UITextFieldDelegate {
-func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

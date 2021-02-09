@@ -16,6 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         sleep(1)
+        let sd = UserDefaults.standard
+        let isFirstTime = sd.bool(forKey: "firstTime")
+        if isFirstTime {
+            sd.setValue(true, forKey: "firstTime")
+            do {
+                sd.setValue([], forKey: "course")
+            } catch {
+                print("couldn't save empty CourseVO array for the first time")
+                print(error.localizedDescription)
+            }
+            
+        }
+        
         return true
     }
 

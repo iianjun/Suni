@@ -14,7 +14,7 @@ class ScheduleVC : UIViewController {
     var remainingBackgroundColor = UIColor.pastel
     
     var existedView : [CourseTimetableView] = []
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
     var cellWidth : CGFloat {
@@ -36,57 +36,57 @@ class ScheduleVC : UIViewController {
     func setup() {
         self.initHeader()
         self.initTimetable()
+//        print(appDelegate.existedCourses)
 
     }
+    
     override func viewDidAppear(_ animated: Bool) {
-        
         let sd = UserDefaults.standard
         do {
 
             let selectedCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
-            
+//            print(selectedCourses[0].name!)
             for course in selectedCourses {
                 //여기서
-                if !appDelegate.existedCourses.contains(course) {
-                    for day in course.days! {
-                        
-                        let row = convertStringToRow(day: day)
-                        let startTime = convertDateToString(time: course.time!.start)
-                        let section = convertStringToSection(time: String(startTime.split(separator: ":")[0]))
-                        
-                        let x = CGFloat((course.time?.duration)!) / CGFloat(3600)
-                        let lectureHeight = ((x * 10).rounded() / 10) * cellHeight
-                        
-                        var min = Double(startTime.split(separator: ":")[1])!
-                        min /= 60.0
-                        
-                        guard let cell = self.collectionView.cellForItem(at: IndexPath(row: row, section: section)) else { return }
-                        let v = CourseTimetableView(frame: CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y + (cellHeight * CGFloat(min)), width: self.cellWidth - Constant.timetableBorderWidth, height: lectureHeight))
-                        v.label.text = course.name!
-                        v.label.textColor = .themeTextColor
-                        v.containedCourse = course
-                        if course.bgColor.color != UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
-                            v.backgroundColor = course.bgColor.color
-                        }
-                        
-                        else {
-                            let ranColor = remainingBackgroundColor.removeFirst()
-                            v.backgroundColor = ranColor
-                            course.bgColor.color = ranColor
-                        }
-                        
-                        v.isUserInteractionEnabled = true
-                        let gesture = UITapGestureRecognizer(target: self, action: #selector(presentDetailViewOfSelectedCourse(_ :)))
-                        v.addGestureRecognizer(gesture)
-                        
-                        self.collectionView.addSubview(v)
-                        self.collectionView.bringSubviewToFront(v)
-                        
-                        
-
+                
+                for day in course.days! {
+                    
+                    let row = self.convertStringToRow(day: day)
+                    let startTime = self.convertDateToString(time: course.time!.start)
+                    let section = self.convertStringToSection(time: String(startTime.split(separator: ":")[0]))
+                    
+                    let x = CGFloat((course.time?.duration)!) / CGFloat(3600)
+                    let lectureHeight = ((x * 10).rounded() / 10) * self.cellHeight
+                    
+                    var min = Double(startTime.split(separator: ":")[1])!
+                    min /= 60.0
+                    
+                    guard let cell = self.collectionView.cellForItem(at: IndexPath(row: row, section: section)) else { return }
+                    let v = CourseTimetableView(frame: CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y + (self.cellHeight * CGFloat(min)), width: self.cellWidth - Constant.timetableBorderWidth, height: lectureHeight))
+                    v.label.text = course.name!
+                    v.label.textColor = .themeTextColor
+                    
+                    v.containedCourse = course
+                    if course.bgColor.color != UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
+                        v.backgroundColor = course.bgColor.color
                     }
                     
-                    appDelegate.existedCourses.append(course)
+                    else {
+                        //dont remove error when no more remainingBackground
+                        let ranColor = self.remainingBackgroundColor.removeFirst()
+                        v.backgroundColor = ranColor
+                        course.bgColor.color = ranColor
+                    }
+                    
+                    v.isUserInteractionEnabled = true
+                    let gesture = UITapGestureRecognizer(target: self, action: #selector(self.presentDetailViewOfSelectedCourse(_ :)))
+                    v.addGestureRecognizer(gesture)
+                    
+                    self.collectionView.addSubview(v)
+                    self.collectionView.bringSubviewToFront(v)
+                    print("Sucess2222")
+    
+            
                 }
 
             }
@@ -95,6 +95,9 @@ class ScheduleVC : UIViewController {
         } catch {
             print(error.localizedDescription)
         }
+    
+        
+    
 
     }
     @objc func presentDetailViewOfSelectedCourse(_ sender : UIGestureRecognizer) {
@@ -139,25 +142,7 @@ class ScheduleVC : UIViewController {
         
         
     }
-    @objc func temp (_ sender: UIButton) {
-        let sd = UserDefaults.standard
-    
-        if appDelegate.existedCourses.count != 0 {
-            let ran = appDelegate.existedCourses.removeFirst()
-            do {
-                try sd.setObject(appDelegate.existedCourses, forKey: "course")
-                print("Removed Completed!")
-            }
-            catch { print(error.localizedDescription)}
-            for v in collectionView.subviews {
-                if let courseView = v as? CourseTimetableView {
-                    if courseView.containedCourse == ran {
-                        courseView.removeFromSuperview()
-                    }
-                }
-            }
-        }
-    }
+
     @objc func addCourse (_ sender: UIButton) {
         guard let addvc = self.storyboard?.instantiateViewController(identifier: Constant.addVCId) else { return }
         self.navigationController?.pushViewController(addvc, animated: true)
