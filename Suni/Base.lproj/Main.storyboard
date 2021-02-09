@@ -845,7 +845,7 @@
                                     <constraint firstAttribute="height" constant="3" id="c4a-E4-ZB4"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gyc-2w-40X">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gyc-2w-40X" customClass="CSViewWithButton" customModule="Suni" customModuleProvider="target">
                                 <rect key="frame" x="16" y="292" width="358" height="301"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-DJ-fbp">
@@ -887,8 +887,8 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="d1j-DJ-fbp" secondAttribute="bottom" constant="5" id="6g3-qM-eah"/>
-                                    <constraint firstItem="d1j-DJ-fbp" firstAttribute="top" secondItem="Gyc-2w-40X" secondAttribute="top" constant="5" id="7D0-iQ-x2q"/>
                                     <constraint firstItem="d1j-DJ-fbp" firstAttribute="leading" secondItem="Gyc-2w-40X" secondAttribute="leading" constant="15" id="Pjz-dV-xd7"/>
+                                    <constraint firstItem="d1j-DJ-fbp" firstAttribute="top" secondItem="Gyc-2w-40X" secondAttribute="top" constant="5" id="kt2-mg-VVu"/>
                                     <constraint firstAttribute="trailing" secondItem="d1j-DJ-fbp" secondAttribute="trailing" constant="15" id="n6O-8F-iU5"/>
                                 </constraints>
                             </view>
@@ -953,7 +953,7 @@
                         <outlet property="dayLabel" destination="m9X-XJ-6b2" id="SQI-cE-Ilc"/>
                         <outlet property="firstHorizontalLine" destination="Lpc-Dq-miz" id="6wl-q6-SUf"/>
                         <outlet property="fourthHorizontalLine" destination="kvh-1b-rNP" id="0Bx-Xe-znY"/>
-                        <outlet property="listTableContainerView" destination="Gyc-2w-40X" id="2pU-qH-ew0"/>
+                        <outlet property="listTableContainerView" destination="Gyc-2w-40X" id="u7R-cc-eDA"/>
                         <outlet property="listTableView" destination="d1j-DJ-fbp" id="ONe-iv-yjj"/>
                         <outlet property="listTableViewConstraint" destination="qb2-g2-AL9" id="muO-r6-UTM"/>
                         <outlet property="majorCollectionView" destination="WmC-85-2Xr" id="m4S-hL-Tlm"/>
@@ -1007,7 +1007,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQC-02-W09">
-                                                            <rect key="frame" x="13.000000000000004" y="10" width="39.333333333333343" height="20"/>
+                                                            <rect key="frame" x="13.000000000000004" y="10.666666666666666" width="39.333333333333343" height="18.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1026,18 +1026,18 @@
                                         </cells>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwI-Yg-VtP">
-                                        <rect key="frame" x="172.33333333333334" y="55" width="13.333333333333343" height="34"/>
+                                        <rect key="frame" x="174" y="55" width="10" height="34"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hn1-xF-r2B">
-                                        <rect key="frame" x="200.66666666666663" y="55" width="157.33333333333337" height="34"/>
+                                        <rect key="frame" x="199" y="55" width="159" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d6d-MT-z6B">
-                                        <rect key="frame" x="0.0" y="55" width="157.33333333333334" height="34"/>
+                                        <rect key="frame" x="0.0" y="55" width="159" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -1050,12 +1050,12 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WWZ-OC-5Bd">
-                                        <rect key="frame" x="0.0" y="164" width="157.33333333333334" height="45"/>
+                                        <rect key="frame" x="0.0" y="164" width="159" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bkc-dN-w2w">
-                                        <rect key="frame" x="200.66666666666663" y="164" width="157.33333333333337" height="45"/>
+                                        <rect key="frame" x="199" y="164" width="159" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>

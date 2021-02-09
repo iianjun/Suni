@@ -22,8 +22,10 @@ class CourseVC: UIViewController {
     @IBOutlet weak var cartCollectionView: UICollectionView!
     @IBOutlet weak var listTableView: UITableView!
 
-    @IBOutlet weak var listTableContainerView: UIView!
-
+    @IBOutlet var listTableContainerView: CSViewWithButton!
+    
+    
+    
     
     @IBOutlet weak var firstHorizontalLine: UIView!
     @IBOutlet weak var secondHorizontalLine: UIView!
@@ -33,47 +35,9 @@ class CourseVC: UIViewController {
     @IBOutlet var listTableViewConstraint: NSLayoutConstraint!
     
     
-    
     private var constantToExpand : CGFloat = 0
     private var constantToShrink : CGFloat = 0
     private var horizontalLines : [UIView] = []
-    private var lastContentOffset : CGFloat = 0
-    private var isMovingDown = false {
-        willSet (newVal) {
-
-            if newVal == self.isMovingDown {
-                return
-            }
-            else if newVal == true {
-                
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                    self.searchBar.alpha = 0.0
-                    self.thirdHorizontalLine.alpha = 0.0
-                    self.cartLabel.alpha = 0.0
-                    self.cartCollectionView.alpha = self.selectedCourses.isEmpty ? 1.0 : 0.0
-                    self.fourthHorizontalLine.alpha = 0.0
-                    self.constantToExpand = self.listTableContainerView.frame.origin.y - self.secondHorizontalLine.frame.maxY - 15
-                    self.listTableContainerView.frame.origin.y -= self.constantToExpand
-                    self.listTableViewConstraint.constant -= self.constantToExpand
-                }, completion: nil)
-            }
-            else {
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-                    self.searchBar.alpha = 1.0
-                    self.thirdHorizontalLine.alpha = 1.0
-                    self.cartLabel.alpha = 1.0
-                    self.cartCollectionView.alpha = 1.0
-                    self.fourthHorizontalLine.alpha = 1.0
-                    self.constantToShrink = self.fourthHorizontalLine.frame.maxY - self.listTableContainerView.frame.origin.y + 15
-                    self.listTableContainerView.frame.origin.y += self.constantToShrink
-                    
-                    
-                }, completion: { finished in
-                    self.listTableViewConstraint.constant += self.constantToShrink
-                })
-            }
-        }
-    }
     
     private var choosenCredits : Int = 0 {
         didSet {
@@ -319,7 +283,7 @@ class CourseVC: UIViewController {
                 self.filteredCourses.append(contentsOf: self.courselist.filter { $0.days?.contains(self.selectedFilter.selectedDays[0]) == true })
             }
             else {
-                self.filteredCourses.append(contentsOf: self.courselist.filter { $0.days ==  days })
+                self.filteredCourses.append(contentsOf: self.courselist.filter { $0.days == days })
             }
         }
         //Both major and days filter
@@ -373,16 +337,51 @@ class CourseVC: UIViewController {
     }
     
     func setupCourseList() {
-        self.listTableContainerView.layer.borderWidth = self.horizontalLines[0].frame.height
-        self.listTableContainerView.layer.borderColor = UIColor.themeColor.cgColor
-
         self.listTableView.delegate = self
         self.listTableView.dataSource = self
         self.listTableView.bounces = false
         self.listTableView.allowsMultipleSelection = false
         self.listTableView.separatorStyle = .none
+        
+        self.listTableContainerView.addSubview(self.listTableContainerView.v)
+        self.listTableContainerView.button.addTarget(self, action: #selector(expandOrShrink(_ :)), for: .touchUpInside)
+        self.listTableContainerView.addSubview(self.listTableView)
 
         
+    }
+    @objc func expandOrShrink(_ sender : Any) {
+        
+        let isExpanded = self.listTableContainerView.isExpanded
+        if isExpanded {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                self.listTableContainerView.isExpanded = false
+                self.searchBar.alpha = 1.0
+                self.thirdHorizontalLine.alpha = 1.0
+                self.cartLabel.alpha = 1.0
+                self.cartCollectionView.alpha = 1.0
+                self.fourthHorizontalLine.alpha = 1.0
+                self.constantToShrink = self.fourthHorizontalLine.frame.maxY - self.listTableContainerView.frame.origin.y + 15
+                self.listTableContainerView.frame.origin.y += self.constantToShrink
+
+            }, completion: { finished in
+                self.listTableViewConstraint.constant += self.constantToShrink
+            })
+        }
+        else {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                self.listTableContainerView.isExpanded = true
+                self.searchBar.alpha = 0.0
+                self.thirdHorizontalLine.alpha = 0.0
+                self.cartLabel.alpha = 0.0
+                self.cartCollectionView.alpha = self.selectedCourses.isEmpty ? 1.0 : 0.0
+                self.fourthHorizontalLine.alpha = 0.0
+                self.constantToExpand = self.listTableContainerView.frame.origin.y - self.secondHorizontalLine.frame.maxY - 15
+                self.listTableContainerView.frame.origin.y -= self.constantToExpand
+                self.listTableViewConstraint.constant -= self.constantToExpand
+            }, completion: { finished in
+
+            })
+        }
     }
 
 }
@@ -653,23 +652,5 @@ extension CourseVC : UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
-    }
-}
-
-extension CourseVC  {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-        if (self.lastContentOffset < scrollView.contentOffset.y) {
-            self.isMovingDown = true
-        }
-
-        self.lastContentOffset = scrollView.contentOffset.y
-
-    }
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if targetContentOffset.pointee.y == 0.0 {
-            self.isMovingDown = false
-        }
     }
 }

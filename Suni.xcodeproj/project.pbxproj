@@ -45,6 +45,7 @@
 		76684C6825CA6F8900B8C65D /* Wemakeprice-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76684C6625CA6F8900B8C65D /* Wemakeprice-Bold.ttf */; };
 		76684C7025CA8BC200B8C65D /* calendar.json in Resources */ = {isa = PBXBuildFile; fileRef = 76684C6F25CA8BC200B8C65D /* calendar.json */; };
 		76684C7325CA8C0900B8C65D /* CalendarVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76684C7225CA8C0900B8C65D /* CalendarVO.swift */; };
+		766EB25A25D271A600225DCC /* CSViewWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EB25925D271A600225DCC /* CSViewWithButton.swift */; };
 		767CEF3725CBEEB100B8111A /* PhoneBoothVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767CEF3625CBEEB100B8111A /* PhoneBoothVC.swift */; };
 		767CEF3B25CBF49800B8111A /* phone_number.json in Resources */ = {isa = PBXBuildFile; fileRef = 767CEF3A25CBF49800B8111A /* phone_number.json */; };
 		767CEF3E25CBF9FE00B8111A /* PhoneNumberVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767CEF3D25CBF9FE00B8111A /* PhoneNumberVO.swift */; };
@@ -121,6 +122,7 @@
 		76684C6625CA6F8900B8C65D /* Wemakeprice-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wemakeprice-Bold.ttf"; sourceTree = "<group>"; };
 		76684C6F25CA8BC200B8C65D /* calendar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar.json; sourceTree = "<group>"; };
 		76684C7225CA8C0900B8C65D /* CalendarVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVO.swift; sourceTree = "<group>"; };
+		766EB25925D271A600225DCC /* CSViewWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSViewWithButton.swift; sourceTree = "<group>"; };
 		767CEF3625CBEEB100B8111A /* PhoneBoothVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBoothVC.swift; sourceTree = "<group>"; };
 		767CEF3A25CBF49800B8111A /* phone_number.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = phone_number.json; sourceTree = "<group>"; };
 		767CEF3D25CBF9FE00B8111A /* PhoneNumberVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVO.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				763BAF2925B94A14005F7EF8 /* Utils.swift */,
+				766EB25925D271A600225DCC /* CSViewWithButton.swift */,
 				763BAF2D25B94F20005F7EF8 /* CSButton.swift */,
 				763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */,
 				76B87A1825CAECD4001402EE /* SelectedCourseModalVC.swift */,
@@ -406,6 +409,7 @@
 				763BAF3F25B98318005F7EF8 /* TimetableCell.swift in Sources */,
 				768D67AB25B86FC80053DE0C /* Suni.xcdatamodeld in Sources */,
 				764AF3B125BF0C27003E1F15 /* WebCourseInfoVC.swift in Sources */,
+				766EB25A25D271A600225DCC /* CSViewWithButton.swift in Sources */,
 				76A90DD925BE7883002E0A69 /* CourseListCell.swift in Sources */,
 				76A90DC525BD7E51002E0A69 /* SelectedCourseCell.swift in Sources */,
 				76684C3725CA585E00B8C65D /* FSCalendarCalculator.m in Sources */,
