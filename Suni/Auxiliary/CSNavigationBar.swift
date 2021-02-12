@@ -23,10 +23,6 @@ class CSNavigationBar: UINavigationBar {
         self.barTintColor = .white
         self.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 
-        //Customized height
-        
-//        self.frame = CGRect(x: frame.origin.x, y: (UIApplication.shared.windows[0].windowScene?.statusBarManager?.statusBarFrame.height)!, width: frame.size.width, height: csHeight)
-//
         for subview in self.subviews {
             var stringFromClass = NSStringFromClass(subview.classForCoder)
             if stringFromClass.contains("UIBarBackground") {
@@ -41,31 +37,6 @@ class CSNavigationBar: UINavigationBar {
                 subview.sizeToFit()
             }
         }
-//        for subview in self.subviews {
-//            var stringFromClass = NSStringFromClass(subview.classForCoder)
-//            if stringFromClass.contains("UIBarBackground") {
-//                print("innder barbackground")
-//                subview.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: csHeight)
-//
-//                subview.backgroundColor = self.backgroundColor
-//                subview.sizeToFit()
-//            }
-//
-//            stringFromClass = NSStringFromClass(subview.classForCoder)
-//
-//            //Can't set height of the UINavigationBarContentView
-//            if stringFromClass.contains("UINavigationBarContentView") {
-//                print("UINavigationBarContentView")
-//                //Set Center Y
-//                let centerY = (csHeight - subview.frame.height) / 2.0
-//                subview.frame = CGRect(x: 0, y: centerY, width: self.frame.width, height: subview.frame.height)
-//                subview.backgroundColor = self.backgroundColor
-//                subview.sizeToFit()
-//
-//            }
-//        }
-
-
     }
 }
 

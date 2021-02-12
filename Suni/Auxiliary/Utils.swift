@@ -202,6 +202,15 @@ extension UserDefaults: ObjectSavable {
         }
     }
 }
+enum ObjectSavableError: String, LocalizedError {
+    case unableToEncode = "Unable to encode object into data"
+    case noValue = "No data object found for the given key"
+    case unableToDecode = "Unable to decode object into given type"
+    
+    var errorDescription: String? {
+        rawValue
+    }
+}
 
 //MARK: Extension UITextField
 extension UITextField {
@@ -278,13 +287,5 @@ extension CALayer {
         
 }
 
-enum ObjectSavableError: String, LocalizedError {
-    case unableToEncode = "Unable to encode object into data"
-    case noValue = "No data object found for the given key"
-    case unableToDecode = "Unable to decode object into given type"
-    
-    var errorDescription: String? {
-        rawValue
-    }
-}
+
 

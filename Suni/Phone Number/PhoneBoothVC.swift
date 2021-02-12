@@ -7,15 +7,15 @@
 
 import UIKit
 class PhoneBoothVC : UIViewController {
-    let application = UIApplication.shared
-    var phoneNumbers : [[PhoneNumberVO]] = []
-    var igc : [PhoneNumberVO] = []
-    var coordinators : [PhoneNumberVO] = []
-    var studentAffair : [PhoneNumberVO] = []
-    var rcAndWorkStudy : [PhoneNumberVO] = []
-    var scholarship  : [PhoneNumberVO] = []
-    var others : [PhoneNumberVO] = []
-    var international  : [PhoneNumberVO] = []
+    private let application = UIApplication.shared
+    private var phoneNumbers : [[PhoneNumberVO]] = []
+    private var igc : [PhoneNumberVO] = []
+    private var coordinators : [PhoneNumberVO] = []
+    private var studentAffair : [PhoneNumberVO] = []
+    private var rcAndWorkStudy : [PhoneNumberVO] = []
+    private var scholarship  : [PhoneNumberVO] = []
+    private var others : [PhoneNumberVO] = []
+    private var international  : [PhoneNumberVO] = []
     
     @IBOutlet var phoneNumberTableView: UITableView!
     
@@ -26,7 +26,7 @@ class PhoneBoothVC : UIViewController {
         self.phoneNumberTableView.delegate = self
         self.phoneNumberTableView.dataSource = self
     }
-    func getPhoneNumbers () {
+    private func getPhoneNumbers () {
         if let path = Bundle.main.path(forResource: "phone_number", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path))
@@ -62,7 +62,7 @@ class PhoneBoothVC : UIViewController {
     }
     
     
-    func initHeader () {
+    private func initHeader () {
         let viewTitle = UILabel()
         viewTitle.text = "Phone Booth"
         viewTitle.font = getRigteous(size: Constant.titleFontSize)
@@ -113,22 +113,22 @@ extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
         if let indexPath = self.phoneNumberTableView.indexPathForRow(at: buttonPosition) {
             let pvo = self.phoneNumbers[indexPath.section][indexPath.row]
             UIPasteboard.general.string = pvo.email
-            showCopySuccessMsg()
+            self.showCopySuccessMsg()
         }
     }
     
-    func showCopySuccessMsg() {
+    private func showCopySuccessMsg() {
         let copySucessView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width / 2, height: 40))
         copySucessView.center.x = self.view.frame.width / 2
         copySucessView.center.y = self.view.frame.height / 2
         copySucessView.backgroundColor = .lightGray
         copySucessView.layer.cornerRadius = copySucessView.frame.height / 2
+        
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 14)
         label.text = "Email has been copied!"
         label.textColor = .white
         label.sizeToFit()
-        
         label.center.x = copySucessView.frame.width / 2
         label.center.y = copySucessView.frame.height / 2
         copySucessView.addSubview(label)
@@ -142,10 +142,6 @@ extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.phoneNumbers[section].first?.categoryToString()
-    }
-    
-    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

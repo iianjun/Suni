@@ -11,11 +11,7 @@ import UIKit
 class ScheduleVC : UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var remainingBackgroundColor = UIColor.pastel
-    
-    var existedView : [CourseTimetableView] = []
-//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var cellWidth : CGFloat {
         get {
@@ -24,16 +20,15 @@ class ScheduleVC : UIViewController {
     }
     var cellHeight : CGFloat {
         get {
-            return self.collectionView.frame.height / 13 - (cellWidth / 26)
+            return self.collectionView.frame.height / 13 - (self.cellWidth / 26)
         }
     }
     override func viewDidLoad() {
-        
         self.setup()
-        
     }
+
     
-    func setup() {
+    private func setup() {
         self.initHeader()
         self.initTimetable()
 //        print(appDelegate.existedCourses)
@@ -43,39 +38,83 @@ class ScheduleVC : UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let sd = UserDefaults.standard
         do {
-
-            let selectedCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
-//            print(selectedCourses[0].name!)
+            var selectedCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
+            selectedCourses = selectedCourses.filter { self.appDelegate.existedCourses.contains($0) == false }
             for course in selectedCourses {
-                //여기서
-                
                 for day in course.days! {
-                    
+                    //Layout View on Collection view
                     let row = self.convertStringToRow(day: day)
                     let startTime = self.convertDateToString(time: course.time!.start)
                     let section = self.convertStringToSection(time: String(startTime.split(separator: ":")[0]))
-                    
                     let x = CGFloat((course.time?.duration)!) / CGFloat(3600)
                     let lectureHeight = ((x * 10).rounded() / 10) * self.cellHeight
-                    
                     var min = Double(startTime.split(separator: ":")[1])!
                     min /= 60.0
-                    
                     guard let cell = self.collectionView.cellForItem(at: IndexPath(row: row, section: section)) else { return }
                     let v = CourseTimetableView(frame: CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y + (self.cellHeight * CGFloat(min)), width: self.cellWidth - Constant.timetableBorderWidth, height: lectureHeight))
                     v.label.text = course.name!
                     v.label.textColor = .themeTextColor
-                    
                     v.containedCourse = course
-                    if course.bgColor.color != UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
+                    
+                    if course.bgColor.color != UIColor(red: 0, green: 0, blue: 0, alpha: 0) && course.type != "MANUAL" {
+                        v.backgroundColor = course.bgColor.color
+
+                    }
+                    else if course.type == "MANUAL" && course.bgColor.color != UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
                         v.backgroundColor = course.bgColor.color
                     }
-                    
+                    //If CourseVO doesn't have designated color
                     else {
-                        //dont remove error when no more remainingBackground
-                        let ranColor = self.remainingBackgroundColor.removeFirst()
-                        v.backgroundColor = ranColor
-                        course.bgColor.color = ranColor
+                        //If it is lab or rec course
+                        if (course.type == "REC" || course.type == "LAB") && course.name != "PHY133" {
+                            //If there is lec course in existedCourses
+                            if let lecCourse = (self.appDelegate.existedCourses.filter { $0.name == course.name }).first {
+                                //match random color
+                                if lecCourse.bgColor.color == UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
+                                    let ranColor = UIColor.pastel[Int.random(in: 0..<UIColor.pastel.count)]
+                                    v.backgroundColor = ranColor
+                                    course.bgColor.color = ranColor
+                                }
+                                //match with lec color
+                                else {
+                                    v.backgroundColor = lecCourse.bgColor.color
+                                    course.bgColor.color = lecCourse.bgColor.color
+                                    
+                                }
+                            }
+                            //If there isn't lec course in existedCourses
+                            else {
+                                let ranColor = UIColor.pastel[Int.random(in: 0..<UIColor.pastel.count)]
+                                v.backgroundColor = ranColor
+                                course.bgColor.color = ranColor
+                            }
+
+                        }
+                        //If it is lec course
+                        else {
+                            //If it is lec course that has rec or lab
+                            if let hasLab = course.hasLab {
+                                if hasLab {
+                                    if let labCourse = (self.appDelegate.existedCourses.filter { $0.name == course.name && ($0.type == "LAB" || $0.type == "REC") }).first {
+                                        //If
+                                        if labCourse.bgColor.color == UIColor(red: 0, green: 0, blue: 0, alpha: 0) {
+                                            let ranColor = UIColor.pastel[Int.random(in: 0..<UIColor.pastel.count)]
+                                            v.backgroundColor = ranColor
+                                            course.bgColor.color = ranColor
+                                        }
+                                        else {
+                                            v.backgroundColor = labCourse.bgColor.color
+                                            course.bgColor.color = labCourse.bgColor.color
+                                        }
+                                    }
+                                }
+                                else {
+                                    let ranColor = UIColor.pastel[Int.random(in: 0..<UIColor.pastel.count)]
+                                    v.backgroundColor = ranColor
+                                    course.bgColor.color = ranColor
+                                }
+                            }
+                        }
                     }
                     
                     v.isUserInteractionEnabled = true
@@ -85,19 +124,29 @@ class ScheduleVC : UIViewController {
                     self.collectionView.addSubview(v)
                     self.collectionView.bringSubviewToFront(v)
                 }
-
+                self.appDelegate.existedCourses.append(course)
             }
-            sd.synchronize()
-
         } catch {
             print(error.localizedDescription)
         }
-    
+//        print("SCHEDULE VC")
+//        self.appDelegate.existedCourses.forEach {
+//            print("----------\($0.name!) (\($0.type!))")
+//        }
         
-    
-
+        //After finished, save the course to sd again (at this point, guranteed all courses are in existedCourses)
+        //By here Course has designated color
+        //When the course is removed, I need to reset,
+        //1. course.bgColor = nil
+        //2. when removing rec or lab, the course that has that rec or lab should be also removed.
+        //3. vise versa from #2
+        do {
+            try sd.setObject(self.appDelegate.existedCourses, forKey: "course")
+        } catch {
+            print(error.localizedDescription)
+        }
     }
-    @objc func presentDetailViewOfSelectedCourse(_ sender : UIGestureRecognizer) {
+    @objc private func presentDetailViewOfSelectedCourse(_ sender : UIGestureRecognizer) {
         if let v = sender.view as? CourseTimetableView {
             let customModalVC = SelectedCourseModalVC()
             customModalVC.paramView = v
@@ -110,7 +159,7 @@ class ScheduleVC : UIViewController {
     }
     
     //MARK: Header init
-    func initHeader() {
+    private func initHeader() {
         
         //Title left alignment
         let viewTitle = UILabel()
@@ -133,18 +182,16 @@ class ScheduleVC : UIViewController {
         combinedView.addSubview(screenshotBtn)
         combinedView.sizeToFit()
 
-        
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: combinedView)
-        
-        
+
     }
 
-    @objc func addCourse (_ sender: UIButton) {
+    @objc private func addCourse (_ sender: UIButton) {
         guard let addvc = self.storyboard?.instantiateViewController(identifier: Constant.addVCId) else { return }
         self.navigationController?.pushViewController(addvc, animated: true)
     }
-    @objc func takeScreenshot(_ sender: UIButton) {
+    
+    @objc private func takeScreenshot(_ sender: UIButton) {
 
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, scale)
@@ -157,9 +204,8 @@ class ScheduleVC : UIViewController {
         UIImageWriteToSavedPhotosAlbum(croppedImage, self, nil, nil)
 
     }
-
-   
-    func showScreenshotEffect() {
+    
+    private func showScreenshotEffect() {
         let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -172,7 +218,7 @@ class ScheduleVC : UIViewController {
     }
     
     //MARK: Timetable init
-    func initTimetable() {
+    private func initTimetable() {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         layout.minimumLineSpacing = 0
@@ -184,9 +230,7 @@ class ScheduleVC : UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.isScrollEnabled = false
-        
-        
-        
+
     }
     
 
@@ -211,7 +255,6 @@ extension ScheduleVC : UICollectionViewDelegate, UICollectionViewDataSource {
             
         }
         
-
         let layerOfCell = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height))
         let thickness = self.collectionView.layer.borderWidth
         let fontSize = cell.frame.width / 4
@@ -234,10 +277,6 @@ extension ScheduleVC : UICollectionViewDelegate, UICollectionViewDataSource {
             case 5 : cell.label.text = "FRI"
             default : ()
             }
-            
-            
-            
-            
         }
         //First Column : right
         if indexPath.row == 0 {
@@ -272,8 +311,6 @@ extension ScheduleVC : UICollectionViewDelegate, UICollectionViewDataSource {
         else {
             layerOfCell.layer.chooseBorder(edge: UIRectEdge.bottom, thickness: thickness)
         }
-
-
         cell.addSubview(layerOfCell)
         return cell
         

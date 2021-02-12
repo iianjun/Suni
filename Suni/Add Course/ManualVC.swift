@@ -69,7 +69,7 @@ class ManualVC: UIViewController {
      
     }
 
-    @objc func fromTimeDone(_ sender: Any) {
+    @objc private func fromTimeDone(_ sender: Any) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         if let datePicker = self.fromTime.inputView as? UIDatePicker {
@@ -77,7 +77,7 @@ class ManualVC: UIViewController {
             self.fromTime.resignFirstResponder()
         }
     }
-    @objc func toTimeDone(_ sender: Any) {
+    @objc private func toTimeDone(_ sender: Any) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         if let datePicker = self.toTime.inputView as? UIDatePicker {
@@ -86,7 +86,7 @@ class ManualVC: UIViewController {
         }
     }
     
-    func setupInfoTf () {
+    private func setupInfoTf () {
         let arrTf = [self.name_tf, self.room_tf, self.instructor_tf]
         self.name_tf.placeholder = "Name(Required)"
         self.room_tf.placeholder = "Room(Optional)"

@@ -10,8 +10,8 @@ import WebKit
 
 class WebCourseInfoVC : UIViewController, WKUIDelegate {
     @IBOutlet var wv: WKWebView!
-    var paramURL : String?
-    var paramTitle : String?
+    public var paramURL : String?
+    public var paramTitle : String?
     @IBOutlet var titleText: UILabel!
     @IBOutlet var spinner: UIActivityIndicatorView!
     
@@ -23,7 +23,7 @@ class WebCourseInfoVC : UIViewController, WKUIDelegate {
         self.wv.navigationDelegate = self
         self.wv.uiDelegate = self
         self.titleText.text = paramTitle
-        if let url = paramURL {
+        if let url = self.paramURL {
             if let urlObj = URL(string: url) {
                 let req = URLRequest(url: urlObj)
                 self.wv.load(req)
@@ -43,8 +43,6 @@ class WebCourseInfoVC : UIViewController, WKUIDelegate {
     @IBAction func close(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: {
             self.wv.stopLoading()
-            
-            
         })
     }
 }

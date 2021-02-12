@@ -21,11 +21,8 @@ class CourseVO : Codable {
     var number : Int?
     var hash : Int?
     var bgColor = Color(color: UIColor())
-//    required init?(coder: NSCoder) {
-//        fatalError()
-//    }
-
-    func convertTimeAndDayToString () -> String {
+    
+    public func convertTimeAndDayToString () -> String {
         var courseTime = ""
         if let days = self.days {
             for i in 0..<days.count {
@@ -40,7 +37,7 @@ class CourseVO : Codable {
         return "\(courseTime) \(timeString)"
 
     }
-    func convertTimeToString () -> String {
+    public func convertTimeToString () -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         
@@ -58,18 +55,16 @@ class CourseVO : Codable {
 extension CourseVO : Equatable {
     
     static func ==(lhs: CourseVO, rhs: CourseVO) -> Bool {
-        return lhs.major == rhs.major && lhs.name == rhs.name && lhs.time == rhs.time && lhs.number == rhs.number
+        return lhs.major == rhs.major && lhs.name == rhs.name && lhs.time == rhs.time && lhs.number == rhs.number && lhs.type == rhs.type
     }
     
     
 }
-class Color:Codable{
+class Color : Codable{
     var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
-
     init(color:UIColor) {
         color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
     }
-
     var color:UIColor{
         get{
             return UIColor(red: red, green: green, blue: blue, alpha: alpha)
@@ -78,7 +73,6 @@ class Color:Codable{
             newValue.getRed(&red, green:&green, blue: &blue, alpha:&alpha)
         }
     }
-
     var cgColor:CGColor{
         get{
             return color.cgColor

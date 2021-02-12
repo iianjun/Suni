@@ -10,8 +10,8 @@ import UIKit
 class MoreInfoVC: UIViewController {
     
     @IBOutlet var courseNameLabel: UILabel!
-    var params : CourseVO!
-    var labCourse : CourseVO?
+    public var params : CourseVO!
+    public var labCourse : CourseVO?
     @IBOutlet var paramTime: UILabel!
     @IBOutlet var paramRoom: UILabel!
     @IBOutlet var paramCredit: UILabel!
@@ -24,13 +24,13 @@ class MoreInfoVC: UIViewController {
     @IBOutlet var labTimeLabel: UILabel!
     
     override func viewDidLoad() {
-        for cv in labelContainerView {
+        for cv in self.labelContainerView {
             cv.layer.borderWidth = Constant.addCourseCellBorderWidth
             cv.layer.cornerRadius = Constant.moreVCCornerRadius
             cv.layer.borderColor = UIColor.themeColor.cgColor
 
         }
-        if labCourse != nil {
+        if self.labCourse != nil {
             if let type = self.labCourse?.type {
                 switch type {
                 case "LAB" : self.labTitleLabel.text = type
@@ -38,7 +38,7 @@ class MoreInfoVC: UIViewController {
                 default : break
                 }
             }
-            self.labTimeLabel.text = labCourse?.convertTimeAndDayToString()
+            self.labTimeLabel.text = self.labCourse?.convertTimeAndDayToString()
             self.labTimeLabel.textColor = .themeTextColor
             self.hasLabView.layer.borderColor = UIColor.themeColor.cgColor
             self.hasLabView.layer.cornerRadius = Constant.moreVCCornerRadius
@@ -76,17 +76,6 @@ class MoreInfoVC: UIViewController {
         }
 
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 extension MoreInfoVC {

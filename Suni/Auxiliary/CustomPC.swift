@@ -9,8 +9,8 @@ import UIKit
 
 class CustomPC: UIPresentationController {
     
-    let blurEffectView : UIVisualEffectView!
-    var tapToDismiss = UITapGestureRecognizer()
+    private let blurEffectView : UIVisualEffectView!
+    private var tapToDismiss = UITapGestureRecognizer()
     
     override var frameOfPresentedViewInContainerView: CGRect {
         return CGRect(x: 0, y: self.containerView!.frame.height * 0.7, width: self.containerView!.frame.width, height: self.containerView!.frame.height * 0.3)
@@ -48,7 +48,7 @@ class CustomPC: UIPresentationController {
     }
     
     
-    @objc func dismiss (_ sender : Any) {
+    @objc private func dismiss (_ sender : Any) {
         self.presentingViewController.dismiss(animated: true, completion: nil)
     }
 }

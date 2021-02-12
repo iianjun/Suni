@@ -8,8 +8,8 @@
 import UIKit
 
 class TimetableCell: UICollectionViewCell {
-    let label = UILabel()
-    var labelType : LabelType!
+    public let label = UILabel()
+    public var labelType : LabelType!
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -24,8 +24,6 @@ class TimetableCell: UICollectionViewCell {
         self.addSubview(self.label)
 
     }
-    
-    
 }
 
 enum LabelType {

@@ -12,13 +12,13 @@ class CalendarVC : UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     @IBOutlet var infoView: UIView!
-    var didDrawBorder = false
-    var minimumDate : Date?
-    var maximumDate : Date?
+    private var didDrawBorder = false
+    private var minimumDate : Date?
+    private var maximumDate : Date?
 
     @IBOutlet var infoTableView: UITableView!
-    var events : [CalendarVO] = []
-    var detailContainer : [String : Array<String>] = [:] {
+    private var events : [CalendarVO] = []
+    private var detailContainer : [String : Array<String>] = [:] {
         didSet  {
             self.infoTableView.reloadData()
         }
@@ -28,15 +28,15 @@ class CalendarVC : UIViewController {
         
     }
     override func viewDidAppear(_ animated: Bool) {
-        if didDrawBorder == false {
+        if !self.didDrawBorder {
             let layerOfWeekdayView = UIView(frame: CGRect(x: 0, y: 0, width: self.calendar.calendarWeekdayView.frame.width, height: self.calendar.calendarWeekdayView.frame.height))
             layerOfWeekdayView.layer.chooseBorder(edge: .bottom, thickness: Constant.timetableBorderWidth)
             self.calendar.calendarWeekdayView.addSubview(layerOfWeekdayView)
             self.calendar.calendarWeekdayView.bringSubviewToFront(layerOfWeekdayView)
-            didDrawBorder = true
+            self.didDrawBorder = true
         }
     }
-    func setup() {
+    private func setup() {
         self.initHeader()
         self.getCalendarInfo()
         self.setupCalendar()
@@ -44,7 +44,7 @@ class CalendarVC : UIViewController {
         
     }
     
-    func initHeader() {
+    private func initHeader() {
         let viewTitle = UILabel()
         viewTitle.text = "Academic Calendar"
         viewTitle.font = getRigteous(size: Constant.titleFontSize)
@@ -54,7 +54,7 @@ class CalendarVC : UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: viewTitle)
     }
     
-    func getCalendarInfo() {
+    private func getCalendarInfo() {
         if let path = Bundle.main.path(forResource: "calendar", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -98,15 +98,12 @@ class CalendarVC : UIViewController {
         }
     }
     
-    func setupCalendar() {
+    private func setupCalendar() {
         self.calendar.layer.borderColor = UIColor.themeColor.cgColor
         self.calendar.layer.borderWidth = Constant.timetableBorderWidth
         self.calendar.layer.cornerRadius = Constant.cornerRadius
         self.calendarHeightConstraint.constant = self.view.frame.height / 2.5
-        
 
-        
-        
         self.calendar.delegate = self
         self.calendar.dataSource = self
 
@@ -127,19 +124,10 @@ class CalendarVC : UIViewController {
         
         self.calendar.appearance.titleDefaultColor = .themeTextColor
         self.calendar.appearance.titleWeekendColor = .red
-        
-        self.calendar.select(Date())
-        
         self.calendar.placeholderType = .none
-        
-        
-  
-        
-
-        
-        
     }
-    func setUpEvents () {
+    
+    private func setUpEvents () {
         self.infoTableView.delegate = self
         self.infoTableView.dataSource = self
         self.infoTableView.separatorStyle = .none
@@ -162,12 +150,9 @@ extension CalendarVC : FSCalendarDelegate, FSCalendarDataSource {
         }
     }
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
-        
         let event = self.events.filter { $0.date == date }
         if !event.isEmpty {
             detailContainer = [ "titles" : event[0].title!, "contents" : event[0].contents!]
-
         }
         else {
             detailContainer.removeAll()
@@ -230,9 +215,6 @@ extension CalendarVC : UITableViewDelegate, UITableViewDataSource {
         
         cell.selectionStyle = .none
         return cell
-        
-        
-        
     }
     
     

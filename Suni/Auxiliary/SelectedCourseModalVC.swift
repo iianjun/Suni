@@ -11,17 +11,19 @@ class SelectedCourseModalVC: UIViewController {
     
     @IBOutlet var slideIndicator: UIView!
     
-    var currentCourse : CourseVO!
-    var infoLabels = ["Time", "Instructor", "Room"]
-    var paramView : UIView!
-    var paramSubviews : [UIView]!
+    public var currentCourse : CourseVO!
+    private var infoLabels = ["Time", "Instructor", "Room"]
+    public var paramView : UIView!
+    public var paramSubviews : [UIView]!
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     @IBOutlet var courseTitle: UILabel!
     @IBOutlet var infoTableView: UITableView!
     @IBOutlet var deleteBtn: UIButton!
     
     
-    var hasSetPointOrigin = false
-    var originPoint : CGPoint?
+    private var hasSetPointOrigin = false
+    private var originPoint : CGPoint?
     
     override func viewDidLoad() {
         // Do any additional setup after loading the view.
@@ -31,14 +33,14 @@ class SelectedCourseModalVC: UIViewController {
         self.setupDeleteBtn()
     }
     
-    func setupGesture() {
+    private func setupGesture() {
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureToDismiss(_:)))
         self.view.addGestureRecognizer(gesture)
         self.slideIndicator.backgroundColor = .gray
         self.slideIndicator.roundedCorners(.allCorners, radius: 10)
     }
     
-    func setupInfo() {
+    private func setupInfo() {
         guard let currentCourseName = self.currentCourse.name else { return }
         guard let currentCourseType = self.currentCourse.type else { return }
         self.courseTitle.text = "\(currentCourseName)(\(currentCourseType))"
@@ -51,10 +53,9 @@ class SelectedCourseModalVC: UIViewController {
         self.infoTableView.bounces = false
         self.infoTableView.isScrollEnabled = false
         self.infoTableView.separatorStyle = .none
-        
-        
+
     }
-    func setupDeleteBtn() {
+    private func setupDeleteBtn() {
         deleteBtn.setImage(UIImage(named: "trash"), for: .normal)
         self.view.addSubview(deleteBtn)
     }
@@ -62,60 +63,67 @@ class SelectedCourseModalVC: UIViewController {
         let alert = UIAlertController(title: "Do you really want to delete \(currentCourse.name!)?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            
+            //When the course is removed, I need to reset,
+            //1. course.bgColor = nil
+            //2. when removing rec or lab, the course that has that rec or lab should be also removed.
+            //3. vise versa from #2
+            
+            //Initialization
             let sd = UserDefaults.standard
-            do {
-                var selectedCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
-                selectedCourses = selectedCourses.filter { $0 != self.currentCourse }
-                if self.currentCourse.hasLab != nil {
-                    if self.currentCourse.hasLab! {
-                        selectedCourses = selectedCourses.filter {
-                            if $0.type != nil && $0.name != nil {
-                                return !($0.type == "REC" || $0.type == "LAB") && !($0.name == self.currentCourse.name)
-                            }
-                            return true
-
-                        }
-                        self.removeCourseView()
-                    }
-
-                }
-                do {
-                    try sd.setObject(selectedCourses, forKey: "course")
+            if self.currentCourse.type == "MANUAL" {
+                self.currentCourse.bgColor.color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+                if let index = self.appDelegate.existedCourses.firstIndex(where: { $0 == self.currentCourse }) {
+                    self.appDelegate.existedCourses.remove(at: index)
                     self.removeCourseView()
-                    self.dismiss(animated: true, completion: nil)
                 }
-                catch {
-                    print(error.localizedDescription)
-                    self.dismiss(animated: true, completion: nil)
-                }
-
-
             }
-            catch {
+            else {
+                self.appDelegate.existedCourses.forEach({
+                    if $0.name == self.currentCourse.name  && $0.type != "MANUAL" {
+                        $0.bgColor.color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+                    }
+                })
+                self.appDelegate.existedCourses.removeAll(where: { $0.name == self.currentCourse.name && $0.type != "MANUAL" })
+                self.removeCourseView()
+            }
+            do {
+                try sd.setObject(self.appDelegate.existedCourses, forKey: "course")
+                
+            } catch {
                 print(error.localizedDescription)
             }
+//            print("MODAL VC")
+//            self.appDelegate.existedCourses.forEach {
+//                print("----------\($0.name!) (\($0.type!))")
+//            }
+            self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
-
+        
     }
-    func removeCourseView() {
-//        let presentingVC = self.presentingViewController as? ScheduleVC
-//        if let subviews = presentingVC?.collectionView.subviews {
-//            for v in subviews {
-//                if let courseView = v as? CourseTimetableView, let name = courseView.containedCourse.name {
-//                    if name == self.currentCourse.name! {
-//                        courseView.removeFromSuperview()
-//                    }
-//                }
-//            }
-//        }
-        for v in paramSubviews {
-            if let courseView = v as? CourseTimetableView, let name = courseView.containedCourse.name {
-                if name == self.currentCourse.name! {
-                    courseView.removeFromSuperview()
+    private func removeCourseView() {
+        if self.currentCourse.type == "MANUAL" {
+            for v in paramSubviews {
+                if let courseView = v as? CourseTimetableView {
+                    if courseView.containedCourse == self.currentCourse {
+                        courseView.removeFromSuperview()
+                    }
                 }
             }
         }
+        
+        //Regardless the type, if name matches, delete it
+        else {
+            for v in paramSubviews {
+                if let courseView = v as? CourseTimetableView, let name = courseView.containedCourse.name {
+                    if name == self.currentCourse.name! && courseView.containedCourse.type != "MANUAL" {
+                        courseView.removeFromSuperview()
+                    }
+                }
+            }
+        }
+        
     }
     override func viewDidLayoutSubviews() {
         if !self.hasSetPointOrigin {
@@ -144,17 +152,6 @@ class SelectedCourseModalVC: UIViewController {
         }
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 extension SelectedCourseModalVC : UITableViewDelegate, UITableViewDataSource {

@@ -12,8 +12,6 @@ class PhoneNumberVO {
     var name : String?
     var email : String?
 
-    
-    
     func categoryToString () -> String {
         switch self.category {
         case .igc : return "IGC"

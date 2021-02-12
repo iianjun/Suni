@@ -10,7 +10,7 @@ import UIKit
 class SelectedCourseCell: UICollectionViewCell {
 //    let label = UILabel()
     
-    let removeBtn = UIButton()
+    public let removeBtn = UIButton()
     
     @IBOutlet var label: UILabel!
     

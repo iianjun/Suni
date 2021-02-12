@@ -7,7 +7,7 @@
 
 import UIKit
 class CalendarEventCell : UITableViewCell {
-    let bulletPoint = UIView()
+    private let bulletPoint = UIView()
     
     override func layoutSubviews() {
         super.layoutSubviews()

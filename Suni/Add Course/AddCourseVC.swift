@@ -231,12 +231,21 @@ class AddCourseVC: UIViewController {
                     }
                 }
                 let cvo = CourseVO()
+                cvo.major = ""
                 cvo.name = mvc.name_tf.text
                 cvo.room = mvc.room_tf.text
-                cvo.instructor = mvc.instructor_tf.text
+                cvo.title = ""
+                cvo.type = "MANUAL"
+                cvo.credit = 0
                 cvo.days = mvc.selectedDays
                 cvo.time = dateInterval
-                cvo.type = "MANUAL"
+                cvo.instructor = mvc.instructor_tf.text
+                cvo.hasLab = false
+                
+                
+                
+                
+                
                 
                 let sd = UserDefaults.standard
                 do {
