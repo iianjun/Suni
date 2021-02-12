@@ -52,7 +52,6 @@
 		768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A025B86FC80053DE0C /* AppDelegate.swift */; };
 		768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A225B86FC80053DE0C /* SceneDelegate.swift */; };
 		768D67A825B86FC80053DE0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768D67A625B86FC80053DE0C /* Main.storyboard */; };
-		768D67AB25B86FC80053DE0C /* Suni.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A925B86FC80053DE0C /* Suni.xcdatamodeld */; };
 		768D67AD25B86FC80053DE0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768D67AC25B86FC80053DE0C /* Assets.xcassets */; };
 		768D67B025B86FC80053DE0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768D67AE25B86FC80053DE0C /* LaunchScreen.storyboard */; };
 		76A90DC525BD7E51002E0A69 /* SelectedCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */; };
@@ -130,7 +129,6 @@
 		768D67A025B86FC80053DE0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768D67A225B86FC80053DE0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		768D67A725B86FC80053DE0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		768D67AA25B86FC80053DE0C /* Suni.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Suni.xcdatamodel; sourceTree = "<group>"; };
 		768D67AC25B86FC80053DE0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		768D67AF25B86FC80053DE0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		768D67B125B86FC80053DE0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -315,7 +313,6 @@
 				763BAF1525B8714E005F7EF8 /* InfoPlist.strings */,
 				768D67AE25B86FC80053DE0C /* LaunchScreen.storyboard */,
 				768D67A625B86FC80053DE0C /* Main.storyboard */,
-				768D67A925B86FC80053DE0C /* Suni.xcdatamodeld */,
 			);
 			path = Suni;
 			sourceTree = "<group>";
@@ -407,7 +404,6 @@
 				76184EAB25CFFCBE002102E9 /* CourseVC.swift in Sources */,
 				76684C4425CA585E00B8C65D /* FSCalendarCollectionViewLayout.m in Sources */,
 				763BAF3F25B98318005F7EF8 /* TimetableCell.swift in Sources */,
-				768D67AB25B86FC80053DE0C /* Suni.xcdatamodeld in Sources */,
 				764AF3B125BF0C27003E1F15 /* WebCourseInfoVC.swift in Sources */,
 				766EB25A25D271A600225DCC /* CSViewWithButton.swift in Sources */,
 				76A90DD925BE7883002E0A69 /* CourseListCell.swift in Sources */,
@@ -662,19 +658,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		768D67A925B86FC80053DE0C /* Suni.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				768D67AA25B86FC80053DE0C /* Suni.xcdatamodel */,
-			);
-			currentVersion = 768D67AA25B86FC80053DE0C /* Suni.xcdatamodel */;
-			path = Suni.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 768D679525B86FC80053DE0C /* Project object */;
 }
