@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,35 +19,18 @@
 		763BAF4B25BA8F93005F7EF8 /* CSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */; };
 		763BAF4E25BB0B0B005F7EF8 /* AddCourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF4D25BB0B0B005F7EF8 /* AddCourseVC.swift */; };
 		763BAF6225BC108A005F7EF8 /* AddCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */; };
+		7645C8B425D96F27008DEA4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7645C8B325D96F27008DEA4D /* GoogleService-Info.plist */; };
 		764AF3AE25BEE8A1003E1F15 /* MoreInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AF3AD25BEE8A1003E1F15 /* MoreInfoVC.swift */; };
 		764AF3B125BF0C27003E1F15 /* WebCourseInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */; };
 		7663891A25C06EAF00B930AC /* CourseVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663891925C06EAF00B930AC /* CourseVO.swift */; };
-		7663891D25C06FFA00B930AC /* all_courses.json in Resources */ = {isa = PBXBuildFile; fileRef = 7663891C25C06FFA00B930AC /* all_courses.json */; };
 		76684BFF25C5A57500B8C65D /* DayTimeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76684BFE25C5A57500B8C65D /* DayTimeOption.swift */; };
 		76684C0F25C7F88900B8C65D /* CourseTimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76684C0E25C7F88900B8C65D /* CourseTimetableView.swift */; };
-		76684C3725CA585E00B8C65D /* FSCalendarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C1725CA585D00B8C65D /* FSCalendarCalculator.m */; };
-		76684C3825CA585E00B8C65D /* FSCalendarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C1C25CA585D00B8C65D /* FSCalendarCollectionView.m */; };
-		76684C3925CA585E00B8C65D /* FSCalendarDelegationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C1D25CA585D00B8C65D /* FSCalendarDelegationFactory.m */; };
-		76684C3A25CA585E00B8C65D /* FSCalendarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C2225CA585D00B8C65D /* FSCalendarConstants.m */; };
-		76684C3B25CA585E00B8C65D /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C2625CA585D00B8C65D /* FSCalendarStickyHeader.m */; };
-		76684C3C25CA585E00B8C65D /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C2725CA585D00B8C65D /* FSCalendar.m */; };
-		76684C3D25CA585E00B8C65D /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C2825CA585D00B8C65D /* FSCalendarExtensions.m */; };
-		76684C3E25CA585E00B8C65D /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C2925CA585D00B8C65D /* FSCalendarTransitionCoordinator.m */; };
-		76684C3F25CA585E00B8C65D /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C2B25CA585E00B8C65D /* FSCalendarDelegationProxy.m */; };
-		76684C4025CA585E00B8C65D /* FSCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C2D25CA585E00B8C65D /* FSCalendarHeaderView.m */; };
-		76684C4125CA585E00B8C65D /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C2F25CA585E00B8C65D /* FSCalendarAppearance.m */; };
-		76684C4225CA585E00B8C65D /* FSCalendarSeparatorDecorationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C3025CA585E00B8C65D /* FSCalendarSeparatorDecorationView.m */; };
-		76684C4325CA585E00B8C65D /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C3325CA585E00B8C65D /* FSCalendarCell.m */; };
-		76684C4425CA585E00B8C65D /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C3425CA585E00B8C65D /* FSCalendarCollectionViewLayout.m */; };
-		76684C4525CA585E00B8C65D /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76684C3625CA585E00B8C65D /* FSCalendarWeekdayView.m */; };
 		76684C6325CA6F2A00B8C65D /* Wemakeprice-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76684C6225CA6F2A00B8C65D /* Wemakeprice-SemiBold.ttf */; };
 		76684C6725CA6F8900B8C65D /* Wemakeprice-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76684C6525CA6F8900B8C65D /* Wemakeprice-Regular.ttf */; };
 		76684C6825CA6F8900B8C65D /* Wemakeprice-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76684C6625CA6F8900B8C65D /* Wemakeprice-Bold.ttf */; };
-		76684C7025CA8BC200B8C65D /* calendar.json in Resources */ = {isa = PBXBuildFile; fileRef = 76684C6F25CA8BC200B8C65D /* calendar.json */; };
 		76684C7325CA8C0900B8C65D /* CalendarVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76684C7225CA8C0900B8C65D /* CalendarVO.swift */; };
 		766EB25A25D271A600225DCC /* CSViewWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EB25925D271A600225DCC /* CSViewWithButton.swift */; };
 		767CEF3725CBEEB100B8111A /* PhoneBoothVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767CEF3625CBEEB100B8111A /* PhoneBoothVC.swift */; };
-		767CEF3B25CBF49800B8111A /* phone_number.json in Resources */ = {isa = PBXBuildFile; fileRef = 767CEF3A25CBF49800B8111A /* phone_number.json */; };
 		767CEF3E25CBF9FE00B8111A /* PhoneNumberVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767CEF3D25CBF9FE00B8111A /* PhoneNumberVO.swift */; };
 		768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A025B86FC80053DE0C /* AppDelegate.swift */; };
 		768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768D67A225B86FC80053DE0C /* SceneDelegate.swift */; };
@@ -60,6 +43,7 @@
 		76B87A1925CAECD4001402EE /* SelectedCourseModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B87A1825CAECD4001402EE /* SelectedCourseModalVC.swift */; };
 		76B87A1D25CAF34F001402EE /* CustomPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B87A1C25CAF34F001402EE /* CustomPC.swift */; };
 		76B87A2C25CAFF13001402EE /* SelectedCourseModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B87A2B25CAFF13001402EE /* SelectedCourseModalVC.xib */; };
+		7AD20551B620168E1D646C32 /* Pods_Suni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D010602155C792CF03556543 /* Pods_Suni.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,52 +62,18 @@
 		763BAF4A25BA8F93005F7EF8 /* CSNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSNavigationBar.swift; sourceTree = "<group>"; };
 		763BAF4D25BB0B0B005F7EF8 /* AddCourseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseVC.swift; sourceTree = "<group>"; };
 		763BAF6125BC108A005F7EF8 /* AddCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseCell.swift; sourceTree = "<group>"; };
+		7645C8B325D96F27008DEA4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		764AF3AD25BEE8A1003E1F15 /* MoreInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoVC.swift; sourceTree = "<group>"; };
 		764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCourseInfoVC.swift; sourceTree = "<group>"; };
 		7663891925C06EAF00B930AC /* CourseVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseVO.swift; sourceTree = "<group>"; };
-		7663891C25C06FFA00B930AC /* all_courses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = all_courses.json; sourceTree = "<group>"; };
 		76684BFE25C5A57500B8C65D /* DayTimeOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimeOption.swift; sourceTree = "<group>"; };
 		76684C0E25C7F88900B8C65D /* CourseTimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTimetableView.swift; sourceTree = "<group>"; };
-		76684C1625CA585C00B8C65D /* Suni-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Suni-Bridging-Header.h"; sourceTree = "<group>"; };
-		76684C1725CA585D00B8C65D /* FSCalendarCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCalculator.m; sourceTree = "<group>"; };
-		76684C1825CA585D00B8C65D /* FSCalendarDelegationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDelegationFactory.h; sourceTree = "<group>"; };
-		76684C1925CA585D00B8C65D /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
-		76684C1A25CA585D00B8C65D /* FSCalendarDelegationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDelegationProxy.h; sourceTree = "<group>"; };
-		76684C1B25CA585D00B8C65D /* FSCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCell.h; sourceTree = "<group>"; };
-		76684C1C25CA585D00B8C65D /* FSCalendarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCollectionView.m; sourceTree = "<group>"; };
-		76684C1D25CA585D00B8C65D /* FSCalendarDelegationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarDelegationFactory.m; sourceTree = "<group>"; };
-		76684C1E25CA585D00B8C65D /* FSCalendarAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarAppearance.h; sourceTree = "<group>"; };
-		76684C1F25CA585D00B8C65D /* FSCalendarCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCalculator.h; sourceTree = "<group>"; };
-		76684C2125CA585D00B8C65D /* FSCalendarCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCollectionViewLayout.h; sourceTree = "<group>"; };
-		76684C2225CA585D00B8C65D /* FSCalendarConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarConstants.m; sourceTree = "<group>"; };
-		76684C2325CA585D00B8C65D /* FSCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarConstants.h; sourceTree = "<group>"; };
-		76684C2425CA585D00B8C65D /* FSCalendarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCollectionView.h; sourceTree = "<group>"; };
-		76684C2525CA585D00B8C65D /* FSCalendarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarHeaderView.h; sourceTree = "<group>"; };
-		76684C2625CA585D00B8C65D /* FSCalendarStickyHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarStickyHeader.m; sourceTree = "<group>"; };
-		76684C2725CA585D00B8C65D /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
-		76684C2825CA585D00B8C65D /* FSCalendarExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarExtensions.m; sourceTree = "<group>"; };
-		76684C2925CA585D00B8C65D /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
-		76684C2A25CA585E00B8C65D /* FSCalendarSeparatorDecorationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarSeparatorDecorationView.h; sourceTree = "<group>"; };
-		76684C2B25CA585E00B8C65D /* FSCalendarDelegationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarDelegationProxy.m; sourceTree = "<group>"; };
-		76684C2C25CA585E00B8C65D /* FSCalendarExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarExtensions.h; sourceTree = "<group>"; };
-		76684C2D25CA585E00B8C65D /* FSCalendarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarHeaderView.m; sourceTree = "<group>"; };
-		76684C2E25CA585E00B8C65D /* FSCalendarDynamicHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarDynamicHeader.h; sourceTree = "<group>"; };
-		76684C2F25CA585E00B8C65D /* FSCalendarAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarAppearance.m; sourceTree = "<group>"; };
-		76684C3025CA585E00B8C65D /* FSCalendarSeparatorDecorationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarSeparatorDecorationView.m; sourceTree = "<group>"; };
-		76684C3125CA585E00B8C65D /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarWeekdayView.h; sourceTree = "<group>"; };
-		76684C3225CA585E00B8C65D /* FSCalendarStickyHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarStickyHeader.h; sourceTree = "<group>"; };
-		76684C3325CA585E00B8C65D /* FSCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCell.m; sourceTree = "<group>"; };
-		76684C3425CA585E00B8C65D /* FSCalendarCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCollectionViewLayout.m; sourceTree = "<group>"; };
-		76684C3525CA585E00B8C65D /* FSCalendarTransitionCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarTransitionCoordinator.h; sourceTree = "<group>"; };
-		76684C3625CA585E00B8C65D /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
 		76684C6225CA6F2A00B8C65D /* Wemakeprice-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wemakeprice-SemiBold.ttf"; sourceTree = "<group>"; };
 		76684C6525CA6F8900B8C65D /* Wemakeprice-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wemakeprice-Regular.ttf"; sourceTree = "<group>"; };
 		76684C6625CA6F8900B8C65D /* Wemakeprice-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wemakeprice-Bold.ttf"; sourceTree = "<group>"; };
-		76684C6F25CA8BC200B8C65D /* calendar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar.json; sourceTree = "<group>"; };
 		76684C7225CA8C0900B8C65D /* CalendarVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVO.swift; sourceTree = "<group>"; };
 		766EB25925D271A600225DCC /* CSViewWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSViewWithButton.swift; sourceTree = "<group>"; };
 		767CEF3625CBEEB100B8111A /* PhoneBoothVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBoothVC.swift; sourceTree = "<group>"; };
-		767CEF3A25CBF49800B8111A /* phone_number.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = phone_number.json; sourceTree = "<group>"; };
 		767CEF3D25CBF9FE00B8111A /* PhoneNumberVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVO.swift; sourceTree = "<group>"; };
 		768D679D25B86FC80053DE0C /* Suni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Suni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768D67A025B86FC80053DE0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +88,9 @@
 		76B87A1825CAECD4001402EE /* SelectedCourseModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCourseModalVC.swift; sourceTree = "<group>"; };
 		76B87A1C25CAF34F001402EE /* CustomPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPC.swift; sourceTree = "<group>"; };
 		76B87A2B25CAFF13001402EE /* SelectedCourseModalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedCourseModalVC.xib; sourceTree = "<group>"; };
+		945A78B814668FF99A411BFA /* Pods-Suni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Suni.release.xcconfig"; path = "Target Support Files/Pods-Suni/Pods-Suni.release.xcconfig"; sourceTree = "<group>"; };
+		9DAEEB6F755BAEF8C97AA3F3 /* Pods-Suni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Suni.debug.xcconfig"; path = "Target Support Files/Pods-Suni/Pods-Suni.debug.xcconfig"; sourceTree = "<group>"; };
+		D010602155C792CF03556543 /* Pods_Suni.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Suni.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AD20551B620168E1D646C32 /* Pods_Suni.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,10 +108,6 @@
 		763BAF3525B95D9B005F7EF8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				76684C1525CA584100B8C65D /* FSCalendar */,
-				7663891C25C06FFA00B930AC /* all_courses.json */,
-				76684C6F25CA8BC200B8C65D /* calendar.json */,
-				767CEF3A25CBF49800B8111A /* phone_number.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -234,45 +184,6 @@
 			path = "Add Course";
 			sourceTree = "<group>";
 		};
-		76684C1525CA584100B8C65D /* FSCalendar */ = {
-			isa = PBXGroup;
-			children = (
-				76684C1925CA585D00B8C65D /* FSCalendar.h */,
-				76684C2725CA585D00B8C65D /* FSCalendar.m */,
-				76684C1E25CA585D00B8C65D /* FSCalendarAppearance.h */,
-				76684C2F25CA585E00B8C65D /* FSCalendarAppearance.m */,
-				76684C1F25CA585D00B8C65D /* FSCalendarCalculator.h */,
-				76684C1725CA585D00B8C65D /* FSCalendarCalculator.m */,
-				76684C1B25CA585D00B8C65D /* FSCalendarCell.h */,
-				76684C3325CA585E00B8C65D /* FSCalendarCell.m */,
-				76684C2425CA585D00B8C65D /* FSCalendarCollectionView.h */,
-				76684C1C25CA585D00B8C65D /* FSCalendarCollectionView.m */,
-				76684C2125CA585D00B8C65D /* FSCalendarCollectionViewLayout.h */,
-				76684C3425CA585E00B8C65D /* FSCalendarCollectionViewLayout.m */,
-				76684C2325CA585D00B8C65D /* FSCalendarConstants.h */,
-				76684C2225CA585D00B8C65D /* FSCalendarConstants.m */,
-				76684C1825CA585D00B8C65D /* FSCalendarDelegationFactory.h */,
-				76684C1D25CA585D00B8C65D /* FSCalendarDelegationFactory.m */,
-				76684C1A25CA585D00B8C65D /* FSCalendarDelegationProxy.h */,
-				76684C2B25CA585E00B8C65D /* FSCalendarDelegationProxy.m */,
-				76684C2E25CA585E00B8C65D /* FSCalendarDynamicHeader.h */,
-				76684C2C25CA585E00B8C65D /* FSCalendarExtensions.h */,
-				76684C2825CA585D00B8C65D /* FSCalendarExtensions.m */,
-				76684C2525CA585D00B8C65D /* FSCalendarHeaderView.h */,
-				76684C2D25CA585E00B8C65D /* FSCalendarHeaderView.m */,
-				76684C2A25CA585E00B8C65D /* FSCalendarSeparatorDecorationView.h */,
-				76684C3025CA585E00B8C65D /* FSCalendarSeparatorDecorationView.m */,
-				76684C3225CA585E00B8C65D /* FSCalendarStickyHeader.h */,
-				76684C2625CA585D00B8C65D /* FSCalendarStickyHeader.m */,
-				76684C3525CA585E00B8C65D /* FSCalendarTransitionCoordinator.h */,
-				76684C2925CA585D00B8C65D /* FSCalendarTransitionCoordinator.m */,
-				76684C3125CA585E00B8C65D /* FSCalendarWeekdayView.h */,
-				76684C3625CA585E00B8C65D /* FSCalendarWeekdayView.m */,
-				76684C1625CA585C00B8C65D /* Suni-Bridging-Header.h */,
-			);
-			path = FSCalendar;
-			sourceTree = "<group>";
-		};
 		767CEF3525CBEE9F00B8111A /* Phone Number */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +199,8 @@
 				763BAF3525B95D9B005F7EF8 /* Resources */,
 				768D679F25B86FC80053DE0C /* Suni */,
 				768D679E25B86FC80053DE0C /* Products */,
+				98AA8F8AF76AFD62BABDD211 /* Pods */,
+				D34D7585FAB7D13B6E7B3F34 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -311,10 +224,28 @@
 				768D67AC25B86FC80053DE0C /* Assets.xcassets */,
 				768D67B125B86FC80053DE0C /* Info.plist */,
 				763BAF1525B8714E005F7EF8 /* InfoPlist.strings */,
+				7645C8B325D96F27008DEA4D /* GoogleService-Info.plist */,
 				768D67AE25B86FC80053DE0C /* LaunchScreen.storyboard */,
 				768D67A625B86FC80053DE0C /* Main.storyboard */,
 			);
 			path = Suni;
+			sourceTree = "<group>";
+		};
+		98AA8F8AF76AFD62BABDD211 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9DAEEB6F755BAEF8C97AA3F3 /* Pods-Suni.debug.xcconfig */,
+				945A78B814668FF99A411BFA /* Pods-Suni.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D34D7585FAB7D13B6E7B3F34 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D010602155C792CF03556543 /* Pods_Suni.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,9 +255,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 768D67B425B86FC80053DE0C /* Build configuration list for PBXNativeTarget "Suni" */;
 			buildPhases = (
+				D70B1F8E359DE2E99C297F90 /* [CP] Check Pods Manifest.lock */,
 				768D679925B86FC80053DE0C /* Sources */,
 				768D679A25B86FC80053DE0C /* Frameworks */,
 				768D679B25B86FC80053DE0C /* Resources */,
+				AF72F06ECF42D2ECBC8E5FC1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -376,10 +309,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7645C8B425D96F27008DEA4D /* GoogleService-Info.plist in Resources */,
 				76684C6325CA6F2A00B8C65D /* Wemakeprice-SemiBold.ttf in Resources */,
-				7663891D25C06FFA00B930AC /* all_courses.json in Resources */,
 				763BAF2725B9499E005F7EF8 /* Righteous-Regular.ttf in Resources */,
-				767CEF3B25CBF49800B8111A /* phone_number.json in Resources */,
 				76684C6825CA6F8900B8C65D /* Wemakeprice-Bold.ttf in Resources */,
 				768D67B025B86FC80053DE0C /* LaunchScreen.storyboard in Resources */,
 				763BAF1325B8714E005F7EF8 /* InfoPlist.strings in Resources */,
@@ -387,11 +319,52 @@
 				76B87A2C25CAFF13001402EE /* SelectedCourseModalVC.xib in Resources */,
 				768D67A825B86FC80053DE0C /* Main.storyboard in Resources */,
 				76684C6725CA6F8900B8C65D /* Wemakeprice-Regular.ttf in Resources */,
-				76684C7025CA8BC200B8C65D /* calendar.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AF72F06ECF42D2ECBC8E5FC1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Suni/Pods-Suni-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Suni/Pods-Suni-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Suni/Pods-Suni-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D70B1F8E359DE2E99C297F90 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Suni-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		768D679925B86FC80053DE0C /* Sources */ = {
@@ -399,46 +372,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				763BAF2425B87509005F7EF8 /* CalendarVC.swift in Sources */,
-				76684C4025CA585E00B8C65D /* FSCalendarHeaderView.m in Sources */,
-				76684C3825CA585E00B8C65D /* FSCalendarCollectionView.m in Sources */,
 				76184EAB25CFFCBE002102E9 /* CourseVC.swift in Sources */,
-				76684C4425CA585E00B8C65D /* FSCalendarCollectionViewLayout.m in Sources */,
 				763BAF3F25B98318005F7EF8 /* TimetableCell.swift in Sources */,
 				764AF3B125BF0C27003E1F15 /* WebCourseInfoVC.swift in Sources */,
 				766EB25A25D271A600225DCC /* CSViewWithButton.swift in Sources */,
 				76A90DD925BE7883002E0A69 /* CourseListCell.swift in Sources */,
 				76A90DC525BD7E51002E0A69 /* SelectedCourseCell.swift in Sources */,
-				76684C3725CA585E00B8C65D /* FSCalendarCalculator.m in Sources */,
 				763BAF6225BC108A005F7EF8 /* AddCourseCell.swift in Sources */,
 				767CEF3725CBEEB100B8111A /* PhoneBoothVC.swift in Sources */,
-				76684C4225CA585E00B8C65D /* FSCalendarSeparatorDecorationView.m in Sources */,
 				767CEF3E25CBF9FE00B8111A /* PhoneNumberVO.swift in Sources */,
 				763BAF2025B874E0005F7EF8 /* ScheduleVC.swift in Sources */,
 				76684BFF25C5A57500B8C65D /* DayTimeOption.swift in Sources */,
 				768D67A125B86FC80053DE0C /* AppDelegate.swift in Sources */,
-				76684C3D25CA585E00B8C65D /* FSCalendarExtensions.m in Sources */,
-				76684C3E25CA585E00B8C65D /* FSCalendarTransitionCoordinator.m in Sources */,
 				76184EAE25CFFCCA002102E9 /* ManualVC.swift in Sources */,
 				7663891A25C06EAF00B930AC /* CourseVO.swift in Sources */,
-				76684C3F25CA585E00B8C65D /* FSCalendarDelegationProxy.m in Sources */,
-				76684C3925CA585E00B8C65D /* FSCalendarDelegationFactory.m in Sources */,
-				76684C3C25CA585E00B8C65D /* FSCalendar.m in Sources */,
 				76B87A1D25CAF34F001402EE /* CustomPC.swift in Sources */,
 				76684C0F25C7F88900B8C65D /* CourseTimetableView.swift in Sources */,
-				76684C4525CA585E00B8C65D /* FSCalendarWeekdayView.m in Sources */,
 				768D67A325B86FC80053DE0C /* SceneDelegate.swift in Sources */,
 				76B87A1925CAECD4001402EE /* SelectedCourseModalVC.swift in Sources */,
 				763BAF4B25BA8F93005F7EF8 /* CSNavigationBar.swift in Sources */,
 				764AF3AE25BEE8A1003E1F15 /* MoreInfoVC.swift in Sources */,
-				76684C3A25CA585E00B8C65D /* FSCalendarConstants.m in Sources */,
-				76684C4125CA585E00B8C65D /* FSCalendarAppearance.m in Sources */,
 				763BAF4E25BB0B0B005F7EF8 /* AddCourseVC.swift in Sources */,
 				76684C7325CA8C0900B8C65D /* CalendarVO.swift in Sources */,
 				76B87A1225CAD0B2001402EE /* CalendarEventCell.swift in Sources */,
 				763BAF2E25B94F20005F7EF8 /* CSButton.swift in Sources */,
 				763BAF2A25B94A14005F7EF8 /* Utils.swift in Sources */,
-				76684C3B25CA585E00B8C65D /* FSCalendarStickyHeader.m in Sources */,
-				76684C4325CA585E00B8C65D /* FSCalendarCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +553,7 @@
 		};
 		768D67B525B86FC80053DE0C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DAEEB6F755BAEF8C97AA3F3 /* Pods-Suni.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -608,7 +567,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = YiHyun.Suni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Resources/FSCalendar/Suni-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -617,6 +575,7 @@
 		};
 		768D67B625B86FC80053DE0C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 945A78B814668FF99A411BFA /* Pods-Suni.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -630,7 +589,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = YiHyun.Suni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Resources/FSCalendar/Suni-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

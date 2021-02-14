@@ -27,38 +27,68 @@ class PhoneBoothVC : UIViewController {
         self.phoneNumberTableView.dataSource = self
     }
     private func getPhoneNumbers () {
-        if let path = Bundle.main.path(forResource: "phone_number", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path))
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
-                for obj in jsonResult {
-                    let pvo = PhoneNumberVO()
-                    pvo.category = PhoneCategory(rawValue: (obj["category"] as? Int)!)
-                    pvo.number = obj["number"] as? String
-                    pvo.name = obj["name"] as? String
-                    if obj["email"] as? String != "" {
-                        pvo.email = obj["email"] as? String
-                    }
-                    
-                    
-                    guard let category = pvo.category else { return }
-                    switch category {
-                    case .igc: self.igc.append(pvo)
-                    case .coordinators : self.coordinators.append(pvo)
-                    case .studentAffair : self.studentAffair.append(pvo)
-                    case .rcAndWorkStudy : self.rcAndWorkStudy.append(pvo)
-                    case .scholarship: self.scholarship.append(pvo)
-                    case .others : self.others.append(pvo)
-                    case .international : self.international.append(pvo)
-                    }
+        
+        let sd = UserDefaults.standard
+        if let jsonResult = sd.object(forKey: "phone_number") as? [NSDictionary] {
+            for obj in jsonResult {
+                let pvo = PhoneNumberVO()
+                pvo.category = PhoneCategory(rawValue: (obj["category"] as? Int)!)
+                pvo.number = obj["number"] as? String
+                pvo.name = obj["name"] as? String
+                if obj["email"] as? String != "" {
+                    pvo.email = obj["email"] as? String
+                }
+                
+                
+                guard let category = pvo.category else { return }
+                switch category {
+                case .igc: self.igc.append(pvo)
+                case .coordinators : self.coordinators.append(pvo)
+                case .studentAffair : self.studentAffair.append(pvo)
+                case .rcAndWorkStudy : self.rcAndWorkStudy.append(pvo)
+                case .scholarship: self.scholarship.append(pvo)
+                case .others : self.others.append(pvo)
+                case .international : self.international.append(pvo)
                 }
             }
-            catch {
-                NSLog(error.localizedDescription)
-            }
-            
+        }
+        else {
+            NSLog("Error on parsing PhoneNumber from sd")
         }
         self.phoneNumbers = [self.igc, self.coordinators, self.studentAffair, self.rcAndWorkStudy, self.scholarship, self.others, self.international]
+//
+//        if let path = Bundle.main.path(forResource: "phone_number", ofType: "json") {
+//            do {
+//                let data = try Data(contentsOf: URL(fileURLWithPath: path))
+//                let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
+//                for obj in jsonResult {
+//                    let pvo = PhoneNumberVO()
+//                    pvo.category = PhoneCategory(rawValue: (obj["category"] as? Int)!)
+//                    pvo.number = obj["number"] as? String
+//                    pvo.name = obj["name"] as? String
+//                    if obj["email"] as? String != "" {
+//                        pvo.email = obj["email"] as? String
+//                    }
+//
+//
+//                    guard let category = pvo.category else { return }
+//                    switch category {
+//                    case .igc: self.igc.append(pvo)
+//                    case .coordinators : self.coordinators.append(pvo)
+//                    case .studentAffair : self.studentAffair.append(pvo)
+//                    case .rcAndWorkStudy : self.rcAndWorkStudy.append(pvo)
+//                    case .scholarship: self.scholarship.append(pvo)
+//                    case .others : self.others.append(pvo)
+//                    case .international : self.international.append(pvo)
+//                    }
+//                }
+//            }
+//            catch {
+//                NSLog(error.localizedDescription)
+//            }
+//
+//        }
+        
     }
     
     

@@ -125,45 +125,81 @@ class CourseVC: UIViewController {
     
     
     private func getCourseData() {
-        if let path = Bundle.main.path(forResource: "all_courses", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
-                for course in jsonResult {
-                    let cvo = CourseVO()
-                    cvo.major = course["major"] as? String
-                    cvo.name = course["name"] as? String
-                    cvo.title = course["title"] as? String
-                    cvo.type = course["type"] as? String
-                    cvo.credit = course["credit"] as? Int
-                    cvo.days = course["days"] as? Array<String>
-                    let startTime = course["startTime"] as? String
-                    let endTime = course["endTime"] as? String
+        let sd = UserDefaults.standard
+        if let jsonResult = sd.object(forKey: "all_courses") as? [NSDictionary] {
+            for course in jsonResult {
+                let cvo = CourseVO()
+                cvo.major = course["major"] as? String
+                cvo.name = course["name"] as? String
+                cvo.title = course["title"] as? String
+                cvo.type = course["type"] as? String
+                cvo.credit = course["credit"] as? Int
+                cvo.days = course["days"] as? Array<String>
+                let startTime = course["startTime"] as? String
+                let endTime = course["endTime"] as? String
 
-                    cvo.time = convertStringToDateInterval(startTime: startTime!, endTime: endTime!)
-                    cvo.room = course["room"] as? String
-                    cvo.instructor = course["instructor"] as? String
-                    cvo.hasLab = course["hasLab"] as? Bool
-                    cvo.link = course["link"] as? String
-                    cvo.number = course["number"] as? Int
-                    var hasher = Hasher()
-                    hasher.combine(cvo.name)
-                    hasher.combine(cvo.time)
-                    cvo.hash = hasher.finalize()
-                    if (cvo.type == "LAB" || cvo.type == "REC") && (cvo.name != "PHY133") {
-                        self.additionalCourses.append(cvo)
-                    }
-                    else {
-                        self.courselist.append(cvo)
-                    }
+                cvo.time = convertStringToDateInterval(startTime: startTime!, endTime: endTime!)
+                cvo.room = course["room"] as? String
+                cvo.instructor = course["instructor"] as? String
+                cvo.hasLab = course["hasLab"] as? Bool
+                cvo.link = course["link"] as? String
+                cvo.number = course["number"] as? Int
+                var hasher = Hasher()
+                hasher.combine(cvo.name)
+                hasher.combine(cvo.time)
+                cvo.hash = hasher.finalize()
+                if (cvo.type == "LAB" || cvo.type == "REC") && (cvo.name != "PHY133") {
+                    self.additionalCourses.append(cvo)
                 }
-            } catch {
-                NSLog("Error for Parsing JSON format file!")
-                
+                else {
+                    self.courselist.append(cvo)
+                }
             }
         }
-        
+        else {
+            NSLog("Error on parsing Course JSON From sd")
+        }
     }
+//
+//
+//        if let path = Bundle.main.path(forResource: "all_courses", ofType: "json") {
+//            do {
+//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+//                let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
+//                for course in jsonResult {
+//                    let cvo = CourseVO()
+//                    cvo.major = course["major"] as? String
+//                    cvo.name = course["name"] as? String
+//                    cvo.title = course["title"] as? String
+//                    cvo.type = course["type"] as? String
+//                    cvo.credit = course["credit"] as? Int
+//                    cvo.days = course["days"] as? Array<String>
+//                    let startTime = course["startTime"] as? String
+//                    let endTime = course["endTime"] as? String
+//
+//                    cvo.time = convertStringToDateInterval(startTime: startTime!, endTime: endTime!)
+//                    cvo.room = course["room"] as? String
+//                    cvo.instructor = course["instructor"] as? String
+//                    cvo.hasLab = course["hasLab"] as? Bool
+//                    cvo.link = course["link"] as? String
+//                    cvo.number = course["number"] as? Int
+//                    var hasher = Hasher()
+//                    hasher.combine(cvo.name)
+//                    hasher.combine(cvo.time)
+//                    cvo.hash = hasher.finalize()
+//                    if (cvo.type == "LAB" || cvo.type == "REC") && (cvo.name != "PHY133") {
+//                        self.additionalCourses.append(cvo)
+//                    }
+//                    else {
+//                        self.courselist.append(cvo)
+//                    }
+//                }
+//            } catch {
+//                NSLog("Error for Parsing JSON format file!")
+//
+//            }
+        
+ 
     
     private func initBody () {
         //HR line

@@ -231,13 +231,13 @@
                                 <rect key="frame" x="16" y="174" width="171.66666666666666" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khc-EQ-MFK">
-                                        <rect key="frame" x="53.000000000000007" y="5" width="65.666666666666686" height="35"/>
+                                        <rect key="frame" x="54" y="5" width="63.333333333333343" height="37.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="30"/>
                                         <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TUE/THU 10:00-12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sha-cK-hJG">
-                                        <rect key="frame" x="11.333333333333329" y="55" width="149" height="17.666666666666671"/>
+                                        <rect key="frame" x="10.333333333333329" y="57.333333333333336" width="150.66666666666669" height="17.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -256,13 +256,13 @@
                                 <rect key="frame" x="202.66666666666663" y="174" width="171.33333333333337" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RY9-Uv-n1b">
-                                        <rect key="frame" x="45.33333333333335" y="5" width="80.666666666666686" height="35"/>
+                                        <rect key="frame" x="47" y="5" width="77" height="37.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="30"/>
                                         <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Academic B 203" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKW-o0-rwZ">
-                                        <rect key="frame" x="30.33333333333335" y="55" width="110.66666666666669" height="17.666666666666671"/>
+                                        <rect key="frame" x="29.333333333333336" y="57.333333333333336" width="112.33333333333331" height="17.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -280,13 +280,13 @@
                                 <rect key="frame" x="16" y="289" width="171.66666666666666" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgv-iW-wEr">
-                                        <rect key="frame" x="44.999999999999993" y="5" width="81.333333333333314" height="35"/>
+                                        <rect key="frame" x="43.000000000000007" y="5" width="85.666666666666686" height="37.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="30"/>
                                         <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZi-qx-HZy">
-                                        <rect key="frame" x="55.333333333333329" y="55" width="60.666666666666671" height="17.666666666666671"/>
+                                        <rect key="frame" x="54" y="57.333333333333307" width="63.666666666666657" height="17.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -304,13 +304,13 @@
                                 <rect key="frame" x="202.66666666666663" y="289" width="171.33333333333337" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQM-mw-tiX">
-                                        <rect key="frame" x="21.333333333333343" y="5" width="128.66666666666666" height="35"/>
+                                        <rect key="frame" x="14.666666666666686" y="5" width="141.66666666666666" height="37.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="30"/>
                                         <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amos Omondi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQq-oz-Ql2">
-                                        <rect key="frame" x="37.666666666666686" y="55" width="96" height="17.666666666666671"/>
+                                        <rect key="frame" x="37.666666666666686" y="57.333333333333307" width="96" height="17.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -328,13 +328,13 @@
                                 <rect key="frame" x="16" y="404" width="358" height="109"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRJ-DI-orR">
-                                        <rect key="frame" x="151.33333333333334" y="5" width="55.666666666666657" height="35"/>
+                                        <rect key="frame" x="150.66666666666666" y="5" width="57" height="37.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="30"/>
                                         <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0P-h4-eAQ">
-                                        <rect key="frame" x="10" y="55" width="338" height="30"/>
+                                        <rect key="frame" x="10" y="57.333333333333314" width="338" height="31"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <connections>
                                             <segue destination="y6T-zQ-cJ2" kind="show" identifier="segue_detail" id="AkD-4M-S3C"/>
@@ -355,13 +355,13 @@
                                 <rect key="frame" x="16" y="59" width="358" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Object Oriented Programming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abv-Ec-tTE">
-                                        <rect key="frame" x="65.000000000000014" y="45" width="228.33333333333337" height="20"/>
+                                        <rect key="frame" x="60.666666666666671" y="47.333333333333329" width="236.66666666666663" height="21.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbC-0A-9gF">
-                                        <rect key="frame" x="139.33333333333334" y="5" width="79.666666666666657" height="35"/>
+                                        <rect key="frame" x="140.33333333333334" y="5" width="77.333333333333343" height="37.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="30"/>
                                         <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -382,13 +382,13 @@
                                 <rect key="frame" x="16" y="528" width="358" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TUE/THU 10:00-12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdC-wk-FTt">
-                                        <rect key="frame" x="104.66666666666669" y="55" width="149" height="17.666666666666671"/>
+                                        <rect key="frame" x="103.66666666666667" y="57.333333333333364" width="150.66666666666663" height="17.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvE-S4-tI1">
-                                        <rect key="frame" x="142.33333333333334" y="5" width="73.666666666666657" height="35"/>
+                                        <rect key="frame" x="141.33333333333334" y="5" width="75.666666666666657" height="37.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="30"/>
                                         <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
