@@ -6,12 +6,41 @@
 //
 
 import UIKit
+import Network
 
 @IBDesignable
 class ScheduleVC : UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let monitor = NWPathMonitor()
+    let queue = DispatchQueue(label: "Monitor")
+    
+    var isConnected = false {
+        willSet {
+            DispatchQueue.main.sync {
+                if newValue == true {
+                    self.view.isUserInteractionEnabled = true
+                    self.tabBarController?.tabBar.items?[0].isEnabled = true
+                    self.tabBarController?.tabBar.items?[1].isEnabled = true
+                    self.tabBarController?.tabBar.items?[2].isEnabled = true
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                }
+                else {
+                    let alert = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    self.view.isUserInteractionEnabled = false
+                    self.tabBarController?.tabBar.items?[0].isEnabled = false
+                    self.tabBarController?.tabBar.items?[1].isEnabled = false
+                    self.tabBarController?.tabBar.items?[2].isEnabled = false
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
+                }
+            }
+            
+        }
+        
+    }
     
     var cellWidth : CGFloat {
         get {
@@ -24,9 +53,23 @@ class ScheduleVC : UIViewController {
         }
     }
     override func viewDidLoad() {
+        self.checkInternetConnectivity()
         self.setup()
+        
     }
 
+    private func checkInternetConnectivity() {
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                self.isConnected = true
+                self.monitor.cancel()
+            }
+            else {
+                self.isConnected = false
+            }
+        }
+        monitor.start(queue: queue)
+    }
     
     private func setup() {
         self.initHeader()
@@ -262,8 +305,12 @@ extension ScheduleVC : UICollectionViewDelegate, UICollectionViewDataSource {
         
         //First column -> should be empty
         if indexPath.section == 0 {
+            
+            //1 -> SUN
+            //2 -> MON
+            //7 -> SAT
             let day = Calendar.current.component(.weekday, from: Date())
-            if day == indexPath.row {
+            if day == indexPath.row + 1 {
                 cell.backgroundColor = .todayColor
                 
             }

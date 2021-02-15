@@ -8,20 +8,18 @@
 import UIKit
 import Firebase
 
-
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var existedCourses : [CourseVO] = []
     private var ref : DatabaseReference!
     private var versionFromFB : String?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         sleep(1)
         FirebaseApp.configure()
-        
-        ref = Database.database().reference()
-        
+        self.ref = Database.database().reference()
         let sd = UserDefaults.standard
 
         //If firstTime
@@ -56,24 +54,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ref.child("all_courses").observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? [NSDictionary]
             sd.set(value, forKey: "all_courses")
+            print("all_courses complete")
         }) { error in
             print("Error in getting courses JSON: \(error.localizedDescription)")
         }
         ref.child("calendar").observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? [NSDictionary]
             sd.set(value, forKey: "calendar")
+            print("calendar complete")
         }) { error in
             print("Error in getting calendar JSON: \(error.localizedDescription)")
         }
         ref.child("phone_number").observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? [NSDictionary]
             sd.set(value, forKey: "phone_number")
+            print("phone_number complete")
         }) { error in
             print("Error in getting phone number JSON: \(error.localizedDescription)")
         }
         ref.child("version").observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? String
             sd.set(value, forKey: "version")
+            print("version complete")
         }) { error in
             print("Error in getting version number: \(error.localizedDescription)")
         }
