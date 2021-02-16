@@ -23,8 +23,6 @@ class SelectedCourseCell: UICollectionViewCell {
         self.removeBtn.setImage(UIImage(named: "close.png"), for: .normal)
 
         self.label.sizeToFit()
-//        self.label.font = getRigteous(size: self.label.font.pointSize)
-//        self.label.adjustsFontSizeToFitWidth = true
         self.label.textColor = .themeTextColor
 
         let space = (self.frame.width - (self.label.frame.width + closeBtnWidth)) / 2

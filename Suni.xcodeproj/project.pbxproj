@@ -22,6 +22,7 @@
 		7645C8B425D96F27008DEA4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7645C8B325D96F27008DEA4D /* GoogleService-Info.plist */; };
 		764AF3AE25BEE8A1003E1F15 /* MoreInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AF3AD25BEE8A1003E1F15 /* MoreInfoVC.swift */; };
 		764AF3B125BF0C27003E1F15 /* WebCourseInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */; };
+		7651B9A125DB820300F95172 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7651B9A325DB820300F95172 /* Localizable.strings */; };
 		7663891A25C06EAF00B930AC /* CourseVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7663891925C06EAF00B930AC /* CourseVO.swift */; };
 		76684BFF25C5A57500B8C65D /* DayTimeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76684BFE25C5A57500B8C65D /* DayTimeOption.swift */; };
 		76684C0F25C7F88900B8C65D /* CourseTimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76684C0E25C7F88900B8C65D /* CourseTimetableView.swift */; };
@@ -39,6 +40,7 @@
 		768D67B025B86FC80053DE0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 768D67AE25B86FC80053DE0C /* LaunchScreen.storyboard */; };
 		76A90DC525BD7E51002E0A69 /* SelectedCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */; };
 		76A90DD925BE7883002E0A69 /* CourseListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A90DD825BE7883002E0A69 /* CourseListCell.swift */; };
+		76B5668B25DB96D90063480D /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76B5668A25DB96D90063480D /* BMJUA_otf.otf */; };
 		76B87A1225CAD0B2001402EE /* CalendarEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B87A1125CAD0B2001402EE /* CalendarEventCell.swift */; };
 		76B87A1925CAECD4001402EE /* SelectedCourseModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B87A1825CAECD4001402EE /* SelectedCourseModalVC.swift */; };
 		76B87A1D25CAF34F001402EE /* CustomPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B87A1C25CAF34F001402EE /* CustomPC.swift */; };
@@ -49,9 +51,6 @@
 /* Begin PBXFileReference section */
 		76184EAA25CFFCBE002102E9 /* CourseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseVC.swift; sourceTree = "<group>"; };
 		76184EAD25CFFCCA002102E9 /* ManualVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualVC.swift; sourceTree = "<group>"; };
-		763BAEFC25B87012005F7EF8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
-		763BAEFD25B87012005F7EF8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		763BAF1425B8714E005F7EF8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		763BAF1925B871A3005F7EF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		763BAF1F25B874E0005F7EF8 /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
 		763BAF2325B87509005F7EF8 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
@@ -65,6 +64,11 @@
 		7645C8B325D96F27008DEA4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		764AF3AD25BEE8A1003E1F15 /* MoreInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoVC.swift; sourceTree = "<group>"; };
 		764AF3B025BF0C27003E1F15 /* WebCourseInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCourseInfoVC.swift; sourceTree = "<group>"; };
+		7651B9A225DB820300F95172 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7651B9A525DB823F00F95172 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7651B9A625DB823F00F95172 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		7651B9A725DB823F00F95172 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7651B9A825DB823F00F95172 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7663891925C06EAF00B930AC /* CourseVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseVO.swift; sourceTree = "<group>"; };
 		76684BFE25C5A57500B8C65D /* DayTimeOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimeOption.swift; sourceTree = "<group>"; };
 		76684C0E25C7F88900B8C65D /* CourseTimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTimetableView.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 		768D67B125B86FC80053DE0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76A90DC425BD7E51002E0A69 /* SelectedCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCourseCell.swift; sourceTree = "<group>"; };
 		76A90DD825BE7883002E0A69 /* CourseListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListCell.swift; sourceTree = "<group>"; };
+		76B5668A25DB96D90063480D /* BMJUA_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUA_otf.otf; sourceTree = "<group>"; };
 		76B87A1125CAD0B2001402EE /* CalendarEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventCell.swift; sourceTree = "<group>"; };
 		76B87A1825CAECD4001402EE /* SelectedCourseModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCourseModalVC.swift; sourceTree = "<group>"; };
 		76B87A1C25CAF34F001402EE /* CustomPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPC.swift; sourceTree = "<group>"; };
@@ -108,6 +113,7 @@
 		763BAF3825B97C03005F7EF8 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				76B5668A25DB96D90063480D /* BMJUA_otf.otf */,
 				763BAF2625B9493C005F7EF8 /* Righteous-Regular.ttf */,
 				76684C6225CA6F2A00B8C65D /* Wemakeprice-SemiBold.ttf */,
 				76684C6625CA6F8900B8C65D /* Wemakeprice-Bold.ttf */,
@@ -188,7 +194,6 @@
 		768D679425B86FC80053DE0C = {
 			isa = PBXGroup;
 			children = (
-				763BAF3825B97C03005F7EF8 /* Font */,
 				768D679F25B86FC80053DE0C /* Suni */,
 				768D679E25B86FC80053DE0C /* Products */,
 				98AA8F8AF76AFD62BABDD211 /* Pods */,
@@ -207,6 +212,7 @@
 		768D679F25B86FC80053DE0C /* Suni */ = {
 			isa = PBXGroup;
 			children = (
+				763BAF3825B97C03005F7EF8 /* Font */,
 				767CEF3525CBEE9F00B8111A /* Phone Number */,
 				76684BEF25C57FD100B8C65D /* Add Course */,
 				76684BEE25C57FCF00B8C65D /* Calendar */,
@@ -219,6 +225,7 @@
 				7645C8B325D96F27008DEA4D /* GoogleService-Info.plist */,
 				768D67AE25B86FC80053DE0C /* LaunchScreen.storyboard */,
 				768D67A625B86FC80053DE0C /* Main.storyboard */,
+				7651B9A325DB820300F95172 /* Localizable.strings */,
 			);
 			path = Suni;
 			sourceTree = "<group>";
@@ -303,6 +310,8 @@
 			files = (
 				7645C8B425D96F27008DEA4D /* GoogleService-Info.plist in Resources */,
 				76684C6325CA6F2A00B8C65D /* Wemakeprice-SemiBold.ttf in Resources */,
+				7651B9A125DB820300F95172 /* Localizable.strings in Resources */,
+				76B5668B25DB96D90063480D /* BMJUA_otf.otf in Resources */,
 				763BAF2725B9499E005F7EF8 /* Righteous-Regular.ttf in Resources */,
 				76684C6825CA6F8900B8C65D /* Wemakeprice-Bold.ttf in Resources */,
 				768D67B025B86FC80053DE0C /* LaunchScreen.storyboard in Resources */,
@@ -398,17 +407,26 @@
 		763BAF1525B8714E005F7EF8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				763BAF1425B8714E005F7EF8 /* ko */,
 				763BAF1925B871A3005F7EF8 /* en */,
+				7651B9A725DB823F00F95172 /* ko */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7651B9A325DB820300F95172 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7651B9A225DB820300F95172 /* en */,
+				7651B9A825DB823F00F95172 /* ko */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		768D67A625B86FC80053DE0C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				768D67A725B86FC80053DE0C /* Base */,
-				763BAEFC25B87012005F7EF8 /* ko */,
+				7651B9A625DB823F00F95172 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -417,7 +435,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				768D67AF25B86FC80053DE0C /* Base */,
-				763BAEFD25B87012005F7EF8 /* ko */,
+				7651B9A525DB823F00F95172 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

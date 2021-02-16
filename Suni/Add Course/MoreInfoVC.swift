@@ -23,6 +23,9 @@ class MoreInfoVC: UIViewController {
     @IBOutlet var labTitleLabel: UILabel!
     @IBOutlet var labTimeLabel: UILabel!
     
+    
+    @IBOutlet var titles: [UILabel]!
+    
     override func viewDidLoad() {
         for cv in self.labelContainerView {
             cv.layer.borderWidth = Constant.addCourseCellBorderWidth
@@ -74,6 +77,11 @@ class MoreInfoVC: UIViewController {
             self.paramLink.setTitle(link, for: .normal)
             self.paramLink.titleLabel?.numberOfLines = 0
         }
+        
+        for title in titles {
+            title.font = localizedFont(size: 30)
+        }
+        self.labTitleLabel.font = localizedFont(size: 30)
 
     }
 

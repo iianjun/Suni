@@ -26,11 +26,10 @@ class ManualVC: UIViewController {
     }
     
     private func setup() {
-        self.dayLabel.text = "Day"
+        self.dayLabel.text = "Day".localized
         self.dayLabel.textColor = .themeColor
-        self.dayLabel.font = getRigteous(size: self.dayLabel.font.pointSize)
-        self.dayLabel.adjustsFontSizeToFitWidth = true
-        
+        self.dayLabel.font = self.localizedFont(size: self.dayLabel.font.pointSize)
+        self.dayLabel.textAlignment = .center
         self.dayCollectionView.delegate = self
         self.dayCollectionView.dataSource = self
         self.dayCollectionView.bounces = false
@@ -56,8 +55,8 @@ class ManualVC: UIViewController {
         self.toTime.text = "10:00"
         self.fromTime.textAlignment = .center
         self.toTime.textAlignment = .center
-        self.fromTime.font = getRigteous(size: 20)
-        self.toTime.font = getRigteous(size: 20)
+        self.fromTime.font = getRighteous(size: 20)
+        self.toTime.font = getRighteous(size: 20)
         self.fromTime.textColor = .themeTextColor
         self.toTime.textColor = .themeTextColor
         
@@ -88,16 +87,16 @@ class ManualVC: UIViewController {
     
     private func setupInfoTf () {
         let arrTf = [self.name_tf, self.room_tf, self.instructor_tf]
-        self.name_tf.placeholder = "Name(Required)"
-        self.room_tf.placeholder = "Room(Optional)"
-        self.instructor_tf.placeholder = "Instructor(Optional)"
+        self.name_tf.placeholder = "Name(Required)".localized
+        self.room_tf.placeholder = "Room(Optional)".localized
+        self.instructor_tf.placeholder = "Instructor(Optional)".localized
         
         for tf in arrTf {
             tf?.borderStyle = .roundedRect
             tf?.layer.borderWidth = Constant.addCourseCellBorderWidth
             tf?.layer.borderColor = UIColor.themeColor.cgColor
             tf?.layer.cornerRadius = Constant.cornerRadius
-            tf?.font = getRigteous(size: 15)
+            tf?.font = self.localizedFont(size: 18)
             tf?.textColor = .themeTextColor
             tf?.clearButtonMode = .whileEditing
             tf?.autocapitalizationType = .none

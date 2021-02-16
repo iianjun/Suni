@@ -43,8 +43,8 @@ class SelectedCourseModalVC: UIViewController {
     private func setupInfo() {
         guard let currentCourseName = self.currentCourse.name else { return }
         guard let currentCourseType = self.currentCourse.type else { return }
-        self.courseTitle.text = "\(currentCourseName)(\(currentCourseType))"
-        self.courseTitle.font = getRigteous(size: 25)
+        self.courseTitle.text = "\(currentCourseName) (\(currentCourseType))"
+        self.courseTitle.font = getRighteous(size: 25)
         self.courseTitle.textColor = .themeTextColor
         
         self.infoTableView.delegate = self
@@ -60,7 +60,7 @@ class SelectedCourseModalVC: UIViewController {
         self.view.addSubview(deleteBtn)
     }
     @IBAction func deleteCourse(_ sender: Any) {
-        let alert = UIAlertController(title: "Do you really want to delete \(currentCourse.name!)?", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: String(format: "Do you really want to delete %@?".localized, currentCourse.name!), message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             
@@ -162,11 +162,12 @@ extension SelectedCourseModalVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: Constant.infoCellId)
         cell.selectionStyle = .none
-        cell.textLabel?.text = self.infoLabels[indexPath.row]
+        cell.textLabel?.text = self.infoLabels[indexPath.row].localized
         cell.textLabel?.textAlignment = .left
         cell.detailTextLabel?.textAlignment = .right
-        cell.textLabel?.font = getRigteous(size: 17)
-        cell.detailTextLabel?.font = getRigteous(size: 15)
+        print()
+        cell.textLabel?.font = self.localizedFont(size: (cell.textLabel?.font.pointSize)!)
+        cell.detailTextLabel?.font = getRighteous(size: 15)
         
         switch indexPath.row {
         case 0:

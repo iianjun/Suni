@@ -28,11 +28,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqr-4G-NKj">
-                    <rect key="frame" x="177" y="10" width="60" height="3"/>
+                    <rect key="frame" x="177" y="10" width="60" height="5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="Jgi-bT-1Fj"/>
-                        <constraint firstAttribute="height" constant="3" id="TzC-tK-lrM"/>
+                        <constraint firstAttribute="height" constant="5" id="TzC-tK-lrM"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chD-vO-GeY">

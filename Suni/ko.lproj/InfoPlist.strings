@@ -6,3 +6,4 @@
   
 */
 "CFBundleDisplayName" = "순이";
+"NSPhotoLibraryAddUsageDescription" = "스크린샷 기능을 사용하려면 '사진' 접근권한을 '사진만 추가'로 허용해야 합니다";
