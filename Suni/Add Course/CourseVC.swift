@@ -160,46 +160,7 @@ class CourseVC: UIViewController {
             NSLog("Error on parsing Course JSON From sd")
         }
     }
-//
-//
-//        if let path = Bundle.main.path(forResource: "all_courses", ofType: "json") {
-//            do {
-//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-//                let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
-//                for course in jsonResult {
-//                    let cvo = CourseVO()
-//                    cvo.major = course["major"] as? String
-//                    cvo.name = course["name"] as? String
-//                    cvo.title = course["title"] as? String
-//                    cvo.type = course["type"] as? String
-//                    cvo.credit = course["credit"] as? Int
-//                    cvo.days = course["days"] as? Array<String>
-//                    let startTime = course["startTime"] as? String
-//                    let endTime = course["endTime"] as? String
-//
-//                    cvo.time = convertStringToDateInterval(startTime: startTime!, endTime: endTime!)
-//                    cvo.room = course["room"] as? String
-//                    cvo.instructor = course["instructor"] as? String
-//                    cvo.hasLab = course["hasLab"] as? Bool
-//                    cvo.link = course["link"] as? String
-//                    cvo.number = course["number"] as? Int
-//                    var hasher = Hasher()
-//                    hasher.combine(cvo.name)
-//                    hasher.combine(cvo.time)
-//                    cvo.hash = hasher.finalize()
-//                    if (cvo.type == "LAB" || cvo.type == "REC") && (cvo.name != "PHY133") {
-//                        self.additionalCourses.append(cvo)
-//                    }
-//                    else {
-//                        self.courselist.append(cvo)
-//                    }
-//                }
-//            } catch {
-//                NSLog("Error for Parsing JSON format file!")
-//
-//            }
-        
- 
+
     
     private func initBody () {
         //HR line
@@ -214,11 +175,11 @@ class CourseVC: UIViewController {
     }
     
     private func setupMajor() {
-        self.majorLabel.text = "Major"
+        self.majorLabel.text = "Major".localized
         self.majorLabel.textColor = .themeColor
-        self.majorLabel.font = getRigteous(size: self.majorLabel.font.pointSize)
-        self.majorLabel.adjustsFontSizeToFitWidth = true
-        
+        self.majorLabel.textAlignment = .center
+//        self.majorLabel.adjustsFontSizeToFitWidth = true
+        self.majorLabel.font = localizedFont(size: self.majorLabel.font.pointSize)
         //Major cells set up
         self.majorCollectionView.delegate = self
         self.majorCollectionView.dataSource = self
@@ -233,10 +194,11 @@ class CourseVC: UIViewController {
     
     private func setupDay() {
         //"Day" label set up
-        self.dayLabel.text = "Day"
+        self.dayLabel.text = "Day".localized
+        self.dayLabel.font = localizedFont(size: self.dayLabel.font.pointSize)
         self.dayLabel.textColor = .themeColor
-        self.dayLabel.font = getRigteous(size: self.majorLabel.font.pointSize)
-        self.dayLabel.adjustsFontSizeToFitWidth = true
+        self.dayLabel.textAlignment = .center
+//        self.dayLabel.adjustsFontSizeToFitWidth = true
         
         //Day cells set up
         self.dayCollectionView.delegate = self
@@ -255,7 +217,7 @@ class CourseVC: UIViewController {
             tf.clearButtonMode = .whileEditing
             tf.keyboardType = .alphabet
             tf.borderStyle = .none
-            tf.font = getRigteous(size: 18)
+            tf.font = getRighteous(size: 18)
             tf.textColor = .themeTextColor
             tf.autocapitalizationType = .none
             tf.autocorrectionType = .no
@@ -335,10 +297,10 @@ class CourseVC: UIViewController {
     }
     
     private func setupCart() {
-        self.cartLabel.text = "Cart"
+        self.cartLabel.text = "Cart".localized
+        self.cartLabel.font = localizedFont(size: self.dayLabel.font.pointSize)
+        self.cartLabel.textAlignment = .center
         self.cartLabel.textColor = .themeColor
-        self.cartLabel.font = getRigteous(size: self.cartLabel.font.pointSize)
-        self.cartLabel.adjustsFontSizeToFitWidth = true
         
         self.cartCollectionView.delegate = self
         self.cartCollectionView.dataSource = self
@@ -423,14 +385,17 @@ extension CourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
         case 101 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
             cell.label?.text = self.majors[indexPath.row]
+            
             return cell
         case 102 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
-            cell.label?.text = self.days[indexPath.row]
+            cell.label?.text = self.days[indexPath.row].localized
+            
             return cell
         case 103 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.selectCellId, for: indexPath) as! SelectedCourseCell
             cell.label.text = self.selectedCourses[indexPath.row].name
+            
             cell.removeBtn.addTarget(self, action: #selector(self.removeCourse(_ :)), for: .touchUpInside)
             cell.removeBtn.tag = self.selectedCourses[indexPath.row].hash!
             return cell
@@ -584,7 +549,7 @@ extension CourseVC : UITableViewDelegate, UITableViewDataSource {
             tempCell.layer.cornerRadius = Constant.cornerRadius
             tempCell.textLabel?.textColor = .themeTextColor
             tempCell.textLabel?.text = "NO RESULT"
-            tempCell.textLabel?.font = getRigteous(size: 17)
+            tempCell.textLabel?.font = getRighteous(size: 17)
             tempCell.textLabel?.textAlignment = .center
             return tempCell
         }
@@ -649,12 +614,12 @@ extension CourseVC : UITableViewDelegate, UITableViewDataSource {
             let course = (self.filteredCourses.count > 0 && isNoResult == false) ? self.filteredCourses[indexPath.section] : self.courselist[indexPath.section]
             if let credit = course.credit {
                 if credit + choosenCredits > 23 {
-                    self.alert("You cannot take more than 23 credits")
+                    self.alert("[Credit Overload]".localized, message : "You cannot take more than 23 credits".localized)
                     return
                 }
             }
             if self.selectedCourses.contains(course) || self.selectedCourses.first(where: { $0.name == course.name }) != nil {
-                self.alert("\(course.name!) is already in the cart")
+                self.alert(String(format: "%@ is already in the cart".localized, course.name!))
                 return
             }
             self.selectedCourses.append(course)

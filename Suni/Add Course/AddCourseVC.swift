@@ -54,8 +54,8 @@ class AddCourseVC: UIViewController {
     
     private func initHeader() {
         let viewTitle = UILabel()
-        viewTitle.text = "Add Course"
-        viewTitle.font = getRigteous(size: Constant.titleFontSize)
+        viewTitle.text = "Add Course".localized
+        viewTitle.font = localizedFont(size: Constant.titleFontSize)
         viewTitle.sizeToFit()
         viewTitle.textColor = .themeColor
         
@@ -71,13 +71,13 @@ class AddCourseVC: UIViewController {
         comBinedView.addSubview(viewTitle)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: comBinedView)
 
-        self.saveBtn.title = "Save"
+        self.saveBtn.title = "Save".localized
         self.saveBtn.setTitleTextAttributes([
-            NSAttributedString.Key.font : self.getRigteous(size: 17),
+            NSAttributedString.Key.font : self.localizedFont(size: 17),
             NSAttributedString.Key.foregroundColor : UIColor.themeTextColor
         ], for: .normal)
         self.saveBtn.setTitleTextAttributes([
-            NSAttributedString.Key.font : self.getRigteous(size: 17),
+            NSAttributedString.Key.font : self.localizedFont(size: 17),
             NSAttributedString.Key.foregroundColor : UIColor.themeTextColor
         ], for: .highlighted)
         
@@ -91,11 +91,11 @@ class AddCourseVC: UIViewController {
         self.segControl.setDividerImage(clearImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
         self.segControl.setTitleTextAttributes([
             NSAttributedString.Key.foregroundColor : UIColor.lightGray,
-            NSAttributedString.Key.font : getRigteous(size: 20)
+            NSAttributedString.Key.font : self.localizedFont(size: 20)
         ], for: .normal)
         self.segControl.setTitleTextAttributes([
             NSAttributedString.Key.foregroundColor : UIColor.themeTextColor,
-            NSAttributedString.Key.font : getRigteous(size: 20)
+            NSAttributedString.Key.font : self.localizedFont(size: 20)
         ], for: .selected)
         
         self.segIndicator.backgroundColor = .themeTextColor
@@ -136,7 +136,7 @@ class AddCourseVC: UIViewController {
                 var tempSelectedCourses = cvc.selectedCourses
                 //If selected Courses has course that has lab or rec
                 if tempSelectedCourses.isEmpty {
-                    self.alert("Cart is Empty!")
+                    self.alert("Cart is Empty!".localized, message: "Selected at least one course".localized)
                     return
                 }
                 for course in tempSelectedCourses {
@@ -160,15 +160,8 @@ class AddCourseVC: UIViewController {
                     }
                 }
                 
-                //Sort After appending lab
-                tempSelectedCourses.sort(by: {
-                    if let firstEnd = $0.time?.end, let secondEnd = $1.time?.end {
-                        return firstEnd < secondEnd
-                    }
-                    print("Error: On Sorting By End Time (Checking from cart courses)")
-                    return true
-                })
-                if self.checkOverlaps(courses: &tempSelectedCourses) {
+                //After appending lab
+                if self.checkOverlaps(courses: tempSelectedCourses) {
                     return
                 }
 
@@ -178,7 +171,7 @@ class AddCourseVC: UIViewController {
                     var originalCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
                     originalCourses.append(contentsOf: tempSelectedCourses)
                     
-                    if self.checkOverlaps(courses: &originalCourses) {
+                    if self.checkOverlaps(courses: originalCourses) {
                         return
                     }
                     
@@ -206,7 +199,7 @@ class AddCourseVC: UIViewController {
             //No selected days
             if let mvc = self.manualVC {
                 if mvc.selectedDays.isEmpty {
-                    self.alert("No Selected days!")
+                    self.alert("No Selected days!".localized)
                     return
                 }
                 if let startTime = mvc.fromTime.text ,let endTime = mvc.toTime.text {
@@ -214,7 +207,7 @@ class AddCourseVC: UIViewController {
                     //No proper start and end time
                     if let stDate = dateFormatter.date(from: startTime), let etDate = dateFormatter.date(from: endTime) {
                         if stDate >= etDate {
-                            self.alert("Start time and End time are not correct!")
+                            self.alert("Start time and End time are not correct!".localized)
                             return
                         }
                         dateInterval = DateInterval(start: stDate, end: etDate)
@@ -222,11 +215,11 @@ class AddCourseVC: UIViewController {
                 }
                 if let name = mvc.name_tf.text {
                     if name.isEmpty || name.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-                        self.alert("Name of course is required!", completion: { mvc.name_tf.text = "" })
+                        self.alert("Name of course is required!".localized, message: "Please enter the name".localized, completion: { mvc.name_tf.text = "" })
                         return
                     }
                     else if name.count > 10 {
-                        self.alert("Please name less than 10 characters")
+                        self.alert("Name should be less than 10 characters".localized)
                         return
                     }
                 }
@@ -252,7 +245,7 @@ class AddCourseVC: UIViewController {
                     var originalCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
                     originalCourses.append(cvo)
                     
-                    if checkOverlaps(courses: &originalCourses) {
+                    if checkOverlaps(courses: originalCourses) {
                         return
                     }
 
@@ -276,35 +269,39 @@ class AddCourseVC: UIViewController {
     
     }
     
-    private func checkOverlaps (courses : inout [CourseVO]) -> Bool {
-        
-        courses.sort(by: {
-            if let firstEnd = $0.time?.end, let secondEnd = $1.time?.end {
-                return firstEnd < secondEnd
-            }
-            print("Error: On Sorting By End Time (Checking from existing schedule courses)")
-            return true
-        })
-        for i in 0..<courses.count - 1 {
-            let firstCourse = courses[i]
-            let secondCourse = courses[i+1]
-            if let firstEnd = firstCourse.time?.end, let secondStart = secondCourse.time?.start, let firstDays = firstCourse.days, let secondDays = secondCourse.days {
-                let hasOverlapDays = Set(firstDays).intersection(Set(secondDays)).count == 0 ? false : true
-                if (firstEnd > secondStart) && hasOverlapDays {
-                    if firstCourse.type == "REC" || firstCourse.type == "LAB" {
-                        self.alert("\(firstCourse.name!)(\(firstCourse.type!))'s time overlaps with \(secondCourse.name!)! Please schedule again!")
-                        return true
-                    }
-                    else if secondCourse.type == "REC" || secondCourse.type == "LAB" {
-                        self.alert("\(firstCourse.name!)'s time overlaps with \(secondCourse.name!)(\(secondCourse.type!))! Please schedule again!")
-                        return true
-                    }
-                    else {
-                        self.alert("\(firstCourse.name!)'s time overlaps with \(secondCourse.name!)! Please schedule again!")
-                        return true
+    private func checkOverlaps (courses : [CourseVO]) -> Bool {
+
+        for i in 0..<courses.count {
+            for j in i + 1..<courses.count {
+                let firstCourse = courses[i]
+                let secondCourse = courses[j]
+                if let firstTime = firstCourse.time, let secondTime = secondCourse.time, let firstDays = firstCourse.days, let secondDays = secondCourse.days {
+                    let hasOverlapDays = Set(firstDays).intersection(Set(secondDays)).count == 0 ? false : true
+                    if firstTime.intersects(secondTime) && hasOverlapDays {
+                        if firstCourse.type == "REC" || firstCourse.type == "LAB" {
+                            self.alert("[Time Overlaps]".localized, message: String(format: "%@(%@)'s time overlaps with %@!".localized, firstCourse.name!, firstCourse.type!,secondCourse.name!))
+    //                        self.alert(String(format: "%@(%@)'s time overlaps with %@! Please schedule again!".localized, [firstCourse.name!, firstCourse.type!, secondCourse.name!]))
+                            return true
+                        }
+                        
+                        else if secondCourse.type == "REC" || secondCourse.type == "LAB" {
+    //                        let textt = String(format: "%@'s time overlaps with %@(%@)! Please schedule again!".localized, [firstCourse.name!, secondCourse.name!, secondCourse.type!])
+                            self.alert("[Time Overlaps]".localized, message: String(format: "%@'s time overlaps with %@(%@)!".localized, firstCourse.name!, secondCourse.name!,secondCourse.type!))
+                            
+                            return true
+                        }
+                        else if (firstCourse.type == "REC" || firstCourse.type == "LAB") && (secondCourse.type == "REC" || secondCourse.type == "LAB") {
+                            self.alert("[Time Overlaps]".localized, message: String(format: "%@(%@)'s time overlaps with %@(%@)!".localized, firstCourse.name!, firstCourse.type!, secondCourse.name!, secondCourse.type!))
+                            return true
+                        }
+                        else {
+                            self.alert("[Time Overlaps]".localized, message: String(format: "%@'s time overlaps with %@!".localized, firstCourse.name!, secondCourse.name!))
+                            return true
+                        }
                     }
                     
                 }
+                
             }
         }
         return false

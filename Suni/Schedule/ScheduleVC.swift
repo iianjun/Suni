@@ -7,6 +7,7 @@
 
 import UIKit
 import Network
+import Photos
 
 @IBDesignable
 class ScheduleVC : UIViewController {
@@ -27,7 +28,7 @@ class ScheduleVC : UIViewController {
                     self.navigationItem.rightBarButtonItem?.isEnabled = true
                 }
                 else {
-                    let alert = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "No Internet Connection".localized, message: "Make sure your device is connected Wi-Fi or Cellular".localized, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                     self.view.isUserInteractionEnabled = false
@@ -206,8 +207,8 @@ class ScheduleVC : UIViewController {
         
         //Title left alignment
         let viewTitle = UILabel()
-        viewTitle.text = "My Schedule"
-        viewTitle.font = getRigteous(size: Constant.titleFontSize)
+        viewTitle.text = "My Schedule".localized
+        viewTitle.font = localizedFont(size: Constant.titleFontSize)
         
         viewTitle.sizeToFit()
         viewTitle.textColor = .themeColor
@@ -235,16 +236,29 @@ class ScheduleVC : UIViewController {
     }
     
     @objc private func takeScreenshot(_ sender: UIButton) {
-
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, scale)
-        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        guard let screenshot = UIGraphicsGetImageFromCurrentImageContext() else { return }
-        UIGraphicsEndImageContext()
-        guard let croppedcgImage = screenshot.cgImage?.cropping(to: CGRect(x: 0, y: (self.collectionView.frame.origin.y - 15) * scale, width: self.view.frame.width * scale, height: (self.collectionView.frame.height + 30) * scale)) else { return }
-        self.showScreenshotEffect()
-        let croppedImage = UIImage(cgImage: croppedcgImage)
-        UIImageWriteToSavedPhotosAlbum(croppedImage, self, nil, nil)
+        if PHPhotoLibrary.authorizationStatus(for: .addOnly) == .authorized {
+            let scale = UIScreen.main.scale
+            UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, scale)
+            self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+            guard let screenshot = UIGraphicsGetImageFromCurrentImageContext() else { return }
+            UIGraphicsEndImageContext()
+            guard let croppedcgImage = screenshot.cgImage?.cropping(to: CGRect(x: 0, y: (self.collectionView.frame.origin.y - 15) * scale, width: self.view.frame.width * scale, height: (self.collectionView.frame.height + 30) * scale)) else { return }
+            self.showScreenshotEffect()
+            let croppedImage = UIImage(cgImage: croppedcgImage)
+            UIImageWriteToSavedPhotosAlbum(croppedImage, self, nil, nil)
+        }
+        else {
+            let alert = UIAlertController(title: "", message: "Please allow access to adding Photos in order to take screenshot".localized, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+                guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+                if UIApplication.shared.canOpenURL(settingsURL) {
+                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                }
+            }))
+            self.present(alert, animated: true)
+        }
+        
 
     }
     
@@ -301,7 +315,7 @@ extension ScheduleVC : UICollectionViewDelegate, UICollectionViewDataSource {
         let layerOfCell = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height))
         let thickness = self.collectionView.layer.borderWidth
         let fontSize = cell.frame.width / 4
-        cell.label.font = getRigteous(size: fontSize)
+        cell.label.font = getRighteous(size: fontSize)
         
         //First column -> should be empty
         if indexPath.section == 0 {

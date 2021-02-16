@@ -1,1 +1,99 @@
 
+/* Class = "UILabel"; text = "day"; ObjectID = "0BQ-GU-HDA"; */
+"0BQ-GU-HDA.text" = "day";
+
+/* Class = "UILabel"; text = "cart"; ObjectID = "19F-ed-kQN"; */
+"19F-ed-kQN.text" = "cart";
+
+/* Class = "UIButton"; normalTitle = "Close"; ObjectID = "1Jd-RA-JoB"; */
+"1Jd-RA-JoB.normalTitle" = "닫기";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5kk-xP-gQJ"; */
+"5kk-xP-gQJ.text" = "Label";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "87f-v6-XSr"; */
+"87f-v6-XSr.text" = "Detail";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "GLK-EV-aDH"; */
+"GLK-EV-aDH.text" = "Label";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Hew-ir-6gF"; */
+"Hew-ir-6gF.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "JTE-g6-njN"; */
+"JTE-g6-njN.text" = "Label";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "JbC-0A-9gF"; */
+"JbC-0A-9gF.text" = "Name";
+
+/* Class = "UILabel"; text = "TUE/THU 10:00-12:00"; ObjectID = "MdC-wk-FTt"; */
+"MdC-wk-FTt.text" = "TUE/THU 10:00-12:00";
+
+/* Class = "UILabel"; text = "Room"; ObjectID = "RY9-Uv-n1b"; */
+"RY9-Uv-n1b.text" = "장소";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "RvE-S4-tI1"; */
+"RvE-S4-tI1.text" = "Label";
+
+/* Class = "UILabel"; text = "TUE/THU 10:00-12:00"; ObjectID = "Sha-cK-hJG"; */
+"Sha-cK-hJG.text" = "TUE/THU 10:00-12:00";
+
+/* Class = "UILabel"; text = "3 Credits"; ObjectID = "TZi-qx-HZy"; */
+"TZi-qx-HZy.text" = "3 Credits";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "UwI-Yg-VtP"; */
+"UwI-Yg-VtP.text" = "-";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "VXx-YB-R86"; */
+"VXx-YB-R86.title" = "Item";
+
+/* Class = "UILabel"; text = "Object Oriented Programming"; ObjectID = "abv-Ec-tTE"; */
+"abv-Ec-tTE.text" = "Object Oriented Programming";
+
+/* Class = "UILabel"; text = "Credit"; ObjectID = "bgv-iW-wEr"; */
+"bgv-iW-wEr.text" = "크레딧";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "dl5-BL-OXR"; */
+"dl5-BL-OXR.text" = "Title";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eLu-3T-eWh"; */
+"eLu-3T-eWh.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gQC-02-W09"; */
+"gQC-02-W09.text" = "Label";
+
+/* Class = "UILabel"; text = "Instructor"; ObjectID = "hQM-mw-tiX"; */
+"hQM-mw-tiX.text" = "교수명";
+
+/* Class = "UILabel"; text = "major"; ObjectID = "iZ4-Ca-qo7"; */
+"iZ4-Ca-qo7.text" = "major";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "khc-EQ-MFK"; */
+"khc-EQ-MFK.text" = "시간";
+
+/* Class = "UILabel"; text = "day"; ObjectID = "m9X-XJ-6b2"; */
+"m9X-XJ-6b2.text" = "day";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "mAU-xI-TBc"; */
+"mAU-xI-TBc.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Link"; ObjectID = "nRJ-DI-orR"; */
+"nRJ-DI-orR.text" = "링크";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "tCC-VD-pe9"; */
+"tCC-VD-pe9.text" = "Title";
+
+/* Class = "UILabel"; text = "Academic B 203"; ObjectID = "tKW-o0-rwZ"; */
+"tKW-o0-rwZ.text" = "Academic B 203";
+
+/* Class = "UILabel"; text = "Amos Omondi"; ObjectID = "wQq-oz-Ql2"; */
+"wQq-oz-Ql2.text" = "Amos Omondi";
+
+/* Class = "UISegmentedControl"; xEc-I5-aeX.segmentTitles[0] = "Course"; ObjectID = "xEc-I5-aeX"; */
+"xEc-I5-aeX.segmentTitles[0]" = "수업 추가";
+
+/* Class = "UISegmentedControl"; xEc-I5-aeX.segmentTitles[1] = "Manual"; ObjectID = "xEc-I5-aeX"; */
+"xEc-I5-aeX.segmentTitles[1]" = "직접 추가";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "zaR-hy-lE6"; */
+"zaR-hy-lE6.text" = "Title";

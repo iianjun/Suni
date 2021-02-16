@@ -1,0 +1,91 @@
+/* 
+  Localizable.strings
+  Suni
+
+  Created by 전하성 on 2021/02/16.
+  
+*/
+//MARK: Add Course View
+"Add Course" = "수업 추가";
+
+"Major" = "전공";
+
+"Day" = "요일";
+
+"Cart" = "찜 목록";
+
+"Name(Required)" = "수업 이름(필수)";
+
+"Room(Optional)" = "장소(선택)";
+
+"Instructor(Optional)" = "교수명(선택)";
+
+"Save" = "저장";
+
+"Cart is Empty!" = "찜 목록이 비었습니다!";
+
+"Selected at least one course" = "하나 이상의 수업을 골라주세요";
+
+"No Selected days!" = "요일을 선택해 주세요!";
+
+"Start time and End time are not correct!" = "시작 시간과 종료 시간이 정상적이지 않습니다!";
+
+"Name should be less than 10 characters" = "수업 이름이 10 글자 이상입니다";
+
+"Please enter the name" = "수업 이름을 입력하세요";
+
+"Name of course is required!" = "수업 이름은 필수 항목입니다!";
+
+"[Time Overlap]" = "[시간 겹침]";
+
+"%@(%@)'s time overlaps with %@!" = "%@(%@)과 %@의 시간이 겹칩니다";
+
+"%@'s time overlaps with %@(%@)!" = "%@과 %@(%@)의 시간이 겹칩니다";
+
+"%@(%@)'s time overlaps with %@(%@)!" = "%@(%@)과 %@(%@)의 시간이 겹칩니다";
+
+"%@'s time overlaps with %@!" = "%@과 %@의 시간이 겹칩니다";
+
+"[Credit Overload]" = "[학점 초과]";
+
+"You cannot take more than 23 credits" = "23학점 이상 들을 수 없습니다";
+
+"%@ is already in the cart" = "선택한 수업(%@)은 이미 찜 목록에 있습니다";
+
+//MARK: Calendar View
+"Academic Calendar" = "학사 일정";
+
+//MARK: Schedule View
+"No Internet Connection" = "네트워크가 연결되지 않았습니다";
+
+"Make sure your device is connected Wi-Fi or Cellular" = "Wi-Fi 또는 데이터를 활성화 해주세요";
+
+"My Schedule" = "내 스케줄";
+
+"Please allow access to adding Photos in order to take screenshot" = "스크린샷 기능을 사용하려면 '사진' 접근권한을 '사진만 추가'로 허용해야 합니다";
+
+//MARK: Phone Booth View
+"Phone Booth" = "연락처";
+
+"Email has been copied!" = "이메일이 복사 되었습니다!";
+
+"IGC Housing Office" = "IGC 하우징 오피스";
+
+"IGC Central Library" = "IGC 중앙 도서관";
+
+"IGC IT Center" = "IGC IT 센터";
+
+"IGC Health Center" = "IGC 건강 센터";
+
+"IGC Cafeteria" = "까페테리아";
+
+//MARK: Custom Modal VC
+"Time" = "시간";
+
+"Instructor" = "교수명";
+
+"Room" = "장소";
+
+"Do you really want to delete %@?" = "정말로 %@를 지우시겠습니까?";
+
+

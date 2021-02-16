@@ -14,9 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var existedCourses : [CourseVO] = []
     private var ref : DatabaseReference!
     private var versionFromFB : String?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        for family in UIFont.familyNames {
+//            print(UIFont.fontNames(forFamilyName: family))
+//        }
         sleep(1)
         FirebaseApp.configure()
         self.ref = Database.database().reference()
@@ -33,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             catch {
                 print(error.localizedDescription)
             }
+            return true
         }
         let version = sd.string(forKey: "version")
         ref.child("version").observeSingleEvent(of: .value, with: { snapshot in

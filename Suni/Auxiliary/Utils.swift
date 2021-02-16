@@ -8,8 +8,19 @@
 import UIKit
 
 extension UIResponder {
-   
-    func getRigteous(size: CGFloat) -> UIFont {
+    
+    func localizedFont (size : CGFloat) -> UIFont {
+        let defaultFont = UIFont.systemFont(ofSize: size)
+        guard let code = NSLocale.autoupdatingCurrent.languageCode else { return defaultFont }
+        switch code {
+        case "en" :
+            return self.getRighteous(size: size)
+        case "ko" :
+            return self.getBMJUA(size: size)
+        default : return defaultFont
+        }
+    }
+    func getRighteous(size: CGFloat) -> UIFont {
         if let righteous =  UIFont(name: "Righteous-Regular", size: size) {
             return righteous
         }
@@ -42,6 +53,15 @@ extension UIResponder {
         }
         else {
             print("Failed to get wemakeprice-bold Font")
+            return UIFont.systemFont(ofSize: size)
+        }
+    }
+    func getBMJUA (size : CGFloat) -> UIFont {
+        if let bm = UIFont(name: "BMJUAOTF", size: size) {
+            return bm
+        }
+        else {
+            print("Failed to get BMJUAOTF Font")
             return UIFont.systemFont(ofSize: size)
         }
     }
@@ -81,9 +101,9 @@ extension UIView {
 }
 
 extension UIViewController {
-    func alert(_ title: String, completion: (() -> Void)? = nil) {
+    func alert(_ title: String, message: String = "", completion: (() -> Void)? = nil) {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: nil, message: title, preferredStyle: .alert)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .cancel, handler: { _ in
                 completion?()
             })
@@ -287,5 +307,12 @@ extension CALayer {
         
 }
 
-
-
+//MARK: Extension for localization
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, tableName: "Localizable", bundle: .main, value: self, comment: "")
+    }
+    
+    
+    
+}

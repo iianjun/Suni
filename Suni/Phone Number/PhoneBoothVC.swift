@@ -56,46 +56,13 @@ class PhoneBoothVC : UIViewController {
             NSLog("Error on parsing PhoneNumber from sd")
         }
         self.phoneNumbers = [self.igc, self.coordinators, self.studentAffair, self.rcAndWorkStudy, self.scholarship, self.others, self.international]
-//
-//        if let path = Bundle.main.path(forResource: "phone_number", ofType: "json") {
-//            do {
-//                let data = try Data(contentsOf: URL(fileURLWithPath: path))
-//                let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
-//                for obj in jsonResult {
-//                    let pvo = PhoneNumberVO()
-//                    pvo.category = PhoneCategory(rawValue: (obj["category"] as? Int)!)
-//                    pvo.number = obj["number"] as? String
-//                    pvo.name = obj["name"] as? String
-//                    if obj["email"] as? String != "" {
-//                        pvo.email = obj["email"] as? String
-//                    }
-//
-//
-//                    guard let category = pvo.category else { return }
-//                    switch category {
-//                    case .igc: self.igc.append(pvo)
-//                    case .coordinators : self.coordinators.append(pvo)
-//                    case .studentAffair : self.studentAffair.append(pvo)
-//                    case .rcAndWorkStudy : self.rcAndWorkStudy.append(pvo)
-//                    case .scholarship: self.scholarship.append(pvo)
-//                    case .others : self.others.append(pvo)
-//                    case .international : self.international.append(pvo)
-//                    }
-//                }
-//            }
-//            catch {
-//                NSLog(error.localizedDescription)
-//            }
-//
-//        }
-        
     }
     
     
     private func initHeader () {
         let viewTitle = UILabel()
-        viewTitle.text = "Phone Booth"
-        viewTitle.font = getRigteous(size: Constant.titleFontSize)
+        viewTitle.text = "Phone Booth".localized
+        viewTitle.font = self.localizedFont(size: Constant.titleFontSize)
         viewTitle.sizeToFit()
         viewTitle.textColor = .themeColor
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: viewTitle)
@@ -116,14 +83,14 @@ extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constant.phoneNumberCellId) else { return UITableViewCell() }
         let pvo = self.phoneNumbers[indexPath.section][indexPath.row]
-        cell.textLabel?.text = pvo.name!
+        cell.textLabel?.text = pvo.name!.localized
         cell.detailTextLabel?.text = pvo.number!
         cell.textLabel?.font = getWMPRegular(size: (cell.textLabel?.font.pointSize)!)
         cell.detailTextLabel?.font = getWMPRegular(size: (cell.detailTextLabel?.font.pointSize)!)
         cell.selectionStyle = .default
         guard pvo.email != nil else {
             let cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: Constant.phoneNumberCellId)
-            cell.textLabel?.text = pvo.name!
+            cell.textLabel?.text = pvo.name!.localized
             cell.detailTextLabel?.text = pvo.number!
             cell.textLabel?.font = getWMPRegular(size: (cell.textLabel?.font.pointSize)!)
             cell.detailTextLabel?.font = getWMPRegular(size: (cell.detailTextLabel?.font.pointSize)!)
@@ -156,7 +123,7 @@ extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
         
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 14)
-        label.text = "Email has been copied!"
+        label.text = "Email has been copied!".localized
         label.textColor = .white
         label.sizeToFit()
         label.center.x = copySucessView.frame.width / 2
@@ -178,12 +145,7 @@ extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
         let pvo = phoneNumbers[indexPath.section][indexPath.row]
         if let number = pvo.number {
             if let url = URL(string: "tel://\(number)"), application.canOpenURL(url) {
-                if #available(iOS 10, *) {
-                    application.open(url, options: [:], completionHandler: nil)
-                }
-                else {
-                    application.openURL(url)
-                }
+                application.open(url, options: [:], completionHandler: nil)
             }
             else {
                 alert("Couldn't bring the URL")

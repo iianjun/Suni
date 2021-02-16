@@ -6,3 +6,4 @@
   
 */
 "CFBundleDisplayName" = "Suni";
+"NSPhotoLibraryAddUsageDescription" = "Please allow access to adding Photos in order to take screenshot";

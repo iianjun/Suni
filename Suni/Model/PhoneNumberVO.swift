@@ -20,7 +20,7 @@ class PhoneNumberVO {
         case .rcAndWorkStudy : return "RC / Work-Study"
         case .scholarship : return "Scholarship / Millitary Service"
         case .others : return "Other Offices"
-        case .international : return "International Student Services"
+        case .international : return "International Student Service"
         default : return ""
         }
     }

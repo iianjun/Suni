@@ -48,8 +48,8 @@ class CalendarVC : UIViewController {
     
     private func initHeader() {
         let viewTitle = UILabel()
-        viewTitle.text = "Academic Calendar"
-        viewTitle.font = getRigteous(size: Constant.titleFontSize)
+        viewTitle.text = "Academic Calendar".localized
+        viewTitle.font = self.localizedFont(size: Constant.titleFontSize)
         viewTitle.sizeToFit()
         viewTitle.textColor = .themeColor
         
@@ -94,50 +94,6 @@ class CalendarVC : UIViewController {
             NSLog("Error for parsing JSON format file for Calendar!")
 
         }
-        
-        
-        
-//        if let path = Bundle.main.path(forResource: "calendar", ofType: "json") {
-//            do {
-//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-//                let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as! [NSDictionary]
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.dateFormat = "yyyy-MM-dd"
-//                dateFormatter.locale = Locale(identifier: "ko_KR")
-//                for event in jsonResult {
-//                    if let minimumStr = event["minimum"] as? String {
-//                        if let minimumDate = dateFormatter.date(from: minimumStr) {
-//                            self.minimumDate = minimumDate
-//                            continue
-//                        }
-//
-//                    }
-//                    if let maximumStr = event["maximum"] as? String {
-//                        if let maximumDate = dateFormatter.date(from: maximumStr) {
-//                            self.maximumDate = maximumDate
-//                            continue
-//                        }
-//                    }
-//                    let cvo = CalendarVO()
-//                    cvo.isHoliday = event["holiday"] as? Bool
-//                    cvo.date = dateFormatter.date(from: event["date"] as! String)
-//                    cvo.title = event["title"] as? Array<String>
-//                    cvo.contents = event["contents"] as? Array<String>
-//
-//                    self.events.append(cvo)
-//                }
-//
-//                if let today = dateFormatter.date(from: dateFormatter.string(from: Date())) {
-//                    if calendar(self.calendar, numberOfEventsFor: today) > 0 {
-//                        calendar(self.calendar, didSelect: today, at: .current)
-//                    }
-//                }
-//
-//
-//            } catch {
-//                NSLog("Error for parsing JSON format file for Calendar!\n\(error.localizedDescription)" )
-//            }
-//        }
     }
     
     private func setupCalendar() {
