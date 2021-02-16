@@ -105,13 +105,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		763BAF3525B95D9B005F7EF8 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		763BAF3825B97C03005F7EF8 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				763BAF3825B97C03005F7EF8 /* Font */,
-				763BAF3525B95D9B005F7EF8 /* Resources */,
 				768D679F25B86FC80053DE0C /* Suni */,
 				768D679E25B86FC80053DE0C /* Products */,
 				98AA8F8AF76AFD62BABDD211 /* Pods */,

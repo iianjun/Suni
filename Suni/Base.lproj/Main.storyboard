@@ -237,7 +237,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TUE/THU 10:00-12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sha-cK-hJG">
-                                        <rect key="frame" x="10.333333333333329" y="57.333333333333336" width="150.66666666666669" height="17.666666666666664"/>
+                                        <rect key="frame" x="10.333333333333329" y="57.333333333333336" width="150.66666666666669" height="18.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -262,7 +262,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Academic B 203" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKW-o0-rwZ">
-                                        <rect key="frame" x="29.333333333333336" y="57.333333333333336" width="112.33333333333331" height="17.666666666666664"/>
+                                        <rect key="frame" x="29.333333333333336" y="57.333333333333336" width="112.33333333333331" height="18.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -286,7 +286,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZi-qx-HZy">
-                                        <rect key="frame" x="54" y="57.333333333333307" width="63.666666666666657" height="17.666666666666664"/>
+                                        <rect key="frame" x="54" y="57.333333333333307" width="63.666666666666657" height="18.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -310,7 +310,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amos Omondi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQq-oz-Ql2">
-                                        <rect key="frame" x="37.666666666666686" y="57.333333333333307" width="96" height="17.666666666666664"/>
+                                        <rect key="frame" x="37.666666666666686" y="57.333333333333307" width="96" height="18.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -382,7 +382,7 @@
                                 <rect key="frame" x="16" y="528" width="358" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TUE/THU 10:00-12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdC-wk-FTt">
-                                        <rect key="frame" x="103.66666666666667" y="57.333333333333364" width="150.66666666666663" height="17.666666666666664"/>
+                                        <rect key="frame" x="103.66666666666667" y="57.333333333333364" width="150.66666666666663" height="18.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1007,7 +1007,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQC-02-W09">
-                                                            <rect key="frame" x="13.000000000000004" y="10.666666666666666" width="39.333333333333343" height="18.666666666666671"/>
+                                                            <rect key="frame" x="13.000000000000004" y="10" width="39.333333333333343" height="20"/>
                                                             <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1026,18 +1026,18 @@
                                         </cells>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwI-Yg-VtP">
-                                        <rect key="frame" x="174" y="55" width="10" height="34"/>
+                                        <rect key="frame" x="172.33333333333334" y="55" width="13.333333333333343" height="34"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hn1-xF-r2B">
-                                        <rect key="frame" x="199" y="55" width="159" height="34"/>
+                                        <rect key="frame" x="200.66666666666663" y="55" width="157.33333333333337" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d6d-MT-z6B">
-                                        <rect key="frame" x="0.0" y="55" width="159" height="34"/>
+                                        <rect key="frame" x="0.0" y="55" width="157.33333333333334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -1050,12 +1050,12 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WWZ-OC-5Bd">
-                                        <rect key="frame" x="0.0" y="164" width="159" height="45"/>
+                                        <rect key="frame" x="0.0" y="164" width="157.33333333333334" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bkc-dN-w2w">
-                                        <rect key="frame" x="199" y="164" width="159" height="45"/>
+                                        <rect key="frame" x="200.66666666666663" y="164" width="157.33333333333337" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
