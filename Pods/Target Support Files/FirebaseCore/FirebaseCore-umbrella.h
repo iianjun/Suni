@@ -10,11 +10,7 @@
 #endif
 #endif
 
-#import "FIRApp 2.h"
-#import "FIRApp 3.h"
 #import "FIRApp.h"
-#import "FIRConfiguration 2.h"
-#import "FIRConfiguration 3.h"
 #import "FIRConfiguration.h"
 #import "FirebaseCore.h"
 #import "FIRLoggerLevel.h"
