@@ -145,12 +145,7 @@ extension PhoneBoothVC : UITableViewDelegate, UITableViewDataSource {
         let pvo = phoneNumbers[indexPath.section][indexPath.row]
         if let number = pvo.number {
             if let url = URL(string: "tel://\(number)"), application.canOpenURL(url) {
-                if #available(iOS 10, *) {
-                    application.open(url, options: [:], completionHandler: nil)
-                }
-                else {
-                    application.openURL(url)
-                }
+                application.open(url, options: [:], completionHandler: nil)
             }
             else {
                 alert("Couldn't bring the URL")

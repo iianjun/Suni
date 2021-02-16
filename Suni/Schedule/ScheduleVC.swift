@@ -248,37 +248,18 @@ class ScheduleVC : UIViewController {
             UIImageWriteToSavedPhotosAlbum(croppedImage, self, nil, nil)
         }
         else {
-            let alert = UIAlertController(title: nil, message: "Please allow access to adding Photos in order to take screenshot".localized, preferredStyle: .alert)
+            let alert = UIAlertController(title: "", message: "Please allow access to adding Photos in order to take screenshot".localized, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
-                guard let settingsURL = URL(string: "App-Prefs:root") else { return }
+                guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
                 if UIApplication.shared.canOpenURL(settingsURL) {
                     UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
                 }
             }))
             self.present(alert, animated: true)
         }
-//        else {
-//            PHPhotoLibrary.requestAuthorization( { status -> Void in
-//                switch status {
-//                case .authorized : print("Authorized!!!!")
-//                default : print("Not Authorized!!")
-//                }
-//            })
-//        }
         
 
-    }
-    private func checkPhotoLibraryPermission () -> Bool {
-        let status = PHPhotoLibrary.authorizationStatus()
-        print(status == .authorized)
-        switch status {
-        case .authorized : return true
-        case .denied, .restricted, .notDetermined :
-            return false
-        default: return false
-        }
-        return false
     }
     
     private func showScreenshotEffect() {
