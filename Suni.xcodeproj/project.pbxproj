@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CE927E07A373EA217AF6544 /* Pods_Suni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347526D018DBAB22717EFC10 /* Pods_Suni.framework */; };
 		76184EAB25CFFCBE002102E9 /* CourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76184EAA25CFFCBE002102E9 /* CourseVC.swift */; };
 		76184EAE25CFFCCA002102E9 /* ManualVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76184EAD25CFFCCA002102E9 /* ManualVC.swift */; };
 		763BAF1325B8714E005F7EF8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 763BAF1525B8714E005F7EF8 /* InfoPlist.strings */; };
@@ -45,12 +46,10 @@
 		76B87A1925CAECD4001402EE /* SelectedCourseModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B87A1825CAECD4001402EE /* SelectedCourseModalVC.swift */; };
 		76B87A1D25CAF34F001402EE /* CustomPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B87A1C25CAF34F001402EE /* CustomPC.swift */; };
 		76B87A2C25CAFF13001402EE /* SelectedCourseModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B87A2B25CAFF13001402EE /* SelectedCourseModalVC.xib */; };
-		F7751D146F5B99D71AF72F44 /* Pods_Suni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321FB5850B84BE5AC389AAB3 /* Pods_Suni.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2E39877578F017DF4BB7C49F /* Pods-Suni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Suni.debug.xcconfig"; path = "Target Support Files/Pods-Suni/Pods-Suni.debug.xcconfig"; sourceTree = "<group>"; };
-		321FB5850B84BE5AC389AAB3 /* Pods_Suni.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Suni.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		347526D018DBAB22717EFC10 /* Pods_Suni.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Suni.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76184EAA25CFFCBE002102E9 /* CourseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseVC.swift; sourceTree = "<group>"; };
 		76184EAD25CFFCCA002102E9 /* ManualVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualVC.swift; sourceTree = "<group>"; };
 		763BAF1925B871A3005F7EF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -93,7 +92,8 @@
 		76B87A1825CAECD4001402EE /* SelectedCourseModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCourseModalVC.swift; sourceTree = "<group>"; };
 		76B87A1C25CAF34F001402EE /* CustomPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPC.swift; sourceTree = "<group>"; };
 		76B87A2B25CAFF13001402EE /* SelectedCourseModalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedCourseModalVC.xib; sourceTree = "<group>"; };
-		CA25ACE12A1461F1F07B4584 /* Pods-Suni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Suni.release.xcconfig"; path = "Target Support Files/Pods-Suni/Pods-Suni.release.xcconfig"; sourceTree = "<group>"; };
+		DB361CE779FE3D43BB4F200E /* Pods-Suni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Suni.debug.xcconfig"; path = "Target Support Files/Pods-Suni/Pods-Suni.debug.xcconfig"; sourceTree = "<group>"; };
+		E78EA02EF3F372A52551C7BB /* Pods-Suni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Suni.release.xcconfig"; path = "Target Support Files/Pods-Suni/Pods-Suni.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,13 +101,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7751D146F5B99D71AF72F44 /* Pods_Suni.framework in Frameworks */,
+				1CE927E07A373EA217AF6544 /* Pods_Suni.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57B5F9ABC4B9D704C51260D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				347526D018DBAB22717EFC10 /* Pods_Suni.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		763BAF3825B97C03005F7EF8 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +203,7 @@
 				768D679F25B86FC80053DE0C /* Suni */,
 				768D679E25B86FC80053DE0C /* Products */,
 				98AA8F8AF76AFD62BABDD211 /* Pods */,
-				D087361CC30B4E4217568536 /* Frameworks */,
+				57B5F9ABC4B9D704C51260D0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -231,18 +239,10 @@
 		98AA8F8AF76AFD62BABDD211 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2E39877578F017DF4BB7C49F /* Pods-Suni.debug.xcconfig */,
-				CA25ACE12A1461F1F07B4584 /* Pods-Suni.release.xcconfig */,
+				DB361CE779FE3D43BB4F200E /* Pods-Suni.debug.xcconfig */,
+				E78EA02EF3F372A52551C7BB /* Pods-Suni.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		D087361CC30B4E4217568536 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				321FB5850B84BE5AC389AAB3 /* Pods_Suni.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,11 +252,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 768D67B425B86FC80053DE0C /* Build configuration list for PBXNativeTarget "Suni" */;
 			buildPhases = (
-				25F5218046A9EC975BA7F0D7 /* [CP] Check Pods Manifest.lock */,
+				E3733883B5442EAF44939BB0 /* [CP] Check Pods Manifest.lock */,
 				768D679925B86FC80053DE0C /* Sources */,
 				768D679A25B86FC80053DE0C /* Frameworks */,
 				768D679B25B86FC80053DE0C /* Resources */,
-				371F0FA24ECA16384A0C8434 /* [CP] Embed Pods Frameworks */,
+				B224913489017E3E00C7AE84 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -324,7 +324,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		25F5218046A9EC975BA7F0D7 /* [CP] Check Pods Manifest.lock */ = {
+		B224913489017E3E00C7AE84 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Suni/Pods-Suni-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Suni/Pods-Suni-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Suni/Pods-Suni-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3733883B5442EAF44939BB0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -344,23 +361,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		371F0FA24ECA16384A0C8434 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Suni/Pods-Suni-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Suni/Pods-Suni-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Suni/Pods-Suni-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -559,7 +559,7 @@
 		};
 		768D67B525B86FC80053DE0C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E39877578F017DF4BB7C49F /* Pods-Suni.debug.xcconfig */;
+			baseConfigurationReference = DB361CE779FE3D43BB4F200E /* Pods-Suni.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -582,7 +582,7 @@
 		};
 		768D67B625B86FC80053DE0C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA25ACE12A1461F1F07B4584 /* Pods-Suni.release.xcconfig */;
+			baseConfigurationReference = E78EA02EF3F372A52551C7BB /* Pods-Suni.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
