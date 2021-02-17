@@ -9,4 +9,5 @@ target 'Suni' do
   pod 'FSCalendar'
   pod 'Firebase/Database'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
 end

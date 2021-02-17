@@ -23,29 +23,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sleep(1)
         FirebaseApp.configure()
         self.ref = Database.database().reference()
-        let sd = UserDefaults.standard
+        
+        Auth.auth().signInAnonymously(completion: { (authResult, error) in
+            if let error = error {
+                print("Sign in failed: \(error.localizedDescription)")
+                print(error)
+            }
+            else {
+                guard let user = authResult?.user else { return }
+                let uid = user.uid
+                print(uid)
+                let sd = UserDefaults.standard
 
-        //If firstTime
-        let didLaunchBefore = sd.bool(forKey: "firstTime")
-        if !didLaunchBefore {
-            sd.setValue(true, forKey: "firstTime")
-            self.getDataFromFirebase()
-            do {
-                try sd.setObject([CourseVO](), forKey: "course")
+                //If firstTime
+                let didLaunchBefore = sd.bool(forKey: "firstTime")
+                if !didLaunchBefore {
+                    sd.setValue(true, forKey: "firstTime")
+                    print("firstTime Operation")
+                    self.getDataFromFirebase()
+                    do {
+                        try sd.setObject([CourseVO](), forKey: "course")
+                    }
+                    catch {
+                        print(error.localizedDescription)
+                    }
+                    
+                }
+                else {
+                    let version = sd.string(forKey: "version")
+                    self.ref.child("version").observeSingleEvent(of: .value, with: { snapshot in
+                        self.versionFromFB = snapshot.value as? String
+                        //If version is different
+                        if version != self.versionFromFB {
+                            print("version updated")
+                            self.getDataFromFirebase()
+                        }
+                    })
+                }
+                
             }
-            catch {
-                print(error.localizedDescription)
-            }
-            return true
-        }
-        let version = sd.string(forKey: "version")
-        ref.child("version").observeSingleEvent(of: .value, with: { snapshot in
-            self.versionFromFB = snapshot.value as? String
-            //If version is different
-            if version != self.versionFromFB {
-                self.getDataFromFirebase()
-            }
+            
         })
+        
+        
         
 //        if version != versionFromFB {
 //            self.getDataFromFirebase()
