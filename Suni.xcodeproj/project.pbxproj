@@ -80,6 +80,7 @@
 		767CEF3D25CBF9FE00B8111A /* PhoneNumberVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVO.swift; sourceTree = "<group>"; };
 		7684971325DE5C9E00C0DCF3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7684971725DEA26A00C0DCF3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7684971D25DEBEBA00C0DCF3 /* Suni.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Suni.entitlements; sourceTree = "<group>"; };
 		768D679D25B86FC80053DE0C /* Suni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Suni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768D67A025B86FC80053DE0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768D67A225B86FC80053DE0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -221,6 +222,7 @@
 		768D679F25B86FC80053DE0C /* Suni */ = {
 			isa = PBXGroup;
 			children = (
+				7684971D25DEBEBA00C0DCF3 /* Suni.entitlements */,
 				763BAF3825B97C03005F7EF8 /* Font */,
 				767CEF3525CBEE9F00B8111A /* Phone Number */,
 				76684BEF25C57FD100B8C65D /* Add Course */,
@@ -568,7 +570,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Suni/Suni.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = JF6ZPA8QG5;
 				INFOPLIST_FILE = Suni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -576,6 +580,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = YiHyun.Suni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -591,7 +596,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Suni/Suni.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = JF6ZPA8QG5;
 				INFOPLIST_FILE = Suni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -599,6 +606,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = YiHyun.Suni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
