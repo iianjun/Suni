@@ -6,9 +6,18 @@
 //
 
 import UIKit
+import NaturalLanguage
 
 extension UIResponder {
-    
+    func fontByLanguage (for string : String, size : CGFloat) -> UIFont {
+        let recognizer = NLLanguageRecognizer()
+        recognizer.processString(string)
+        guard let languageCode = recognizer.dominantLanguage?.rawValue else { return UIFont.systemFont(ofSize: size) }
+        switch languageCode {
+        case "ko" : return self.getBMJUA(size: size)
+        default : return self.getRighteous(size: size)
+        }
+    }
     func localizedFont (size : CGFloat) -> UIFont {
         let defaultFont = UIFont.systemFont(ofSize: size)
         guard let code = NSLocale.autoupdatingCurrent.languageCode else { return defaultFont }
@@ -189,9 +198,11 @@ struct Constant {
     static let addVCId : String = "AddCourseVC"
     static let moreInfoVCId : String = "MoreInfoVC"
     static let webVCId : String = "WebVC"
+    static let scheduleVCId : String = "ScheduleVC"
     static let titleFontSize : CGFloat = 30.0
     static let freeSpaceBtwBackAndTitle : CGFloat = 30.0
     static let freeSpaceBtwCollectionView : CGFloat = 5.0
+    static let manager = NetworkManager()
 }
 
 protocol ObjectSavable {

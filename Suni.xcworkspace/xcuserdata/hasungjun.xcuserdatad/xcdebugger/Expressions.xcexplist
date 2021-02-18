@@ -3,10 +3,26 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in NetworkManager.signInAnonyously(with:):NetworkManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scheduleVC.activityIndicator.isAnimating">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AppDelegate.application(_:didFinishLaunchingWithOptions:):AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
                value = "versionFromFB">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleVC.viewDidAppear(_:):ScheduleVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.appDelegate.existedCourses">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

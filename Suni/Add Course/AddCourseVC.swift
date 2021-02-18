@@ -223,6 +223,12 @@ class AddCourseVC: UIViewController {
                         return
                     }
                 }
+                if let room = mvc.room_tf.text {
+                    if room.count > 10 {
+                        self.alert("Room should be less than 10 characters".localized)
+                        return
+                    }
+                }
                 let cvo = CourseVO()
                 cvo.major = ""
                 cvo.name = mvc.name_tf.text
