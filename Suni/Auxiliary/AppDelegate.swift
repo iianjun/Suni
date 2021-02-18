@@ -12,8 +12,6 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var existedCourses : [CourseVO] = []
-    private var ref : DatabaseReference!
-    private var versionFromFB : String?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,88 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         sleep(1)
         FirebaseApp.configure()
-        self.ref = Database.database().reference()
-        
-        Auth.auth().signInAnonymously(completion: { (authResult, error) in
-            if let error = error {
-                print("Sign in failed: \(error.localizedDescription)")
-                print(error)
+        let sd = UserDefaults.standard
+        let didLaunchBefore = sd.bool(forKey: "firstTime")
+        if !didLaunchBefore {
+            do {
+                try sd.setObject([CourseVO](), forKey: "course")
             }
-            else {
-                guard let user = authResult?.user else { return }
-                let uid = user.uid
-                print(uid)
-                let sd = UserDefaults.standard
+            catch {
+                print(error.localizedDescription)
+            }
 
-                //If firstTime
-                let didLaunchBefore = sd.bool(forKey: "firstTime")
-                if !didLaunchBefore {
-                    sd.setValue(true, forKey: "firstTime")
-                    print("firstTime Operation")
-                    self.getDataFromFirebase()
-                    do {
-                        try sd.setObject([CourseVO](), forKey: "course")
-                    }
-                    catch {
-                        print(error.localizedDescription)
-                    }
-                    
-                }
-                else {
-                    let version = sd.string(forKey: "version")
-                    self.ref.child("version").observeSingleEvent(of: .value, with: { snapshot in
-                        self.versionFromFB = snapshot.value as? String
-                        //If version is different
-                        if version != self.versionFromFB {
-                            print("version updated")
-                            self.getDataFromFirebase()
-                        }
-                    })
-                }
-                
-            }
-            
-        })
-        
-        
-        
-//        if version != versionFromFB {
-//            self.getDataFromFirebase()
-//        }
+        }
         return true
     }
-    
-    private func getDataFromFirebase() {
-        let sd = UserDefaults.standard
-        ref.child("all_courses").observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as? [NSDictionary]
-            sd.set(value, forKey: "all_courses")
-            print("all_courses complete")
-        }) { error in
-            print("Error in getting courses JSON: \(error.localizedDescription)")
-        }
-        ref.child("calendar").observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as? [NSDictionary]
-            sd.set(value, forKey: "calendar")
-            print("calendar complete")
-        }) { error in
-            print("Error in getting calendar JSON: \(error.localizedDescription)")
-        }
-        ref.child("phone_number").observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as? [NSDictionary]
-            sd.set(value, forKey: "phone_number")
-            print("phone_number complete")
-        }) { error in
-            print("Error in getting phone number JSON: \(error.localizedDescription)")
-        }
-        ref.child("version").observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as? String
-            sd.set(value, forKey: "version")
-            print("version complete")
-        }) { error in
-            print("Error in getting version number: \(error.localizedDescription)")
-        }
-    }
+
 
     // MARK: UISceneSession Lifecycle
 

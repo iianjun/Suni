@@ -17,6 +17,7 @@ class ManualVC: UIViewController {
     @IBOutlet var name_tf: UITextField!
     @IBOutlet var room_tf: UITextField!
     @IBOutlet var instructor_tf: UITextField!
+    @IBOutlet weak var hyphen: UILabel!
     
     private var days = ["MON", "TUE", "WED" , "THU", "FRI"]
     public var selectedDays : [String] = []
@@ -42,6 +43,7 @@ class ManualVC: UIViewController {
     }
     
     private func setupTimetf() {
+        self.hyphen.textColor = .themeTextColor
         self.fromTime.borderStyle = .none
         self.toTime.borderStyle = .none
         self.fromTime.layer.borderColor = UIColor.themeColor.cgColor
@@ -80,11 +82,11 @@ class ManualVC: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         if let datePicker = self.toTime.inputView as? UIDatePicker {
+            
             self.toTime.text = dateFormatter.string(from: datePicker.date)
             self.toTime.resignFirstResponder()
         }
     }
-    
     private func setupInfoTf () {
         let arrTf = [self.name_tf, self.room_tf, self.instructor_tf]
         self.name_tf.placeholder = "Name(Required)".localized
@@ -92,11 +94,11 @@ class ManualVC: UIViewController {
         self.instructor_tf.placeholder = "Instructor(Optional)".localized
         
         for tf in arrTf {
-            tf?.borderStyle = .roundedRect
+            tf?.borderStyle = .none
             tf?.layer.borderWidth = Constant.addCourseCellBorderWidth
             tf?.layer.borderColor = UIColor.themeColor.cgColor
             tf?.layer.cornerRadius = Constant.cornerRadius
-            tf?.font = self.localizedFont(size: 18)
+            tf?.font = self.localizedFont(size: tf?.font?.pointSize ?? 18)
             tf?.textColor = .themeTextColor
             tf?.clearButtonMode = .whileEditing
             tf?.autocapitalizationType = .none
@@ -156,4 +158,16 @@ extension ManualVC : UITextFieldDelegate {
         return true
     }
     
+}
+class Textfield : UITextField {
+    let padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+    override open func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
 }

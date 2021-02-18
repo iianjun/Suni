@@ -16,6 +16,12 @@ class ScheduleVC : UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let monitor = NWPathMonitor()
     let queue = DispatchQueue(label: "Monitor")
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
+    var blurEffectViewOnView : UIVisualEffectView!
+    var blurEffectViewOnTabBar : UIVisualEffectView!
+    var screenshotBtn : CSButton!
+    var addBtn : CSButton!
     
     var isConnected = false {
         willSet {
@@ -42,6 +48,19 @@ class ScheduleVC : UIViewController {
         }
         
     }
+    var isLoaded = false {
+        willSet {
+            if newValue == true {
+                if self.activityIndicator.isAnimating {
+                    self.activityIndicator.stopAnimating()
+                    self.blurEffectViewOnView.removeFromSuperview()
+                    self.blurEffectViewOnTabBar.removeFromSuperview()
+                    self.addBtn.isEnabled = true
+                    self.screenshotBtn.isEnabled = true
+                }
+            }
+        }
+    }
     
     var cellWidth : CGFloat {
         get {
@@ -54,9 +73,29 @@ class ScheduleVC : UIViewController {
         }
     }
     override func viewDidLoad() {
+        self.prepareForDownload()
         self.checkInternetConnectivity()
         self.setup()
         
+    }
+    
+    func prepareForDownload() {
+        self.activityIndicator.startAnimating()
+        Constant.manager.signInAnonyously(with: self)
+        //View
+        self.blurEffectViewOnView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialLight))
+        self.blurEffectViewOnView.alpha = 0.8
+        self.blurEffectViewOnView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        
+        //TabBar
+        self.blurEffectViewOnTabBar = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialLight))
+        guard let tbc = self.tabBarController else { return }
+        self.blurEffectViewOnTabBar.frame = CGRect(x: 0, y: 0, width: tbc.tabBar.frame.width, height: tbc.tabBar.frame.height)
+        print(tbc.tabBar.frame)
+        self.blurEffectViewOnTabBar.alpha = 0.8
+    
+        self.view.addSubview(self.blurEffectViewOnView)
+        tbc.tabBar.addSubview(self.blurEffectViewOnTabBar)
     }
 
     private func checkInternetConnectivity() {
@@ -97,7 +136,11 @@ class ScheduleVC : UIViewController {
                     guard let cell = self.collectionView.cellForItem(at: IndexPath(row: row, section: section)) else { return }
                     let v = CourseTimetableView(frame: CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y + (self.cellHeight * CGFloat(min)), width: self.cellWidth - Constant.timetableBorderWidth, height: lectureHeight))
                     v.label.text = course.name!
-                    v.label.textColor = .themeTextColor
+                    v.label.font = fontByLanguage(for: course.name!, size: 12)
+                    if course.room != nil {
+                        v.roomLabel.text = course.room!
+                        v.roomLabel.font = fontByLanguage(for: course.name!, size: 12)
+                    }
                     v.containedCourse = course
                     
                     if course.bgColor.color != UIColor(red: 0, green: 0, blue: 0, alpha: 0) && course.type != "MANUAL" {
@@ -150,6 +193,11 @@ class ScheduleVC : UIViewController {
                                             v.backgroundColor = labCourse.bgColor.color
                                             course.bgColor.color = labCourse.bgColor.color
                                         }
+                                    }
+                                    else {
+                                        let ranColor = UIColor.pastel[Int.random(in: 0..<UIColor.pastel.count)]
+                                        v.backgroundColor = ranColor
+                                        course.bgColor.color = ranColor
                                     }
                                 }
                                 else {
@@ -216,22 +264,24 @@ class ScheduleVC : UIViewController {
         
         //Button Right alignment
         let combinedView = UIView(frame: CGRect(x: 0, y: 0, width: Constant.addBtnWidth * 2 + Constant.freeSpaceBtwCollectionView, height: Constant.addBtnWidth))
-        let screenshotBtn = CSButton(frame: CGRect(x: 0, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .camera)
-        let addBtn = CSButton(frame: CGRect(x: Constant.addBtnWidth + Constant.freeSpaceBtwCollectionView, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .add)
+        self.screenshotBtn = CSButton(frame: CGRect(x: 0, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .camera)
+        self.addBtn = CSButton(frame: CGRect(x: Constant.addBtnWidth + Constant.freeSpaceBtwCollectionView, y: 0, width: Constant.addBtnWidth, height: Constant.addBtnWidth), type: .add)
         
-        screenshotBtn.addTarget(self, action: #selector(takeScreenshot(_ :)), for: .touchUpInside)
-        addBtn.addTarget(self, action: #selector(addCourse(_ :)), for: .touchUpInside)
+        self.screenshotBtn.addTarget(self, action: #selector(takeScreenshot(_ :)), for: .touchUpInside)
+        self.addBtn.addTarget(self, action: #selector(addCourse(_ :)), for: .touchUpInside)
  
-        combinedView.addSubview(addBtn)
-        combinedView.addSubview(screenshotBtn)
+        combinedView.addSubview(self.addBtn)
+        combinedView.addSubview(self.screenshotBtn)
         combinedView.sizeToFit()
+        self.addBtn.isEnabled = false
+        self.screenshotBtn.isEnabled = false
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: combinedView)
 
     }
 
     @objc private func addCourse (_ sender: UIButton) {
-        guard let addvc = self.storyboard?.instantiateViewController(identifier: Constant.addVCId) else { return }
+        guard let addvc = self.storyboard?.instantiateViewController(identifier: Constant.addVCId) as? AddCourseVC else { return }
         self.navigationController?.pushViewController(addvc, animated: true)
     }
     

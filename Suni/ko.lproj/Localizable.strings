@@ -32,6 +32,8 @@
 
 "Name should be less than 10 characters" = "수업 이름이 10 글자 이상입니다";
 
+"Room should be less than 10 characters" = "장소가 10 글자 이상입니다";
+
 "Please enter the name" = "수업 이름을 입력하세요";
 
 "Name of course is required!" = "수업 이름은 필수 항목입니다!";
@@ -77,7 +79,7 @@
 
 "IGC Health Center" = "IGC 건강 센터";
 
-"IGC Cafeteria" = "까페테리아";
+"IGC Cafeteria" = "카페테리아";
 
 //MARK: Custom Modal VC
 "Time" = "시간";

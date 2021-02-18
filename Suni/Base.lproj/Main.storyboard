@@ -105,7 +105,7 @@
         <!--ScheduleVC-->
         <scene sceneID="JJ2-QT-uxZ">
             <objects>
-                <viewController id="Or0-uE-gMC" customClass="ScheduleVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScheduleVC" id="Or0-uE-gMC" customClass="ScheduleVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rLr-V3-iaL">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -131,18 +131,24 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="bp6-yW-2EH">
+                                <rect key="frame" x="176.66666666666666" y="403.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w3u-u6-Ua1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sNP-Zb-iY3" firstAttribute="leading" secondItem="w3u-u6-Ua1" secondAttribute="leading" constant="15" id="1cg-pD-ekO"/>
                             <constraint firstItem="w3u-u6-Ua1" firstAttribute="trailing" secondItem="sNP-Zb-iY3" secondAttribute="trailing" constant="15" id="21p-Y7-fz8"/>
+                            <constraint firstItem="bp6-yW-2EH" firstAttribute="centerY" secondItem="rLr-V3-iaL" secondAttribute="centerY" id="2FP-xk-0JX"/>
                             <constraint firstItem="w3u-u6-Ua1" firstAttribute="bottom" secondItem="sNP-Zb-iY3" secondAttribute="bottom" constant="16" id="BU0-fn-iU7"/>
+                            <constraint firstItem="bp6-yW-2EH" firstAttribute="centerX" secondItem="rLr-V3-iaL" secondAttribute="centerX" id="vdy-du-gWW"/>
                             <constraint firstItem="sNP-Zb-iY3" firstAttribute="top" secondItem="w3u-u6-Ua1" secondAttribute="top" constant="30" id="xFE-Vr-W6G"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1ud-v0-HEQ"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="bp6-yW-2EH" id="8GJ-bF-r4C"/>
                         <outlet property="collectionView" destination="sNP-Zb-iY3" id="5AQ-UX-z6z"/>
                         <segue destination="Wi1-1D-rc9" kind="show" identifier="segue_addCourse" id="bI2-J4-i4x"/>
                     </connections>
@@ -361,7 +367,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbC-0A-9gF">
-                                        <rect key="frame" x="141" y="15" width="77.333333333333343" height="37.333333333333343"/>
+                                        <rect key="frame" x="140.33333333333334" y="15.000000000000004" width="77.333333333333343" height="37.333333333333343"/>
                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="30"/>
                                         <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1041,7 +1047,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P7V-Lu-3MD">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P7V-Lu-3MD" customClass="Textfield" customModule="Suni" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="104" width="358" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Fb4-JK-2d6"/>
@@ -1049,12 +1055,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WWZ-OC-5Bd">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WWZ-OC-5Bd" customClass="Textfield" customModule="Suni" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="164" width="157.33333333333334" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bkc-dN-w2w">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bkc-dN-w2w" customClass="Textfield" customModule="Suni" customModuleProvider="target">
                                         <rect key="frame" x="200.66666666666663" y="164" width="157.33333333333337" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1109,6 +1115,7 @@
                         <outlet property="dayCollectionView" destination="qVG-fM-u1r" id="S38-X4-w4x"/>
                         <outlet property="dayLabel" destination="0BQ-GU-HDA" id="zXn-Ll-jMP"/>
                         <outlet property="fromTime" destination="d6d-MT-z6B" id="8br-bo-vk5"/>
+                        <outlet property="hyphen" destination="UwI-Yg-VtP" id="tHA-w5-27K"/>
                         <outlet property="instructor_tf" destination="bkc-dN-w2w" id="jo2-uh-Pel"/>
                         <outlet property="manualCourseView" destination="Gnj-Ms-81a" id="K3w-cg-dr6"/>
                         <outlet property="name_tf" destination="P7V-Lu-3MD" id="YIB-r9-ASj"/>

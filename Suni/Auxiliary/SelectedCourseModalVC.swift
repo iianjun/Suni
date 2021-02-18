@@ -44,7 +44,7 @@ class SelectedCourseModalVC: UIViewController {
         guard let currentCourseName = self.currentCourse.name else { return }
         guard let currentCourseType = self.currentCourse.type else { return }
         self.courseTitle.text = "\(currentCourseName) (\(currentCourseType))"
-        self.courseTitle.font = getRighteous(size: 25)
+        self.courseTitle.font = localizedFont(size: 25)
         self.courseTitle.textColor = .themeTextColor
         
         self.infoTableView.delegate = self
