@@ -91,7 +91,6 @@ class ScheduleVC : UIViewController {
         self.blurEffectViewOnTabBar = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialLight))
         guard let tbc = self.tabBarController else { return }
         self.blurEffectViewOnTabBar.frame = CGRect(x: 0, y: 0, width: tbc.tabBar.frame.width, height: tbc.tabBar.frame.height)
-        print(tbc.tabBar.frame)
         self.blurEffectViewOnTabBar.alpha = 0.8
     
         self.view.addSubview(self.blurEffectViewOnView)
