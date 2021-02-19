@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddCourseVC: UIViewController {
+class AddCourseVC: UIViewController, UIGestureRecognizerDelegate {
     
     //CourseView
     @IBOutlet var firstView: UIView!
@@ -38,18 +38,10 @@ class AddCourseVC: UIViewController {
     override func viewDidLoad() {
         self.setup()
     }
-    
     private func setup() {
-        self.addGesture()
-        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.initHeader()
         self.setupSegControl()
-    }
-    
-    private func addGesture() {
-        let dragLeft = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(back(_ :)))
-        dragLeft.edges = UIRectEdge.left
-        self.view.addGestureRecognizer(dragLeft)
     }
     
     private func initHeader() {
@@ -166,9 +158,9 @@ class AddCourseVC: UIViewController {
                 }
 
                 //MARK: Check From Existing Schedule Courses
-                let  sd = UserDefaults.standard
+                let  ud = UserDefaults.standard
                 do {
-                    var originalCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
+                    var originalCourses = try ud.getObject(forKey: "course", castTo: [CourseVO].self)
                     originalCourses.append(contentsOf: tempSelectedCourses)
                     
                     if self.checkOverlaps(courses: originalCourses) {
@@ -177,7 +169,7 @@ class AddCourseVC: UIViewController {
                     
                     //If everything is normal
                     do {
-                        try sd.setObject(originalCourses, forKey: "course")
+                        try ud.setObject(originalCourses, forKey: "course")
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -185,8 +177,7 @@ class AddCourseVC: UIViewController {
                     print(error.localizedDescription)
                 }
                 self.navigationController?.popViewController(animated: true)
-                self.tabBarController?.tabBar.isHidden = false
-                sd.synchronize()
+                ud.synchronize()
             }
         }
 
@@ -246,9 +237,9 @@ class AddCourseVC: UIViewController {
                 
                 
                 
-                let sd = UserDefaults.standard
+                let ud = UserDefaults.standard
                 do {
-                    var originalCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
+                    var originalCourses = try ud.getObject(forKey: "course", castTo: [CourseVO].self)
                     originalCourses.append(cvo)
                     
                     if checkOverlaps(courses: originalCourses) {
@@ -256,7 +247,7 @@ class AddCourseVC: UIViewController {
                     }
 
                     do {
-                        try sd.setObject(originalCourses, forKey: "course")
+                        try ud.setObject(originalCourses, forKey: "course")
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -264,7 +255,6 @@ class AddCourseVC: UIViewController {
                     print(error.localizedDescription)
                 }
                 self.navigationController?.popViewController(animated: true)
-                self.tabBarController?.tabBar.isHidden = false
             }
         }
         else {
@@ -314,7 +304,6 @@ class AddCourseVC: UIViewController {
     }
     @objc func back (_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-        self.tabBarController?.tabBar.isHidden = false
     }
 }
     

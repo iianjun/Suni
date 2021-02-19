@@ -18,6 +18,7 @@ class ScheduleVC : UIViewController {
     let queue = DispatchQueue(label: "Monitor")
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
+    var isFirstTime = false
     var blurEffectViewOnView : UIVisualEffectView!
     var blurEffectViewOnTabBar : UIVisualEffectView!
     var screenshotBtn : CSButton!
@@ -52,11 +53,7 @@ class ScheduleVC : UIViewController {
         willSet {
             if newValue == true {
                 if self.activityIndicator.isAnimating {
-                    self.activityIndicator.stopAnimating()
-                    self.blurEffectViewOnView.removeFromSuperview()
-                    self.blurEffectViewOnTabBar.removeFromSuperview()
-                    self.addBtn.isEnabled = true
-                    self.screenshotBtn.isEnabled = true
+                    self.removeToActivate()
                 }
             }
         }
@@ -80,6 +77,16 @@ class ScheduleVC : UIViewController {
     }
     
     func prepareForDownload() {
+        
+        
+        let ud = UserDefaults.standard
+        let didLaunchBefore = ud.bool(forKey: "firstTime")
+        
+        if didLaunchBefore {
+            Constant.manager.signInAnonyously(with: self)
+            return
+        }
+        
         self.activityIndicator.startAnimating()
         Constant.manager.signInAnonyously(with: self)
         //View
@@ -110,17 +117,33 @@ class ScheduleVC : UIViewController {
         monitor.start(queue: queue)
     }
     
+    func removeToActivate () {
+        self.activityIndicator.stopAnimating()
+        if self.blurEffectViewOnView != nil {
+            self.blurEffectViewOnView.removeFromSuperview()
+        }
+        if self.blurEffectViewOnTabBar != nil {
+            self.blurEffectViewOnTabBar.removeFromSuperview()
+        }
+        if self.addBtn != nil && !self.addBtn.isEnabled {
+            self.addBtn.isEnabled = true
+        }
+        if self.screenshotBtn != nil && !self.screenshotBtn.isEnabled{
+            self.screenshotBtn.isEnabled = true
+        }
+        
+        
+    }
     private func setup() {
         self.initHeader()
         self.initTimetable()
-//        print(appDelegate.existedCourses)
-
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
-        let sd = UserDefaults.standard
+        
+        let ud = UserDefaults.standard
         do {
-            var selectedCourses = try sd.getObject(forKey: "course", castTo: [CourseVO].self)
+            var selectedCourses = try ud.getObject(forKey: "course", castTo: [CourseVO].self)
             selectedCourses = selectedCourses.filter { self.appDelegate.existedCourses.contains($0) == false }
             for course in selectedCourses {
                 for day in course.days! {
@@ -220,19 +243,15 @@ class ScheduleVC : UIViewController {
         } catch {
             print(error.localizedDescription)
         }
-//        print("SCHEDULE VC")
-//        self.appDelegate.existedCourses.forEach {
-//            print("----------\($0.name!) (\($0.type!))")
-//        }
-        
-        //After finished, save the course to sd again (at this point, guranteed all courses are in existedCourses)
+
+        //After finished, save the course to ud again (at this point, guranteed all courses are in existedCourses)
         //By here Course has designated color
         //When the course is removed, I need to reset,
         //1. course.bgColor = nil
         //2. when removing rec or lab, the course that has that rec or lab should be also removed.
         //3. vise versa from #2
         do {
-            try sd.setObject(self.appDelegate.existedCourses, forKey: "course")
+            try ud.setObject(self.appDelegate.existedCourses, forKey: "course")
         } catch {
             print(error.localizedDescription)
         }
@@ -268,13 +287,29 @@ class ScheduleVC : UIViewController {
         
         self.screenshotBtn.addTarget(self, action: #selector(takeScreenshot(_ :)), for: .touchUpInside)
         self.addBtn.addTarget(self, action: #selector(addCourse(_ :)), for: .touchUpInside)
- 
+        
+        
+        let addBgView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        addBgView.center.x = self.addBtn.frame.midX
+        addBgView.center.y = self.addBtn.frame.height / 2
+        addBgView.layer.cornerRadius = Constant.cornerRadius
+        addBgView.backgroundColor = .themeColor
+        
+        let cameraBgView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        cameraBgView.center.x = self.screenshotBtn.frame.midX
+        cameraBgView.center.y = self.screenshotBtn.frame.height / 2
+        cameraBgView.layer.cornerRadius = Constant.cornerRadius
+        cameraBgView.backgroundColor = .themeColor
+        
+        combinedView.addSubview(addBgView)
+        combinedView.addSubview(cameraBgView)
         combinedView.addSubview(self.addBtn)
         combinedView.addSubview(self.screenshotBtn)
         combinedView.sizeToFit()
-        self.addBtn.isEnabled = false
-        self.screenshotBtn.isEnabled = false
-
+        if !Constant.didLaunchBefore {
+            self.addBtn.isEnabled = false
+            self.screenshotBtn.isEnabled = false
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: combinedView)
 
     }
@@ -285,32 +320,49 @@ class ScheduleVC : UIViewController {
     }
     
     @objc private func takeScreenshot(_ sender: UIButton) {
-        if PHPhotoLibrary.authorizationStatus(for: .addOnly) == .authorized {
-            let scale = UIScreen.main.scale
-            UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, scale)
-            self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
-            guard let screenshot = UIGraphicsGetImageFromCurrentImageContext() else { return }
-            UIGraphicsEndImageContext()
-            guard let croppedcgImage = screenshot.cgImage?.cropping(to: CGRect(x: 0, y: (self.collectionView.frame.origin.y - 15) * scale, width: self.view.frame.width * scale, height: (self.collectionView.frame.height + 30) * scale)) else { return }
-            self.showScreenshotEffect()
-            let croppedImage = UIImage(cgImage: croppedcgImage)
-            UIImageWriteToSavedPhotosAlbum(croppedImage, self, nil, nil)
-        }
-        else {
-            let alert = UIAlertController(title: "", message: "Please allow access to adding Photos in order to take screenshot".localized, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
-                guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
-                if UIApplication.shared.canOpenURL(settingsURL) {
-                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        //For First time (status = Not determined)
+        if PHPhotoLibrary.authorizationStatus(for: .addOnly) == .notDetermined {
+            PHPhotoLibrary.requestAuthorization(for: .addOnly, handler: { status in
+                if status == .authorized {
+                    DispatchQueue.main.sync {
+                        self.drawAndSaveSchedule()
+                    }
                 }
-            }))
-            self.present(alert, animated: true)
+            })
         }
         
-
+        //Otherwise, it is denied or authorized
+        else {
+            if PHPhotoLibrary.authorizationStatus(for: .addOnly) == .authorized {
+                self.drawAndSaveSchedule()
+            }
+            else {
+                let alert = UIAlertController(title: "", message: "Please allow access to adding Photos in order to take screenshot".localized, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+                    guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+                    if UIApplication.shared.canOpenURL(settingsURL) {
+                        UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                    }
+                }))
+                self.present(alert, animated: true)
+            }
+        }
     }
+        
+            
     
+    private func drawAndSaveSchedule () {
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, scale)
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        guard let screenshot = UIGraphicsGetImageFromCurrentImageContext() else { return }
+        UIGraphicsEndImageContext()
+        guard let croppedcgImage = screenshot.cgImage?.cropping(to: CGRect(x: 0, y: (self.collectionView.frame.origin.y - 15) * scale, width: self.view.frame.width * scale, height: (self.collectionView.frame.height + 30) * scale)) else { return }
+        self.showScreenshotEffect()
+        let croppedImage = UIImage(cgImage: croppedcgImage)
+        UIImageWriteToSavedPhotosAlbum(croppedImage, self, nil, nil)
+    }
     private func showScreenshotEffect() {
         let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         blurEffectView.frame = view.bounds

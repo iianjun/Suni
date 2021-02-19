@@ -20,17 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         sleep(1)
         FirebaseApp.configure()
-        let sd = UserDefaults.standard
-        let didLaunchBefore = sd.bool(forKey: "firstTime")
-        if !didLaunchBefore {
+        let ud = UserDefaults.standard
+        Constant.didLaunchBefore = ud.bool(forKey: "firstTime")
+        if !Constant.didLaunchBefore {
             do {
-                try sd.setObject([CourseVO](), forKey: "course")
+                try ud.setObject([CourseVO](), forKey: "course")
             }
             catch {
                 print(error.localizedDescription)
             }
 
-        }
+        }        
         return true
     }
 

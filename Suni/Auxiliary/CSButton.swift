@@ -27,23 +27,27 @@ class CSButton: UIButton {
         self.type = type
         switch self.type {
         case .add :
-            self.makeAddBtn()
+            self.makeBtn(type: .add)
         case .camera :
-            self.makeCameraBtn()
+            self.makeBtn(type: .camera)
         }
 
     }
     
-    func makeAddBtn () {
-        self.setImage(UIImage(named: "add"), for: .normal)
-        self.layer.cornerRadius = Constant.cornerRadius
-        self.backgroundColor = .themeColor
-    }
+    func makeBtn (type: CSButtonType) {
+        switch type {
+        case .add :
+            self.backgroundColor = .clear
+            self.setImage(UIImage(named: "add"), for: .normal)
+            
+        case .camera :
+            
+            self.backgroundColor = .clear
+            self.setImage(UIImage(named: "camera"), for: .normal)
 
-    func makeCameraBtn () {
-        self.setImage(UIImage(named: "camera"), for: .normal)
-        self.layer.cornerRadius = Constant.cornerRadius
-        self.backgroundColor = .themeColor
+        }
+        
+        
     }
 
 }

@@ -125,8 +125,8 @@ class CourseVC: UIViewController {
     
     
     private func getCourseData() {
-        let sd = UserDefaults.standard
-        if let jsonResult = sd.object(forKey: "all_courses") as? [NSDictionary] {
+        let ud = UserDefaults.standard
+        if let jsonResult = ud.object(forKey: "all_courses") as? [NSDictionary] {
             for course in jsonResult {
                 let cvo = CourseVO()
                 cvo.major = course["major"] as? String
@@ -157,7 +157,7 @@ class CourseVC: UIViewController {
             }
         }
         else {
-            NSLog("Error on parsing Course JSON From sd")
+            NSLog("Error on parsing Course JSON From ud")
         }
     }
 

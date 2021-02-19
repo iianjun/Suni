@@ -160,7 +160,7 @@
         <!--Add CourseVC-->
         <scene sceneID="eRz-w1-Y7a">
             <objects>
-                <viewController storyboardIdentifier="AddCourseVC" id="Wi1-1D-rc9" customClass="AddCourseVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddCourseVC" hidesBottomBarWhenPushed="YES" id="Wi1-1D-rc9" customClass="AddCourseVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ih6-qB-eBN">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,13 +179,13 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AWo-zm-n56">
-                                <rect key="frame" x="0.0" y="153" width="390" height="608"/>
+                                <rect key="frame" x="0.0" y="153" width="390" height="657"/>
                                 <connections>
                                     <segue destination="S00-K9-6mX" kind="embed" identifier="sugue_courseVC" id="4Sy-sr-eWL"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOJ-Q5-AsZ">
-                                <rect key="frame" x="0.0" y="153" width="390" height="608"/>
+                                <rect key="frame" x="0.0" y="153" width="390" height="657"/>
                                 <connections>
                                     <segue destination="0J3-C0-mtW" kind="embed" identifier="segue_manualVC" id="yRQ-cv-FsW"/>
                                 </connections>
@@ -688,7 +688,7 @@
             <objects>
                 <viewController storyboardIdentifier="CourseVC" id="S00-K9-6mX" customClass="CourseVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ca8-fu-K5g">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="608"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="657"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WmC-85-2Xr">
@@ -844,10 +844,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gyc-2w-40X" customClass="CSViewWithButton" customModule="Suni" customModuleProvider="target">
-                                <rect key="frame" x="16" y="292" width="358" height="301"/>
+                                <rect key="frame" x="16" y="292" width="358" height="350"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-DJ-fbp">
-                                        <rect key="frame" x="15" y="5" width="328" height="291"/>
+                                        <rect key="frame" x="15" y="5" width="328" height="340"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="vka-aq-crX">
                                             <rect key="frame" x="0.0" y="99.666667938232422" width="328" height="5"/>
@@ -978,7 +978,7 @@
             <objects>
                 <viewController storyboardIdentifier="ManualVC" id="0J3-C0-mtW" customClass="ManualVC" customModule="Suni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7zV-qS-ecc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="608"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="657"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gnj-Ms-81a">

@@ -28,8 +28,8 @@ class PhoneBoothVC : UIViewController {
     }
     private func getPhoneNumbers () {
         
-        let sd = UserDefaults.standard
-        if let jsonResult = sd.object(forKey: "phone_number") as? [NSDictionary] {
+        let ud = UserDefaults.standard
+        if let jsonResult = ud.object(forKey: "phone_number") as? [NSDictionary] {
             for obj in jsonResult {
                 let pvo = PhoneNumberVO()
                 pvo.category = PhoneCategory(rawValue: (obj["category"] as? Int)!)
@@ -53,7 +53,7 @@ class PhoneBoothVC : UIViewController {
             }
         }
         else {
-            NSLog("Error on parsing PhoneNumber from sd")
+            NSLog("Error on parsing PhoneNumber from ud")
         }
         self.phoneNumbers = [self.igc, self.coordinators, self.studentAffair, self.rcAndWorkStudy, self.scholarship, self.others, self.international]
     }

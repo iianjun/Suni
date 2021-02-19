@@ -184,7 +184,7 @@ extension UIViewController {
 }
 
 struct Constant {
-    static let addBtnWidth : CGFloat = 30.0
+    static let addBtnWidth : CGFloat = 44.0
     static let cornerRadius : CGFloat = 10.0
     static let moreVCCornerRadius : CGFloat = 25.0
     static let timetableBorderWidth : CGFloat = 2.0
@@ -203,6 +203,7 @@ struct Constant {
     static let freeSpaceBtwBackAndTitle : CGFloat = 30.0
     static let freeSpaceBtwCollectionView : CGFloat = 5.0
     static let manager = NetworkManager()
+    static var didLaunchBefore = false
 }
 
 protocol ObjectSavable {

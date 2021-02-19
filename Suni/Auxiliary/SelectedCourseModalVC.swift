@@ -70,7 +70,7 @@ class SelectedCourseModalVC: UIViewController {
             //3. vise versa from #2
             
             //Initialization
-            let sd = UserDefaults.standard
+            let ud = UserDefaults.standard
             if self.currentCourse.type == "MANUAL" {
                 self.currentCourse.bgColor.color = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
                 if let index = self.appDelegate.existedCourses.firstIndex(where: { $0 == self.currentCourse }) {
@@ -88,7 +88,7 @@ class SelectedCourseModalVC: UIViewController {
                 self.removeCourseView()
             }
             do {
-                try sd.setObject(self.appDelegate.existedCourses, forKey: "course")
+                try ud.setObject(self.appDelegate.existedCourses, forKey: "course")
                 
             } catch {
                 print(error.localizedDescription)

@@ -19,7 +19,7 @@ class NetworkManager {
     private var versionFromFB : String?
     
     func signInAnonyously (with vc : UIViewController) {
-        print("In signInAnonyously")
+        
         self.courseRef = Database.database().reference()
         self.calendarRef = Database.database(url: "https://suni-f0e4b-calendar.firebaseio.com/").reference()
         self.phoneRef = Database.database(url: "https://suni-f0e4b-pn.firebaseio.com/").reference()
@@ -31,18 +31,17 @@ class NetworkManager {
                 print(error)
             }
             else {
-                let sd = UserDefaults.standard
-                
+                print("In signInAnonymously Successful")
+                let ud = UserDefaults.standard
                 //If firstTime
-                let didLaunchBefore = sd.bool(forKey: "firstTime")
-                if !didLaunchBefore {
-                    sd.setValue(true, forKey: "firstTime")
+                if !Constant.didLaunchBefore {
+                    ud.setValue(true, forKey: "firstTime")
                     print("firstTime Operation")
                     self.getDataFromFirebase(with: vc)
                                         
                 }
                 else {
-                    let version = sd.string(forKey: "version")
+                    let version = ud.string(forKey: "version")
                     self.verRef.child("version").observeSingleEvent(of: .value, with: { snapshot in
                         self.versionFromFB = snapshot.value as? String
                         //If version is different
@@ -52,7 +51,6 @@ class NetworkManager {
                         }
                         else {
                             if let scheduleVC = vc as? ScheduleVC {
-                                print("From singin: \(scheduleVC.activityIndicator.isAnimating)")
                                 scheduleVC.isLoaded = true
                                 self.courseRef.removeAllObservers()
                                 self.calendarRef.removeAllObservers()
@@ -70,36 +68,36 @@ class NetworkManager {
         
     }
     private func getDataFromFirebase(with vc : UIViewController) {
-        let sd = UserDefaults.standard
+        let ud = UserDefaults.standard
         self.courseRef.child("all_courses").observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? [NSDictionary]
-            sd.set(value, forKey: "all_courses")
+            ud.set(value, forKey: "all_courses")
             print("all_courses complete")
+            if let scheduleVC = vc as? ScheduleVC {
+                scheduleVC.isLoaded = true
+            }
         }) { error in
             print("Error in getting courses JSON: \(error.localizedDescription)")
         }
         self.calendarRef.child("calendar").observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? [NSDictionary]
-            sd.set(value, forKey: "calendar")
+            ud.set(value, forKey: "calendar")
             print("calendar complete")
         }) { error in
             print("Error in getting calendar JSON: \(error.localizedDescription)")
         }
         self.phoneRef.child("phone_number").observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? [NSDictionary]
-            sd.set(value, forKey: "phone_number")
+            ud.set(value, forKey: "phone_number")
             print("phone_number complete")
         }) { error in
             print("Error in getting phone number JSON: \(error.localizedDescription)")
         }
         self.verRef.child("version").observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? String
-            sd.set(value, forKey: "version")
+            ud.set(value, forKey: "version")
             print("version complete")
-            if let scheduleVC = vc as? ScheduleVC {
-                print("From getDataFromFirebase\(scheduleVC.activityIndicator.isAnimating)")
-                scheduleVC.isLoaded = true
-            }
+            
         }) { error in
             print("Error in getting version number: \(error.localizedDescription)")
         }

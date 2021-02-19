@@ -57,8 +57,8 @@ class CalendarVC : UIViewController {
     }
     
     private func getCalendarInfo() {
-        let sd = UserDefaults.standard
-        if let jsonResult = sd.object(forKey: "calendar") as? [NSDictionary] {
+        let ud = UserDefaults.standard
+        if let jsonResult = ud.object(forKey: "calendar") as? [NSDictionary] {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.locale = Locale(identifier: "ko_KR")
