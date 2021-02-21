@@ -424,10 +424,10 @@ extension ScheduleVC : UICollectionViewDelegate, UICollectionViewDataSource {
             //1 -> SUN
             //2 -> MON
             //7 -> SAT
+            
             let day = Calendar.current.component(.weekday, from: Date())
-            if day == indexPath.row + 1 {
+            if day == indexPath.row + 1 && day != 1 {
                 cell.backgroundColor = .todayColor
-                
             }
             cell.labelType = .day
             switch indexPath.row {
