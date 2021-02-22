@@ -385,12 +385,16 @@ extension CourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
         case 101 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
             cell.label?.text = self.majors[indexPath.row]
-            
+            if cell.frame.width < 40 {
+                cell.label?.font = getRighteous(size: 13)
+            }
             return cell
         case 102 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.addCourseCellId, for: indexPath) as! AddCourseCell
             cell.label?.text = self.days[indexPath.row].localized
-            
+            if cell.frame.width < 45 {
+                cell.label?.font = getRighteous(size: 15)
+            }
             return cell
         case 103 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.selectCellId, for: indexPath) as! SelectedCourseCell
@@ -410,11 +414,13 @@ extension CourseVC : UICollectionViewDelegate, UICollectionViewDataSource {
             if let cell = collectionView.cellForItem(at: indexPath) as? AddCourseCell {
                 cell.backgroundColor = .themeColor
                 selectedFilter.selectedMajor.append(self.majors[indexPath.row])
+                
             }
         case 102:
             if let cell = collectionView.cellForItem(at: indexPath) as? AddCourseCell {
                 cell.backgroundColor = .themeColor
                 selectedFilter.selectedDays.append(days[indexPath.row])
+                
             }
         case 103: ()
         default: ()

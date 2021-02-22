@@ -233,7 +233,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkq-t7-zX7">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkq-t7-zX7">
                                 <rect key="frame" x="0.0" y="44" width="390" height="766"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7l-KC-ldm" userLabel="Container View">
@@ -248,8 +248,8 @@
                                                         <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TUE/THU 10:00-12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sha-cK-hJG">
-                                                        <rect key="frame" x="7.6666666666666714" y="66" width="150.66666666666663" height="17.666666666666671"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TUE/THU 10:00-12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sha-cK-hJG">
+                                                        <rect key="frame" x="51" y="56" width="64" height="19"/>
                                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -257,8 +257,8 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="Sha-cK-hJG" firstAttribute="top" secondItem="khc-EQ-MFK" secondAttribute="bottom" constant="15" id="BDZ-tz-fUd"/>
-                                                    <constraint firstItem="Sha-cK-hJG" firstAttribute="centerX" secondItem="cZa-9B-XDJ" secondAttribute="centerX" id="G8c-4b-y7V"/>
+                                                    <constraint firstItem="Sha-cK-hJG" firstAttribute="top" secondItem="khc-EQ-MFK" secondAttribute="bottom" constant="5" id="BDZ-tz-fUd"/>
+                                                    <constraint firstItem="Sha-cK-hJG" firstAttribute="centerX" secondItem="cZa-9B-XDJ" secondAttribute="centerX" id="CIw-bf-4wk"/>
                                                     <constraint firstItem="khc-EQ-MFK" firstAttribute="centerX" secondItem="cZa-9B-XDJ" secondAttribute="centerX" id="M65-pN-uwZ"/>
                                                     <constraint firstItem="khc-EQ-MFK" firstAttribute="top" secondItem="cZa-9B-XDJ" secondAttribute="top" constant="15" id="hsU-uA-M3m"/>
                                                     <constraint firstAttribute="height" constant="100" id="lTL-LS-Q7e"/>
@@ -291,8 +291,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sHF-sl-DCD">
                                                 <rect key="frame" x="202.66666666666663" y="245" width="171.33333333333337" height="100"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQM-mw-tiX">
-                                                        <rect key="frame" x="24.000000000000007" y="15" width="123.66666666666669" height="36"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INSTR." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQM-mw-tiX">
+                                                        <rect key="frame" x="40.999999999999993" y="15" width="89.333333333333314" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <color key="textColor" red="0.31091335419999999" green="0.17809841039999999" blue="0.99937933680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -401,7 +401,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0P-h4-eAQ">
-                                                        <rect key="frame" x="10" y="56" width="338" height="31"/>
+                                                        <rect key="frame" x="10" y="51" width="338" height="31"/>
                                                         <fontDescription key="fontDescription" name="Righteous-Regular" family="Righteous" pointSize="15"/>
                                                         <connections>
                                                             <segue destination="y6T-zQ-cJ2" kind="show" identifier="segue_detail" id="AkD-4M-S3C"/>
@@ -415,7 +415,7 @@
                                                     <constraint firstAttribute="height" constant="100" id="FmE-Wg-W6q"/>
                                                     <constraint firstItem="nRJ-DI-orR" firstAttribute="top" secondItem="KLK-Za-hPq" secondAttribute="top" constant="5" id="MKw-q9-xrA"/>
                                                     <constraint firstAttribute="trailing" secondItem="P0P-h4-eAQ" secondAttribute="trailing" constant="10" id="WEp-ie-DZF"/>
-                                                    <constraint firstItem="P0P-h4-eAQ" firstAttribute="top" secondItem="nRJ-DI-orR" secondAttribute="bottom" constant="15" id="hmE-y7-h4F"/>
+                                                    <constraint firstItem="P0P-h4-eAQ" firstAttribute="top" secondItem="nRJ-DI-orR" secondAttribute="bottom" constant="10" id="hmE-y7-h4F"/>
                                                     <constraint firstItem="nRJ-DI-orR" firstAttribute="centerX" secondItem="KLK-Za-hPq" secondAttribute="centerX" id="oDr-cM-ZWU"/>
                                                 </constraints>
                                             </view>
@@ -474,6 +474,7 @@
                         <outlet property="courseNameLabel" destination="JbC-0A-9gF" id="Qxm-QM-JMS"/>
                         <outlet property="courseTitleLabel" destination="abv-Ec-tTE" id="oM4-Br-E0j"/>
                         <outlet property="hasLabView" destination="vEi-gO-2Fj" id="Ypk-df-VKH"/>
+                        <outlet property="heightForContainerView" destination="PGh-Rg-vv7" id="V0x-bP-ntz"/>
                         <outlet property="labTimeLabel" destination="MdC-wk-FTt" id="Mhd-zu-uhN"/>
                         <outlet property="labTitleLabel" destination="RvE-S4-tI1" id="0MS-qJ-rKl"/>
                         <outlet property="paramCredit" destination="TZi-qx-HZy" id="Kgv-Oc-GYL"/>

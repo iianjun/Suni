@@ -22,7 +22,11 @@ class MoreInfoVC: UIViewController {
     @IBOutlet var hasLabView: UIView!
     @IBOutlet var labTitleLabel: UILabel!
     @IBOutlet var labTimeLabel: UILabel!
+    @IBOutlet weak var heightForContainerView: NSLayoutConstraint!
+//    @IBOutlet weak var temp: NSLayoutConstraint!
+
     
+    @IBOutlet weak var temp: NSLayoutConstraint!
     
     @IBOutlet var titles: [UILabel]!
     
@@ -49,6 +53,7 @@ class MoreInfoVC: UIViewController {
         }
         else {
             self.hasLabView.isHidden = true
+            self.heightForContainerView.constant -= self.hasLabView.frame.height
         }
         self.courseNameLabel.text = self.params.name
         self.courseTitleLabel.text = self.params.title
@@ -57,9 +62,12 @@ class MoreInfoVC: UIViewController {
         self.courseTitleLabel.textAlignment = .center
         self.courseNameLabel.sizeToFit()
         
-        self.paramTime.text = params.convertTimeAndDayToString()
+        let timeText = self.params.convertTimeAndDayToString().split(separator: " ")
+        self.paramTime.text = "\(timeText[0])\n\(timeText[1])"
         self.paramTime.textColor = .themeTextColor
         self.paramTime.numberOfLines = 0
+        self.paramTime.textAlignment = .center
+        
         self.paramRoom.text = self.params.room
         self.paramRoom.textColor = .themeTextColor
         self.paramCredit.text = "\(params.credit!) credit"
@@ -67,6 +75,8 @@ class MoreInfoVC: UIViewController {
         
         self.paramInstructor.text = self.params.instructor
         self.paramInstructor.textColor = .themeTextColor
+        self.paramInstructor.textAlignment = .center
+//        self.paramInstructor.adjustsFontSizeToFitWidth = true
        
         let link = self.params.link
         if link == "" {
