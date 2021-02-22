@@ -1,4 +1,4 @@
 # Suni
  Educational Time Manager for SUNY Korea students
 
-![alt text](https://github.com/iianjun/Suni/blob/main/Images/1.png=100x20)
+![initial](https://user-images.githubusercontent.com/59468036/108706922-ae7b0d00-7552-11eb-84ef-dd7665a602d1.png)
