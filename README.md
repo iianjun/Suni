@@ -1,4 +1,4 @@
-# Suni (순이) Only Available on iOS
+# Suni (순이) Only Available in iOS
 
  Educational Time Manager for SUNY Korea students
  
